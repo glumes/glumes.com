@@ -11,7 +11,7 @@ metaDataFormat = "yaml"
 
 hasCJKLanguage = true
 
-DefaultContentLanguage = "en"
+
 
 [Params]
 	 useChroma = true
