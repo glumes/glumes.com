@@ -20,7 +20,9 @@ tags: ["Android"]
 ## Launcher 进程内的操作
 
 在 Launcher 进程内执行函数：
+
 *	Launcher . `startActivitySafely`(View v, Intent intent, Object tag)
+
 *	Launcher . `startActivity`(View v, Intent intent, Object tag)
 *	Activity . `startActivity`(Intent intent, @Nullable Bundle options)
 *	Activity . `startActivityForResult`(Intent intent, int requestCode, @Nullable Bundle options)
@@ -39,6 +41,7 @@ Launcher 组件的运行流程从`startActivitySafely`到`startActivity`，再�
 
 *	ActivityManagerService . `startActivity`(IApplicationThread caller, String callingPackage, Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode, int startFlags, ProfilerInfo profilerInfo, Bundle options)
 *	ActivityManagerService . `startActivityAsUser`(IApplicationThread caller, String callingPackage, Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode, int startFlags, ProfilerInfo profilerInfo, Bundle options, int userId)
+
 *	ActivityStackSupervisor . `startActivityMayWait`(...)
 *	ActivityStackSupervisor . `startActivityLocked`( ...)
 *	ActivityStackSupervisor . `startActivityUncheckedLocked`( ...)
@@ -60,6 +63,7 @@ ActivityManagerService 响应跨进程调用执行`startActivity`方法，方法
 
 *	ActivityStackSupervisor . `startSpecificActivityLocked`(ActivityRecord r, boolean andResume, boolean checkConfig)
 *	ActivityManagerService . `startProcessLocked`(...)
+
 *	ActivityManagerService . `newProcessRecordLocked`(ApplicationInfo info, String customProcess, boolean isolated, int isolatedUid)
 *	ActivityManagerService . `startProcessLocked`(...)
 
@@ -74,6 +78,7 @@ ActivityManagerService 响应跨进程调用执行`startActivity`方法，方法
 
 
 *	ActivityThread . `main`(...)
+
 *	ActivityThread . `attach`(boolean system)
 *	ActivityManagerService . `attachApplication`(IApplicationThread thread)
 *	ActivityManagerService . `attachApplicationLocked`(IApplicationThread thread, int pid)
