@@ -1,3 +1,6 @@
 [submodule "themes/beautifulhugo"]
 	path = themes/beautifulhugo
 	url = git@github.com:halogenica/beautifulhugo.git
+[submodule "public"]
+	path = public
+	url = https://github.com/glumes/glumes.github.io.git
