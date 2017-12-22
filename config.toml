@@ -1,5 +1,5 @@
 baseURL = "https://glumes.github.io/"
-languageCode = "en-us"
+languageCode = "zh-cn"
 DefaultContentLanguage = "en"
 title = "Glumes Blog"
 theme = "beautifulhugo"
@@ -7,10 +7,17 @@ theme = "beautifulhugo"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
+metaDataFormat = "yaml"
+
+hasCJKLanguage = true
+
+DefaultContentLanguage = "en"
+
 [Params]
 	 useChroma = true
-
-
+	 commit = false
+	 rss = true
+	 comments = true
 
 [Author]
 	name = "Glumes"
@@ -19,14 +26,14 @@ pygmentsUseClasses = true
 	github = "glumes"
 
 
-[taxonomies]
-	tag = "tags"
-	category = "categories"
 
 
 [[menu.main]]
+	identifier = "Code"
 	name = "Code"
 	weight = 1
+	url = "tags"
+
 
 [[menu.main]]
 	name = "Life"
@@ -36,6 +43,7 @@ pygmentsUseClasses = true
 	name = "About"
 	url = "page/about/"
 	weight = 3
+
 
 
 
