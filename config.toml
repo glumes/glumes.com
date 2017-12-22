@@ -19,7 +19,9 @@ pygmentsUseClasses = true
 	github = "glumes"
 
 
-
+[taxonomies]
+	tag = "tags"
+	category = "categories"
 
 
 [[menu.main]]
