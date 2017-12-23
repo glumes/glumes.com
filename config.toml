@@ -12,6 +12,7 @@ metaDataFormat = "yaml"
 hasCJKLanguage = true
 
 
+disqusShortname = "glumes"
 
 [Params]
 	 useChroma = true
