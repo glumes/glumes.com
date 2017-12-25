@@ -6,6 +6,12 @@ if [ $# -eq 1 ]
   then msg="$1"
 fi
 
+
+git config user.name glumes
+
+git config user.email zhaoying9402@gmail.com
+
+
 # Push Hugo content 
 git add -A
 git commit -m "$msg"
