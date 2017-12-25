@@ -2,7 +2,7 @@ baseURL = "https://glumes.github.io/"
 languageCode = "zh-cn"
 DefaultContentLanguage = "en"
 title = "Glumes Blog"
-theme = "beautifulhugo"
+theme = "beautifulhugoTheme"
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
