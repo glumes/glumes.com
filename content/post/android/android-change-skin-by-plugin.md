@@ -33,7 +33,7 @@ tags: ["Android"]
 ## 动态加载插件资源
 
 在 `SkinManager`的`load`方法中，加载了插件包，并且得到了插件的资源`Resource`。
-```
+``` java
 						PackageManager mPm = context.getPackageManager();
 						PackageInfo mInfo = mPm.getPackageArchiveInfo(skinPkgPath, PackageManager.GET_ACTIVITIES);
 						// 得到插件包名，根据包名和资源 ID 得到资源
@@ -61,7 +61,7 @@ Android-Skin-Loader 框架自定义了一个 `enable`的属性，用在 XML 文�
 
 并且 Android-Skin-Loader 在需要继承的基类 `BaseActivity`、`BaseFragment`、`BaseFragmentActivity`中都设置了`LayoutInflater.Factory`，以便在布局加载之前进行预操作，也就是保存那些 需要换肤的控件 和识别 需要换肤的属性，这里 *换肤控件* 和 *换肤属性* 两个东西要区别开，它们所要进行的操作是不一样的，要先找到 *换肤控件*，然后再去找它的 *换肤属性* 。
 
-```
+``` java
 @Override
 	public View onCreateView(String name, Context context, AttributeSet attrs) {
 		// 从 AttributeSet 中得到换肤属性，判断是否需要进行换肤
@@ -81,7 +81,7 @@ Android-Skin-Loader 框架自定义了一个 `enable`的属性，用在 XML 文�
 ```
 以上代码就是我们所说的侵入式编程，干扰了系统构造 View 的过程，所做的工作就是找出需要换肤的 View 并交由下一步进行解析。
 
-```
+``` java
 private void parseSkinAttr(Context context, AttributeSet attrs, View view) {
 		List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();
 		
@@ -129,7 +129,7 @@ AndroidChangeSkin 框架并没有使用 `LayoutInflater.Factory`方案了，采�
 
 对于标识需要换肤的控件这一问题，AndroidChangeSkin 并没有再添加自定义属性，而是使用 View 自带的 `tag`属性。并在在`tag`属性的字符串值中，传递了要换肤的标识、要换肤的属性、要换肤的属性名。通过解析这三者来完成标识的任务。这样就不必要对每个属性都进行操作了。
 
-```
+``` java
 	//传入activity，找到content元素，递归遍历所有的子View，根据tag命名，记录需要换肤的View
 	public static List<SkinView> getSkinViews(Activity activity)
     {
@@ -177,7 +177,7 @@ AndroidChangeSkin 完成查找*换肤控件*和*换肤属性*两大任务，之�
 
 
 Android-Skin-Loader 是为每一个需要更改的属性定义了一个类，并在此类中去加载资源。
-```
+``` java
 public class TextColorAttr extends SkinAttr {
 
 	@Override
@@ -189,7 +189,7 @@ public class TextColorAttr extends SkinAttr {
 ```
 
 而 androidChangeSkin 则没有编写那么多类，采用了枚举类型来更改属性，同样也是在属性中加载资源。
-```
+``` java
 public enum SkinAttrType
 {
     BACKGROUND("background"){

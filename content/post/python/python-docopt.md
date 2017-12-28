@@ -19,7 +19,7 @@ docopt 最大的特点在于不用考虑如何解析命令行参数，而是当�
 在 Python 中有这么一个属性 `__doc__`，它的值是字符串，一般表示帮助信息，而 docopt 正是利用了这一属性，把帮助信息替换成命令行参数解析说明，再对它进行解析即可。
 
 举个 docopt 中的例子来说明：
-```
+``` python
 """Naval Fate.
 
 Usage:
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 选项描述同样必不可少，尤其是当选项有参数，并且还需要为它赋默认值时。
 
 为选项添加参数的格式有两种：
-```
+``` sh
 -o FILE --output-FILE     # 不使用逗号，使用 = 符号
 -i <file>, --input <file> # 使用逗号，不使用 = 符号
 ```
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 为选项添加描述说明，只需要用两个空格分隔选项和说明即可。
 
 为选项添加默认值时，把它添加到选择描述后面即可，格式如下`[default: <my-default-value>]`
-```
+``` sh
 --coefficient=K  The K coefficient [default: 2.95]
 --output=FILE    Output file [default: test.txt]
 --directory=DIR  Some directory [default: ./]
@@ -98,11 +98,12 @@ if __name__ == '__main__':
 接下来就是得到输入的信息了。
 
 在前面提到`arguments`参数是一个字典类型，包含了用户输入的选项和参数信息，还是上面的代码段例子，假如我们从命令行运行的输入是
-```
+``` python
 python3 test.py ship Guardian move 100 150 --speed=15
 ```
 那么打印`arguments`参数如下：
-```
+
+``` sh
 {'--drifting': False,
  '--help': False,
  '--moored': False,

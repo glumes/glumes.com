@@ -33,7 +33,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 
 首先从 ContextImpl 的 getSystemService 方法入手：
 
-```
+``` java
     @Override
     public Object getSystemService(String name) {
         return SystemServiceRegistry.getSystemService(this, name);
@@ -43,7 +43,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 可以看到 ContextImpl 返回的服务是通过 `SystemServiceRegistry`类的静态方法返回的。
 
 而 `SystemServiceRegistry` 的 getSystemService 方法内容如下：
-```
+``` java
 /**
      * Gets a system service from a given context.
      */
@@ -56,7 +56,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 `SYSTEM_SERVICE_FETCHERS` 是一个 HashMap 类型，存储的内容为 `HashMap<String,ServiceFetcher<?>>` 。而在 getSystemService 方法中得到的就是一个 `ServiceFetcher` 类型。
 
 而 ServiceFetcher 是一个接口类型，定义如下，它的 getService 方法就是返回所需的 Service 。
-```
+``` java
     /**
      * Base interface for classes that fetch services.
      * These objects must only be created during static initialization.
@@ -72,7 +72,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 
 在 SystemServiceRegistry 源码里有个 `registerService` 方法，它就是向`SYSTEM_SERVICE_FETCHERS`添加 `ServiceFetcher`。
 
-```
+``` java
 /**
      * Statically registers a system service with the context.
      * This method must be called during static initialization only.
@@ -88,7 +88,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 
 而最终通过 `ServiceFetcher`的 getService 方法返回的 Service 也是在 registerService 方法中传入的，查看其中某个 Service 代码如下：
 
-```
+``` java
  registerService(Context.ALARM_SERVICE, AlarmManager.class,
             new CachedServiceFetcher<AlarmManager>() {
             @Override
@@ -102,7 +102,7 @@ ServiceManager 本身也是一个 Service ，Framework 提供了一个系统函�
 可以看到，这里通过 ServiceManager 的 getService 方法得到了对应服务的 Binder 对象，再通过 `Stub.asInterface(b)` 方法得到 Service 的代理对象。这正和前面提到的一样，ServiceManager 总管了所有的服务，然后具体需要返回对应的 Service 。
 
 ServiceManager 返回 Service 的 Binder 对象的代码如下：
-```
+``` java
  /**
      * Returns a reference to a service with the given name.
      * 

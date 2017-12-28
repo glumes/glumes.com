@@ -4,8 +4,8 @@ DefaultContentLanguage = "en"
 title = "Glumes Blog"
 theme = "beautifulhugoTheme"
 
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+pygmentsUseClasses = false
+pygmentCodeFences = true
 
 metaDataFormat = "yaml"
 

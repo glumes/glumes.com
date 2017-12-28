@@ -14,7 +14,7 @@ tags: ["OpenGL"]
 
 定义如下顶点数据，绘制一条屏幕对角线的直线：
 
-```
+``` java
     float[] lineVertex = {
             -0.5f, 0.5f,
             0.5f, -0.5f
@@ -24,7 +24,7 @@ tags: ["OpenGL"]
 而我们的顶点着色器和片段着色器也会发生一些变化，最终还是绘制一条单一颜色的直线。
 
 顶点着色器代码：
-```
+``` java
 attribute vec4 a_Position;
 void main(){
     gl_Position = a_Position;
@@ -35,7 +35,7 @@ void main(){
 
 片段着色器代码：
 
-```
+``` java
 precision mediump float;
 uniform vec4 u_Color;
 void main()
@@ -50,7 +50,7 @@ void main()
 
 最后还是通过`glDrawArrays`方法执行绘制。
 
-```
+``` java
 glDrawArrays(GL_LINES, 0, 2);
 ```
 
@@ -61,8 +61,8 @@ glDrawArrays(GL_LINES, 0, 2);
 绘制三角形和绘制直线基本差不多，从两个点的直线变成了三个点的三角形。
 
 顶点数据也发生了相应的改动，假设如下的数据，注意要以逆时针定义数据。
-
-```
+ 
+``` java
     float[] triangleVertex = {
             -0.5f, 0.5f,
             -0.5f, -0.5f,
@@ -72,7 +72,7 @@ glDrawArrays(GL_LINES, 0, 2);
 
 那么最后绘制时，绘制类型也会发生变化了，顶点个数范围也会变化。
 
-```
+``` java
  glDrawArrays(GL_TRIANGLES, 0, 3);
 ```
 
@@ -97,7 +97,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 所以，以三角形扇的形式绘制一个矩形，我们可以重新定义矩形的顶点数据：
 
-```
+``` java
    float[] rectangleVertex = {
 		   // 第一个点就是三角形扇的中心点
             0f,    0f, 
@@ -112,7 +112,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 而着色器代码依旧不变，绘制一个纯色的矩形，绘制代码如下：
 
-```
+``` java
   glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
 ```
 
@@ -145,7 +145,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 这样一来，顶点数据就不能再靠手写了。
 
-```
+``` java
     // 圆形分割的数量，分成 360 份，可由 360 个线段组成空心圆，也可以由 360 个三角形组成实心圆
     public static final int VERTEX_DATA_NUM = 360;
     // 360 个顶点的位置，因为有 x 和 y 坐标，所以 double 一下，再加上中心点 和 闭合的点
@@ -175,7 +175,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 在绘制时依旧使用三角形扇的形式来绘制。
 
-```
+``` java
 	// 要把顶点数据个数对应上
     glDrawArrays(GL_TRIANGLE_FAN, 0, VERTEX_DATA_NUM + 2);
 ```
@@ -188,7 +188,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 还是上面定义的顶点数据，但是我们只用其中分割成 360 份的那部分顶点数据就好了，也就是去掉首位两个点，然后把这个 360 个点依次连接绘制成圆形。
 
-```
+``` java
         glDrawArrays(GL_LINE_LOOP, 1, VERTEX_DATA_NUM );
 ```
 

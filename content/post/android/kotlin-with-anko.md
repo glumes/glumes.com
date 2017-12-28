@@ -39,7 +39,7 @@ Anko 包括四个部分内容：
 
 使用 Anko 创建布局很简单：
 
-```
+``` kotlin 
 class AnkoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +74,7 @@ class AnkoActivity : AppCompatActivity() {
 
 多实践几次就可以熟练这种写法，通过 Anko 来创建一个登陆界面：
 
-```
+``` kotlin 
 	verticalLayout {
             padding = dip(8)
             val account = textView("account") {
@@ -120,7 +120,7 @@ class AnkoActivity : AppCompatActivity() {
 除了直接在 Activity 里面写布局，还可以使用 AnkoComponent 接口创建布局，这样就可以将界面代码和 Activity 的代码分离了。
 
 
-```
+``` kotlin
 class MyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -148,7 +148,7 @@ class MyActivityUI : AnkoComponent<MyActivity> {
 
 也可以把它转换一下，使用 `apply` 的语法糖，最后返回的调用该方法的对象，再接着返回该对象的 view 就好了。
 
-```
+``` kotlin
 class MyActivityUI : AnkoComponent<MyActivity> {
     override fun createView(ui: AnkoContext<AnkoActivity>) = ui.apply {
         verticalLayout {
@@ -168,7 +168,7 @@ class MyActivityUI : AnkoComponent<MyActivity> {
 
 创建  Activity，将 Fragment 添加上来。
 
-```
+``` kotlin
 class AnkoFragmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -180,7 +180,7 @@ class AnkoFragmentActivity : AppCompatActivity() {
 }
 ```
 
-```
+``` kotlin
 class AnkoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -211,7 +211,7 @@ class AnkoFragment : Fragment() {
 
 比如，自定义 View ，绘制一个矩形：
 
-```
+``` kotlin 
 public class RectangleView extends View {
     public int size ;
     public Paint mPaint;
@@ -236,7 +236,7 @@ public class RectangleView extends View {
 
 让自定义 View 支持 Anko 的加载方式，还需要添加如下的拓展函数：
 
-```
+``` kotlin
 inline fun ViewManager.rectangleView(init: RectangleView.() -> Unit): RectangleView {
     return ankoView({ RectangleView(it) }, theme = 0, init = init)
 }
@@ -246,7 +246,7 @@ inline fun ViewManager.rectangleView(init: RectangleView.() -> Unit): RectangleV
 
 最后就可以像使用其他控件一样来添加到布局中了。
 
-```
+``` kotlin
     //加载自定义的 View
         relativeLayout {
             var view = rectangleView {
@@ -282,7 +282,7 @@ inline fun ViewManager.rectangleView(init: RectangleView.() -> Unit): RectangleV
 
 写法依旧简单：
 
-```
+``` kotlin 
        swipeRefreshLayout {
             setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN)
             onRefresh {

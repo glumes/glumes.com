@@ -29,11 +29,11 @@ Dagger2 是一个进行依赖注入的框架，早先是由 Square 公司写的�
 ## 配置
 
 在 Project 的 build.gradle 中添加：
-```
+``` gradle
 classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 ```
 在 app module 的 build.gradle 中添加：
-```
+``` gradle
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
@@ -59,7 +59,7 @@ Dagger2 最简单的注入就是使用 `@Inject` 注解完成注入。
 而我们使用 @Inject 注解完成一个最简单的注入，把一个 Activity 作为需要注入的目标类，在它里面有个成员变量是 Student 类的一个对象，我们不使用 new 的方式来初始化这个对象，而是采用 注入 的方法来初始化它。
 
 这样一来，我们首先就得编写 Student 类。
-```
+``` java
 public class Student {
     private String name ;
 
@@ -81,7 +81,7 @@ public class Student {
 
 在 Activity 中我们同样采用 @Inject 注解来表明哪个成员变量需要采用注入的方式来提供依赖。
 
-```
+``` java
 public class MainActivity extends AppCompatActivity {
     
     @Inject
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 到此，我们就有了注入的源头和注入的目的地，也就是上面图片中的两头，还缺少一个进行注入的工具。
 
 Dagger2 中提供了 `@Component` 注解作为注入器完成我们的注入工作，使用 @Component 注解，我们可以定义一个接口作为注入器，将所需的依赖注入到目标容器中。
-```
+``` java
 @Component()
 public interface StudentComponent {
     void inject(MainActivity mainActivity) ;
@@ -106,7 +106,7 @@ public interface StudentComponent {
 运行 Gradle projects 中的 assembleDebug 进行编译，此时会在 `build/generated/source/apt/debug/component` 目录下生成真正用来注入的工具类 DaggerStudentComponent 。它的命名一般采用的 DaggerXXX 的方式，后面的 XXX 为我们定义的 Component 接口名称。当 APT 工具在编译时我们生成了这个类之后，就可以用它进行注入了，用法有点类似 ButterKnife 。
 
 在 MainActivity 的 onCreate 方法中添加如下代码完成注入：
-```
+``` java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -126,7 +126,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 例如，我们要注入 Retrofit ，就可以在 Module 里面进行一次封装，HttpModule 里面封装了和 HTTP 请求相关的类，这些类大多是第三方类库里面提供的。
 
-```
+``` java
 @Module
 public class HttpModule {
 	@Provides
@@ -142,7 +142,7 @@ public class HttpModule {
 ```
 
 当采用 Module 的方式注入时，Component 里面的东西也要相关的进行更改了，要在 Component 里面添加我们的 Module 的内容。
-```
+``` java
 @Component(
         modules = {
                 HttpModule.class
@@ -170,7 +170,7 @@ Dagger2 提供依赖的规则：
 
 另外，根据`面向接口编程`的思想，我们在需要注入的类上声明的可能是一个接口类型，而提供了却是它的实现类型。这个过程同样也可以用 Module 来完成，只需要 Module 的 provide 方法返回类型为接口类型，而实际 return 的类型为实现类型即可，比如最简单的返回 Context 类型。
 
-```
+``` java
 @Module
 public class ActivityModule {
 
@@ -196,7 +196,7 @@ public class ActivityModule {
 
 
 ### Component 的继承 Subcomponent
-```
+``` java
 // 使用 Subcomponent 注解
 @Subcomponent( 
         modules = {
@@ -212,7 +212,7 @@ public interface FragmentComponent {
 
 
 当使用 Subcomponent 注解时，该 Subcomponent 会拥有它的父 Component 的所有内容，但同时还需要在父 Component 中声明它的子 Component 组件。
-```
+``` java
 @Component(
         modules = {
                 AppModule.class,
@@ -229,7 +229,7 @@ public interface AppComponent {
 
 ### Component 的依赖 dependencies
 
-```
+``` java
 @Component(
 	// 声明依赖
         dependencies = AppComponent.class ,
@@ -243,7 +243,7 @@ public interface FragmentComponent {
 ```
 当使用依赖 `dependencies` 方式时，该 Component 就不能拥有父 Component 的所有内容了，只能拥有父 Component 提供给它的那些内容。
 
-```
+``` java
 @Component(
         modules = {
                 AppModule.class,
@@ -272,14 +272,14 @@ public interface AppComponent {
 
 而 Dagger 也提供了 `@Singleton`注解来实现单例功能。只需要在 Component 中声明`Scope`注解，并且在 Component 使用到的 Module 中声明同样的注解即可。
 
-```
+``` java
 // 使用 Scope 注解
 @Scope
 @Documented
 @Retention(RUNTIME)
 public @interface Singleton {}
 ```
-```
+``` java
 // 单例注解
 @Singleton
 @Component(
@@ -293,7 +293,7 @@ public interface AppComponent {
 }
 ```
 在使用到的 Module 中声明同样的注解，标明相同的作用域。
-```
+``` java
 @Module
 public class GankApiModule {
 
@@ -313,7 +313,7 @@ public class GankApiModule {
 比如，Application 的作用域是和应用程序的生命一样长的，那么在 Application 中声明的网络请求类当然就是和整个应用声明周期一样长了，另外，我们还可以把那些需要和应用声明周期一样长的类都放在 Application 里面。
 
 同样，若我们的类只需要和 Activity 或者 Fragment 的生命一样长就行了，那么就可以自定义一个注解来标明：
-```
+``` java
 // 标明 Activity 作用域
 @Scope
 @Retention(RetentionPolicy.RUNTIME)

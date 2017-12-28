@@ -36,7 +36,7 @@ Launcher 组件启动 Activity 的过程大致如下所示：
 
 Launcher 毕竟是一个系统应用，它的源代码位于 `packages/apps/Launcher2/src/com/android/launcher2/Launcher.java` 。
 
-```
+``` java
 /**
  * Default launcher application.
  */
@@ -49,7 +49,7 @@ public final class Launcher extends Activity
 
 所以在`onClick`方法中就能找到启动 Activity 组件的调用方法 `startActivitySafely`。其中`Intent`参数包含了相应的信息。
 
-```
+``` java
  boolean startActivitySafely(View v, Intent intent, Object tag) {
         boolean success = false;
         try {
@@ -66,7 +66,7 @@ public final class Launcher extends Activity
 `startActivitySafely`函数又调用了 Launcher 里面封装的 `startActivity(View view, Intent intent, Object tag)`。
 
 ### Launcher 类的 startActivity() 方法
-```
+``` java
  boolean startActivity(View v, Intent intent, Object tag) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
@@ -110,7 +110,7 @@ public final class Launcher extends Activity
 启动时会判断当前 Activity 组件是否使用动画效果。并且，Android 中还有  `LAUNCHER_APPS_SERVICE` 这样一个 Service 用来启动 Activity 组件。
 
 这里，假设没有动画，并且 user == null 的 if 判断成立，则直接调用父类 Activity 的 `startActivity(Intent intent)`方法。
-```
+``` java
 @Override
     public void startActivity(Intent intent) {
         this.startActivity(intent, null);
@@ -118,7 +118,7 @@ public final class Launcher extends Activity
 ```
 最终调用了父类 Activity 的`startActivity(Intent intent, @Nullable Bundle options)`方法。
 
-```
+``` java
  @Override
     public void startActivity(Intent intent, @Nullable Bundle options) {
         if (options != null) {
@@ -131,7 +131,7 @@ public final class Launcher extends Activity
 
 ###Activity 类的 startActivityForResult() 方法
 由于之前假设的 options 参数为 null，则直接调用`startActivityForResult(intent, -1)`，方法原型如下：
-```
+``` java
 public void startActivityForResult(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode, null);
     }
@@ -139,7 +139,7 @@ public void startActivityForResult(Intent intent, int requestCode) {
 
 这里面调用的也是`startActivityForResult`，只不过第三个参数为 null 了，也就是上面的 options 参数。
 只有当请求码 `requestCode >=0`，才会执行调用者的 `onActivityResult()`方法，这里为 -1 ，不会。
-```
+``` java
 public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
         if (mParent == null) {
             Instrumentation.ActivityResult ar =
@@ -165,7 +165,7 @@ public void startActivityForResult(Intent intent, int requestCode, @Nullable Bun
 `Instrumentation` 类会在应用的任何代码执行前被实列化，是用来监控应用程序和系统之间的交互操作。
 
 方法原型为：
-```
+``` java
     public ActivityResult execStartActivity(
             Context who, IBinder contextThread, IBinder token, Activity target,
             Intent intent, int requestCode, Bundle options) {
@@ -195,7 +195,7 @@ public void startActivityForResult(Intent intent, int requestCode, @Nullable Bun
 
 而`ActivityThread`类的成员函数`getApplicationThread()`用来获取它内部的一个类型为`ApplicationThread`的`Binder本地对象`。
 
-```
+``` java
 private class ApplicationThread extends ApplicationThreadNative {}
 public abstract class ApplicationThreadNative extends Binder implements IApplicationThread {}
 ```
@@ -208,7 +208,7 @@ public abstract class ApplicationThreadNative extends Binder implements IApplica
 
 ### Instrumentation 类的 execStartActivity() 方法
 
-```
+``` java
     public ActivityResult execStartActivity(
             Context who, IBinder contextThread, IBinder token, Activity target,
             Intent intent, int requestCode, Bundle options) {
@@ -234,7 +234,7 @@ Intent 执行了一些准备工作后，便调用 ActivityManagerService 的代�
 
 ActivityManagerNative.getDefault() 方法返回的就是 ActivityManagerService 的代理对象，代理对象的获取在之前 [Binder 学习](http://www.glumes.com/android-binder-note-1/)的文章中已经了解过了。
 
-```
+``` java
 public abstract class ActivityManagerNative extends Binder implements IActivityManager{
 
 	static public IActivityManager asInterface(IBinder obj) {
@@ -275,7 +275,7 @@ public abstract class ActivityManagerNative extends Binder implements IActivityM
 ```
 
 在 ActivityManagerNative 中还看到了一个有意思的单例写法：
-```
+``` java
 public abstract class Singleton<T> {
     private T mInstance;
     protected abstract T create();
@@ -294,7 +294,7 @@ public abstract class Singleton<T> {
 ### ActivityManagerProxy 类的 startActivity() 方法
 
 Instrumentation 类的 execStartActivity() 方法最终调用了ActivityManagerProxy 类的 startActivity() 方法，由 ActivityManagerService 的代理对象 Binder 去发起类型为 START_ACTIVITY_TRANSACTION 的进程间通信请求。参数信息如注释所示：
-```
+``` java
     public int startActivity(IApplicationThread caller, String callingPackage, Intent intent,
             String resolvedType, IBinder resultTo, String resultWho, int requestCode,
             int startFlags, ProfilerInfo profilerInfo, Bundle options) throws RemoteException {

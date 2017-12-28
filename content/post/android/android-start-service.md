@@ -18,7 +18,7 @@ Service 组件可以被 Activity 组件启动，也可以被其他的 Service �
 所以直接从`ContextImpl`方法开始分析即可。
 
 ### ContextImpl 类的 startService() 方法
-```
+``` java
 @Override
     public ComponentName startService(Intent service) {
         warnIfCallingFromSystemProcess();
@@ -30,7 +30,7 @@ Service 组件可以被 Activity 组件启动，也可以被其他的 Service �
 显然最后还是调用的`startServiceCommon`方法了。
 
 ### ContextImpl 类的 startServiceCommon() 方法
-```
+``` java
 private ComponentName startServiceCommon(Intent service, UserHandle user) {
         try {
             validateServiceIntent(service);
@@ -59,7 +59,7 @@ private ComponentName startServiceCommon(Intent service, UserHandle user) {
 
 ### ActivityManagerService 类的 startService() 方法
 
-```
+``` java
 public ComponentName startService(IApplicationThread caller, Intent service,
             String resolvedType, String callingPackage, int userId)
             throws TransactionTooLargeException {
@@ -88,7 +88,7 @@ public ComponentName startService(IApplicationThread caller, Intent service,
 
 ### ActiveServices 类的 startServiceLocked() 方法
 
-```
+``` java
     ComponentName startServiceLocked(IApplicationThread caller, Intent service, String resolvedType,
             int callingPid, int callingUid, String callingPackage, int userId)
             throws TransactionTooLargeException {
@@ -162,7 +162,7 @@ public ComponentName startService(IApplicationThread caller, Intent service,
 
 ###  ActiveServices 类的 startServiceInnerLocked() 方法
 
-```
+``` java
  ComponentName startServiceInnerLocked(ServiceMap smap, Intent service, ServiceRecord r,
             boolean callerFg, boolean addToStarting) throws TransactionTooLargeException {
         ProcessStats.ServiceState stracker = r.getTracker();
@@ -195,7 +195,7 @@ public ComponentName startService(IApplicationThread caller, Intent service,
 
 
 ###   ActiveServices 类的 bringUpServiceLocked() 方法
-```
+``` java
 private final String bringUpServiceLocked(ServiceRecord r, int intentFlags, boolean execInFg,
             boolean whileRestarting) throws TransactionTooLargeException {
 
@@ -306,7 +306,7 @@ ActivityManagerService 响应类型为`ATTACH_APPLICATION_TRANSACTION`的进程�
 在`attachApplicationLocked`方法内，首先会进行 Binder 跨进程调用，执行 `ApplicationThread`的`bindApplication`方法，然后再依次调度应用的`Activity`、`Service`、`Broadcast`组件。
 
 其中，调度`Service`组件的代码如下：
-```
+``` java
     // Find any services that should be running in this process...
         if (!badApp) {
             try {
@@ -321,7 +321,7 @@ ActivityManagerService 响应类型为`ATTACH_APPLICATION_TRANSACTION`的进程�
 
 ### ActivityServices 类的 attachApplicationLocked() 方法
 
-```
+``` java
     boolean attachApplicationLocked(ProcessRecord proc, String processName)
             throws RemoteException {
         boolean didSomething = false;
@@ -375,7 +375,7 @@ ActivityManagerService 响应类型为`ATTACH_APPLICATION_TRANSACTION`的进程�
 
 ### ActivityServices 类的 realStartServiceLocked() 方法
 
-```
+``` java
     private final void realStartServiceLocked(ServiceRecord r,
             ProcessRecord app, boolean execInFg) throws RemoteException {
         if (app.thread == null) {
@@ -468,7 +468,7 @@ ActivityManagerService 响应类型为`ATTACH_APPLICATION_TRANSACTION`的进程�
 
 新创建的进程把自己的 Binder 本地对象 ApplicationThread 传递给了 ActivityManagerService ，ActivityManagerService 就通过它来与新进程通信了，`scheduleCreateService`方法向 Binder 驱动发送了一个类型为 `SCHEDULE_CREATE_SERVICE_TRANSACTION`的消息，而在 `ApplicationThread`响应了该消息。
 
-```
+``` java
 public final void scheduleCreateService(IBinder token,
                 ServiceInfo info, CompatibilityInfo compatInfo, int processState) {
             updateProcessState(processState, false);
@@ -483,7 +483,7 @@ public final void scheduleCreateService(IBinder token,
 ApplicationThread 的 `scheduleCreateService`方法向 ActivityThread 的主线程 `mH`发送了消息`CREATE_SERVICE`。ActivityThread 最终响应该消息。
 
 ### ActivityThread 类的 handleCreateService() 方法
-```
+``` java
  private void handleCreateService(CreateServiceData data) {
         // If we are getting ready to gc after going to the background, well
         // we are back active so skip it.
@@ -529,7 +529,7 @@ ActivityThread 类的`handleCreateService`主要是创建了 Service 对象，�
 Service 进入 `onCreate`状态后，接下来该进入`onStartCommand`状态。
 
 ### ActivityServices 类的 sendServiceArgsLocked() 方法
-```
+``` java
     private final void sendServiceArgsLocked(ServiceRecord r, boolean execInFg,
             boolean oomAdjusted) throws TransactionTooLargeException {
         final int N = r.pendingStarts.size();
@@ -583,7 +583,7 @@ Service 进入 `onCreate`状态后，接下来该进入`onStartCommand`状态。
 
 
 ### ActivityThread 类的 handleServiceArgs() 方法
-```
+``` java
     private void handleServiceArgs(ServiceArgsData data) {
         Service s = mServices.get(data.token);
         if (s != null) {

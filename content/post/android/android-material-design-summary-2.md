@@ -20,7 +20,7 @@ CoordinatorLayout 作为一个顶层布局，能够协调它里面子控件的�
 
 AppBarLayout 控件的功能让 标题栏内容 和 CoordinatorLayout 合作。AppBarLayout 包裹着 ToolBar 作为 AppBar ，这样就可以响应滑动操作。
 
-```
+``` sh
 <CoordinatorLayout>
 	<AppBarLayout>
 		<Toolbar>
@@ -32,7 +32,7 @@ AppBarLayout 控件的功能让 标题栏内容 和 CoordinatorLayout 合作。A
 如上代码所示，CoordinatorLayout 布局中包裹了两个布局。
 
 要达到手势滑动的效果，在 CoordinatorLayout 布局下方必须包裹一个可以滑动的布局，比如 RecyclerView 或者 NestedScrollView，而 ListView 和 ScrollView 不具有滑动的效果。同时，还得在滑动的组件 xml 中添加如下属性：
-```
+``` java
  app:layout_behavior="@string/appbar_scrolling_view_behavior
 ```
 
@@ -41,7 +41,7 @@ AppBarLayout 控件的功能让 标题栏内容 和 CoordinatorLayout 合作。A
 有了可以滑动的布局，这样就可以响应它的滑动事件，根据它的上滑，下滑做出效果。
 
 在 Toolbar 的 xml 布局中添加响应滑动的 Flag 。
-```
+``` java
 app:layout_scrollFlags="scroll|enterAlways"
 ```
 
@@ -61,7 +61,7 @@ CollapsingToolbarLayout 包裹 Toolbar 时提供一个可折叠的 Toolbar，一
 
 
 CollapsingToolbarLayout 使用的布局大致如下：
-```
+``` java
 <CoordinatorLayout>
 	<AppBarLayout>
 		<CollapsingToolbarLayout>

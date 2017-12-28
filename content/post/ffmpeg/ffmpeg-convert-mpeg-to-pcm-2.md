@@ -35,7 +35,7 @@ FFmpeg 2.0 解码流程大致如下：
 
 FFmpge 的解码流程大都是相同的，只是在细节地方会有差异，主体流程还是没变，看了好多解码的代码，大多也是这样的，只是在解码成具体的某些格式时，对原始数据 Frame 的操作会有不同。
 
-```
+``` java
 // 声明一堆待会要用到的变量
     AVCodecContext *avCodecContext = nullptr;
     AVCodec *avCodec = nullptr;

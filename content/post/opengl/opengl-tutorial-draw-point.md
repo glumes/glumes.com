@@ -125,7 +125,7 @@ OpenGL 的实现是由显示设备厂商提供的，它作为本地系统库直�
 
 它的使用方法大致都一样，抽出公共的模板：
 
-```
+``` java
    // 声明一个字节缓冲区 FloatBuffer
    private FloatBuffer floatBuffer;
    // 定义顶点数据
@@ -160,7 +160,7 @@ OpenGL 的实现是由显示设备厂商提供的，它作为本地系统库直�
 `GLSL`语言类似于 C 语言或者 Java 语言，它的程序入口也是一个名为`main`的函数。关于 GLSL 的部分，完全可以单独写一篇博客了，暂时先不详细阐述。
 
 下面就是一个简单的顶点着色器程序：
-```
+``` java
 attribute vec4 a_Position;
 void main()
 {
@@ -205,7 +205,7 @@ OpenGL 通过光栅化技术把一条直线映射为一个片段集合，显示�
 
 下面就是一个简单的片段着色器程序：
 
-```
+``` java
 precision mediump float;
 uniform vec4 u_Color;
 void main()
@@ -236,7 +236,7 @@ void main()
 
 当读取了着色器程序内容之后，就可以编译了。
 
-```
+``` java
    // 编译顶点着色器
     public static int compileVertexShader(String shaderCode) {
         return compileShader(GL_VERTEX_SHADER, shaderCode);
@@ -279,7 +279,7 @@ void main()
 
 接下来就是创建 OpenGL 程序并加着色器加进来。
 
-```
+``` java
   public static int linkProgram(int vertexShaderId, int fragmentShaderId) {
 		// 创建 OpenGL 程序 ID
         final int programObjectId = glCreateProgram();
@@ -311,7 +311,7 @@ void main()
 
 链接了 OpenGL 程序后，就是验证 OpenGL 是否可用。
 
-```
+``` java
  public static boolean validateProgram(int programObjectId) {
         glValidateProgram(programObjectId);
         final int[] validateStatus = new int[1];
@@ -327,7 +327,7 @@ void main()
 
 当一切完成后，就是确定使用该 OpenGL 程序了。
 
-```
+``` java
 // 创建 OpenGL 程序过程
  public static int buildProgram(Context context, int vertexShaderSource, int fragmentShaderSource) {
         int program;
@@ -359,7 +359,7 @@ void main()
 
 完成了 OpenGL 程序的编译，就是最后的绘制了，再回到渲染器 `Renderer`里面。
 
-```
+``` java
 public class PointRenderer extends BaseRenderer {
 
     private Point mPoint;
@@ -397,7 +397,7 @@ public class PointRenderer extends BaseRenderer {
 
 为了简化渲染流程，把所有的操作都放在放在要渲染的对象里面去了，声明一个 Point 对象，代表要绘制的点。
 
-```
+``` java
 public class Point extends BaseShape {
 
     // 着色器中定义的变量，在 Java 层绑定并赋值
@@ -442,7 +442,7 @@ public class Point extends BaseShape {
 
 绑定了变量之后，接下来就是给他们赋值了，对于`uniform`类型变量，由于是固定值，所以直接调用`glUniform4f`方法给其赋值就好了，而`attribute`类型变量，则需要对应顶点数据中的值了，`vertexArray.setVertexAttribPointer`方法就是完成这个任务的。
 
-```
+``` java
 	// 给某个顶点数据绑定值，并 Enable 使能
     public void setVertexAttribPointer(int dataOffset, int attributeLocation, int componentCount, int stride) {
         floatBuffer.position(dataOffset);

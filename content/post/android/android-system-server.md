@@ -25,7 +25,7 @@ Zygote 为启动 SystemService 提供了专门的函数 `forkSystemServer`，而
 
 而 SystemServer 的执行主要在其 main 方法中，Android 6.0 的源码中不再是以前 Android 4.x 的 init1，init2 方法了。
 
-```
+``` java
  /**
      * The main entry point from zygote.
      */
@@ -35,7 +35,7 @@ Zygote 为启动 SystemService 提供了专门的函数 `forkSystemServer`，而
 ```
 
 继续跟进 run 方法查看：
-```
+``` java
  private void run() {
         try {
            
@@ -115,7 +115,7 @@ Zygote 为启动 SystemService 提供了专门的函数 `forkSystemServer`，而
 
 SystemServer 进程启动系统服务有两种方式，分别是 SystemServiceManager 的`startService` 方式和 ServiceManager 的 `addService` 方式。
 
-```
+``` java
        ServiceManager.addService("scheduling_policy", new SchedulingPolicyService());
        Trace.traceEnd(Trace.TRACE_TAG_SYSTEM_SERVER);
        mSystemServiceManager.startService(TelecomLoaderService.class);
@@ -143,7 +143,7 @@ SystemServer 进程启动系统服务有两种方式，分别是 SystemServiceMa
 事实上，有些服务即使在启动时没有注册进去，在启动之后也会注册到 ServiceManager 中去。
 
 通过查看 `SystemService`这个抽象类的源码可知，有如下方法：
-```
+``` java
  /**
      * Publish the service so it is accessible to other services and apps.
      */
@@ -163,7 +163,7 @@ SystemServer 进程启动系统服务有两种方式，分别是 SystemServiceMa
 
 而 ServiceManager 的对应方法为，最后一个变量设置 true 的话，则表示允许隔离的沙盒进程访问该服务。
 
-```
+``` java
 /**
      * Place a new @a service called @a name into the service
      * manager.
@@ -189,7 +189,7 @@ SystemServer 是一个进程，由 Zygote 孵化的第一个进程，而 Service
 ServiceManager 是由 `init.rc` 进程启动的。
 
 在`init.rc`中有如下代码启动 ServiceManager 。
-```
+``` java
 service servicemanager /system/bin/servicemanager
     class core
     user system

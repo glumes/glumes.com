@@ -12,7 +12,7 @@ tags: ["Android"]
 
 ### ActivityStackSupervisor 类的 startSpecificActivityLocked() 方法
 
-```
+``` java
  void startSpecificActivityLocked(ActivityRecord r,
             boolean andResume, boolean checkConfig) {
         // Is this activity's application already running?
@@ -43,7 +43,7 @@ tags: ["Android"]
 由于应用程序进程尚未启动，则 app 为 null ，mService 变量为 ActivityManagerService 。执行 `startProcessLocked`方法。
 
 ### ActivityManagerService类的 startProcessLocked() 方法
-```
+``` java
  final ProcessRecord startProcessLocked(String processName, ApplicationInfo info,
             boolean knownToBeDead, int intentFlags, String hostingType, ComponentName hostingName,
             boolean allowWhileBooting, boolean isolated, int isolatedUid, boolean keepIfLarge,
@@ -87,7 +87,7 @@ ActivityManagerService 类的 `startProcessLocked`方法重载了多个形式，
 
 ### ActivityManagerService类的 newProcessRecordLocked() 方法
 
-```
+``` java
 final ProcessRecord newProcessRecordLocked(ApplicationInfo info, String customProcess,
             boolean isolated, int isolatedUid) {
         String proc = customProcess != null ? customProcess : info.processName;
@@ -114,7 +114,7 @@ final ProcessRecord newProcessRecordLocked(ApplicationInfo info, String customPr
 
 当创建完 ProcessRecord 后，最后还是调用了 `startProcessLocked`方法来创建一个进程 `Process` 。
 
-```
+``` java
 private final void startProcessLocked(ProcessRecord app, String hostingType,
             String hostingNameStr, String abiOverride, String entryPoint, String[] entryPointArgs) {
 		// 省略部分代码
@@ -163,7 +163,7 @@ private final void startProcessLocked(ProcessRecord app, String hostingType,
 
 由于 Process 类的静态方法 start 的第一个参数指明了进程进入点，则 ActivityThread 的 main 方法为一个进程的开始点。
 
-```
+``` java
 public final class ActivityThread {
    final ApplicationThread mAppThread = new ApplicationThread();
    public static void main(String[] args) {
@@ -224,7 +224,7 @@ public final class ActivityThread {
 在 `attach`方法内部通过 `ActivityManagerNative.getDefault()`得到了 ActivityManagerService 的代理对象 `ActivityManagerProxy`。`ActivityManagerProxy`通过 Binder 驱动发起一个类型为 `ATTACH_APPLICATION_TRANSACTION`的进程间通信。接下来就是 ActivityManagerService 响应这个通信。
 
 ### ActivityManagerService类的 attachApplication() 方法
-```
+``` java
     public final void attachApplication(IApplicationThread thread) {
         synchronized (this) {
             int callingPid = Binder.getCallingPid();
@@ -238,7 +238,7 @@ public final class ActivityThread {
 
 ### ActivityManagerService类的 attachApplicationLocked() 方法
 
-```
+``` java
 private final boolean attachApplicationLocked(IApplicationThread thread, int pid) {
 		ProcessRecord app;
         if (pid != MY_PID && pid >= 0) {
@@ -375,7 +375,7 @@ public final void bindApplication(String processName, ApplicationInfo appInfo,
 
 ### ActivityThread 类的 handleBindApplication() 方法
 
-```
+``` java
 private void handleBindApplication(AppBindData data) {
 
 	// send up app name; do this *before* waiting for debugger
@@ -451,7 +451,7 @@ private void handleBindApplication(AppBindData data) {
 
 ###  StackSupervisor 类的 attachApplicationLocked() 方法
 
-```
+``` java
  boolean attachApplicationLocked(ProcessRecord app) throws RemoteException {
         final String processName = app.processName;
         boolean didSomething = false;
@@ -489,7 +489,7 @@ private void handleBindApplication(AppBindData data) {
 
 ###  StackSupervisor 类的 realStartActivityLocked() 方法
 
-```
+``` java
     final boolean realStartActivityLocked(ActivityRecord r,
             ProcessRecord app, boolean andResume, boolean checkConfig)
             throws RemoteException {
@@ -561,7 +561,7 @@ private void handleBindApplication(AppBindData data) {
 
 ### ActivityThread 类的 handleLaunchActivity() 方法
 
-```
+``` java
 private void handleLaunchActivity(ActivityClientRecord r, Intent customIntent) {
 
 		 // Initialize before creating the activity
@@ -590,7 +590,7 @@ private void handleLaunchActivity(ActivityClientRecord r, Intent customIntent) {
 
 ### ActivityThread 类的 performLaunchActivity() 方法
 
-```
+``` java
 private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
 
 	ComponentName component = r.intent.getComponent();
@@ -671,7 +671,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 
 ### ActivityThread 类的 handleResumeActivity() 方法
 
-```
+``` java
  final void handleResumeActivity(IBinder token,
             boolean clearHide, boolean isForward, boolean reallyResume) {
 
@@ -692,7 +692,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 真正执行的是 `performResumeActivity`方法。
 
 ### ActivityThread 类的 performResumeActivity() 方法
-```
+``` java
     public final ActivityClientRecord performResumeActivity(IBinder token,
             boolean clearHide) {
              ActivityClientRecord r = mActivities.get(token);

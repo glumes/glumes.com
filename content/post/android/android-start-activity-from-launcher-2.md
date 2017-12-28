@@ -12,7 +12,7 @@ tags: ["Android"]
 <!--more-->
 
 ### ActivityManagerService 类的 startActivity()方法
-```
+``` java
  @Override
     public final int startActivity(IApplicationThread caller, String callingPackage,
             Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode,
@@ -27,7 +27,7 @@ tags: ["Android"]
 
 ### ActivityManagerService 类的 startActivityAsUser()方法
 
-```
+``` java
 @Override
     public final int startActivityAsUser(IApplicationThread caller, String callingPackage,
             Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode,
@@ -48,7 +48,7 @@ tags: ["Android"]
 
 Android 中的 Activity 组件堆栈信息，也就是 Task，是用 `ActivityStack` 类管理的，而`ActivityStackSupervisor`则是一个管理所有的`ActivityStack`的类。
 
-```
+``` java
     final int startActivityMayWait(IApplicationThread caller, int callingUid,
             String callingPackage, Intent intent, String resolvedType,
             IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,
@@ -101,7 +101,7 @@ Android 中的 Activity 组件堆栈信息，也就是 Task，是用 `ActivitySt
 
 ### ActivityStackSupervisor 类的 startActivityLocked() 方法
 
-```
+``` java
 final int startActivityLocked(IApplicationThread caller,
             Intent intent, String resolvedType, ActivityInfo aInfo,
             IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,
@@ -173,7 +173,7 @@ ActivityStackSupervisor 变量内部有一个变量 mActivityDisplays，类型�
 
 ### ActivityStackSupervisor 类的 startActivityUncheckedLocked() 方法
 
-```
+``` java
 final int startActivityUncheckedLocked(final ActivityRecord r, ActivityRecord sourceRecord,
             IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor, int startFlags, boolean doResume, Bundle options, TaskRecord inTask) {
 		final Intent intent = r.intent;
@@ -285,7 +285,7 @@ final int startActivityUncheckedLocked(final ActivityRecord r, ActivityRecord so
 ### ActivityStack 类的 startActivityLocked() 方法
 
 
-```
+``` java
     final void startActivityLocked(ActivityRecord r, boolean newTask,
             boolean doResume, boolean keepCurTransition, Bundle options) {
 		TaskRecord rTask = r.task;
@@ -340,7 +340,7 @@ void addActivityToTop(ActivityRecord r) {
 
 ### ActivityStackSupervisor 类的 resumeTopActivitiesLocked() 方法
 
-```
+``` java
 boolean resumeTopActivitiesLocked(ActivityStack targetStack, ActivityRecord target,
             Bundle targetOptions) {
         if (targetStack == null) {
@@ -375,7 +375,7 @@ ActivityStackSupervisor 类重载了两种形式的 `resumeTopActivitiesLocked`�
 
 ###  ActivityStack 类的 resumeTopActivityLocked() 方法
 
-```
+``` java
 final boolean resumeTopActivityLocked(ActivityRecord prev, Bundle options) {
         if (mStackSupervisor.inResumeTopActivity) {
             // Don't even start recursing.
@@ -401,7 +401,7 @@ final boolean resumeTopActivityLocked(ActivityRecord prev, Bundle options) {
 在该方法内部最后调用了`resumeTopActivityInnerLocked`方法。
 
 ### ActivityStack 类的 resumeTopActivityInnerLocked() 方法
-```
+``` java
     private boolean resumeTopActivityInnerLocked(ActivityRecord prev, Bundle options) {
 		 // Find the first activity that is not finishing.
 		 // 找到当前 ActivityRecord 的栈顶，指向了要启动的 Activity 组件。

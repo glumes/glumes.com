@@ -39,7 +39,7 @@ OpenCV 的安装有两种方式，可以通过下载源码自行编译，也可�
 
 解决办法就是进入到 `/usr/local/lib/python3.6/site-packages` 目录下，通过 `ln` 命令将 `/usr/local/Cellar/opencv/3.3.1_1/lib/python3.6/site-packages` 目录下的 `cv2.so` 链接到当前目录。
 
-```
+``` sh
 ///usr/local/lib/python3.6/site-packages 目录下执行如下指令
 sudo ln -s /usr/local/Cellar/opencv/3.3.1_1/lib/python3.6/site-packages/cv2.so cv2.so
 ```
@@ -55,8 +55,8 @@ Python 开发用的 IDE 是 PyCharm。
 但却有个问题：
 
 通过这种方式安装的 OpenCV 在运行播放视频的代码时会出错：
-
-```
+ 
+``` java
 import cv2
 videoUrl = "/Users/glumes/Desktop/kpt1.mp4"
 cap = cv2.VideoCapture('/Users/glumes/Desktop/kpt1.mp4')
@@ -82,7 +82,7 @@ cv2.destroyAllWindows()
 
 简单的展示一张图片代码示例：
 
-```
+``` java
 import cv2
 print(cv2.__version__)
 imgUrl = '/Users/glumes/Desktop/blog_camera_block.png'
@@ -124,7 +124,7 @@ C++ 开发用的 Mac 的 Xcode。
 
 同样还是预览一张图片作为示例：
 
-```
+``` c++
 //
 //  main.cpp
 //  OpenCVEnv
@@ -181,7 +181,7 @@ int main(int argc, const char * argv[])
 
 别忘了在工程的 build.gradle 添加如下代码来导入
 
-```
+``` gradle
   implementation project(':OpenCVLibrary330')
 ```
 
@@ -196,7 +196,7 @@ int main(int argc, const char * argv[])
 接下来修改 CMakeLists.txt 文件，将头文件和库进行导入。
 
 
-```
+``` cmake
 # 包含头文件
  include_directories(/Users/glumes/Downloads/OpenCV-android-sdk/sdk/native/jni/include)
 # 添加 lib_opencv 动态库
@@ -212,7 +212,7 @@ int main(int argc, const char * argv[])
 
 在默认的 native-lib 动态库中，添加 opencv 的动态库，这样就可以链接到了。
 
-```
+``` cmake
 target_link_libraries( # Specifies the target library.
                        native-lib
 					   # 链接 opencv 的动态库

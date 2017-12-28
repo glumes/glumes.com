@@ -34,7 +34,7 @@ tags: ["Android"]
 ## Window 的创建
 
 attach 方法内创建 Window 的代码示例如下：
-```
+``` java
 		mWindow = new PhoneWindow(this); // 创建 Window，实例是 PhonwWindow
         mWindow.setCallback(this);    // 设置回调
         mWindow.setOnWindowDismissedCallback(this);  // 设置回调
@@ -77,7 +77,7 @@ Android 中的所有视图都是通过 Window 来呈现的，不管是 Activity�
 
 因此，我们的 Activity 中的所有 View 也是添加在 Window 上的，而这一切入点就是`setContentView`方法。
 
-```
+``` java
     public void setContentView(int layoutResID) {
         getWindow().setContentView(layoutResID);
         initWindowDecorActionBar();
@@ -98,7 +98,7 @@ getWindow 方法返回的就是上面创建的 PhoneWindow 对象，而重点就
 
 而`setContentView`方法就是对上述图片创建 DecorView 的解释了。
 
-```
+``` java
     @Override
     public void setContentView(int layoutResID) {
         if (mContentParent == null) {    // 代表图中 ContentView 的内容
@@ -129,7 +129,7 @@ getWindow 方法返回的就是上面创建的 PhoneWindow 对象，而重点就
 
 下面就是分析 DecorView 是如何创建并添加初始的布局内容的。
 
-```
+``` java
     private void installDecor() {
         if (mDecor == null) {
             mDecor = generateDecor();    // 直接 new 一个 DecorView 对象
@@ -142,7 +142,7 @@ getWindow 方法返回的就是上面创建的 PhoneWindow 对象，而重点就
 ```
 在 installDecor 方法中直接 new 了一个 DecorView 对象，此时它还是只是一个 FrameLayout 容器，内部还没有东西。接着就是去创建内容栏。
 
-```
+``` java
 		int layoutResource ;
 		// 省略掉根据各自 Feature 参数来初始化不同的 layoutResource 过程
 		mDecor.startChanging();    // 标识 DecorView 中的内容开始改变
@@ -166,7 +166,7 @@ getWindow 方法返回的就是上面创建的 PhoneWindow 对象，而重点就
 而我们现在只是分析完了 DecorView 的添加，还并没将它依附到 Window 上去。只有将 View 添加到 Window 上之后，它才能够拥有具体的功能，处理外界的输入信息等等。
 
 在`handleResumeActivity`方法内的处理代码如下：
-```
+``` java
 	// 变量 r 指的是 ActivityClientRecord 类，变量 a 指的是 Activity，也就是 r.activity
 		 if (r.window == null && !a.mFinished && willBeVisible) {    // if 判断成立
                 r.window = r.activity.getWindow();

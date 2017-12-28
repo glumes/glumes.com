@@ -148,7 +148,7 @@ HAL 规定每个硬件模块必须包含一个 `HAL_MODULE_INFO_SYM` 的结构�
 
 对应老罗博客中的：
 
-```
+``` c++
 /*硬件模块结构体*/  
 struct hello_module_t {  
     struct hw_module_t common;  
@@ -161,7 +161,7 @@ HAL 规定每个硬件设备都必须定义一个硬件设备描述结构体，�
 
 对应老罗博客中的：
 
-```
+``` c++
 /*硬件接口结构体*/  
 struct hello_device_t {  
     struct hw_device_t common;  

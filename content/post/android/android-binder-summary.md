@@ -17,7 +17,7 @@ Binder 是什么？在英文中 Binder 是 粘合剂 的意思，表示将两样
 
 比如，我们在写一个无须跨进程的本地服务 LocalService 时，需要在 Service 定义一个类继承自 Binder ，然后在 onBind() 方法中返回该 Binder 对象。这样在 `ServiceConnection` 接口的 onServiceConnection 方法中就会收到该 Binder 对象，通过该 Binder 对象就可以执行 LocalService 中的公共方法。
 
-```
+``` java
 public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
        mLocalBinder = (LocalService.LocalBinder) iBinder;
 }
@@ -28,14 +28,14 @@ onServiceConnection 方法，其中的 `IBinder` 参数就是 Service 的 Binder
 
 
 而当 Service 组件是一个跨进程的 RemoteService 时，在 onServiceConnected 方法中再如上代码所示的调用返回的 IBinder 对象，则会报如下的转型错误：
-```
+``` java
 java.lang.ClassCastException: android.os.BinderProxy cannot be cast to com.glumes.ipc_binder.service.LocalService$LocalBinder
 ```
 
 这是因为 RemoteService 在另外的进程中，而`不同的进程内存资源是不能共享`的，服务端不能将自己的 Binder 本地对象返回过去，只能返回一个 `代理对象 Binder` ，客户端 Client 通过这个代理对象 Binder 来调用 RemoteService 的相关方法。这个代理对象的类型就是 `BinderProxy`。
 
 在 onServiceConnection 方法中通过 `asInterface` 方法来将 Service 返回的代理对象 Binder 转换成代理对象 Proxy，其中，Proxy 持有 Binder 的引用，其变量名为 `mRemote`。
-```
+``` java
 public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             // ActivityManagerService 在 bindService 的过程中会回调该方法，将 Service 的 Binder 对象传回来
             // 再调用 asInterface 方法根据是否在同一进程进行转换。
@@ -82,18 +82,18 @@ mRemote 对象的 transact 方法最终会调用一个 `native`的 `transactNati
 而客户端获取远程服务在 Binder 驱动中对应的 mRemote 引用，也是在 onServiceConnection 方法中得到的。
 
 onServiceConnection 的方法原型如下，由系统回调该方法，其中的参数 iBinder 就是 Service 的 Binder 代理对象。
-
-```
+ 
+``` java
 public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
 ```
 而在 onServiceConnection 方法内执行 `asInterface` 方法，返回的内部代理类 Proxy 。
-```
+``` java
 // asInterface 方法原型为，其实参数 obj 为 onServiceConnected 方法的参数 iBinder 。
 public static IBookManager asInterface(IBinder obj){
 ```
 返回的内部代理类 Proxy 构造方法如下，其函数调用都是通过该 mRemote 对象的 `transact` 方法来完成的，此 mRemote 对象就是远程服务在 Binder 驱动中对应的 mRemote 引用，它的类型就是 `BinderProxy`，而 Proxy 类只是对 mRemote 对象组合了一下而已。
 
-```
+``` java
    private static class Proxy implements IBookManager{
         private IBinder mRemote ;
         public Proxy(IBinder remote) {

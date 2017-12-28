@@ -16,7 +16,7 @@ tags: ["Android"]
 
 但是有些现成的操作已经处理好回调方法了，例如蓝牙扫描，只要在 onLeScan 方法中处理返回的蓝牙设备即可，其他方法也大致如此，发出请求，在回调中处理请求。
 
-```
+``` java
 mBluetoothAdapter.startLeScan(new BluetoothAdapter.LeScanCallback() {
             @Override
             public void onLeScan(BluetoothDevice bluetoothDevice, int i, byte[] bytes) {
@@ -30,7 +30,7 @@ mBluetoothAdapter.startLeScan(new BluetoothAdapter.LeScanCallback() {
 ## RxJava 创建 Observable 过程
 
 创建一个 Observable 的方法大致是这样的：
-```
+``` java
 		Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
@@ -47,7 +47,7 @@ mBluetoothAdapter.startLeScan(new BluetoothAdapter.LeScanCallback() {
 
 同时，subscribe 方法最后返回的对象是 Subscription 类型的。我们可以用  Subscription 类型的对象的 unsubscribe 方法来取消订阅。参照 RxJava 源码发现，Subscriber 类型实现了 Subscription 接口，并且最后返回的也是 call 方法中的参数 subscriber 。
 
-```
+``` java
         try {
             // allow the hook to intercept and/or decorate
             // 回调 call 方法
@@ -66,7 +66,7 @@ mBluetoothAdapter.startLeScan(new BluetoothAdapter.LeScanCallback() {
 
 有了上面的思路，就可以简单的实现包装了，使用 create 方法返回了一个 `Observable<BluetoothDevice>`对象，然后在对其订阅。
 
-```
+``` java
 Subscription subscription = Observable.create(new Observable.OnSubscribe<BluetoothDevice>() {
             @Override
             public void call(final Subscriber<? super BluetoothDevice> subscriber) {
@@ -83,7 +83,7 @@ Subscription subscription = Observable.create(new Observable.OnSubscribe<Bluetoo
 ```
 简单地说，已经实现了对 BluetoothDevice 对象的封装，可依旧存在问题，我们可以使用 Subscription 来取消订阅，不接收发送数据，但却没有停止蓝牙设备的扫描，因此下一步就是在取消订阅同时终止扫描。
 
-```
+``` java
     Subscription subscription = Observable.create(new Observable.OnSubscribe<BluetoothDevice>() {
             @Override
             public void call(final Subscriber<? super BluetoothDevice> subscriber) {
@@ -119,7 +119,7 @@ Subscriptions 类的命名方式有点类似于 Java 的 Collections 命名，�
 
 最后，RxJava 在后续的版本中还提供了其他的方法来针对上述问题，不需要再通过 Subscriber 添加一个 Subscription 来解决了。
 
-```
+``` java
 Observable.fromEmitter(new Action1<Emitter<BluetoothDevice>>() {
             @Override
             public void call(final Emitter<BluetoothDevice> bluetoothDeviceEmitter) {

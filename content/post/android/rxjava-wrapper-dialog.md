@@ -15,7 +15,7 @@ RxJava 封装回调方法的大体思路就是：使用 Observable 的 create �
 
 下来展示具体代码的操作，用的是 RxJava 2.x 的版本：
 
-```
+``` java
  private Observable<Integer> handleRxJavaDialog() {
         return Observable.create(emitter -> {
             final AlertDialog dialog = new AlertDialog.Builder(mContext)
@@ -45,7 +45,7 @@ RxBinding 是用来处理控件异步调用的一个框架，它也已经更新�
 在它的源码里对许多控件都进行了封装，可以看到如：`RxView`、`RxTextView`、`RxSeekBar`、`RxProgressBar`、`RxPopupMenu`等等。
 
 它们的使用也是大同小异，比如要对一个 View 封装其点击事件，就可以这样写：
-```
+``` java
   RxView.clicks(mBtn)
 		.subscribe(new Consumer<Object>() {
             @Override
@@ -58,7 +58,7 @@ RxBinding 是用来处理控件异步调用的一个框架，它也已经更新�
 
 在 RxView.clicks 的源码中，最后返回的是一个 ViewClickObservable，从名字可见，这个 Observable 专门是用来处理点击事件的，在 RxBinding 中还有很多专门处理其他事件的 Observable，例如：`ViewDragObservable`、`ViewLongClickObservable`、`ViewScrollChangeEventObservable`等等，他们的实现方法也都大同小异了。
 
-```
+``` java
   @CheckResult @NonNull
   public static Observable<Object> clicks(@NonNull View view) {
     checkNotNull(view, "view == null");
@@ -68,7 +68,7 @@ RxBinding 是用来处理控件异步调用的一个框架，它也已经更新�
 
 在专门处理各种事件的 Observable 类中，都会有一个实现 `Disposable`接口和具体事件所对应的接口的 Listener 类，而这个 Listener 类的作用，就是给我们所需要的 View 设置对应事件回调接口的，并且在回调接口中调用 Observable 的 onNext 方法来将事件转换到 RxJava 的事件流中。
 
-```
+``` java
 	ViewClickObservable(View view) {
     this.view = view;
 	}

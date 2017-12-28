@@ -16,8 +16,7 @@ TextInputLayout 控件是一个容器，只接受一个子元素，而子元素�
 
 TextInputLayout 的作用是当输入文字时，它可以把提示文字 Hint 移至 EditText 上方。
 
-```
-
+``` java
     <android.support.design.widget.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,7 +39,7 @@ TextInputLayout 的作用是当输入文字时，它可以把提示文字 Hint �
 
 而当 EditText 中输入的内容不正确时，TextInputLayout 还能够进行错误的处理。`setError` 方法会在 EditText 下方显示红色的错误消息。`setErrorEnabled`方法开启错误提醒功能，使用代码如下：
 
-```
+``` java
  String username = mUsernameLayout.getEditText().getText().toString();
         String password = mPasswordLayout.getEditText().getText().toString();
 
@@ -64,7 +63,7 @@ TabLayout 控件是用来和 ViewPager 配合使用的。当滑动 ViewPager 内
 
 使用 ViewPager 还需要对应的 Adapter ，简单使用代码如下：
 
-```
+``` java
    mTabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
 
         mViewpager.setAdapter(mTabPagerAdapter);
@@ -86,7 +85,7 @@ TabLayout 控件是用来和 ViewPager 配合使用的。当滑动 ViewPager 内
 ## Toolbar
 
 Toolbar 可以用来替换 ActionBar 的，如果要替换 ActionBar ，那么在使用时，需要配置 Activity 的 theme 为`Theme.AppCompat.NoActionBar`，或者在对应的主题中加入如下：
-```
+``` java
 		<item name="windowActionBar">false</item>
 		<item name="android:windowActionBar">false</item>
 ```
@@ -100,7 +99,7 @@ Toolbar 可以用来替换 ActionBar 的，如果要替换 ActionBar ，那么�
 
 Toolbar 也有各种设置选项，包括标题，子标题，Logo，菜单等。
 
-```
+``` java
 	mToolbar.setTitle("Title");
         mToolbar.setSubtitle("SubTitle");
         mToolbar.setNavigationIcon(R.mipmap.ic_drawer_home);

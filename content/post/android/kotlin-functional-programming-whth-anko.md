@@ -24,7 +24,7 @@ tags: ["Android"]
 
 最直接的表现就是可以声明一个变量，它的类型就是函数。
 
-```
+``` java
     val arg = fun(a:Int,b:Int) = a+b // 变量 arg 是一个函数类型
     println(arg)    // 打印类型 (kotlin.Int, kotlin.Int) -> kotlin.Int
     println(arg(1,2))    // 调用该函数，打印结果为 3
@@ -40,7 +40,7 @@ tags: ["Android"]
 
 最常见的就是给 Context 添加 Toast 的拓展函数。
 
-```
+``` java
 	fun Context.showToast(msg: String) {
 	    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 	}
@@ -54,7 +54,7 @@ tags: ["Android"]
 
 注意 **子类可以调用父类的拓展函数**。
 
-```
+``` java
 open class A
 class B:A()
 fun A.add(a:Int,b:Int):Int{
@@ -86,13 +86,13 @@ Lambda 表达式的语法应该都很熟悉的：
 
 就比如在 Kotlin 中使用 while 语句，while 中不能再使用赋值表达式了。
 
-```
+``` java
 while( (i=2) < 3) {}  // while 中不能执行 i = 2 的操作了
 ```
 
 上述代码在 Kotlin 中是编译不过的了，这个时候就可以使用 Lambda 表达式。
 
-```
+``` java
  while ({ i=4; i }() > 0){ } // 使用 lambda 表达式，最后还要添加小括号（），表示调用该函数
 ```
 
@@ -104,7 +104,7 @@ while( (i=2) < 3) {}  // while 中不能执行 i = 2 的操作了
 
 比如有如下函数，它只有一个参数，当然就是最后一个参数了。
 
-```
+``` java
 fun passLambda(init:() -> Int){
     println("lambda expression as argument")
     println(init())
@@ -125,7 +125,7 @@ fun main(args: Array<String>) {
 
 如果函数字面值只有一个参数，那么可以把它连同`->`一起省略掉，直接用`it`来代替。
 
-```
+``` java
 fun singleArgument(init: (a:Int) -> Int){ // 作为参数的函数只有一个参数
     println("use it to replace single argument")
     println(init(3))
@@ -147,7 +147,7 @@ Kotlin 提供了使用指定的 **接收者对象** 调用函数字面值的功�
 
 带接收者的函数字面值的表达形式如下：
 
-```
+``` java
 class ReceiveObject // 定义一个类作为接收者对象
 fun exec(init: ReceiveObject.() -> Int){}
 fun exec(init: ReceiveObject.(a:Int) -> String){}
@@ -156,7 +156,7 @@ fun exec(str:String,init: ReceiveObject.(a:Int,b:Int) -> Int){}
 
 可以看到，与之前的函数定义不同的是，在 函数的参数 前多加了一个类型 ReceiveObject ，这个类型就是指定的接受者对象。有点像是给这个类添加了拓展函数。
 
-```
+``` java
 class ReceiveObject{
     fun show(){
         println("access")
@@ -195,7 +195,7 @@ fun main(args: Array<String>) {
 
 举个简单的例子：
 
-```
+``` java
 class Html{
     fun body(init:Body.() -> Unit){}
     fun head(init:Head.() -> Unit){}
@@ -241,7 +241,7 @@ fun main(args: Array<String>) {
 
 再来看一个 Anko 实现布局的代码：
 
-```
+``` kotlin
 	verticalLayout {
 		textView("hello,Anko")
         button()
@@ -250,7 +250,7 @@ fun main(args: Array<String>) {
 
 相信这时候再看源码就很简单了。
 
-```
+``` kotlin
 inline fun Activity.relativeLayout(init: (@AnkoViewDslMarker _RelativeLayout).() -> Unit): android.widget.RelativeLayout {
     return ankoView(`$$Anko$Factories$Sdk25ViewGroup`.RELATIVE_LAYOUT, theme = 0) { init() }
 }
@@ -279,7 +279,7 @@ inline fun ViewManager.textView(text: CharSequence?): android.widget.TextView {
 
 `verticalLayout`拓展函数最终返回的是一个 `ankoView`。
 
-```
+``` kotlin
 // verticalLayout 函数实现
 inline fun Activity.verticalLayout(theme: Int = 0, init: _LinearLayout.() -> Unit): LinearLayout {
     return ankoView(`$$Anko$Factories$CustomViews`.VERTICAL_LAYOUT_FACTORY, theme, init)
@@ -302,7 +302,7 @@ inline fun <T : View> Activity.ankoView(factory: (ctx: Context) -> T, theme: Int
 
 它的 addView 方法如下：
 
-```
+``` kotlin
 	fun <T : View> addView(activity: Activity, view: T) {
 	        createAnkoContext(activity, { AnkoInternals.addView(this, view) }, true)
 	}
@@ -327,7 +327,7 @@ inline fun <T : View> Activity.ankoView(factory: (ctx: Context) -> T, theme: Int
 
 这里参数 `this`比较重要，因为`init`函数是一个带接收者类型的函数，所以这里的`this`指的就是接收者类型`AnkoContext`。
 
-```
+``` kotlin 
     fun <T : View> addView(manager: ViewManager, view: T) {
         return when (manager) {
             is ViewGroup -> manager.addView(view)
@@ -340,8 +340,8 @@ inline fun <T : View> Activity.ankoView(factory: (ctx: Context) -> T, theme: Int
 当`init`被调用时，实际调用的就是上面的代码，在`when`语句中，因为 manager 参数正好是 `AnkoContext`类型，最终进入到第二个 case 中去。
 
 由于`manager`参数代表了接收者类型，而我们使用的接收者类型是 `AnkoContextImpl`，所以最后的添加布局工作代码在 `AnkoContextImpl` 类中。
-
-```
+ 
+``` kotlin
     override fun addView(view: View?, params: ViewGroup.LayoutParams?) {
         if (view == null) return
         if (myView != null) {

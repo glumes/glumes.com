@@ -47,7 +47,7 @@ Docker 镜像类似于虚拟机镜像，可以将它理解为一个面向 Docker
 #### 获取镜像
 
 使用`docker pull`命令从网络上下载镜像。该命令的格式为：
-```
+``` sh
 docker pull NAME[:TAG]
 docker pull ubuntu		// 最新版本
 docker pull ubuntu: 14.04	// 标签为 14.04 版本
@@ -62,7 +62,7 @@ docker pull ubuntu: 14.04	// 标签为 14.04 版本
 
 可以使用`docker tag`命令为本地镜像添加新的标签，而不是修改原来的标签。相当于是多了一个别名，本质还是原来的标签。
 
-```
+``` sh
 docker tag ubuntu:latest ubuntu:newTag	// 新的标签
 docker inspect dockerId		// 通过 ID 查看具体信息
 ```
@@ -78,13 +78,13 @@ docker inspect dockerId		// 通过 ID 查看具体信息
 使用`docker rmi`命令删除镜像。
 
 根据镜像的标签来删除：
-```
+``` sh
 docker rmi ubuntu:newTag 	//删除 newTag 标签的镜像
 ```
 当一个镜像文件有多个标签时，则只是删除标签，若只有一个标签了，那么就是删除镜像文件了。
 
 根据镜像的 ID 删除镜像：
-```
+``` sh
 docker rmi e4415b714b	// 删除对应 ID 的镜像
 ```
 首先会删除指向该镜像的标签，然后再删除镜像文件本身。
@@ -101,14 +101,14 @@ Docker 容器类似于一个轻量级的沙箱，Docker 利用容器来运行和
 #### 新建容器
 
 可以使用`docker create`命令新建一个容器，但此时容器处于停止状态，使用`docker start`命令来启动它。
-```
+``` sh
 docker create -it ubuntu:latest		// 新建一个容器
 docker start 8ca2dd62ec24		//  根据容器 ID 来启动它
 ```
 
 还可以使用`docker run`命令来新建并启动容器，相当于把之前的两步合为一步了。
-
-```
+ 
+``` sh
 docker run -t -i ubuntu:latest /bin/bash	// 启动一个 bash 终端
 ```
 
@@ -121,7 +121,7 @@ docker run -t -i ubuntu:latest /bin/bash	// 启动一个 bash 终端
 
 当需要 Docker 容器在后台以守护态形式运行时，可以通过添加`-d`参数来实现。
 
-```
+``` sh
 docker run -d ubuntu:latest /bin/bash -c "while true;do echo hell world;sleep 1;done"	// 后台运行，打印日志
 
 docker logs abc19f3d5fd1	// 通过容器 ID 查看输出信息
@@ -140,13 +140,13 @@ docker logs abc19f3d5fd1	// 通过容器 ID 查看输出信息
 当使用`-d`参数时，容器启动后会进入后台运行，这时想再进入容器，可以使用 `docker attach`命令、`docker exec`命令。
 
 `docker attach`是 Docker 自带的命令。
-```
+``` sh
 docker run -idt 0ef2e08ed3fa	// 后台运行容器
 docker attach 299ea4d823fb		// 再次进入到容器中
 ```
 
 使用`docker exec`命令可以直接在容器内运行新的命令。
-```
+``` sh
 docker run -idt 0ef2e08ed3fa	// 后台运行容器
 docker exec -ti 299ea4d823fb /bin/bash		// 在容器内创建一个 bash
 ```

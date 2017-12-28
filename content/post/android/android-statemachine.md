@@ -25,7 +25,7 @@ StateMachine 类位于 Android 源码中的，路径是`frameworks/base/core/jav
 
 Android 中的状态机是一个分层的消息处理机制，每一层都会有一到多个节点，而状态机的消息就是在这些节点之间流转处理，如下结构所示：
 
-```
+``` sh
 	// 状态机分层结构
           mP0
          /   \
@@ -43,7 +43,7 @@ Android 中的状态机是一个分层的消息处理机制，每一层都会有
 ## 构造状态机
 
 在我们使用 StateMachine 之前，要构造好所需的状态分层结构。通过`addState`方法来向状态机中添加节点，例如如下的状态结构，mS1 和 mS2 节点有公共的父节点 mP1，同时还有一个孤立的节点 mP2。
-```
+``` java
       // 状态分层结构设定
         mP1      mP2
        /   \
@@ -70,7 +70,7 @@ Android 中的状态机是一个分层的消息处理机制，每一层都会有
 
 除此之外，节点还可以通过`transitionTo`方法将当前节点转移至另外一个新的节点。
 
-```
+``` java
           mP0
          /   \
         mP1   mS0
@@ -99,7 +99,7 @@ Android 中的状态机是一个分层的消息处理机制，每一层都会有
 ## 状态机实现原理分析
 
 如果我们在初始化状态机时只是传递了一个名字，而没有传递 Looper 或者 Handler 之类的消息循环，那么状态机默认就是启用其内部的一个线程`HandlerThread`。
-```
+``` java
   protected StateMachine(String name) {
         mSmThread = new HandlerThread(name); // 创建 HandlerThread 线程
         mSmThread.start();

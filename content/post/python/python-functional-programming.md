@@ -19,7 +19,7 @@ tags: ["Python"]
 
 比如，我们有一个函数 y = x + 1 ，就可以编写如下代码：
 
-```
+``` python
 def func(x):
 	return x + 1 
 ```
@@ -72,7 +72,7 @@ def func(x):
 
 map() 函数接收两个参数，一个是函数，一个是 Iterable，map 将传入的函数依次作用到序列的每个元素，并把结果作为新的 Iterable 返回。
 
-```
+``` python
 def f(x):
     return x + 1
 data = [1,2,3,4]
@@ -84,7 +84,7 @@ print(list(r))
 
 reduce() 把一个函数作用在一个序列上，这个函数必须接收两个参数，reduce 把结果继续和序列的下一个元素做累积计算。
 
-```
+``` python 
 from functools import reduce
 
 def f(x,y):
@@ -100,7 +100,7 @@ print(r)
 
 filter() 函数用于过滤序列，filter 函数把传入的函数依次作用于每个元素，返回根据返回的是 True 还是 False 决定保留还是丢弃该元素。
 
-```
+``` python
 def is_odd(n):
     return n % 2 == 1
 
@@ -113,7 +113,7 @@ print(list(result))
 sorted() 也是一个高阶函数，接收一个函数来实现自定义的排序。
 
 例如按绝对值排序代码：
-```
+``` python
 print(sorted([-34,5,-2,43],key=abs))
 ```
 
@@ -122,7 +122,7 @@ print(sorted([-34,5,-2,43],key=abs))
 
 闭包是那些带着它们被定义时的环境的函数。特别的，一个闭包可以引用它定义时存在的变量。
 
-```
+``` python
 def func(x):
     def f():
         return  x + 1

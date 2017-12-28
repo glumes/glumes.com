@@ -13,7 +13,7 @@ LayoutInflater 实例的获取有多种方式，但最终是通过`(LayoutInflat
 
 由于 Android 系统源码中关于 Content 部分采用的是装饰模式，Context 的具体功能都是由 `ContextImpl` 来实现的。通过在 ContextImpl 中找到`getSystemService`的代码，一路跟进，得知最后返回的实例是`PhoneLayoutInflater`。
 
-```
+``` java
         registerService(Context.LAYOUT_INFLATER_SERVICE, LayoutInflater.class,
                 new CachedServiceFetcher<LayoutInflater>() {
             @Override
@@ -28,7 +28,7 @@ LayoutInflater 只是一个抽象类，而 PhoneLayoutInflater 才是具体的�
 使用 LayoutInflater 时常用方法就是`inflate`方法了，将一个布局文件 ID 传入并最后解析成一个 View 。
 
 LayoutInflater 加载布局的 inflate 方法也有多种重载形式：
-```
+``` java
 View inflate(@LayoutRes int resource, @Nullable ViewGroup root)
 View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot)
 ```
@@ -36,7 +36,7 @@ View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachTo
 而这两者的差别就在于是否要将 `resource` 布局文件加载到 `root`布局中去。
 
 不过有点需要注意的地方，若 `root`为 null，则在 xml 布局中为 `resource`设置的属性会失效，只是单纯的加载布局。
-```
+``` java
 				  // temp 是 xml 布局中的顶层 View
                     final View temp = createViewFromTag(root, name, inflaterContext, attrs);
                     ViewGroup.LayoutParams params = null;
@@ -59,7 +59,7 @@ View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachTo
 ```
 
 跟进`createViewFromTag`方法查看 View 是如何创建出来的。
-```
+``` java
 			View view; // 最后要返回的 View
             if (mFactory2 != null) {
                 view = mFactory2.onCreateView(parent, name, context, attrs); // 是否设置了 Factory2 
@@ -95,7 +95,7 @@ View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachTo
 
 若没有设置过 Factory 接口，则是判断是否为自定义控件或者系统控件，不管是 onCreateView 方法还是 createView 方法，内部最终都是调用到了 createView 方法，通过它来生成 View 。
 
-```
+``` java
 // 通过反射生成 View 的参数，分别是 Context 和 AttributeSet 类
 static final Class<?>[] mConstructorSignature = new Class[] {
             Context.class, AttributeSet.class};
@@ -161,7 +161,7 @@ public final View createView(String name, String prefix, AttributeSet attrs)
 
 若布局文件中有多个需要加载的 View ，则通过`rInflateChildren`方法继续加载顶层 View 下的 View ，最后通过`rInflate`方法来加载。
 
-```
+``` java
 void rInflate(XmlPullParser parser, View parent, Context context,
             AttributeSet attrs, boolean finishInflate) throws XmlPullParserException, IOException {
         final int depth = parser.getDepth();
