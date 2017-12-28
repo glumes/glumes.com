@@ -1,7 +1,8 @@
 ---
 title: "Kotlin 函数式编程与 Anko 构建布局实现原理分析"
 date: 2017-12-22T10:26:57+08:00
-tags: ["Android"]
+categories: ["android"]
+tags: ["Android","Kotlin"]
 ---
 
 

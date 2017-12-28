@@ -1,7 +1,8 @@
 ---
 title: "Kotlin 使用 Anko 布局那些事"
 date: 2017-12-22T10:21:26+08:00
-tags: ["Android"]
+categories: ["android"]
+tags: ["Android","Kotlin"]
 ---
 
 

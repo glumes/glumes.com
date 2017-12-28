@@ -1,6 +1,7 @@
 ---
 title: "Android StateMachine 状态机分析"
 date: 2017-12-22T15:37:04+08:00
+categories: ["android"]
 tags: ["Android"]
 ---
 

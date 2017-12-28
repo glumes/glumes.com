@@ -2,8 +2,7 @@
 title: "Python、C++、Android OpenCV 开发环境的配置"
 date: 2017-12-22T09:53:04+08:00
 description: "setup opencv environment"
-categories:
-    - "Code"
+categories: ["opencv"]
 tags: ["Opencv"]
 ---
 

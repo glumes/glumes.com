@@ -1,6 +1,7 @@
 ---
 title: "Android 硬件抽象层调用流程小结"
 date: 2017-12-22T10:31:13+08:00
+categories: ["android"]
 tags: ["Android"]
 ---
 

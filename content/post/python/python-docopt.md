@@ -1,6 +1,7 @@
 ---
 title: "Python 命令行参数解析工具 docopt"
 date: 2017-12-22T16:08:45+08:00
+categories: ["python"]
 tags: ["Python"]
 ---
 

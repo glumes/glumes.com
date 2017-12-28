@@ -1,6 +1,7 @@
 ---
 title: "FFmpeg 3.0 版本视频解码浅析 MPEG->PCM （上）"
 date: 2017-12-22T16:03:10+08:00
+categories: ["ffmpeg"]
 tags: ["FFmpeg"]
 ---
 

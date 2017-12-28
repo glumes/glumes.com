@@ -1,6 +1,7 @@
 ---
 title: "Android LruCache实现分析"
 date: 2017-12-22T15:35:23+08:00
+categories: ["android"]
 tags: ["Android"]
 ---
 

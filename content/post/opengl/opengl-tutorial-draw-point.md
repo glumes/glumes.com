@@ -1,6 +1,7 @@
 ---
 title: "OpenGL 学习系列---点的绘制流程"
 date: 2017-12-22T16:19:28+08:00
+categories: ["opengl"]
 tags: ["OpenGL"]
 ---
 

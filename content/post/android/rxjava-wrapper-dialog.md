@@ -1,7 +1,8 @@
 ---
 title: "用 Rxjava 封装 Dialog 以及 RxBinding 实现简要分析"
 date: 2017-12-22T16:00:05+08:00
-tags: ["Android"]
+categories: ["android"]
+tags: ["Android","RxJava"]
 ---
  
 

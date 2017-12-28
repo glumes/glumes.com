@@ -28,22 +28,58 @@ disqusShortname = "glumes"
 
 
 
+[[menu.main]]
+    identifier = "Categories"
+    name = "Categories"
+    weight = 1
 
 [[menu.main]]
-	identifier = "Code"
-	name = "Code"
-	weight = 1
+    parent = "Categories"
+    name = "android"
+    url = "categories/android"
+    weight = 1
+
+[[menu.main]]
+    parent = "Categories"
+    name = "opencv"
+    url = "categories/opencv"
+    weight = 2
+
+
+[[menu.main]]
+    parent = "Categories"
+    name = "opengl"
+    url = "categories/opengl"
+    weight = 3
+
+[[menu.main]]
+    parent = "Categories"
+    name = "ffpmeg"
+    url = "categories/ffmpeg"
+    weight = 4
+
+[[menu.main]]
+    parent = "Categories"
+    name = "python"
+    url = "categories/python"
+    weight = 5
+
+
+[[menu.main]]
+	identifier = "Tags"
+	name = "Tags"
+	weight = 2
 	url = "tags"
 
 
 [[menu.main]]
 	name = "Life"
-	weight = 2
+	weight = 3
 
 [[menu.main]]
 	name = "About"
 	url = "page/about/"
-	weight = 3
+	weight = 4
 
 
 

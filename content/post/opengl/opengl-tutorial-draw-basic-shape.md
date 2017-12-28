@@ -1,6 +1,7 @@
 ---
 title: "OpenGL 学习系列---基本形状的绘制"
 date: 2017-12-22T16:21:16+08:00
+categories: ["opengl"]
 tags: ["OpenGL"]
 ---
 
