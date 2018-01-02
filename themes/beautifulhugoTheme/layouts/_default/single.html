@@ -18,6 +18,19 @@
           </li>
         {{ end }}
       </ul>
+            {{ if isset .Params "seealso" }}
+            {{ else }}
+            <div>
+                {{ $related := .Site.RegularPages.Related . | first 5 }} {{ with $related }}
+                <h2>See Also</h2>
+                <ul>
+                    {{ range . }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </div>
+            {{ end }}
 
 
       {{ if (.Params.comments) | or (and (or (not (isset .Params "comments")) (eq .Params.comments nil)) (.Site.Params.comments)) }}
