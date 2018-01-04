@@ -2,10 +2,14 @@
 <div class="container" role="main">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        {{ .Content }}
-      </article>
-
+        <!-- post metadata-->
+        {{ if isset .Params "postmeta" }}
+        {{ else }}
+        {{ partial "postmeta.html" . }}
+        {{ end }}
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+            {{ .Content }}
+        </article>
       <ul class="pager blog-pager">
         {{ if .PrevInSection }}
           <li class="previous">
