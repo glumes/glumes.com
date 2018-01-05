@@ -2,8 +2,8 @@
 title: "泸沽湖-丽江之行"
 date: 2018-01-04T14:20:04+08:00
 subtitle: "甜蜜之旅"
-tags: ["life"]
-draft: true
+tags: ["Life"]
+draft: false
 ---
 
 
@@ -77,6 +77,7 @@ draft: true
 {{< gallery >}}
 	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045203/life/IMG_4165.jpg" >}}
 	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045203/life/IMG_4172.jpg" >}}
+	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515084304/life/IMG_4877.jpg" >}}
 {{< /gallery >}}
 
 
@@ -117,7 +118,7 @@ draft: true
 
 吃过午饭后，在路边租了自行车，从大落水村出发，原本以为环湖从下午开始，时间不够用，没想到时间
 
-> 环路路线： 洛水村 -》 里格半岛 -》 尼赛村 -》 小洛水村 -》 泸沽湖镇 -》 草海 -》 走婚桥 -》 草海桥 -》 三家村 -》洛水村。
+> 环湖路线： 洛水村 -》 里格半岛 -》 尼赛村 -》 小洛水村 -》 泸沽湖镇 -》 草海 -》 走婚桥 -》 草海桥 -》 三家村 -》洛水村。
 
 
 {{< gallery >}}
