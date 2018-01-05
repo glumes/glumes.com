@@ -1,5 +1,5 @@
 <span class="post-meta">
-  {{ if eq .Type "posts" }}
+  {{ if eq .Type "post" }}
   {{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
   {{ end }}
   {{ if .IsTranslated -}}
