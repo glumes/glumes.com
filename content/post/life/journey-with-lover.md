@@ -7,24 +7,16 @@ draft: false
 ---
 
 
-
 元旦假期和亲爱的去了趟 泸沽湖-丽江。
 
 <!--more-->
-
-
-{{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514991611/life/IMG_5564.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514991611/life/IMG_5564.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514991611/life/IMG_5564.jpg" >}}
-{{< /gallery >}}
 
 
 ## 出发
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514991611/life/IMG_5564.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_5564.jpg" >}}
 {{< /gallery >}}
 
 
@@ -35,10 +27,10 @@ draft: false
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514992061/life/IMG_1559.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515079571/life/IMG_4151.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514993953/life/IMG_4155.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1514994042/life/IMG_4160.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_1559.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4151.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4155.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4160.jpg" >}}
 {{< /gallery >}}
 
 
@@ -55,7 +47,7 @@ draft: false
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515043850/life/IMG_4161.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4161.jpg" >}}
 {{< /gallery >}}
 
 
@@ -65,9 +57,9 @@ draft: false
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515079816/life/IMG_4163.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515044949/life/IMG_4173.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515044949/life/IMG_4166.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4163.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4173.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4166.jpg" >}}
 {{< /gallery >}}
 
 
@@ -75,9 +67,9 @@ draft: false
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045203/life/IMG_4165.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045203/life/IMG_4172.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515084304/life/IMG_4877.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4165.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4172.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4877.jpg" >}}
 {{< /gallery >}}
 
 
@@ -85,8 +77,8 @@ draft: false
 
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045740/life/IMG_4177.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045740/life/IMG_4186.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4177.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4186.jpg" >}}
 {{< /gallery >}}
 
 
@@ -94,21 +86,20 @@ draft: false
 
 下午还坐了一回船，50元一个人，只不过只能到里务比岛。
 
-![scene](https://res.cloudinary.com/glumes-com/image/upload/v1515080316/life/IMG_4244.jpg)
+![scene](http://p22b7ap8e.bkt.clouddn.com/IMG_4244.jpg)
 
-![scene](https://res.cloudinary.com/glumes-com/image/upload/v1515081158/life/IMG_4191.jpg)
+![scene](http://p22b7ap8e.bkt.clouddn.com/IMG_4191.jpg)
 
-![scene](https://res.cloudinary.com/glumes-com/image/upload/v1515080968/life/IMG_4209.jpg)
+![scene](http://p22b7ap8e.bkt.clouddn.com/IMG_4209.jpg)
 
-九宫格走起：
-
+放一波风景图：
 
 {{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045740/life/IMG_4187.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080697/life/IMG_4192_2.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080564/life/IMG_6973.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080830/life/IMG_6901.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515082640/life/IMG_1634.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4187.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4192_2.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_6973.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_6901.jpg" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/life/IMG_1634.jpg" >}}
 {{< /gallery >}}
 
 
@@ -121,41 +112,100 @@ draft: false
 > 环湖路线： 洛水村 -》 里格半岛 -》 尼赛村 -》 小洛水村 -》 泸沽湖镇 -》 草海 -》 走婚桥 -》 草海桥 -》 三家村 -》洛水村。
 
 
-{{< gallery >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515045740/life/IMG_4187.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080697/life/IMG_4192_2.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080564/life/IMG_6973.jpg" >}}
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1515080830/life/IMG_6901.jpg" >}}
-
-{{< /gallery >}}
-
-
 在骑行的时候，还遇上了另外一个哥们，正好一个人来泸沽湖游玩，三人组队游玩。
 
 
+{{< gallery>}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_0217.JPG" >}}
+{{< /gallery >}}
 
+
+在环湖经过经过里格半岛时，为了不走回头路，和女票决定抄小路推车从土坡上绕过去。
+
+一段很陡的上坡路，却是走得很温馨。
+
+以后不管遇到什么问题，我想我们都要能够一起面对、共同好好地走下去。
+
+
+{{< gallery>}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_7601.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_9701.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_3233.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_9346.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_6264.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_9452.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4464.PNG" >}}
+{{< /gallery >}}
 
 ## 丽江
 
 假期第三天到了丽江。
 
-从泸沽湖到丽江，拼车，从十点出发，下午两点多才到。都是沿着山的公路，弯道挺多的，一路看见了不少侧翻的车。
+从泸沽湖到丽江，拼车，从十点出发，下午两点多才到。
+
+都是沿着山的公路，弯道挺多的，一路看见了不少侧翻的车。
+
+在丽江古城并没有感受到什么古城的韵味，满满的商业化气息。
+
+> 其实在哪逛不都是满满的商业化气息呢，重要的还是看和谁逛啦！
+
+不过在这里的确是体验了一把慢生活，饮茶闲谈，一个下午就过去了。
+
+丽江饮食，长得很独特的佛手，还有名字取得很有特色的云南十八怪。
+
+{{< gallery>}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_9057.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_5894.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4985.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_3022.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_2671.JPG" >}}
+{{< /gallery >}}
 
 
-在丽江古城并没有感受到什么古城的韵味，满满的商业化气息。不过在这里到的确是体验了一把慢生活，饮茶闲谈，一个下午就过去了。
+### 2018 · 跨年
 
+{{< gallery>}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_9532.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4519.JPG" >}}
+{{< /gallery >}}
 
+带着女票晚上来清吧跨年。
+
+到了跨年的倒计时，原以为会满心欢喜的等到 2018 年的到来，结果女票忙着玩手机发微信....
+
+扎心...
 
 ### 拉市海
 
-假期的最后一天，去了趟拉市海，去骑马和划船。
+
+![scene](http://p22b7ap8e.bkt.clouddn.com/IMG_4544.JPG)
+
+假期的最后一天，去了趟拉市海，去骑马和划船，这还是第一次玩这些项目。
 
 
+{{< gallery>}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_2164.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_4026.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_7302.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_3837.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_6005.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_2127.JPG" >}}
+	{{< figure src="http://p22b7ap8e.bkt.clouddn.com/IMG_2109.JPG" >}}
+{{< /gallery >}}
 
 
+## 返程
 
+玩完最后的项目，就要开始返程了。
 
+和女票一个飞深圳，一个飞广州，女票航班比我早了一个小时。
 
+看着女票开始登机离开的背影，可能是这个假期最难过的时刻了。
 
+要走的时候才知道自己有多么不舍，多么失落。
+
+也庆幸当初订票的时候是让女票先走了，不用让她来承受这样的心酸了。
+
+最后，和女票都各自平安回家了，假期结束，生活继续~~~
 
 
