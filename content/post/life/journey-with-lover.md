@@ -3,6 +3,8 @@ title: "泸沽湖-丽江之行"
 date: 2018-01-04T14:20:04+08:00
 subtitle: "甜蜜之旅"
 tags: ["Life"]
+categories: ["Life"]
+comments: true
 draft: false
 ---
 

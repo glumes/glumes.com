@@ -29,7 +29,6 @@ disqusShortname = "glumes"
 
 
 
-
 [[menu.main]]
     identifier = "Categories"
     name = "Categories"
@@ -68,19 +67,20 @@ disqusShortname = "glumes"
 
 
 [[menu.main]]
+    name = "Life"
+    url = "categories/life"
+    weight = 2
+
+[[menu.main]]
 	identifier = "Tags"
 	name = "Tags"
-	weight = 2
+	weight = 3
 	url = "tags"
 
 
 [[menu.main]]
-	name = "Life"
-	weight = 3
-
-[[menu.main]]
 	name = "About"
-	url = "page/about/"
+	url = "about"
 	weight = 4
 
 

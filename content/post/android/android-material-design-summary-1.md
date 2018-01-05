@@ -3,6 +3,7 @@ title: "Android Material Desing 控件小结-1"
 date: 2017-12-22T15:19:03+08:00
 categories: ["android"]
 tags: ["Android"]
+comments: true
 ---
 
 总结一下 Material Design 控件使用。

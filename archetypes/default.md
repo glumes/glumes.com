@@ -4,6 +4,8 @@ date: {{ .Date }}
 subtitle: ""
 tags: []
 draft: false
+categories: ["android"]
+comments: true
 ---
 
 

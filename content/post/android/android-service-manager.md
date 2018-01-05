@@ -3,6 +3,7 @@ title: "Android 系统服务管理 ServiceManager"
 date: 2017-12-22T15:27:11+08:00
 categories: ["android"]
 tags: ["Android"]
+comments: true
 ---
 
 

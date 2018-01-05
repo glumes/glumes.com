@@ -3,6 +3,7 @@ title: "Android Binder Summary"
 date: 2017-12-22T10:50:43+08:00
 categories: ["android"]
 tags: ["Android"]
+comments: true
 ---
 
 
