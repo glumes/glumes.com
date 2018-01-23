@@ -6,10 +6,12 @@ tags: ["Life"]
 categories: ["Life"]
 comments: true
 draft: false
+bigimg: [{src: "http://p22b7ap8e.bkt.clouddn.com/IMG_5564.jpg", desc: "pic"}]
 ---
 
 
 元旦假期和亲爱的去了趟 泸沽湖-丽江。
+
 
 <!--more-->
 
