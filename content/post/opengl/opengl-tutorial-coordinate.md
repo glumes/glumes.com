@@ -200,6 +200,11 @@ OpenGL 会使用 `glViewPort` 函数来将归一化设备坐标映射到屏幕�
 就这样，一个点的坐标就完成了从局部空间坐标 `$(x,y,z,w)$` 到屏幕坐标 `$(x,y)$` 的转变。
 
 
+用一张图总结如下：
+
+![](https://res.cloudinary.com/glumes-com/image/upload/v1516764111/opengl_coordinate_exchange_pmgaoa.png)
+
+
 ## 坐标的矩阵操作
 
 点的坐标可以看作是一个向量，用 `$V$` 表示，而矩阵用 `$M$` 表示。
