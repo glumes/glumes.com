@@ -56,7 +56,7 @@ disqusShortname = "glumes"
 
 [[menu.main]]
     parent = "Categories"
-    name = "ffpmeg"
+    name = "ffmpeg"
     url = "categories/ffmpeg"
     weight = 4
 
