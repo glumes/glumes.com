@@ -82,17 +82,19 @@ FFmpge 的解码流程大都是相同的，只是在细节地方会有差异，�
 
 不过，在这里还是少了两个重要的概念：
 
-1、FFmpeg 各种类以及变量的含义。
-2、各种音视频文件的格式协议。
+1. FFmpeg 各种类以及变量的含义。
+2. 各种音视频文件的格式协议。
 
 前半部分还好，对着雷神的博客一点点的看，还是能看懂的。至于各种音视频文件的协议，那就要靠慢慢积累了。
 
 这里就不贴上全部的代码了，可以参考如下两个地方：
+
 1. http://ffmpeg.org/doxygen/trunk/decode_video_8c-example.html
 2. https://github.com/glumes/FFMPEGLearn/blob/master/FFmpegLib/src/main/cpp/ffmpeg_examples/decode_video.cpp
 
 
 ## 参考
+
 1. http://www.jianshu.com/p/7e96223ff329
 2. http://blog.csdn.net/leixiaohua1020/article/details/42181271
 
