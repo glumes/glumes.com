@@ -39,11 +39,11 @@ Github 主页：https://github.com/java-decompiler/jd-gui
 首先还是需要检查 Java 环境是否配好，需要 Java 1.7 的版本，不过我在 MAC 上 Java 1.8 的版本安装也没问题。
 
 步骤如下：
-1、    右键点击下载 ```wrapper script``` 脚本，并将它保存重命名为 ```apktool``` ，不要带任何文件后缀名。
-2、    到 https://bitbucket.org/iBotPeaches/apktool/downloads 网站去下载 apktool.jar 文件，并将它重命名为 ```apktool.jar``` 。
-3、    将刚刚下载的 ```apktool.jar``` 文件和 ```apktool``` 文件移到到 ```/usr/local/bin``` 目录中去。
-4、    使用 ```chmod +x``` 命令赋予上面两个文件执行权限。
-5、    运行 ```apktool``` 命令即可验证 apktool 是否安装正确。
+1.    右键点击下载 ```wrapper script``` 脚本，并将它保存重命名为 ```apktool``` ，不要带任何文件后缀名。
+2.    到 https://bitbucket.org/iBotPeaches/apktool/downloads 网站去下载 apktool.jar 文件，并将它重命名为 ```apktool.jar``` 。
+3.    将刚刚下载的 ```apktool.jar``` 文件和 ```apktool``` 文件移到到 ```/usr/local/bin``` 目录中去。
+4.    使用 ```chmod +x``` 命令赋予上面两个文件执行权限。
+5.    运行 ```apktool``` 命令即可验证 apktool 是否安装正确。
 
 如果出现如下图片所示的，则代表安装成功了。
 
