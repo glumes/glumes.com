@@ -25,17 +25,16 @@ hello = "Glumes Blog"
 
 
 [[Params.bigimg]]
-src = "https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500,w_1920/v1516345959/WechatIMG9337_jhk6yp.jpg"
+src = "https://res.cloudinary.com/glumes-com/image/upload/v1516345959/WechatIMG9337_jhk6yp.jpg"
 desc = "广州"
 
 
-
 [[Params.bigimg]]
-src = "https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500,w_1920/v1517475212/life/WechatIMG309.jpg"
+src = "https://res.cloudinary.com/glumes-com/image/upload/v1517475212/life/WechatIMG309.jpg"
 desc = "凤凰古城"
 
 [[Params.bigimg]]
-src = "https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500,w_1920/v1517475393/life/WechatIMG310.jpg"
+src = "https://res.cloudinary.com/glumes-com/image/upload/v1517475393/life/WechatIMG310.jpg"
 desc = "张家界"
 
 
