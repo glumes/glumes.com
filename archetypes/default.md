@@ -2,9 +2,9 @@
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
 subtitle: ""
-tags: []
 draft: true
 categories: ["android"]
+tags: []
 comments: true
 bigimg: [{src: "", desc: ""}]
 ---
