@@ -260,6 +260,10 @@ void main(){
 纹理目标需要通过 texImage2D 函数附加上 Bitmap 位图。
 
 
+具体代码详情，可以参考我的 Github 项目：
+
+[https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
+
 ## 参考
 
 1. http://blog.csdn.net/opengl_es/article/details/19852277
