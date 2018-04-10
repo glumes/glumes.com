@@ -6,6 +6,7 @@ draft: false
 categories: ["android"]
 tags: ["Camera"]
 comments: true
+bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/a_90/v1523359308/life/airport_land.jpg", desc: "机场降落一景"}]
 --- 
 
 在 Android Camera 开发中，两个比较闹心的问题就是尺寸和方向了。
