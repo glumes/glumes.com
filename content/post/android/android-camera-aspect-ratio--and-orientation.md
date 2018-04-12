@@ -34,6 +34,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/a_90/v1523359
 
 
 ## 尺寸
+---
 
 相机作为硬件设备，可以提供两类尺寸：
 
@@ -41,7 +42,9 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/a_90/v1523359
 *	拍摄帧尺寸
 
 
-### 预览帧尺寸
+
+#### 预览帧尺寸
+
 
 通过 `getSupportedPreviewSizes` 方法可以得到支持的预览帧的尺寸集合。
 
@@ -84,7 +87,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/a_90/v1523359
 
 
 
-### 拍摄帧尺寸
+#### 拍摄帧尺寸
 
 通过 `getSupportedPictureSizes` 方法可以得到支持的拍摄帧的尺寸集合。
 
@@ -102,7 +105,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/a_90/v1523359
 而 Android 显示相机预览内容的控件尺寸，在控件对应的方法中可以拿到它的 Width 和 Height 。
 
 
-### 计算宽高比
+#### 计算宽高比
 
 有了这三类尺寸，接下来就是要如何处理了。
 
@@ -193,6 +196,7 @@ AspectRatio DEFAULT_ASPECT_RATIO = AspectRatio.of(4, 3);
 可以看到，在相机中设置宽高比还是非常重要的一个环节。
 
 ## 方向
+---
 
 搞定了尺寸问题，还剩下方向了。
 
@@ -209,7 +213,7 @@ AspectRatio DEFAULT_ASPECT_RATIO = AspectRatio.of(4, 3);
 *	当手机屏幕 `横放时的自然方向`，此时，坐标原点位于左上角，向右为 X 轴正方向，向下为 Y 轴正方向，**宽比高长**。
 
 
-### 预览帧方向
+#### 预览帧方向
 
 而相机的图像数据是来自相机硬件图像传感器的，传感器被固定在手机上后有一个默认的取景方向：坐标原点位于手机**逆时针横放**时的左上角，即与横屏应用的屏幕 X 方向一致。也就是与竖屏应用的屏幕 X 方向呈 90 度角。
 
@@ -290,7 +294,7 @@ orientation 表示相机图像的方向。它的值是相机图像顺时针旋�
 ![](https://res.cloudinary.com/glumes-com/image/upload/v1523330911/code/font_camera_orientation.png)
 
 
-### 拍摄帧方向
+#### 拍摄帧方向
 
 确定了预览时的方向，还需要确定拍摄时的方向。
 
@@ -333,6 +337,7 @@ onOrientationChanged 方法的返回值是从 0 ~ 359。而 setRotation 的值�
 
 
 ## 参考
+---
 
 1. https://blog.csdn.net/Tencent_Bugly/article/details/53375311
 2. https://blog.csdn.net/daiqiquan/article/details/40650055
