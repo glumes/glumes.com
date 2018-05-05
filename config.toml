@@ -22,7 +22,7 @@ hello = "Glumes Blog"
 	 commit = false
 	 rss = true
 	 comments = true
-
+     addReward = true
 
 [[Params.bigimg]]
 src = "https://res.cloudinary.com/glumes-com/image/upload/v1516345959/WechatIMG9337_jhk6yp.jpg"
