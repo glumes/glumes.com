@@ -3,6 +3,7 @@ title: "Android 6.0 Launcher 启动 Activity 过程源码分析（三）"
 date: 2017-12-22T10:40:45+08:00
 categories: ["android"]
 tags: ["Android","Framework"]
+comments: true
 ---
 
 
@@ -711,7 +712,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 
 ## 参考
 
-1、 Android 6.0 源码 
-2、《Android 系统源代码情景分析》 
-3、http://duanqz.github.io/2016-07-29-Activity-LaunchProcess-Part1
+1. Android 6.0 源码 
+2. 《Android 系统源代码情景分析》 
+3. http://duanqz.github.io/2016-07-29-Activity-LaunchProcess-Part1
 

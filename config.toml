@@ -21,7 +21,7 @@ hello = "Glumes Blog"
 	 useChroma = true
 	 commit = false
 	 rss = true
-	 comments = false
+	 comments = true
      addReward = true
 
 [[Params.bigimg]]

@@ -3,6 +3,7 @@ title: "Android 6.0 Launcher 启动 Activity 过程源码分析（一）"
 date: 2017-12-22T10:40:38+08:00
 categories: ["android"]
 tags: ["Android","Framework"]
+comments: true
 ---
 
 
@@ -359,8 +360,8 @@ Instrumentation 类的 execStartActivity() 方法最终调用了ActivityManagerP
 
 
 ## 参考
-1、	Android 6.0 源码
-2、《Android 系统源代码情景分析》
+1.  Android 6.0 源码
+2. 《Android 系统源代码情景分析》
 
 
 

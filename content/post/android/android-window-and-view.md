@@ -3,6 +3,7 @@ title: "Android Activity 创建 Window 及添加 View 流程分析"
 date: 2017-12-22T15:33:22+08:00
 categories: ["android"]
 tags: ["Android"]
+comments: true
 ---
 
 

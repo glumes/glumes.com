@@ -3,6 +3,7 @@ title: "OpenGL 学习系列---基本形状的绘制"
 date: 2017-12-22T16:21:16+08:00
 categories: ["opengl"]
 tags: ["OpenGL"]
+comments: true
 ---
 
 在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。

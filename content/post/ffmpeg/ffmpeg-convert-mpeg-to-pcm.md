@@ -4,6 +4,7 @@ subtitle: "MPEG封装格式到PCM数据格式"
 date: 2017-12-22T16:05:30+08:00
 categories: ["ffmpeg"]
 tags: ["FFmpeg"]
+comments: true
 ---
 
 

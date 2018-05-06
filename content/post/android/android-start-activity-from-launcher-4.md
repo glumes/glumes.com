@@ -3,6 +3,7 @@ title: " Android 6.0 Launcher 启动 Activity 过程分析小结（四）"
 date: 2017-12-22T10:40:49+08:00
 categories: ["android"]
 tags: ["Android","Framework"]
+comments: true
 ---
 
 

@@ -4,6 +4,7 @@ date: 2017-12-22T09:53:04+08:00
 description: "setup opencv environment"
 categories: ["opencv"]
 tags: ["Opencv"]
+comments: true
 ---
 
 

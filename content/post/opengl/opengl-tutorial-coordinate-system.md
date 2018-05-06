@@ -5,6 +5,7 @@ subtitle: "一个点的坐标转换的心路历程"
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 draft: false
+comments: true
 ---
 
 
