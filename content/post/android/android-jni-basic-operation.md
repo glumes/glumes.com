@@ -294,3 +294,5 @@ JNI 提供了函数来获得字符串指定范围的内容，这里的字符串�
 1. 《The Java Native Interface》
 2. https://github.com/glumes/AndroidDevWithCpp
 
+
+具体示例代码可参考我的 Github 项目 [https://github.com/glumes/AndroidDevWithCpp](https://github.com/glumes/AndroidDevWithCpp)，欢迎 Star。

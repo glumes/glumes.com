@@ -307,3 +307,4 @@ Java_com_glumes_cppso_jnioperations_ArrayTypeOps_printAnimalsName(JNIEnv *env, j
 }
 ```
 
+具体示例代码可参考我的 Github 项目 [https://github.com/glumes/AndroidDevWithCpp](https://github.com/glumes/AndroidDevWithCpp)，欢迎 Star。

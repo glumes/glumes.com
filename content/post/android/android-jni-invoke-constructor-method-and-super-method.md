@@ -222,3 +222,5 @@ Java_com_glumes_cppso_jnioperations_InvokeConstructorOps_callSuperMethod(JNIEnv 
 Cat 类作为 Animal 类的子类，首先由 NewObject 方法创建 Cat 类，然后调用它的父类的方法。
 
 由此，通过 JNI 来调用 Java 算是基本完成了。
+
+具体示例代码可参考我的 Github 项目 [https://github.com/glumes/AndroidDevWithCpp](https://github.com/glumes/AndroidDevWithCpp)，欢迎 Star。

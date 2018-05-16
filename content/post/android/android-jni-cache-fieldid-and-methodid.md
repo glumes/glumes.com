@@ -108,3 +108,5 @@ Java_com_glumes_cppso_jnioperations_CacheFieldAndMethodOps_callCacheMethod(JNIEn
 ----
 
 可以看出，如果不能预先知道方法和字段所在类的源码，那么在使用时缓存比较合理。但如果知道的话，在初始化时缓存优点较多，既避免了每次使用时检查，还避免了在多线程被调用的情况。
+
+具体示例代码可参考我的 Github 项目 [https://github.com/glumes/AndroidDevWithCpp](https://github.com/glumes/AndroidDevWithCpp)，欢迎 Star。
