@@ -2,11 +2,11 @@
 title: "Android JNI 调用时的异常处理"
 date: 2018-05-16T17:55:52+08:00
 subtitle: ""
-draft: true
+draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "", desc: ""}]
+bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526569935/life/pexels-photo-421788.jpg", desc: "Waves"}]
 ---
 
 
