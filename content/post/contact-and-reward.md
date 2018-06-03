@@ -30,11 +30,8 @@ addReward: false
 
 也欢迎一起交流探讨技术、生活，扫码关注微信公众号：**纸上浅谈**
 
-{{< gallery>}}
 
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1525500999/life/qrcode_for_gh_2b0ecb0a1283_344.jpg" caption="微信公众号">}}
-
-{{< /gallery >}}
+![](https://res.cloudinary.com/glumes-com/image/upload/v1527910926/wechat-focus_s9z3xy.gif)
 
 
 扫一扫加微信，添加请备注：**纸上浅谈**
