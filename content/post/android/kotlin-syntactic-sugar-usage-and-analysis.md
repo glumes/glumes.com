@@ -14,6 +14,7 @@ bigimg: [{src: "http://res.cloudinary.com/glumes-com/image/upload/c_scale,h_900,
 
 再不明白这些语法糖的情况下去看 Kotlin 代码就会一脸懵逼，可当明白之后就会觉得原来可以这样简化。
 
+<!--more-->
 
 ## 带接收者的函数字面值
 
