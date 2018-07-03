@@ -34,14 +34,6 @@ addReward: false
 ![](https://res.cloudinary.com/glumes-com/image/upload/v1527910926/wechat-focus_s9z3xy.gif)
 
 
-扫一扫加微信，添加请备注：**纸上浅谈**
-
-{{< gallery>}}
-
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1525501525/life/WechatIMG268.jpg" caption="微信二维码">}}
-
-{{< /gallery >}}
-
 
 
 
