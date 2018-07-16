@@ -3,8 +3,8 @@ title: "用 OpenGL 对视频帧内容进行替换"
 date: 2018-07-12T16:59:47+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
-tags: []
+categories: ["OpenGL"]
+tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531388956/code/sunset-boat-sea-ship-37730.jpg", desc: "ship"}]
 ---
