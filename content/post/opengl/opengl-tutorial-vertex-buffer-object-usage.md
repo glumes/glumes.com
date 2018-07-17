@@ -1,17 +1,19 @@
 ---
-title: "Opengl Tutorial Vertex Buffer Object Usage"
+title: "OpenGL 顶点缓冲区 VBO 的使用"
 date: 2018-07-17T22:28:37+08:00
 subtitle: ""
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "", desc: ""}]
+bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531838582/blog/pexels-photo-219005.jpg", desc: ""}]
 ---
 
 在之前的绘制过程中，首先都需要将物体的顶点数据保存在内存中，然后 `glDrawArrays` 或 `glDrawElements` 绘制前，将顶点数据送入到显存中，这样会存在 I/O 开销较大的问题，性能也不够好。
 
 可以将顶点数据存放在顶点缓冲区中，就不需要在每次绘制前把顶点数据复制进显存，而是在初始化顶点缓冲区对象时一次性将顶点数据送入显存，每次绘制时直接使用显存中的数据，可以大大提高渲染性能。
+
+<!--more-->
 
 ## 顶点缓冲区
 
