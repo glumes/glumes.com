@@ -131,8 +131,3 @@ void main(){
 
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
 
-
-欢迎关注微信公众号：【纸上浅谈】，获得最新文章推送~~~
-
-
-![扫码关注](https://res.cloudinary.com/glumes-com/image/upload/v1527910926/wechat-focus_s9z3xy.gif)
