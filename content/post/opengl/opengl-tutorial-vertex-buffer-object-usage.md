@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 顶点缓冲区 VBO 的使用"
+title: "《OpenGL ES 3.x 游戏开发》顶点缓冲区 VBO 的使用"
 date: 2018-07-17T22:28:37+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -296,3 +296,8 @@ glDeteleBuffers 方法用于删除指定的缓冲区对象，其方法签名如�
 关于具体的代码实现，可以参考我的 Github 项目：
 
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
+
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
+

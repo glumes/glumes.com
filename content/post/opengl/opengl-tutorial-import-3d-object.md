@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 3D 模型加载和渲染"
+title: "《OpenGL ES 3.x 游戏开发》 3D 模型加载和渲染"
 date: 2018-07-02T23:37:16+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
@@ -184,3 +184,7 @@ void main() {
 实现的方式也是根据片段的 y 坐标所在位置来决定该片段是采样条纹的颜色还是间隔的颜色。
 
 最后，加载 3D 模型就先了解到这了，如果想要加载更多效果，倒是可以继续深挖，只是没有 MAC 版本的 3ds Max 软件，却是少了一些乐趣~~
+
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》

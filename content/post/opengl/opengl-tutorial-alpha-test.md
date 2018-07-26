@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 利用 Alpha 透明度进行测试"
+title: "《OpenGL ES 3.x 游戏开发》之利用 Alpha 透明度进行测试"
 date: 2018-07-13T09:41:22+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -149,6 +149,9 @@ aTexCoorp[1] = 0.12;
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
 
 
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
 
 ## 最后
 

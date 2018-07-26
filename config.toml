@@ -23,6 +23,8 @@ hello = "Glumes Blog"
 	 rss = true
 	 comments = true
      addReward = true
+     original = true
+     addwechat = true
 
 
 

@@ -199,4 +199,7 @@ int pthread_join(pthread_t __pthread, void** __return_value_ptr);
 
 > [https://github.com/glumes/AndroidDevWithCpp](https://github.com/glumes/AndroidDevWithCpp)
 
+参考
+
+1. 《Android C++ 高级编程--使用 NDK》
 

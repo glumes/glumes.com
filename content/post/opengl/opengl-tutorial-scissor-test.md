@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 裁剪测试及注意点"
+title: "《OpenGL ES 3.x 游戏开发》 裁剪测试及注意点"
 date: 2018-07-03T21:35:34+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
@@ -70,4 +70,8 @@ x 和 y 坐标所在的坐标系是以视口矩形区域的左下角为原点的
 具体代码详情，可以参考我的 Github 项目，求一波 star~~
 
 [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
+
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
 

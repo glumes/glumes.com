@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 光照系列之镜面光"
+title: "《OpenGL ES 3.x 游戏开发》光照系列之镜面光"
 date: 2018-07-23T23:11:20+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
@@ -184,4 +184,8 @@ void main()  {
 具体的示例代码可以参考我的 Github 项目，求一波 Star 。
 
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
+
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
 

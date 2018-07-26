@@ -7,6 +7,8 @@ categories: ["android"]
 comments: true
 bigimg: [{src: "", desc: ""}]
 draft: true
+original: true
+addwechat = true
 ---
 
 

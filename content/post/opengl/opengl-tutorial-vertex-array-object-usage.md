@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 顶点数组对象 VAO 的使用"
+title: "《OpenGL ES 3.x 游戏开发》 顶点数组对象 VAO 的使用"
 date: 2018-07-18T23:16:22+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -132,6 +132,10 @@ glGenVertexArrays 方法主要用于创建新的顶点数组对象，方法签�
 关于具体的代码实现，可以参考我的 Github 项目：
 
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
+
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
 
 
 

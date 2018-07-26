@@ -4,6 +4,8 @@ date: 2017-12-22T16:10:57+08:00
 categories: ["python"]
 tags: ["Python"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

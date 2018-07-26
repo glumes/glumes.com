@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 碰撞检测之 AABB 包围盒"
+title: "《OpenGL ES 3.x 游戏开发》碰撞检测之 AABB 包围盒"
 date: 2018-07-26T12:47:49+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -387,7 +387,9 @@ AABB 包围盒对于本身横平竖直的物体在平行于坐标轴摆放的情
 物体本身区域所占比例越大，则碰撞检测的误差越小，因此在实际开发中应该尽量提高物体本身区域所在的比例，以降低计算误差。
 
 
+## 参考
 
+1. 《OpenGL ES 3.x 游戏开发》
 
 
 

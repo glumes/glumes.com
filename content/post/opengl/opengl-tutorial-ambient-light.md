@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 光照系列之环境光"
+title: "《OpenGL ES 3.x 游戏开发》光照系列之环境光"
 date: 2018-07-21T22:45:03+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -115,4 +115,6 @@ void main()
 
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
 
+## 参考
 
+1. 《OpenGL ES 3.x 游戏开发》

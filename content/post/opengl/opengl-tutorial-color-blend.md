@@ -1,7 +1,7 @@
 ---
-title: "OpenGL 中的颜色混合和使用"
+title: "《OpenGL ES 3.x 游戏开发》之颜色混合和使用"
 date: 2018-07-16T11:13:19+08:00
-subtitle: ""
+subtitle: "学习笔记内容摘录"
 draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
@@ -175,6 +175,9 @@ OpenGL 通过设置混合因子来指定两个片元的加权比例，每次都�
 > [https://github.com/glumes/AndroidOpenGLTutorial](https://github.com/glumes/AndroidOpenGLTutorial)
 
 
+## 参考
+
+1. 《OpenGL ES 3.x 游戏开发》
 
 ## 最后
 

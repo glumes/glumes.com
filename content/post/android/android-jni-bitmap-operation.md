@@ -6,6 +6,8 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
+original: true
+addwechat: true
 bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1ftm1y4vr2dj20zk0npaig.jpg", desc: ""}]
 ---
 
@@ -306,4 +308,8 @@ jobject generateBitmap(JNIEnv *env, uint32_t width, uint32_t height) {
 ```
 
 其他的操作都相同了，具体还是看项目代码吧。
+
+参考
+
+1. 《Android C++ 高级编程--使用 NDK》
 
