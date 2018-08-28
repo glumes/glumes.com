@@ -2,11 +2,13 @@
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
 subtitle: ""
-draft: true
-categories: ["android"]
 tags: []
+categories: ["android"]
 comments: true
 bigimg: [{src: "", desc: ""}]
+draft: true
+original: true
+addwechat: true
 ---
 
 
