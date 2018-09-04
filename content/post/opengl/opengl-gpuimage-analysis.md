@@ -84,6 +84,7 @@ GPUImageNativeLibrary.YUVtoRBGA(data, previewSize.width, previewSize.height,
 如果以左下角为纹理坐标系的坐标原点，那么除了要将纹理坐标向右顺时针旋转 90° 之外，还需要进行上下翻转才行，至于为什么要向右顺时针旋转 90° ，参考这篇文章：
 
 
+[Android 相机开发中的尺寸和方向问题](https://glumes.com/post/android/android-camera-aspect-ratio--and-orientation/)
 
 当我们把纹理坐标以左上角为原点，并相对于顶点坐标顺时针旋转 90 ° 之后，才能够正常的显示图像：
 
