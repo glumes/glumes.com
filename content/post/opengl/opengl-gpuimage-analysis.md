@@ -6,7 +6,7 @@ tags: ["OpenGL"]
 categories: ["opengl"]
 comments: true
 bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fuvigpdvurj20zk0c8772.jpg", desc: ""}]
-draft: true
+draft: false
 original: true
 addwechat: true
 ---
@@ -240,6 +240,8 @@ GPUImageFilterGroup 继承自 GPUImageFilter， 顾名思义就是一系列 GPUI
 
 如果对 FrameBuffer 的使用不熟悉的话，请参考这篇文章：
 
+
+[OpenGL 之 帧缓冲 使用实践](https://glumes.com/post/opengl/opengl-framebuffer-object-usage/)
 
 
 ```java
