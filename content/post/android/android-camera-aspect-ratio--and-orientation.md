@@ -9,6 +9,9 @@ comments: true
 bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fuxwncgz3uj20zk0npn5q.jpg", desc: ""}]
 --- 
 
+> *本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布
+
+
 在 Android Camera 开发中，两个比较闹心的问题就是尺寸和方向了。
 
 
