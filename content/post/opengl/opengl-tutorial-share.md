@@ -127,7 +127,7 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 ![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531236519/code/WechatIMG326.jpg)
 
-要是二维码过期了，加微信 ezglume 好友，备注 OpenGL ，拉你入群~
+要是二维码过期了，加微信 ezglumes 好友，备注 OpenGL ，拉你入群~
 
 本文中提到的书籍资源，皆可在我的 Github 地址上下载得到：
 
