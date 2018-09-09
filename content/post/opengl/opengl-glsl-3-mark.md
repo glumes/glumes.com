@@ -12,7 +12,7 @@ addwechat: true
 ---
 
 
-在之前的文章中， 主要介绍了 OpenGL ES 2.0 的 GLSL 语法，在 OpenGL ES 3.0 中语法又有了一些变化。
+在之前的[文章](https://glumes.com/post/opengl/opengl-glsl-2-mark/)中， 主要介绍了 OpenGL ES 2.0 的 GLSL 语法，在 OpenGL ES 3.0 中语法又有了一些变化。
 
 本文的内容来自于《OpenGL ES 3.x 游戏开发 上卷》。
 
