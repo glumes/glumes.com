@@ -12,7 +12,7 @@ addwechat: true
 ---
 
 
-在之前的[文章]()中， 主要介绍了 OpenGL ES 2.0 的 GLSL 语法，在 OpenGL ES 3.0 中语法又有了一些变化。
+在之前的文章中， 主要介绍了 OpenGL ES 2.0 的 GLSL 语法，在 OpenGL ES 3.0 中语法又有了一些变化。
 
 本文的内容来自于《OpenGL ES 3.x 游戏开发 上卷》。
 
@@ -248,7 +248,7 @@ layout (location = 1) in vec4 aColor;
 片元着色器中，layout 限定符通过 location 值将输出变量和指定编号的绘制缓冲绑定起来。每 一个输出变量的索引(引用)值都会对应到一个相应编号的绘制缓冲，而这个输出变量的值将写 入相应缓冲。
 
 
-> layout 限定符的 location 值是有范围的，其范围为 [0, MAX_DRAW_BUFFERS-1]。 不同手持设备的范围有可能不同，最基本的范围是 [0,3] 。
+> layout 限定符的 location 值是有范围的，其范围为 $[0, MAX_DRAW_BUFFERS-1$]。 不同手持设备的范围有可能不同，最基本的范围是 $[0,3$] 。
 
 
 ```glsl
