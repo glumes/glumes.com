@@ -1,5 +1,5 @@
 ---
-title: "Android NDK 开发之 CMake 最佳实践"
+title: "Android NDK 开发之 CMake 必知必会"
 date: 2018-09-12T09:19:09+08:00
 subtitle: ""
 tags: ["CMake","NDK"]
@@ -17,7 +17,7 @@ Android Studio 从 2.2 版本起开始支持 CMake ,可以通过 CMake 和 NDK �
 
 <!--more-->
 
-CMake 是一个开源的跨平台构建系统，在 Android Studio 引入 CMake 之前，它就已经被广泛运用了。
+CMake 是一个跨平台构建系统，在 Android Studio 引入 CMake 之前，它就已经被广泛运用了。
 
 Google 官方网站上有对 CMake 的使用示范，可以参考 [官方指南](https://developer.android.com/studio/projects/configure-cmake)。
 

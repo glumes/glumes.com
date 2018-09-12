@@ -53,12 +53,12 @@ desc = "张家界"
 
 [[menu.main]]
     identifier = "Categories"
-    name = "Categories"
+    name = "目录"
     weight = 1
 
 [[menu.main]]
     parent = "Categories"
-    name = "android"
+    name = "Android"
     url = "categories/android"
     weight = 1
 
@@ -89,19 +89,19 @@ desc = "张家界"
 
 
 [[menu.main]]
-    name = "Life"
+    name = "生活"
     url = "categories/life"
     weight = 2
 
 [[menu.main]]
 	identifier = "Tags"
-	name = "Tags"
+	name = "标签"
 	weight = 3
 	url = "tags"
 
 
 [[menu.main]]
-	name = "About"
+	name = "关于我"
 	url = "about"
 	weight = 4
 

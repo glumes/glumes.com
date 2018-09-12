@@ -1,7 +1,7 @@
 ---
-title: "关于"
+title: "关于我"
 date: 2017-12-20T15:23:52+08:00
-comments: false
+comments: true
 postmeta: false
 seealso: false
 ---
@@ -20,7 +20,7 @@ seealso: false
 
 选择比努力更重要，坚持正确的方向，终究会量变到质变~
 
-现阶段主要采用 Kotlin 和 Cpp (~~半吊子水平~~) 来开发，也会用到 Python 等。
+转向采用 Kotlin 和 Cpp (~~半吊子水平~~) 来做主力开发语言，也会用到 Python 等。
 
 有个微信公众号 `纸上浅谈`, 欢迎关注，及时看到最近的文章和状态。 
 
