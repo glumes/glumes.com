@@ -7,6 +7,8 @@ categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531388956/code/sunset-boat-sea-ship-37730.jpg", desc: "ship"}]
+original: true
+addwechat: true
 ---
 
 在群里面有人提到了这么一个实现：现有一段素材视频，想要对视频中的某个内容进行替换，换成自己的图片，这个怎么用 OpenGL 去实现呢？
