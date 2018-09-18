@@ -6,7 +6,8 @@ tags: ["OpenGL"]
 draft: false
 categories: ["OpenGL"]
 comments: true
-
+original: true
+addwechat: true
 ---
 
 

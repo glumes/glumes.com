@@ -7,6 +7,8 @@ categories: ["OpenGL"]
 tags: ["OpenGL","Camera"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526962400/pexels-photo-122400_vqkkh9.jpg", desc: "Camera"}]
+original: true
+addwechat: true
 ---
 
 在 [OpenGL 投影矩阵](https://glumes.com/post/opengl/opengl-tutorial-projection-matrix/) 这篇文章中，讲述了 OpenGL 坐标系统中的投影矩阵，有两种类型的投影矩阵，分别是正交投影和透视投影。

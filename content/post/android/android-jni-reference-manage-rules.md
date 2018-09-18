@@ -7,6 +7,8 @@ categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526569790/life/pexels-photo-940380.jpg", desc: "Sunset"}]
+original: true
+addwechat: true
 ---
 
 在 Native 代码中有时候会接收 Java 传入的引用类型参数，有时候也会通过 NewObject 方法来创建一个 Java 的引用类型变量。

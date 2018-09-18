@@ -6,7 +6,8 @@ draft: false
 categories: ["android"]
 tags: ["Camera","Android"]
 comments: true
-
+original: true
+addwechat: true
 ---
 
 要了解 Android Camear 相机模型的演变，首先还是得了解硬件抽象层 HAL 相关的知识内容。

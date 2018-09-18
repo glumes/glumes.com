@@ -5,6 +5,8 @@ description: "setup opencv environment"
 categories: ["opencv"]
 tags: ["Opencv"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

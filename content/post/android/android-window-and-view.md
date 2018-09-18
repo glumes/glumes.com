@@ -4,6 +4,8 @@ date: 2017-12-22T15:33:22+08:00
 categories: ["android"]
 tags: ["Android"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

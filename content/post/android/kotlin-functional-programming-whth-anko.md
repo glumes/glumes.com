@@ -4,6 +4,8 @@ date: 2017-12-22T10:26:57+08:00
 categories: ["android"]
 tags: ["Android","Kotlin"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

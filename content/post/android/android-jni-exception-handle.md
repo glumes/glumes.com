@@ -7,6 +7,8 @@ categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526569935/life/pexels-photo-421788.jpg", desc: "Waves"}]
+original: true
+addwechat: true
 ---
 
 

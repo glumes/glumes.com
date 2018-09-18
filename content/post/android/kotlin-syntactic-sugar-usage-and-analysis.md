@@ -7,6 +7,8 @@ categories: ["android"]
 tags: ["Android","Kotlin"]
 comments: true
 bigimg: [{src: "http://res.cloudinary.com/glumes-com/image/upload/c_scale,h_900,w_1804/v1530275743/life/WechatIMG420.jpg", desc: "广深沿江高速"}]
+original: true
+addwechat: true
 ---
 
 

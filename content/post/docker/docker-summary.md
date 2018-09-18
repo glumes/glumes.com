@@ -4,6 +4,8 @@ date: 2017-12-22T16:24:03+08:00
 categories: ["docker"]
 tags: ["Docker"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

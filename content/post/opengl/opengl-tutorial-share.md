@@ -7,6 +7,8 @@ categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531290620/life/pexels-photo-333528.jpg", desc: "Share"}]
+original: true
+addwechat: true
 ---
 
 学习了一段时间的 OpenGL ES，并在公司的项目中得到了运用，也算是有了一些积累，现在分享一些当初学习的资源，大家一起来学习，共同交流进步。

@@ -4,6 +4,8 @@ date: 2017-12-22T10:40:38+08:00
 categories: ["android"]
 tags: ["Android","Framework"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

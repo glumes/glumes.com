@@ -4,6 +4,8 @@ date: 2017-12-22T16:19:28+08:00
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

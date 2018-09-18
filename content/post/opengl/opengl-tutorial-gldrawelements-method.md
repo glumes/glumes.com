@@ -7,6 +7,8 @@ categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/q_87/v1527249158/code/glDrawElements.jpg", desc: "Pen"}]
+original: true
+addwechat: true
 ---
 
 在之前的绘制中，我们都是通过 `glDrawArrays` 方法来实现的，它会按照我们传入的顶点顺序和指定的绘制方式进行绘制。

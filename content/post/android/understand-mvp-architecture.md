@@ -6,6 +6,8 @@ tags: ["android","architecture"]
 draft: false
 categories: ["android"]
 comments: true
+original: true
+addwechat: true
 ---
 
 

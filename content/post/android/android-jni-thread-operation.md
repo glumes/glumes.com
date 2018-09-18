@@ -7,6 +7,8 @@ categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
 bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531635750/blog/pexels-photo-206650.jpg", desc: "Thread"}]
+original: true
+addwechat: true
 ---
 
 

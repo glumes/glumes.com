@@ -6,6 +6,8 @@ tags: ["StateMachine"]
 draft: false
 categories: ["android"]
 comments: true
+original: true
+addwechat: true
 ---
 
 理解状态机的原理及使用。

@@ -4,6 +4,8 @@ date: 2017-12-22T15:19:03+08:00
 categories: ["android"]
 tags: ["Android"]
 comments: true
+original: true
+addwechat: true
 ---
 
 总结一下 Material Design 控件使用。
