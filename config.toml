@@ -2,7 +2,7 @@ baseURL = "https://glumes.com/"
 languageCode = "zh-cn"
 DefaultContentLanguage = "en"
 title = "Glumes Blog"
-theme = "beautifulhugoTheme"
+theme = "beautifulhugo"
 
 pygmentsUseClasses = false
 pygmentCodeFences = true
@@ -25,6 +25,7 @@ hello = "Glumes Blog"
      addReward = true
      original = true
      addwechat = true
+       reward = true
 
 
 

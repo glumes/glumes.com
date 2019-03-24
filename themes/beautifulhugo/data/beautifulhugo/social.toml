@@ -1,0 +1,19 @@
+[[social_icons]]
+id = "email"
+url = "mailto:zhaoying9402@outlook.com"
+title = "Email me"
+icon = "fa-envelope"
+
+[[social_icons]]
+id = "github"
+url = "https://github.com/glumes"
+title = "GitHub"
+icon = "fa-github"
+
+[[social_icons]]
+id = "weibo"
+url = "https://weibo.com/u/3157458295"
+title = "微博"
+icon = "fa-weibo"
+
+
