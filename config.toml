@@ -49,9 +49,6 @@ desc = "张家界"
 	email = "zhaoying9402@gmail.com"
 	github = "glumes"
 
-
-
-
 [[menu.main]]
     identifier = "Categories"
     name = "目录"
