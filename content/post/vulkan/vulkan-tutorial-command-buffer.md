@@ -9,6 +9,7 @@ bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fz03j7xdslj22n01rcb29.jp
 draft: false
 original: true
 addwechat: true
+
 ---
 
 > Vulkan 开发的系列文章：
@@ -312,4 +313,8 @@ typedef struct VkSubmitInfo {
 具体和渲染有关的操作，都要在 `Command-Buffer` 之间记录，结束记录之后提交给 `Queue` ，让 GPU 去执行具体的操作，当然具体执行是一个异步的过程，需要用到同步机制。
 
 `Semaphore`  和  `Fence` 都可以实现同步，但使用场景不同。
+
+
+
+
 

@@ -25,6 +25,7 @@ hello = "Glumes Blog"
      addReward = true
      original = true
      addwechat = true
+     addplanet = true
        reward = true
 
 
