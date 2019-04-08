@@ -9,7 +9,6 @@ bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fz03j7xdslj22n01rcb29.jp
 draft: false
 original: true
 addwechat: true
-
 ---
 
 > Vulkan 开发的系列文章：
@@ -305,6 +304,11 @@ typedef struct VkSubmitInfo {
 
 这就是 `Fence` 的使用，至于 `Command-Buffer` 之间通过 `Semaphore` 来同步的示例，详见后续文章。
 
+## 参考
+
+文章中的代码地址，具体可以参考我的 Github 项目：
+
+> https://github.com/glumes/vulkan_tutorial
 
 ## 总结
 
