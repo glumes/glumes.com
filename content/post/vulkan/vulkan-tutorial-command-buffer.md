@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fz03j7xdslj22n01rcb29.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/26/bda04acf79142b12604d4fec3356622a.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
