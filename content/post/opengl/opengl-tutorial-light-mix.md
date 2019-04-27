@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1ftkvwb6q4zj20zk0nodkj.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftkvwb6q4zj20zk0nodkj.jpg", desc: ""}]
 ---
 
 

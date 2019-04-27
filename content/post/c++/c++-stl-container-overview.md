@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["C++","STL"]
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fxd6ebghm1j20zk0k0dqt.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd6ebghm1j20zk0k0dqt.jpg", desc: ""}]
 draft: false
 original: false
 addwechat: false
@@ -70,7 +70,7 @@ vector<vector<string>> lines ; // vector 的 vector
 
 容器定义和初始化方法见下图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwovi7exigj20pj0fnwp1.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwovi7exigj20pj0fnwp1.jpg)
 
 #### 将一个容器初始化为另一个容器的拷贝
 
@@ -162,7 +162,7 @@ C++ 语言定义了箭头运算符 `->` ，能够把解引用和成员访问两�
 
 以下是向顺序容器中添加元素的操作。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwo8b7wyadj20k30g4wlt.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwo8b7wyadj20k30g4wlt.jpg)
 
 当使用如上的操作时，必须记得不同容器使用不同的策略来分配元素空间，这些策略直接影响性能。
 
@@ -185,7 +185,7 @@ C++ 语言定义了箭头运算符 `->` ，能够把解引用和成员访问两�
 
 删除主要操作函数如下：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwoydkugt2j20t10il4b7.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwoydkugt2j20t10il4b7.jpg)
 
 *	pop_front 和 pop_back
 	*	pop_front 和 pop_back 成员函数分别删除首元素和尾元素。
@@ -251,7 +251,7 @@ C++ 语言定义了箭头运算符 `->` ，能够把解引用和成员访问两�
 
 所有容器适配器都支持的操作如下：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fxd77po68vj20ib090whe.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd77po68vj20ib090whe.jpg)
 
 
 ### 定义适配器
@@ -286,7 +286,7 @@ priority_queue 除了 front、push_back 和 pop_back 操作之外还要求随机
 
 stack 类型定义在 stack 头文件中，支持的操作如下表：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fxd78arzj4j20ig04rwga.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd78arzj4j20ig04rwga.jpg)
 
 
 代码示例如下：
@@ -308,9 +308,9 @@ while(!intStack.empty()){
 
 queue 和 priority_queue 适配器定义在 queue 头文件中，支持的操作如下表：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fxd78arzj4j20ig04rwga.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd78arzj4j20ig04rwga.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fxd7dnqwazj20ib02smxx.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd7dnqwazj20ib02smxx.jpg)
 
 
 标准库 queue 使用先进先出的存储和访问策略。进入队列的对象被放置到队尾，而离开队列的对象从队首删除。
@@ -344,7 +344,7 @@ set 中每个元素只包含一个关键字，set 支持高效的关键词查询
 
 标准库提供了 8 个关联容器，如下图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwoym8cn2ij20t50cfn4e.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwoym8cn2ij20t50cfn4e.jpg)
 
 这 8 个关联容器间的不同体现在三个维度上：
 
@@ -405,7 +405,7 @@ pair 的数据成员是 public 的。两个成员分别命名为 first 和 secon
 
 具体 pair 上的一些操作如下：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwr9pwm1vdj21fo0w21hy.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwr9pwm1vdj21fo0w21hy.jpg)
 
 ### 关联容器迭代器
 
@@ -454,7 +454,7 @@ pair 的数据成员是 public 的。两个成员分别命名为 first 和 secon
 
 关联容器的 insert 操作如下表：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwpbcg2ekoj20re0e67cn.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwpbcg2ekoj20re0e67cn.jpg)
 
 insert （或 emplace）返回的值依赖于容器类型和参数。对于不包含重复关键字的容器，添加单一元素的 insert 和 emplace 版本返回一个 pair ，告诉我们插入操作是否成功。
 
@@ -508,7 +508,7 @@ pair 的 first 成员是一个迭代器，指向具有给定关键字的元素�
 
 关联容器定义了三个版本的 `earse` 。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwpc64o9buj20re07l79v.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwpc64o9buj20re07l79v.jpg)
 
 与顺序容器一样，我们可以通过传递给 erase 一个迭代器或一个迭代器对来删除一个元素或者一个元素范围。另外还有一个额外的 earse 操作，它接受一个 `key_type` 参数，它会删除所有匹配给定关键字的元素（如果存在的话），返回实际删除的元素的数量。
 
@@ -521,7 +521,7 @@ pair 的 first 成员是一个迭代器，指向具有给定关键字的元素�
 
 map 和 unordered_map 容器提供了下标运算符和一个对应的 `at` 函数。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwpiihxamnj20vi06s0xa.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwpiihxamnj20vi06s0xa.jpg)
 
 set 类型不支持下标操作，因为 set 中没有与关键字相关联的 “值” ，元素本身就是关键字，因此 “获取与一个关键字相关联的值” 的操作就没意义了。
 
@@ -547,9 +547,9 @@ set 类型不支持下标操作，因为 set 中没有与关键字相关联的 �
 
 关联容器提供多种查找一个指定元素的方法。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwpj7wig23j20yu04kn11.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwpj7wig23j20yu04kn11.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fwpj82iljyj20yw0ai44z.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fwpj82iljyj20yw0ai44z.jpg)
 
 
 应该使用哪个操作依赖于我们要解决什么问题：

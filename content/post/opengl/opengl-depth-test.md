@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532069624/blog/pexels-photo-137132.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-137132.jpg", desc: ""}]
 ---
 
 
@@ -122,7 +122,7 @@ $$\begin{equation} F_{depth} = \frac{z - near}{far - near} \end{equation}$$
 
 对于这种转换，可以看到，当物体非常接近近平面时，深度值会接近 0.0，当物体非常接近远平面时，深度值会接近 1.0 ，这种转换是一种线性的深度缓冲转换。
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532068155/code/depth_linear_graph.png)
+![](https://image.glumes.com/images/2019/04/27/depth_linear_graph.png)
 
 
 而在实践中，几乎不可能是这样的线性转换。
@@ -139,7 +139,7 @@ $$\begin{equation} F_{depth} = \frac{1/z - 1/near}{1/far - 1/near} \end{equation
 
 它的效果如下：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532068512/code/depth_non_linear_graph.png)
+![](https://image.glumes.com/images/2019/04/27/depth_non_linear_graph.png)
 
 可以看到在 z 值位于 1.0 和 2.0 之间时，对应的深度值为 0.0 到 0.5 的区间，这就占据了深度值区间范围的 50 %。而 2.0 之后的范围也才占据了 50 %。
 

@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["OpenGL","EGL"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fuviqdafudj20zk0np7bx.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuviqdafudj20zk0np7bx.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -55,7 +55,7 @@ EGL 的使用要遵循一些固定的步骤，按照这些步骤去配置、创�
 
 如果对 EGLDisplay、EGLSurface 、EGLContext 这些抽象概念傻傻分不清楚，可以参考这幅图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fu8hoo85znj20g008q78w.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fu8hoo85znj20g008q78w.jpg)
 
 其中：
 

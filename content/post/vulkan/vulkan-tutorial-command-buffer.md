@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fz03j7xdslj22n01rcb29.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fz03j7xdslj22n01rcb29.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -22,7 +22,7 @@ addwechat: true
 
 此篇文章继续学习 Vulkan 中的组件：Command-Buffer 。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fytl33ku2vj21c40r4n49.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fytl33ku2vj21c40r4n49.jpg)
 
 
 <!--more-->
@@ -124,7 +124,7 @@ typedef enum VkCommandBufferLevel {
 
 创建了 `Command-Buffer` 之后，来了解一下它的生命周期，如下图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fytmcwfgywj20wl0e5myz.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fytmcwfgywj20wl0e5myz.jpg)
 
 
 
@@ -153,7 +153,7 @@ typedef enum VkCommandBufferLevel {
 
 现在可以尝试着记录一些命令，提交到 `Queue` 上了，命令记录的调用过程如下图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fytn1nbd2gj20q30fgah3.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fytn1nbd2gj20q30fgah3.jpg)
 
 在 `vkBeginCommandBuffer` 和 `vkEndCommandBuffer` 方法之间可以记录和渲染相关的命令，这里先不考虑中间的过程，直接创建提交。
 
@@ -216,7 +216,7 @@ typedef struct VkSubmitInfo {
 
 如下图，Vulkan 中有 `Semaphore`、`Fences`、`Event`、`Barrier` 四种机制来保证同步。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fyubwo7iaqj21is0umjzo.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fyubwo7iaqj21is0umjzo.jpg)
 
 
 简单说一下 `Semaphore` 和 `Fence` 。

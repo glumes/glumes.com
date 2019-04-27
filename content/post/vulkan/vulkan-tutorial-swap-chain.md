@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1g1u4eowfwbj21hc0zk79f.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1g1u4eowfwbj21hc0zk79f.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -24,7 +24,7 @@ addwechat: true
 
 在之前的文章中，讲到了 `Command-Buffer` 提交给 `Queue` 去执行，也提到了 Vulkan 实现跨平台机制，是有一些拓展的，这里就讲讲 Vulkan 窗口系统的拓展（Vulkan Window System Integration WSI），如下图所示：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fyuhrs5xlwj21j00uywl8.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fyuhrs5xlwj21j00uywl8.jpg)
 
 <!--more-->
 

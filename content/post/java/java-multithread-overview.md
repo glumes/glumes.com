@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Java"]
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fxdkqsi8boj20zk0nqn8o.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxdkqsi8boj20zk0nqn8o.jpg", desc: ""}]
 draft: false
 original: false
 addwechat: false

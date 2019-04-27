@@ -6,7 +6,7 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_630,w_1920/v1525659533/life/WechatIMG357.jpg", desc: "天空云"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG357.jpg", desc: "天空云"}]
 original: true
 addwechat: true
 ---
@@ -66,7 +66,7 @@ Java_com_glumes_myapplication_NativeClass_plus(JNIEnv *env, jobject instance, ji
 
 结构如下图所示：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1522421221/JNIEnv-Pointer_pjzwm1.png)
+![](https://image.glumes.com/images/2019/04/27/JNIEnv-Pointer_pjzwm1.png)
 
 可以看到这里面涉及了三类指针，JNIEnv * 本身就是指针，而它指向的也是指针，在 JVM 函数表里面的每一项又都是指针。
 
@@ -282,7 +282,7 @@ JNI 提供了函数来获得字符串指定范围的内容，这里的字符串�
 选择合适的 JNI 函数
 
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1523550495/code/choose-right-jni-string-function.png)
+![](https://image.glumes.com/images/2019/04/27/choose-right-jni-string-function.png)
 
 
 对于 JNI String 操作，要选择合适的函数，上表可以作为参考。

@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531972138/blog/pexels-photo-220182.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-220182.jpg", desc: ""}]
 ---
 
 
@@ -36,7 +36,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531972138/b
 
 当我们通过三角形来绘制形状时，会定义顶点连接的顺序，它可能是顺时针或逆时针。
 
-![顶点连接顺序](https://res.cloudinary.com/glumes-com/image/upload/v1531966617/code/faceculling_windingorder.png)
+![顶点连接顺序](https://image.glumes.com/images/2019/04/27/faceculling_windingorder.png)
 
 
 上图中，左侧三角形就是顺时针方向，右侧就是逆时针方向。
@@ -58,7 +58,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531972138/b
 
 如下图：
 
-![逆时针和顺时针三角形的观察](https://res.cloudinary.com/glumes-com/image/upload/v1531967122/code/faceculling_frontback.png)
+![逆时针和顺时针三角形的观察](https://image.glumes.com/images/2019/04/27/faceculling_frontback.png)
 
 三角形的顶点顺序都 1 -> 2 -> 3，当我们定义这个顺序时，都是假设观察者正面向这个三角形呢，所以都是逆时针定义的。
 

@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1530546092/life/pexels-photo-247932.jpg", desc: "Robot"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-247932.jpg", desc: "Robot"}]
 ---
 
 
@@ -18,7 +18,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1530546092/l
 
 例如如下的 3D 模型文件图像：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_555/v1530544235/code/WechatIMG24.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG24.jpg)
 
 
 ## Obj 模型文件
@@ -154,7 +154,7 @@ Obj 模型文件实质上也就是文本文件了，通过读取每一行来进�
 
 通过上面的函数就计算出了最终的顶点坐标位置，并将此顶点坐标位置传入给 GPU ，通过 FloatBuffer 进行转换等等，这就和之前的文章内容相同了。
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_555/v1530544610/code/WechatIMG25.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG25.jpg)
 
 如果只是单纯的导入了所有顶点，并决定了要绘制的颜色，就会出现类似上面的单一颜色的绘制情况，事实上可以通过修改片段着色器来给 3D 模型添加条纹着色效果。
 

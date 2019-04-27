@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1530625119/code/pexels-photo-271402.jpg", desc: "Scissor"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-271402.jpg", desc: "Scissor"}]
 ---
 
 
@@ -65,7 +65,7 @@ x 和 y 坐标所在的坐标系是以视口矩形区域的左下角为原点的
 
 最后创建了一个微信群，欢迎加群交流讨论 OpenGL ES 相关技术~~
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1530624519/code/WechatIMG324.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG324.jpg)
 
 具体代码详情，可以参考我的 Github 项目，求一波 star~~
 

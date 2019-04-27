@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["YUV","RGB"]
 categories: ["FFmpeg"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fvf9wxdg2bj20zk0npter.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9wxdg2bj20zk0npter.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -21,7 +21,7 @@ RGB 三个字母分别代表了 红（Red）、绿（Green）、蓝（Blue），
 
 在图像显示中，一张 1280 * 720 大小的图片，就代表着它有 1280 * 720 个像素点。其中每一个像素点的颜色显示都采用 RGB 编码方法，将 RGB 分别取不同的值，就会展示不同的颜色。
 
-![](https://ws1.sinaimg.cn/mw690/bc32fd77gy1fvf996wfvaj20l00gy772.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf996wfvaj20l00gy772.jpg)
 
 
 RGB 图像中，每个像素点都有红、绿、蓝三个原色，其中每种原色都占用 8 bit，也就是一个字节，那么一个像素点也就占用 24 bit，也就是三个字节。
@@ -38,7 +38,7 @@ YUV 颜色编码采用的是 **明亮度** 和 **色度** 来指定像素的颜�
 
 使用 YUV 颜色编码表示一幅图像，它应该下面这样的：
 
- ![](https://ws1.sinaimg.cn/large/bc32fd77gy1fvf98qd1g9j20ks0gu76y.jpg)
+ ![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf98qd1g9j20ks0gu76y.jpg)
 
 和 RGB 表示图像类似，每个像素点都包含 Y、U、V 分量。但是它的 Y 和 UV 分量是可以分离的，如果没有 UV 分量一样可以显示完整的图像，只不过是黑白的。
 
@@ -53,10 +53,10 @@ RGB 到 YUV 的转换，就是将图像所有像素点的 R、G、B 分量转换
 有如下公式进行转换：
 
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fvf9sa62zhj20ke046jre.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9sa62zhj20ke046jre.jpg)
 
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fvf9tdm65jj20f1046746.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9tdm65jj20f1046746.jpg)
 
 此时的转换结束后，每个像素点都有完整的 Y、U、V 分量。而之前提到 Y 和 UV 分量是可以分离的，接下来通过不同的采样方式，可以将图像的 Y、U、V 分量重新组合。
 

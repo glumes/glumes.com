@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531388956/code/sunset-boat-sea-ship-37730.jpg", desc: "ship"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/sunset-boat-sea-ship-37730.jpg", desc: "ship"}]
 original: true
 addwechat: true
 ---
@@ -36,11 +36,11 @@ addwechat: true
 效果如下：
 
 
-![Sketch 设计图](https://res.cloudinary.com/glumes-com/image/upload/v1531377132/code/frame_replace.png)
+![Sketch 设计图](https://image.glumes.com/images/2019/04/27/frame_replace.png)
 
 代码实现的效果，左上方的内容被右上方内容替换了，最后成了右下角的图片。
 
-![软件实现图](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531384765/code/WechatIMG57.jpg)
+![软件实现图](https://image.glumes.com/images/2019/04/27/WechatIMG57.jpg)
 
 
 ## 准备工作
@@ -51,12 +51,12 @@ addwechat: true
 
 准备一张待替换内容：
 
-![待替换图片](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531377368/code/replace_origin.png)
+![待替换图片](https://image.glumes.com/images/2019/04/27/replace_origin.png)
 
 
 然后再切一张同等大小，并把中间圆形位置的图片替换成想要的图片，其他周边内容设置透明度为 0 。
 
-![带透明度的遮罩图](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531377364/code/replace_shape.png)
+![带透明度的遮罩图](https://image.glumes.com/images/2019/04/27/replace_shape.png)
 
 接下来的事情就是将两张图片融合，分别介绍基于着色器和颜色混合来替换内容。
 
@@ -196,7 +196,7 @@ void main() {
 
 学习的路上是需要交流和分享的，这里有个二维码，如果你对 OpenGL ES 感兴趣欢迎一起来交流讨论。
 
-![加群讨论](https://res.cloudinary.com/glumes-com/image/upload/v1531382740/code/WechatIMG432.jpg)
+![加群讨论](https://image.glumes.com/images/2019/04/27/WechatIMG432.jpg)
 
 要是二维码过期了，加微信 ezglume 好友，备注 OpenGL ，拉你入群~
 

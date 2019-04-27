@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Retrofit"]
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fv3arkum3dj20hs0bvmxt.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv3arkum3dj20hs0bvmxt.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true

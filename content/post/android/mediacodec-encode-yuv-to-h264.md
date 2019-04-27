@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["MediaCodec","YUV","H264","Camera"]
 categories: ["Android"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fvfa41kvcoj20zk0npgmx.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvfa41kvcoj20zk0npgmx.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -27,7 +27,7 @@ addwechat: true
 
 下图展示了 MediaCodec 的工作方式，一个典型的生产者消费者模型，两边的 Client 分别代表输入端和输出端，输入端将数据交给 MediaCodec 进行编码或者解码，而输出端就得到编码或者解码后的内容。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fufzrm63n9j21no0oc0wm.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fufzrm63n9j21no0oc0wm.jpg)
 
 输入端和输出端是通过输入队列缓冲区和输出队列缓冲区，两条缓冲区队列的形式来和 MediaCodec  传递数据。
 
@@ -39,7 +39,7 @@ MediaCodec 处理完了之后，再从输出队列中出队得到一个可用的
 
 另外，MediaCodec 也存在相应的 **生命周期**，如下图所示：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fug07wfwvwj20tk0kttaw.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fug07wfwvwj20tk0kttaw.jpg)
 
 
 当创建了 MediaCodec 之后，是处于未初始化的 `Uninitialized` 状态，调用 configure 方法之后就处于 `Configured` 状态，调用了 start 方法之后，就处于 `Executing` 状态。

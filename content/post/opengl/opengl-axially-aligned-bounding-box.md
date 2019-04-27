@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1ftn636nobej20zk0me7a8.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftn636nobej20zk0me7a8.jpg", desc: ""}]
 ---
 
 在 OpenGL 的世界模型中，同时绘制了多个物体，那么怎么去检测物体之间是否触碰了，不同于在平面之间的触碰，OpenGL 是在三维世界里面的触碰，接下来就继续深入理解 OpenGL 中的碰撞检测相关知识~~~
@@ -29,7 +29,7 @@ AABB 包围盒就是采用一个长方体将物体包裹起来，进行两个物
 
 对于不同物体包围盒直接示例，如下图：
 
-![不同物体的 AABB 包围盒](https://ws1.sinaimg.cn/large/bc32fd77gy1ftn0tnab4pj209p03yweu.jpg)
+![不同物体的 AABB 包围盒](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftn0tnab4pj209p03yweu.jpg)
 
 
 
@@ -182,7 +182,7 @@ public class AABBBox {
 在上面求得了物体的包围盒，求包围盒的目的就是为了简化物体运动过程中的碰撞检测，接下来就是介绍 AABB 包围盒碰撞检测的策略，原理如下图所示：
 
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftn2ce177mj20ie04p0tu.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftn2ce177mj20ie04p0tu.jpg)
 
 
 由于任何一个 AABB 包围盒的各个面都平行于坐标平面，因此判断两个 AABB 包围盒是否发生碰撞仅需要分别判断 3 个轴方向的交叠部分大小是否大于设定的阈值，若大于则发生了碰撞，否则没有发生碰撞。
@@ -248,7 +248,7 @@ public class AABBBox {
 
 在开发上述效果中，会定义一个 RigidBody 刚体类，它由两个重要的成员，就是我们的绘制物体和它的 AABB 包围盒，如下图所示：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftn452gxq7j20fa03rjs2.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftn452gxq7j20fa03rjs2.jpg)
 
 渲染者指的就是用来渲染的物体，碰撞者指的就是物体的 AABB 包围盒，它们共同组成了刚体 RigidBody 。
 
@@ -380,7 +380,7 @@ AABB 包围盒的碰撞检测其实还是一种间接检测方案，所以肯定
 
 AABB 包围盒对于本身横平竖直的物体在平行于坐标轴摆放的情况下下，计算碰撞检测的误差很小，但对于不规则形状的物体或本身横平竖直的物体在随意倾斜摆放时，计算碰撞检测的误差就会比较大，如下图所示：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftn5uds87ej20h604vt96.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftn5uds87ej20h604vt96.jpg)
 
 从图中可以看到，对于同一物体在不同姿态下的 AABB 包围盒以及不同形状的物体的 AABB 包围盒，其物体本身区域占 AABB 包围盒区域的比例是大不相同的。
 

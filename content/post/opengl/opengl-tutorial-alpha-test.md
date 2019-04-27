@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531447145/blog/forest-tree-tree-trunk-bark.jpg", desc: "Tree"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/forest-tree-tree-trunk-bark.jpg", desc: "Tree"}]
 ---
 
 
@@ -25,16 +25,16 @@ Alpha 测试的基本原理为，当绘制一个片元时，首先检测其 Alph
 
 比如如下的场景：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500/v1530807546/code/WechatIMG27.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG27.jpg)
 
 如果是裁剪测试，只能屏幕上透过一个矩形区域来观察实际场景。
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500/v1530807545/code/WechatIMG26.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG26.jpg)
 
 
 而换成 Alpha 测试，就可以实现透过任意形状的观察，效果如下：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_500/v1530807540/code/WechatIMG28.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG28.jpg)
 
 
 图上的内容实际由三部分组成，树、地形、中间带透明度的边框。
@@ -161,7 +161,7 @@ aTexCoorp[1] = 0.12;
 
 学习的路上是需要交流和分享的，这里有个二维码，如果你对 OpenGL ES 感兴趣欢迎一起来交流讨论。
 
-![加群讨论](https://res.cloudinary.com/glumes-com/image/upload/v1531382740/code/WechatIMG432.jpg)
+![加群讨论](https://image.glumes.com/images/2019/04/27/WechatIMG432.jpg)
 
 要是二维码过期了，加微信 ezglume 好友，备注 OpenGL ，拉你入群~
 

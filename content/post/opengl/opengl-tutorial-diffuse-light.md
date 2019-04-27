@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532273404/blog/pexels-photo-401107.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-401107.jpg", desc: ""}]
 ---
 
 
@@ -16,11 +16,11 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532273404/b
 
 散射光指的是从物体表面向全方位 360° 均匀发射的光，如下图：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532272829/code/diffuse_demo.png)
+![](https://image.glumes.com/images/2019/04/27/diffuse_demo.png)
 
 散射光具体代表的是现实世界中粗糙的物体表面被光照射时，发射光在各个方向基本均匀的情况，如下图：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532272834/code/diffuse_demo2.png)
+![](https://image.glumes.com/images/2019/04/27/diffuse_demo2.png)
 
 
 虽然反射后的散射光在各个方向是均匀的，但散射光反射的强度与入射光的强度以及入射的角度密切相关。
@@ -42,7 +42,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532273404/b
 
 由于入射角为入射光向量与法向量的夹角，因此，其余弦值并不需要调用三角函数进行计算，只需要将两个向量归一化，然后进行点积计算就可以得出余弦值。
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532272834/code/diffuse_cal.png)
+![](https://image.glumes.com/images/2019/04/27/diffuse_cal.png)
 
 
 图中的 N 代表被照射点表面的法向量，P 为被照射点，L 为从 P 点到光源的向量，N 与 L 的夹角即为入射角。

@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531710914/blog/pexels-photo-1231023.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-1231023.jpg", desc: ""}]
 ---
 
 在 Android 中有一个类 PorterDuffXfermode ，它是用来设置颜色混合方式的，也就是在已有颜色的基础上再绘制一笔颜色，这两个颜色是如何进行混合的，是新绘制的颜色覆盖了原有颜色，还是新绘制的颜色和原有颜色混合组成另一种颜色呢。
@@ -128,11 +128,11 @@ OpenGL 通过设置混合因子来指定两个片元的加权比例，每次都�
 
 先假设有这样的场景：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1531707676/code/blend_scene.jpg)
+![](https://image.glumes.com/images/2019/04/27/blend_scene.jpg)
 
 通过这样的图片经过混合后去查看后面的内容，类似于刺激战场上开镜效果，
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1531707815/code/lgq.png)
+![](https://image.glumes.com/images/2019/04/27/lgq.png)
 
 显然，图片的黑色区域是要可以透过看到后面内容的，绿色区域也是一样，不然就全遮盖住后面内容了。
 
@@ -161,7 +161,7 @@ OpenGL 通过设置混合因子来指定两个片元的加权比例，每次都�
 
 最后效果如下：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1531709868/code/blend_src_color.jpg)
+![](https://image.glumes.com/images/2019/04/27/blend_src_color.jpg)
 
 
 
@@ -187,7 +187,7 @@ OpenGL 通过设置混合因子来指定两个片元的加权比例，每次都�
 
 学习的路上是需要交流和分享的，这里有个二维码，如果你对 OpenGL ES 感兴趣欢迎一起来交流讨论。
 
-![加群讨论](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531710558/code/WechatIMG434.jpg)
+![加群讨论](https://image.glumes.com/images/2019/04/27/WechatIMG434.jpg)
 
 要是二维码过期了，加微信 ezglume 好友，备注 OpenGL ，拉你入群~
 

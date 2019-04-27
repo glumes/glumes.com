@@ -6,7 +6,7 @@ draft: false
 categories: ["android"]
 tags: ["Camera"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fuxwncgz3uj20zk0npn5q.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuxwncgz3uj20zk0npn5q.jpg", desc: ""}]
 
 --- 
 
@@ -224,7 +224,7 @@ AspectRatio DEFAULT_ASPECT_RATIO = AspectRatio.of(4, 3);
 这里盗图几张：
 
 
-![back_camera_coordinate](https://res.cloudinary.com/glumes-com/image/upload/v1522669736/code/back_camera_coordiante.png)
+![back_camera_coordinate](https://image.glumes.com/images/2019/04/27/back_camera_coordiante.png)
 
 
 所以，对于横屏应用来说，屏幕的自然方向和相机的图像传感器方向一致，因此看到的图像是正的。而对于竖屏应用来说，预览图像就侧过来了。需要将预览图像顺时针旋转 90 度角才可以正常预览图像。
@@ -232,17 +232,17 @@ AspectRatio DEFAULT_ASPECT_RATIO = AspectRatio.of(4, 3);
 
 横屏拍摄结果：
 
-![landscape_camera](https://res.cloudinary.com/glumes-com/image/upload/v1522669943/code/landscape_camera_orientation.png)
+![landscape_camera](https://image.glumes.com/images/2019/04/27/landscape_camera_orientation.png)
 
 竖屏拍摄结果：
 
 
-![portrait](https://res.cloudinary.com/glumes-com/image/upload/v1522669953/code/portrait_camera_orientation.png)
+![portrait](https://image.glumes.com/images/2019/04/27/portrait_camera_orientation.png)
 
 
 关于相机的预览方向和屏幕自然方向存在 90 度角的偏差，在 Camera 的 `orientation`属性中也有说明：
 
-![camera_orientation_description](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_678,w_1762/v1522674508/code/camera_orientation__description.png)
+![camera_orientation_description](https://image.glumes.com/images/2019/04/27/camera_orientation__description.png)
 
 orientation 表示相机图像的方向。它的值是相机图像顺时针旋转到设备自然方向一致时的图像，它可能是 0、90、180、270 四种。
 
@@ -295,7 +295,7 @@ orientation 表示相机图像的方向。它的值是相机图像顺时针旋�
 
 最后盗图更清晰明了一下：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1523330911/code/font_camera_orientation.png)
+![](https://image.glumes.com/images/2019/04/27/font_camera_orientation.png)
 
 
 #### 拍摄帧方向

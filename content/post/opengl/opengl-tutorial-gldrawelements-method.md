@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/q_87/v1527249158/code/glDrawElements.jpg", desc: "Pen"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/glDrawElements.jpg", desc: "Pen"}]
 original: true
 addwechat: true
 ---
@@ -41,7 +41,7 @@ addwechat: true
 
 如下图所示，图片截自《OpenGL ES 3.x 游戏开发上卷》：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1527217394/code/glDrawElements_single.png)
+![](https://image.glumes.com/images/2019/04/27/glDrawElements_single.png)
 
 
 由三个三角形组成的倒置的梯形，实际上只有五个顶点 $ \{v0,v1,v2,v3,v4\}$，因此也只传递了五个顶点，接下来就是确定这个五个顶点的索引顺序。

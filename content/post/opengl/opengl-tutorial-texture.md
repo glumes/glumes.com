@@ -22,14 +22,14 @@ addwechat: true
 
 {{< gallery>}}
 
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1517477894/code/S80201-17371719.jpg" >}}
+	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17371719.jpg" >}}
 
 {{< /gallery >}}
 
 
 {{< gallery>}}
 
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1517477147/code/2044035O6-2.jpg" >}}
+	{{< figure src="https://image.glumes.com/images/2019/04/27/2044035O6-2.jpg" >}}
 
 {{< /gallery >}}
 
@@ -40,7 +40,7 @@ addwechat: true
 
 {{< gallery>}}
 
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1517477896/code/S80201-17321771.jpg" >}}
+	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17321771.jpg" >}}
 
 {{< /gallery >}}
 
@@ -59,7 +59,7 @@ OpenGL 中绘制的物体是有坐标系的，每个点都对应 x、y、z 坐�
 纹理的坐标，叫做`纹理坐标系`。它的范围只有 $[0,0]$ 到 $[1,1]$ 。
 
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1517481677/code/opengl_texture_coordinate.png)
+![](https://image.glumes.com/images/2019/04/27/opengl_texture_coordinate.png)
 
 
 它的坐标原点位于左下角，水平向右为 S 轴，竖直向上为 Y 轴。不论实际的纹理图片尺寸大小如何，横向、纵向坐标最大值都是 1 。
@@ -239,7 +239,7 @@ void main(){
 
 {{< gallery>}}
 
-	{{< figure src="https://res.cloudinary.com/glumes-com/image/upload/v1517477896/code/S80201-17321771.jpg" >}}
+	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17321771.jpg" >}}
 
 {{< /gallery >}}
 

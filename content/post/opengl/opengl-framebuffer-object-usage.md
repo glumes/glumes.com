@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["OpenGL","FBO"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fuxvv2w99zj20zk0njgof.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuxvv2w99zj20zk0njgof.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -23,7 +23,7 @@ FBO 实际上是由颜色附件、深度附件、模板附件组成的，作为�
 
 帧缓冲与渲染缓冲和纹理的关系如下：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fuxlr1hxafj20a2081dg2.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuxlr1hxafj20a2081dg2.jpg)
 
 
 ## 使用概述

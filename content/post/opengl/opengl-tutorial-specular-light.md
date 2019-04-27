@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532358770/blog/pexels-photo-285173.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-285173.jpg", desc: ""}]
 ---
 
 
@@ -18,7 +18,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532358770/b
 
 还是先理解一下什么是镜面光：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532358404/code/specular_demo.png)
+![](https://image.glumes.com/images/2019/04/27/specular_demo.png)
 
 就如同使用我们使用镜子反射太阳光一样，在现实世界中，当光滑表面被照射时会有方向很集中的反射光，这就是镜面光。
 
@@ -45,7 +45,7 @@ bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1532358770/b
 
 `半向量`的图示如下：
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1532358404/code/specular_cal.png)
+![](https://image.glumes.com/images/2019/04/27/specular_cal.png)
 
 其中，V 表示从被照射点到观察点的向量，N 为被照射点表面法向量，H 为半向量，L 为从被照射点到光源的向量。
 

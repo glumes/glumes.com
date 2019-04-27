@@ -6,7 +6,7 @@ draft: false
 categories: ["opengl"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531290620/life/pexels-photo-333528.jpg", desc: "Share"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-333528.jpg", desc: "Share"}]
 original: true
 addwechat: true
 ---
@@ -38,7 +38,7 @@ addwechat: true
 
 > 《OpenGL ES 应用开发实践指南》
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1531233892/code/opengles2.png)
+![](https://image.glumes.com/images/2019/04/27/opengles2.png)
 
 这本书比较通俗易懂，直接上手使用 OpenGL ES，可以说是手把手教学了。
 
@@ -52,7 +52,7 @@ addwechat: true
 
 这本书是翻译过来的，它的英文原版封面如下：
 
-![《OpenGL ES 应用开发实践指南》](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531234024/code/opengles2_eng.png)
+![《OpenGL ES 应用开发实践指南》](https://image.glumes.com/images/2019/04/27/opengles2_eng.png)
 
 简单上手了 OpenGL ES 2.0 之后，该了解一下 OpenGL Shading Language （GLSL）了。
 
@@ -60,7 +60,7 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 >《OpenGL® Shading Language, Second Edition》
 
-![《OpenGL® Shading Language, Second Edition》](https://res.cloudinary.com/glumes-com/image/upload/v1531233599/code/glsl2.jpg)
+![《OpenGL® Shading Language, Second Edition》](https://image.glumes.com/images/2019/04/27/glsl2.jpg)
 
 这本书是英文版的，讲解了 GLSL 的一些语法，基于的版本是 OpenGL ES 2.0 的，正好和前面的书籍配套学习了，而且英文难度不大，易懂。
 
@@ -72,7 +72,7 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 可以参考这本书，获得更多打怪晋级的经验：
 
-![《Android 3D 游戏开发技术宝典》](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531234362/code/opengles_practice.png)
+![《Android 3D 游戏开发技术宝典》](https://image.glumes.com/images/2019/04/27/opengles_practice.png)
 
 《Android 3D 游戏开发技术宝典》一书中有很多可以在实践中用到的内容，具体内容就等大家自行探索了~~~
 
@@ -84,9 +84,9 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 关于 OpenGL ES 3.x 版本的学习，有如下书籍推荐：
 
-![OpenGL ES 3.x 游戏开发](https://res.cloudinary.com/glumes-com/image/upload/v1531235536/code/opengles3.png)
+![OpenGL ES 3.x 游戏开发](https://image.glumes.com/images/2019/04/27/opengles3.png)
 
-![OpenGL ES 3.0 编程指南](https://res.cloudinary.com/glumes-com/image/upload/v1531235855/code/opengles33.png)
+![OpenGL ES 3.0 编程指南](https://image.glumes.com/images/2019/04/27/opengles33.png)
 
 在 Android 后续系统版本中，都开始使用 Vulkan 来替代 OpenGL 了。
 
@@ -101,7 +101,7 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 红宝书指的是 《OpenGL 编程指南》，目前已经出到了第九版了，蓝宝书指的是《OpenGL 超级宝典》目前已经出到了第五版了。
 
-![红宝书与蓝宝书](https://res.cloudinary.com/glumes-com/image/upload/a_270/v1531235092/code/WechatIMG325.jpg)
+![红宝书与蓝宝书](https://image.glumes.com/images/2019/04/27/WechatIMG325.jpg)
 
 这两本书就没有前面那么多代码示例了，更多的是讲解一些原理相关的内容，而且也不是特别针对 Android 开发环境来讲的。这两本书更多是还是当做工具书来使用，当某些知识点不清晰时，看看书查漏补缺~~~（反正我是当工具书用了）
 
@@ -127,7 +127,7 @@ GLSL 就是着色器脚本语言，这个语言是用来给 GPU 运行的，灵�
 
 那就赶紧扫码加入我们吧~~
 
-![](https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_600/v1531236519/code/WechatIMG326.jpg)
+![](https://image.glumes.com/images/2019/04/27/WechatIMG326.jpg)
 
 要是二维码过期了，加微信 ezglumes 好友，备注 OpenGL ，拉你入群~
 

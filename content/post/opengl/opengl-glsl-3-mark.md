@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["OpenGL","GLSL"]
 categories: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fv3beohff0j20hs0bkdge.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv3beohff0j20hs0bkdge.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -37,13 +37,13 @@ OpenGL ES 着色器语言支持的标量类型如下：
 
 在 GLSL 中，向量可以看做是同样类型的标量组成的，其基本类型也分为 bool、int 、uint 及 float 4 种。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsvggbzsej20ou06njsm.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsvggbzsej20ou06njsm.jpg)
 
 ### 矩阵
 
 OpenGL ES 3.0 支持的矩阵类型比 OpenGL ES 2.0 多了一些。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsvi91fqnj20ot06l0tq.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsvi91fqnj20ot06l0tq.jpg)
 
 在 OpenGL 中，矩阵是按列的顺序组织的，也就是一个矩阵可以看作由几个列向量组成。
 
@@ -51,7 +51,7 @@ OpenGL ES 3.0 支持的矩阵类型比 OpenGL ES 2.0 多了一些。
 
 采样器是专门进行纹理采样的相关操作。一般情况下，一个采样器变量代表一幅或一套纹理贴图。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsvkyfrhsj20ov08j412.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsvkyfrhsj20ov08j412.jpg)
 
 ### 结构体
 
@@ -94,7 +94,7 @@ float y[] = float[](1.0,2.0,3.0);
 ## 存储限定符
 
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsvoph5x8j20ow060q49.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsvoph5x8j20ow060q49.jpg)
 
 限定符的使用应该放在变量前面，且使用 in、uniform 以及 out 限定符修饰的变量必须为全局变量。
 
@@ -146,7 +146,7 @@ uniform 为一致变量限定符，一致变量指的是对于同一组顶点组
 *	smooth
 *	flat
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsw70uh21j20ou02vdgc.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsw70uh21j20ou02vdgc.jpg)
 
 
 > 若使用插值限定符，则该限定符应该在 in、centroid in 、out 或者 centroid out 之前使用，且只能用来修饰顶点着色器的 out 变量与片元着色器中对应的 in 变量。当未使用任何插值限定符时，默认的插值方式为 smooth 。
@@ -357,9 +357,9 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 角度转换与三角函数同时适用于顶点着色器与片元着色器，并且每个角度转换与三角函数都有 4 种重载变体。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpatv2l1gj20x505itag.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpatv2l1gj20x505itag.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpauq1lk3j20qu0m8jxq.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpauq1lk3j20qu0m8jxq.jpg)
 
 
 上述表中 genType 代表的数据类型有 float、vec2、vec3 以及 vec4 。其中 float 指的是浮点数标量，vec2、vec3 和 vec4 指的是浮点数向量。
@@ -368,9 +368,9 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 指数函数同样适用于顶点着色器和片段着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpayhnwydj20r003djs4.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpayhnwydj20r003djs4.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpays9rloj20qz0c4adp.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpays9rloj20qz0c4adp.jpg)
 
 上述表中 genType 代表的数据类型有 float、vec2、vec3 以及 vec4 。
 
@@ -378,9 +378,9 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 常见函数也可同时用于顶点着色器和片段着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpb0u5pf5j20r00i6tf2.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpb0u5pf5j20r00i6tf2.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpb13iad9j20qx0nywno.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpb13iad9j20qx0nywno.jpg)
 
 
 genType 、 genIType 、genUType 代表的数据类型参考上面提到的类型。
@@ -391,19 +391,19 @@ genType 、 genIType 、genUType 代表的数据类型参考上面提到的类�
 
 几何函数适用于顶点着色器和片段着色器，主要用于对向量进行操作。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbecmyi6j20r20ijgqq.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbecmyi6j20r20ijgqq.jpg)
 
 ### 矩阵函数
 
 矩阵函数适用于顶点着色器和片段着色器，主要包括生成矩阵、矩阵的转置、求矩阵的行列式以及求逆矩阵等有关矩阵的操作。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbg27jyoj20r00e0n1f.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbg27jyoj20r00e0n1f.jpg)
 
 ### 向量关系函数
 
 向量关系函数主要功能为将向量的各分量进行关系比较运算。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbhepfflj20qw0k8jwh.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbhepfflj20qw0k8jwh.jpg)
 
 ### 纹理采样函数
 
@@ -411,23 +411,23 @@ genType 、 genIType 、genUType 代表的数据类型参考上面提到的类�
 
 大部分纹理采样函数即可以用于顶点着色器也可以用于片段着色器，但又个别的仅适用于片元着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbm2irjuj20qw0dfte3.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbm1wlrfj20qz09hjvc.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbm2e3t9j20qv0kdqbe.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbm1xhgxj20qz075who.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbm27f72j20qx0ildn4.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbpjnyahj20r006fwgo.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbm2irjuj20qw0dfte3.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbm1wlrfj20qz09hjvc.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbm2e3t9j20qv0kdqbe.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbm1xhgxj20qz075who.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbm27f72j20qx0ildn4.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbpjnyahj20r006fwgo.jpg)
 
 ### 微分函数
 
 微分函数仅能用于片段着色器，是从 OpenGL ES 3.0 开始正式支持的。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbqfuxhfj20qx04dq43.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbqfuxhfj20qx04dq43.jpg)
 
 ### 浮点数的打包与解包函数
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbrx38zwj20r00e3n2w.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftpbrwvqx7j20r204rabo.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbrx38zwj20r00e3n2w.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftpbrwvqx7j20r204rabo.jpg)
 
 
 

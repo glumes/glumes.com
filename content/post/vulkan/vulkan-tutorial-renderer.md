@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fxd7qunbo9j20zk0m8jtx.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd7qunbo9j20zk0m8jtx.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -20,7 +20,7 @@ addwechat: true
 
 以我国传统的陶瓷工艺为例，先看看伟大的工匠们是如何把泥巴变成了精美的艺术品。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7nt75c4qj222k0i8hdt.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7nt75c4qj222k0i8hdt.jpg)
 
 上面是一张粗略的示意图，详细的陶瓷制作流程可以自行网上搜索，或者 [参考这里](https://www.toutiao.com/a6457289342741119502/)。
 
@@ -51,30 +51,30 @@ OpenGL 的渲染流程和陶瓷工艺在某些地方是有着相同之处的。
 
 假设现在已经执行完了坐标转换，物体的坐标转换成了二维的，那么就需要通过 `光栅化` 来映射到屏幕的二维坐标上。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7or6vctjj20hg09z3yv.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7or6vctjj20hg09z3yv.jpg)
 
 
 以上图作为示例，先定义了三个顶点代表三角形基本图元，再把经过坐标转换之后的三角形映射到屏幕上。而屏幕是由一个一个像素点组成的，光栅化的过程就是要把三角形分解成许多个小的片段，再把这些片段映射到屏幕对应位置上，这样就可以让屏幕显示坐标转换后的物体了。
 
 给三角形显示来个特写如下：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7tn3qte2j2060056q2w.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7tn3qte2j2060056q2w.jpg)
 
 光栅化之后的三角形与屏幕显示的关系。实际上屏幕像素并不是小方格而是像素点，肯定不会有这么夸张的锯齿。
 
 当光栅化操作之后，就可以对它进行着色了。这又回到了上面的例子，陶瓷小方块的涂色阶段，在这个阶段，数字图像处理学科开始发挥它巨大的作用了，各种各样的滤镜、图像效果都是在这个阶段进行的。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7twah2rwj20nh06nn1c.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7twah2rwj20nh06nn1c.jpg)
 
 用上面的图总结一下目前的渲染流程，这个流程比较简化，理解起来就和上面的陶瓷制作相似，也比较形象的阐述了 OpenGL 渲染从 `有形` 到 `有色` 的过程。
 
 现在再来看看坐标转换，坐标转换是在光栅化之前的，如下图：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7uicbuccj20qg0c2n3l.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7uicbuccj20qg0c2n3l.jpg)
 
 这里会经过几个坐标的转换，分别是局部坐标、世界坐标、观察坐标、裁剪坐标。最后才是显示到屏幕的坐标。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx7uw2xzydj20m80aydgo.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx7uw2xzydj20m80aydgo.jpg)
 
 
 具体的详细分析可以参考之前写过的相关 [博客文章](https://glumes.com/post/opengl/opengl-tutorial-coordinate-system/)。
@@ -108,7 +108,7 @@ OpenGL 的渲染流程和陶瓷工艺在某些地方是有着相同之处的。
 
 用 [维基百科](https://www.khronos.org/opengl/wiki/Rendering_Pipeline_Overview) 上的图来做个总结：
 
-![](https://ws1.sinaimg.cn/large/bc32fd77ly1fx8181dkhaj207j0gqdgq.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77ly1fx8181dkhaj207j0gqdgq.jpg)
 
 这个流程图就和上文内容提到的大致相同了，如果你明白了渲染流程，那么看懂这个图应该也不是难事了~
 
@@ -120,19 +120,19 @@ OpenGL 的渲染流程和陶瓷工艺在某些地方是有着相同之处的。
 
 先上一张 英伟达（NVIDIA） 公司给出的 Vulkan 组件图。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx80mwln17j21to110woq.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx80mwln17j21to110woq.jpg)
 
 
 由于本篇只关注渲染流程，所以组件图中很多是现在不用太过关心的，比如 Image、Command-buffer 等，后面的文章会再做讲解。
 
 看到图中有一个 `Graphics pipeline` 的组件，这个组件里面就包含 Vulkan 的渲染流程。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx80qkqyanj21ts10qqdc.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx80qkqyanj21ts10qqdc.jpg)
 
 
 Pipeline 组件里面都有哪些操作？看下图~
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1fx80vj91g4j20vn0ojtft.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx80vj91g4j20vn0ojtft.jpg)
 
 看到图中中的左边内容是不是有似曾相识的感觉，就和 OpenGL 的渲染流程一样的，也是从顶点 -> 到光栅化 -> 到着色器 -> 到帧缓冲，再加上各种测试。
 

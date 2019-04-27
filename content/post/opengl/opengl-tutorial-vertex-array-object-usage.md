@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531927160/blog/pexels-photo-238368.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-238368.jpg", desc: ""}]
 ---
 
 
@@ -64,7 +64,7 @@ glGenVertexArrays 方法主要用于创建新的顶点数组对象，方法签�
 下面是具体的实践，还是绘制如下的一张纹理图：
 
 
-![顶点数组对象的使用](https://res.cloudinary.com/glumes-com/image/upload/v1531833700/code/WechatIMG37.jpg)
+![顶点数组对象的使用](https://image.glumes.com/images/2019/04/27/WechatIMG37.jpg)
 
 使用顶点数组对象 VA0 之前，还是分别为顶点坐标、纹理坐标生成缓冲区，并传入数据。
 

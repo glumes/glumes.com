@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1531838582/blog/pexels-photo-219005.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-219005.jpg", desc: ""}]
 ---
 
 在之前的绘制过程中，首先都需要将物体的顶点数据保存在内存中，然后 `glDrawArrays` 或 `glDrawElements` 绘制前，将顶点数据送入到显存中，这样会存在 I/O 开销较大的问题，性能也不够好。
@@ -178,7 +178,7 @@ glDeteleBuffers 方法用于删除指定的缓冲区对象，其方法签名如�
 如下：
 
 
-![顶点缓冲区的使用](https://res.cloudinary.com/glumes-com/image/upload/v1531833700/code/WechatIMG37.jpg)
+![顶点缓冲区的使用](https://image.glumes.com/images/2019/04/27/WechatIMG37.jpg)
 
 
 ### 数组缓冲区使用

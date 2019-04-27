@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["CMake","NDK"]
 categories: ["Android"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fv6hxjf8wgj20zk0f9tfk.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv6hxjf8wgj20zk0f9tfk.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -34,7 +34,7 @@ Google 官方网站上有对 CMake 的使用示范，可以参考 [官方指南]
 
 以 [Clion](https://www.jetbrains.com/clion/) 作为工具来讲解 CMake 的基本使用。
 
-![clion_cmake_build](https://res.cloudinary.com/glumes-com/image/upload/v1515724531/code/clion_cmake_build.png)
+![clion_cmake_build](https://image.glumes.com/images/2019/04/27/clion_cmake_build.png)
 
 ### CMake 编译可执行文件
 

@@ -8,7 +8,7 @@ tags: ["Android","JNI"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1ftm1y4vr2dj20zk0npaig.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftm1y4vr2dj20zk0npaig.jpg", desc: ""}]
 
 ---
 
@@ -153,7 +153,7 @@ int AndroidBitmap_unlockPixels(JNIEnv* env, jobject jbitmap);
 
 效果如下：
 
-![](https://ws1.sinaimg.cn/mw690/bc32fd77gy1ftl40fytkxj20u01hcdmh.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftl40fytkxj20u01hcdmh.jpg)
 
 
 具体代码可以参考我的 Github 项目，欢迎 Star。

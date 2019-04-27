@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL","Camera"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526962400/pexels-photo-122400_vqkkh9.jpg", desc: "Camera"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-122400_vqkkh9.jpg", desc: "Camera"}]
 original: true
 addwechat: true
 ---
@@ -15,7 +15,7 @@ addwechat: true
 
 这两种投影实质上是两种类型的裁剪空间，分别创建对应视景体对物体坐标进行裁剪，位于裁剪空间内的才会被映射到屏幕上，如下图所示：（图片来源：[https://glumpy.github.io/modern-gl.html](https://glumpy.github.io/modern-gl.html)）
 
-![](https://res.cloudinary.com/glumes-com/image/upload/v1526483191/ViewFrustum_gvy6aq.png)
+![](https://image.glumes.com/images/2019/04/27/ViewFrustum_gvy6aq.png)
 
 
 当定义裁剪空间视景体时，我们都需要提供近平面和远平面的距离，这里的近和远都是指相对于`视点`的，视点也就是我们这篇文章要讲到的摄像机。
@@ -44,7 +44,7 @@ addwechat: true
 
 在上面也提到，投影矩阵或者说视景体的一个展开，是以相机作为参考的，那么我们肯定还需要一个摄像机的观察方向，这个方向就是视景体展开的方向。
 
-![camera](https://res.cloudinary.com/glumes-com/image/upload/v1516610022/code/camera_axes.png)
+![camera](https://image.glumes.com/images/2019/04/27/camera_axes.png)
 
 如上图的左二内容所示，摄像机在 Z 轴正方向向坐标系的原点进行观察，假设此时摄像机坐标为 $A(-1,1,1)$，而原点为 $O(0,0,0)$，那么观察方向就是从 $A$ 点向 $O$ 点。而方向向量就是 $A-O$，就是向量  $ \overrightarrow {OA}(-1,1,1)$，它的方向也就是图二中的蓝色箭头所示，可以看到 摄像机的方向向量和它的观察方向正好是相反的。
 

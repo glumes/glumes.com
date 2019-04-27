@@ -6,7 +6,7 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/c_scale,h_630,w_1920/v1525659528/life/WechatIMG355.jpg", desc: "香港 · 维多利亚港"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG355.jpg", desc: "香港 · 维多利亚港"}]
 original: true
 addwechat: true
 ---

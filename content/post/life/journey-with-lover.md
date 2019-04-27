@@ -6,7 +6,7 @@ tags: ["Life"]
 categories: ["Life"]
 comments: true
 draft: false
-bigimg: [{src: "https://res.cloudinary.com/glumes-com/image/upload/v1526569545/life/love-you-2198772_1280.png", desc: "love"}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/love-you-2198772_1280.png", desc: "love"}]
 original: true
 addwechat: true
 ---

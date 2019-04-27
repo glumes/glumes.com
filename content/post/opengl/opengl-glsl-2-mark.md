@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["OpenGL","GLSL"]
 categories: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://ws1.sinaimg.cn/large/bc32fd77gy1fv3b41gd9wj20hs0bu3zg.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv3b41gd9wj20hs0bu3zg.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -270,7 +270,7 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 角度转换与三角函数同时适用于顶点着色器与片元着色器，并且每个角度转换与三角函数都有 4 种重载变体。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbhy79vmj20uw0maal9.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbhy79vmj20uw0maal9.jpg)
 
 上述表中 genType 代表的数据类型有 float、vec2、vec3 以及 vec4 。其中 float 指的是浮点数标量，vec2、vec3 和 vec4 指的是浮点数向量。
 
@@ -279,7 +279,7 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 指数函数同样适用于顶点着色器和片段着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbj79nwxj20ux0h7dol.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbj79nwxj20ux0h7dol.jpg)
 
 上述表中 genType 代表的数据类型有 float、vec2、vec3 以及 vec4 。
 
@@ -287,11 +287,11 @@ OpenGL ES 着色器语言提供了很多内置函数，这些函数大都已经�
 
 常见函数也可同时用于顶点着色器和片段着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbkmljcxj20v2037myd.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbkmljcxj20v2037myd.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsblexf4zj20vy0hcn7w.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsblexf4zj20vy0hcn7w.jpg)
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbm3lm8qj20vw0cown4.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbm3lm8qj20vw0cown4.jpg)
 
 genType 、 genIType 、genUType 代表的数据类型参考上面提到的类型。
 
@@ -299,21 +299,21 @@ genType 、 genIType 、genUType 代表的数据类型参考上面提到的类�
 
 几何函数适用于顶点着色器和片段着色器，主要用于对向量进行操作。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbniw3l7j20w00kgwp0.jpg)
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbnhc1e7j20vz03p0u3.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbniw3l7j20w00kgwp0.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbnhc1e7j20vz03p0u3.jpg)
 
 
 ### 矩阵函数
 
 矩阵函数目前只有一个，可以用于顶点着色器，也可以用于片段着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbp9m0bfj20w103775p.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbp9m0bfj20w103775p.jpg)
 
 ### 向量关系函数
 
 向量关系函数主要功能为将向量的各分量进行关系比较运算。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbqaqunej20vu0ietht.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbqaqunej20vu0ietht.jpg)
 
 
 ### 纹理采样函数
@@ -322,7 +322,7 @@ genType 、 genIType 、genUType 代表的数据类型参考上面提到的类�
 
 大部分纹理采样函数即可以用于顶点着色器也可以用于片段着色器，但又个别的仅适用于片元着色器。
 
-![](https://ws1.sinaimg.cn/large/bc32fd77gy1ftsbr5jq5tj20vu0f97fp.jpg)
+![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftsbr5jq5tj20vu0f97fp.jpg)
 
 
 ## 小结
