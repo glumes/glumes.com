@@ -14,7 +14,7 @@ addwechat: true
 
 在前面绘制基本图形中，遇到了很明显的问题，圆形不像圆形，正多边形不像正多边形？就像下面图形一样：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_five.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_five.png)
+![](https://image.glumes.com/images/2019/05/08/blog_opengl_five_start.png)
 
 好好的正五边形却东倒西歪的，这就是因为我们前面的绘制都是把它当成 二维 的绘制，而在 OpenGL 中却是绘制 三维的。在二维和三维之间还有个转换，而之前为了方便学习则忽略了这个转换，现在就要开始理解它了 —— `坐标系统`！！
 
@@ -32,7 +32,7 @@ OpenGL 将定义好的坐标轴的值转换为实际绘制的坐标，需要经�
 
 如下图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_coordinate_systems.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_coordinate_systems.png)
+![](https://image.glumes.com/images/2019/05/08/blog_world_coordinate.png)
 
 
 这里面涉及到了五个坐标空间和三个转换矩阵：
