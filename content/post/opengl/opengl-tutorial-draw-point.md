@@ -63,7 +63,7 @@ Android 为 OpenGL 的绘制提供了一个特定的视图`GLSurfaceView`，就�
 
 不管屏幕是什么形状和大小，这个坐标范围都是一样的，例如下图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_coordinate_small.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_coordinate_small.png)
+![](https://image.glumes.com/images/2019/05/12/opengl_coordinate.png)
 
 所以，上面定义的坐标（4.3，2.1），最后是会被映射到手机屏幕之外的，处于不可见的状态。
 
@@ -96,7 +96,7 @@ Android 为 OpenGL 的绘制提供了一个特定的视图`GLSurfaceView`，就�
 现阶段的显卡都是分为`顶点渲染`和`像素渲染`的。在显卡，内部分为两大区域，一个区域是顶点渲染单元（也叫顶点着色），主要负责描绘图形，也就是建立模型。一个区域是像素渲染管线，主要负责把顶点绘出的图形填上颜色。
 
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_pipeline.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_pipeline.png)
+![](https://image.glumes.com/images/2019/05/12/opengl_draw_point.png)
 
 上图就是 OpenGL 中渲染管线的一个处理流程。
 
@@ -195,7 +195,7 @@ OpenGL 就是通过 *光栅化* 技术的过程把每个点、直线及三角形
 
 如下图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_guangshanhua.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_guangshanhua.png)
+![](https://image.glumes.com/images/2019/05/12/opengl_guangshanhua.png)
 
 OpenGL 通过光栅化技术把一条直线映射为一个片段集合，显示系统通常会把这些片段直接映射到屏幕上的像素，结果一个片段就对应一个像素。
 
@@ -458,7 +458,7 @@ public class Point extends BaseShape {
 
 在`setVertexAttribPointer`方法中，使用了`glVertexAttribPointer`方法来绑定值，它的参数释义如下所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_setVertexAttribPointer.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_setVertexAttribPointer.png)
+![https://image.glumes.com/images/2019/05/12/opengl_canshu.png](https://image.glumes.com/images/2019/05/12/opengl_canshu.png)
 
 通过`glEnableVertexAttribArray`方法来开启使用即可。
 
@@ -466,7 +466,7 @@ public class Point extends BaseShape {
 
 以上步骤就完成了一个点的绘制，如图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_point.png](http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_point.png)
+![](https://image.glumes.com/images/2019/05/12/opengl_draw_p.png)
 
 具体代码详情，可以参考我的 Github 项目：
 
