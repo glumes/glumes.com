@@ -61,7 +61,12 @@
   <link rel="stylesheet" href="{{ "css/reward.css" | absURL }}" />
   {{ end }}
 {{- partial "head_custom.html" . }}
+
+
 {{ if not .Site.IsServer }}
 {{ template "_internal/google_analytics_async.html" . }}
+{{ partial "baidu_analytics_async.html" . }}
+{{ partial "ads_google.html" . }}
 {{ end }}
+
 </head>
