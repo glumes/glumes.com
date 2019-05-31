@@ -15,6 +15,7 @@ latexDashes = true
 
 disqusShortname = "glumes"
 
+googleAnalytics = "UA-84590324-2"
 
 [Params]
 hello = "Glumes Blog"
