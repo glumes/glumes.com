@@ -2,7 +2,7 @@
 title: "图像库 libpng 编译与实践"
 date: 2019-07-12T23:26:58+08:00
 subtitle: ""
-tags: ["libpng"]
+tags: ["libpng","image"]
 categories: ["opengl"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/07/13/adventure-arid-barren-946366.jpg", desc: ""}]
@@ -10,9 +10,9 @@ draft: false
 original: true
 ---
 
-在之前的文章 【[简单易用的图像解码库介绍 —— stb_image](https://glumes.com/post/android/stb-image-introduce/)】中介绍了 `stb_image` 图像库，还顺带提到了 libpng 和 libjpeg ，这篇文章就是介绍如何在 Android 平台上用 CMake 编译 libpng 动态库以及 libpng 使用实践。
+在之前的文章中介绍了 `stb_image` 图像库，还顺带提到了 libpng 和 libjpeg ，这篇文章就是介绍如何在 Android 平台上用 CMake 编译 libpng 动态库以及 libpng 使用实践。
 
-`stb_image` 介绍文章链接如下：
+【[简单易用的图像解码库介绍 —— stb_image](https://glumes.com/post/android/stb-image-introduce/)】
 
 [https://glumes.com/post/android/stb-image-introduce/](https://glumes.com/post/android/stb-image-introduce/)
 

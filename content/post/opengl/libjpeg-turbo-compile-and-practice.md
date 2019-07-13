@@ -2,15 +2,26 @@
 title: "图像库 libjpeg turbo 编译与实践"
 date: 2019-07-13T00:08:18+08:00
 subtitle: ""
-tags: []
-categories: ["android"]
+tags: ["libjpeg-turbo","image"]
+categories: ["opengl"]
 comments: true
-bigimg: [{src: "", desc: ""}]
-draft: true
+bigimg: [{src: "https://image.glumes.com/images/2019/07/13/blue-sky-building-cathedral-2597878.jpg", desc: ""}]
+draft: false
 original: true
 ---
 
-在之前的文章中已经陆续介绍了 stb_image、libpng 的使用，相关文章如下：
+在之前的文章中已经陆续介绍了 stb_image、libpng 的使用，相关链接如下：
+
+
+【[简单易用的图像解码库介绍 —— stb_image](https://glumes.com/post/android/stb-image-introduce/)】
+
+[https://glumes.com/post/android/stb-image-introduce/](https://glumes.com/post/android/stb-image-introduce/)
+
+
+【[图像库 libpng 编译与实践](https://glumes.com/post/opengl/libpng-compile-and-practice/)】
+
+[https://glumes.com/post/opengl/libpng-compile-and-practice/](https://glumes.com/post/opengl/libpng-compile-and-practice/)
+
 
 而今天的主题就是 libjpeg-turbo ，
 
@@ -299,6 +310,15 @@ typedef JSAMPARRAY *JSAMPIMAGE; /* a 3-D sample array: top index is color */
 至于具体的读取操作，和上面的解压缩过程大致相同，就不在阐述一遍了，可以查看我的项目代码实践：
 
 > (https://github.com/glumes/InstantGLSL)[https://github.com/glumes/InstantGLSL]
+
+## 总结
+
+
+至此，总结了常用的三种图像库的编译和使用。
+
+这三种图像库各有特点，要根据实际需要，选择最合适的。但实际我们用到的无非就是图像的读写操作。读取特定格式图像的像素内容，或者将像素内容写入特定格式文件。
+
+平时写 demo ，追求简单方便的，就用 `stb_image`，对性能有要求的，针对特定格式的选择 `libpng` 或者 `libjpeg-turbo`。
 
 
 
