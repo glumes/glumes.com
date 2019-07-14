@@ -1,5 +1,5 @@
 ---
-title: "图像库 libjpeg turbo 编译与实践"
+title: "图像库 libjpeg-turbo 编译与实践"
 date: 2019-07-13T00:08:18+08:00
 subtitle: ""
 tags: ["libjpeg-turbo","image"]
