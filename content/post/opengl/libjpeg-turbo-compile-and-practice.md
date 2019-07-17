@@ -309,7 +309,7 @@ typedef JSAMPARRAY *JSAMPIMAGE; /* a 3-D sample array: top index is color */
 
 至于具体的读取操作，和上面的解压缩过程大致相同，就不在阐述一遍了，可以查看我的项目代码实践：
 
-> (https://github.com/glumes/InstantGLSL)[https://github.com/glumes/InstantGLSL]
+> [https://github.com/glumes/InstantGLSL](https://github.com/glumes/InstantGLSL)
 
 ## 总结
 
