@@ -23,7 +23,7 @@ original: true
 [https://glumes.com/post/opengl/libpng-compile-and-practice/](https://glumes.com/post/opengl/libpng-compile-and-practice/)
 
 
-而今天的主题就是 libjpeg-turbo ，
+而今天的主题就是 libjpeg-turbo 。
 
 它的官网地址如下：
 
