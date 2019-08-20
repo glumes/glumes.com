@@ -101,10 +101,16 @@ desc = "张家界"
 
 
 [[menu.main]]
-	name = "关于我"
-	url = "about"
+    identifier = "about"
+	name = "关于"
+	url = "about/"
 	weight = 4
 
+[[menu.main]]
+    identifier = "post"
+    name = "Archive"
+    url = "post/"
+    weight = 5
 
 
 

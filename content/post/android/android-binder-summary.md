@@ -6,6 +6,7 @@ tags: ["Android"]
 comments: true
 original: true
 addwechat: true
+type: posts
 ---
 
 
