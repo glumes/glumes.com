@@ -108,7 +108,7 @@ desc = "张家界"
 
 [[menu.main]]
     identifier = "post"
-    name = "Archive"
+    name = "文章集"
     url = "post/"
     weight = 5
 
