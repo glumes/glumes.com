@@ -1,7 +1,7 @@
 baseURL = "https://glumes.com/"
 languageCode = "zh-cn"
 DefaultContentLanguage = "en"
-title = "Glumes Blog"
+title = "纸上浅谈"
 theme = "beautifulhugo_bak"
 
 pygmentsUseClasses = false
@@ -18,7 +18,8 @@ disqusShortname = "glumes"
 googleAnalytics = "UA-84590324-2"
 
 [Params]
-hello = "Glumes Blog"
+     hello = "纸上浅谈"
+     subtitle = "多媒体开发札记"
 	 useChroma = true
 	 commit = false
 	 rss = true
