@@ -16,7 +16,7 @@ original: true
 
 如下图所示：
 
-![-2019-12-15-1.21.42.png](https://user-gold-cdn.xitu.io/2019/12/16/16f0e99bdd949f33?w=1640&h=466&f=png&s=250378)
+![-2019-12-15-1.21.42.png](https://image.glumes.com/images/2019/12/29/2019-12-15-1.21.42.png)
 
 在慕课网上通过如下路径就可以找到啦
 
