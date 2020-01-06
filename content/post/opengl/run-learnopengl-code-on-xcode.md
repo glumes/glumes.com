@@ -6,7 +6,7 @@ tags: []
 categories: ["android"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2020/01/04/WechatIMG585.jpg", desc: ""}]
-draft: true
+draft: false
 original: true
 ---
 
@@ -46,7 +46,7 @@ original: true
 > 另外，我们还可以在 XCode 上修改相关代码，调整某些参数，验证自己的想法和实验结果。
 
 
-这一点很重要，对于初学者来说就是要不断地试错，
+这一点很重要，对于初学者来说就是要不断地试错，在失败中成长。
 
 
 在开始 LearnOpenGL 网站的代码讲解之前，先介绍一下他的主人。
