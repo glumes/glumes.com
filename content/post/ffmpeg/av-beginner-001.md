@@ -2,8 +2,8 @@
 title: "【音视频连载-001】基础学习篇- SDL 介绍以及工程配置"
 date: 2020-02-26T23:33:35+08:00
 subtitle: ""
-tags: []
-categories: ["android"]
+tags: ["SDL"]
+categories: ["ffmpeg"]
 comments: true
 bigimg: [{src: "https://cdn.pixabay.com/photo/2019/06/20/12/33/geranium-4287012_960_720.jpg", desc: ""}]
 draft: false
