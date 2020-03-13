@@ -41,9 +41,6 @@ desc = "广州 · 老城区"
 src = "https://ae01.alicdn.com/kf/U18dc68030de44ec1939bd785e5049c284.jpg"
 desc = "凤凰古城"
 
-[[Params.bigimg]]
-src = "https://ae01.alicdn.com/kf/U14a2f76ec4624c71996a1b1bacbcda56L.jpg"
-desc = "张家界"
 
 
 [Author]
