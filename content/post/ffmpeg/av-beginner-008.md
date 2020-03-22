@@ -106,7 +106,7 @@ void fill_audio(void *udata, Uint8 *stream, int len) {
 
 首先将 `stream` 数据清空。然后比较读出的 pcm 数据长度 `audio_len` 和 `len` 的大小，保证数据大小不超过 `len` 的要求。
 
-在播放时，也就是给 `stream` 写数据时有两种方式。一种时直接 `memcpy` 将音频数据 `audio_pos` 拷贝到 Buffer 上就好了。另一种是通过 `SDL_MixAudio` 方法。
+在播放时，也就是给 `stream` 写数据时有两种方式。一种是直接 `memcpy` 将音频数据 `audio_pos` 拷贝到 Buffer 上就好了。另一种是通过 `SDL_MixAudio` 方法。
 
 
 `SDL_MixAudio` 方法顾名思义就是混音了，将 `stream` 和音频数据 `audio_pos` 混合播放，由于一开始就将 `stream` 数据清空为 0 了，所以看似混音，实际上和直接播放音频数据效果一致的。
