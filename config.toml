@@ -76,7 +76,7 @@ desc = "凤凰古城"
 [[menu.main]]
     parent = "Categories"
     name = "ffmpeg"
-    url = "categories/ffmpeg"
+    url = "categories/音视频开发"
     weight = 4
 
 [[menu.main]]

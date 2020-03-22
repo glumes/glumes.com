@@ -3,7 +3,7 @@ title: "【音视频连载-003】基础学习篇-SDL 消息循环和事件响应
 date: 2020-03-03T22:54:26+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["ffmpeg"]
+categories: ["音视频开发"]
 comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/Uc2811317b9fb451aa4e7ddccde55aed2b.jpg", desc: ""}]
 draft: false

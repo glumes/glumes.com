@@ -2,8 +2,8 @@
 title: "【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示"
 date: 2020-03-10T00:05:03+08:00
 subtitle: ""
-tags: []
-categories: ["android"]
+tags: ["SDL"]
+categories: ["音视频开发"]
 comments: true
 bigimg: [{src: "https://s2.ax1x.com/2020/03/10/8CrHyt.jpg", desc: ""}]
 draft: false
