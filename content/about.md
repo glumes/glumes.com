@@ -21,7 +21,6 @@ noplanet: true
 
 选择比努力更重要，坚持正确的方向，终究会量变到质变~
 
-test test test
 
 转向采用 Kotlin 和 Cpp 来做主力开发语言，也会用到 Python 等。
 
