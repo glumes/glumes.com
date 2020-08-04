@@ -5,11 +5,17 @@ subtitle: ""
 tags: ["YUV","RGB"]
 categories: ["FFmpeg"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9wxdg2bj20zk0npter.jpg", desc: ""}]
+bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
 ---
+
+
+> 防止图片链接丢失，建议观看微信原文，获得更好的阅读体验：
+>
+> [一文读懂 YUV 的采样与格式](https://mp.weixin.qq.com/s/KKfkS5QpwPAdYcEwFAN9VA)
+
 
 YUV 是一种颜色编码方法，和它等同的还有 RGB 颜色编码方法。
 
