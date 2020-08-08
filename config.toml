@@ -1,7 +1,7 @@
 baseURL = "https://www.glumes.com/"
 languageCode = "en-us"
 title = "星陨的博客"
-theme = "beautifulhugo_bak"
+theme = "theme_back"
 canonifyURLs = true
 DefaultContentLanguage = "en"
 
