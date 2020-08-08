@@ -1,53 +1,67 @@
-baseURL = "https://glumes.com/"
-languageCode = "zh-cn"
+baseURL = "https://www.glumes.com/"
+languageCode = "en-us"
+title = "星陨的博客"
+theme = "theme_back"
+canonifyURLs = true
 DefaultContentLanguage = "en"
-title = "技术开发进阶"
-theme = "beautifulhugo_bak"
 
+
+pygmentsCodeFences = true
 pygmentsUseClasses = false
-pygmentCodeFences = true
-
-metaDataFormat = "yaml"
-
-hasCJKLanguage = true
+pygmentsStyle = "solarized-light"
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClassic = false
 
 latexDashes = true
 
-disqusShortname = "glumes"
 
 googleAnalytics = "UA-84590324-2"
 
-[Params]
-     hello = "技术开发进阶"
-     subtitle = ""
-	 useChroma = true
-	 commit = false
-	 rss = true
-	 comments = true
-     addReward = true
-     original = true
-     addwechat = true
-     addplanet = true
-       reward = true
+
+[params]
+  subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
+  keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
+  author = "星陨"
+ 
+  navLogo = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+  logo = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+  avatar = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+  favicon = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+
+  rss = true
+  reward = true
+  algolia = "8804ac109158bb3bb60d74ce98fa332f" # API key
+  useWebfont = true
+  customCSSAssets = []
+  customJSAssets = []
+  defaultImg = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/photo-1557380664-dd666ff4e559.jpeg"
+
+[params.adsense]
+  client = "ca-pub-5376999672787220"
+  inArticleSlot = "5684687044"
+  textSlot = "9165834656"
+
+[params.gitcomment]
+  owner = "cnych"
+  repo = "blog"
+  clientId = "bdb76dbb2e9d0786e350"
+  clientSecret = "b454b2a08013fd0e32013be7a63fa8fcb262b6c4"
+
+#[[params.banner]]
+#  src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
+#  desc = "打造独当一面的 Kubernetes 运维、开发工程师"
+#  url = "/post/promotion-51/"
 
 
+# [[params.bigimg]]
+#   src = "img/golang-k8s.png"
+#   desc = ""
+#   position = "center top"
 
 [[Params.bigimg]]
 src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
 desc = "广州 · 老城区"
 
-
-[[Params.bigimg]]
-src = "https://ae01.alicdn.com/kf/U18dc68030de44ec1939bd785e5049c284.jpg"
-desc = "凤凰古城"
-
-
-
-[Author]
-	name = "Glumes"
-	website = "http://www.glumes.com"
-	email = "zhaoying9402@gmail.com"
-	github = "glumes"
 
 [[menu.main]]
     identifier = "Categories"
@@ -92,25 +106,20 @@ desc = "凤凰古城"
     weight = 2
 
 [[menu.main]]
-	identifier = "Tags"
-	name = "标签"
-	weight = 3
-	url = "tags"
+  identifier = "Tags"
+  name = "标签"
+  weight = 3
+  url = "tags"
 
 
 [[menu.main]]
     identifier = "about"
-	name = "关于"
-	url = "about/"
-	weight = 4
+  name = "关于"
+  url = "about/"
+  weight = 4
 
 [[menu.main]]
     identifier = "post"
     name = "文章集"
     url = "post/"
     weight = 5
-
-
-
-
-

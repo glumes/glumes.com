@@ -1,0 +1,23 @@
+[[course_list]]
+id = "CMake"
+url = "http://www.imooc.com/learn/1212"
+title = "Android NDK 以及 CMake 免费课程"
+cover = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/cmake-imooc-course.png"
+
+[[course_list]]
+id = "job-share"
+url = "https://www.bilibili.com/video/BV1p54y1X7fY"
+title = "音视频开发工作经验分享"
+cover = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/media-job-share.png"
+
+[[course_list]]
+id = "android-opengl-share"
+url = "https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1337181710408302593&__biz=MzA4MjU1MDk3Ng==&scene=21#wechat_redirect"
+title = "Android OpenGL 入门系列"
+cover = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/android-opengl-share.png"
+
+[[course_list]]
+id = "ffmpeg-share"
+url = "https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1337162736165535744&__biz=MzA4MjU1MDk3Ng==&scene=21#wechat_redirect"
+title = "音视频 FFmpeg 入门系列"
+cover = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/ffmpeg-share.png"
