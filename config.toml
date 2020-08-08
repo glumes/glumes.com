@@ -1,7 +1,7 @@
 baseURL = "https://www.glumes.com/"
 languageCode = "en-us"
 title = "星陨的博客"
-theme = "theme_back"
+theme = "beautifulhugo_bak"
 canonifyURLs = true
 DefaultContentLanguage = "en"
 
@@ -13,8 +13,8 @@ pygmentsCodefencesGuessSyntax = true
 pygmentsUseClassic = false
 
 latexDashes = true
-
-
+paginate = 12
+autoFigure = true
 googleAnalytics = "UA-84590324-2"
 
 
@@ -22,12 +22,10 @@ googleAnalytics = "UA-84590324-2"
   subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
   keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
   author = "星陨"
- 
-  navLogo = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+  navLogo = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-logo-new.png"
   logo = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
   avatar = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
   favicon = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
-
   rss = true
   reward = true
   algolia = "8804ac109158bb3bb60d74ce98fa332f" # API key
