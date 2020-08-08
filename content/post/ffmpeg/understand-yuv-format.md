@@ -27,8 +27,9 @@ RGB 三个字母分别代表了 红（Red）、绿（Green）、蓝（Blue），
 
 在图像显示中，一张 1280 * 720 大小的图片，就代表着它有 1280 * 720 个像素点。其中每一个像素点的颜色显示都采用 RGB 编码方法，将 RGB 分别取不同的值，就会展示不同的颜色。
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf996wfvaj20l00gy772.jpg)
 
+
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/rgba-pixel.webp)
 
 RGB 图像中，每个像素点都有红、绿、蓝三个原色，其中每种原色都占用 8 bit，也就是一个字节，那么一个像素点也就占用 24 bit，也就是三个字节。
 
@@ -44,7 +45,8 @@ YUV 颜色编码采用的是 **明亮度** 和 **色度** 来指定像素的颜�
 
 使用 YUV 颜色编码表示一幅图像，它应该下面这样的：
 
- ![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf98qd1g9j20ks0gu76y.jpg)
+
+ ![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-pixel.webp)
 
 和 RGB 表示图像类似，每个像素点都包含 Y、U、V 分量。但是它的 Y 和 UV 分量是可以分离的，如果没有 UV 分量一样可以显示完整的图像，只不过是黑白的。
 
@@ -59,11 +61,13 @@ RGB 到 YUV 的转换，就是将图像所有像素点的 R、G、B 分量转换
 有如下公式进行转换：
 
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9sa62zhj20ke046jre.jpg)
 
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvf9tdm65jj20f1046746.jpg)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/rgba-to-yuv.webp)
 
+
+
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/rgba-to-yuv-2.webp)
 此时的转换结束后，每个像素点都有完整的 Y、U、V 分量。而之前提到 Y 和 UV 分量是可以分离的，接下来通过不同的采样方式，可以将图像的 Y、U、V 分量重新组合。
 
 接下来的不同采样格式都是在一张图像所有像素的 RGB 转换到 YUV 基础上进行的。
@@ -83,7 +87,7 @@ YUV 4:4:4 采样，意味着 Y、U、V 三个分量的采样比例相同，因�
 
 如下图所示：
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC130499.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-444-format.webp)
 
 其中，Y 分量用叉表示，UV 分量用圆圈表示。
 
@@ -105,7 +109,7 @@ YUV 4:2:2 采样，意味着 UV 分量是 Y 分量采样的一半，Y 分量和 
 
 如下图所示：
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC84769.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-422-format.webp)
 
 其中，Y 分量用叉表示，UV 分量用圆圈表示。
 
@@ -137,7 +141,7 @@ YUV 4:2:0 采样，并不是指只采样 U 分量而不采样 V 分量。而是�
 如下图所示：
 
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC173152.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-420-format.jpeg)
 
 
 其中，Y 分量用叉表示，UV 分量用圆圈表示。
@@ -214,7 +218,7 @@ YUYV 格式是采用打包格式进行存储的，指每个像素点都采用 Y 
 
 Y0 和 Y1 公用 U0 V0 分量，Y2 和 Y3 公用 U2 V2 分量....
 
-![](https://www.fourcc.org/images/yuy2.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-yuyv-format.jpeg)
 
 
 ### UYVY 格式
@@ -227,7 +231,7 @@ Y0 和 Y1 公用 U0 V0 分量，Y2 和 Y3 公用 U2 V2 分量....
 
 根据 UV 和 Y 的顺序还有其他格式，比如，YVYU 格式，VYUY 格式等等，原理大致一样了。
 
-![](https://www.fourcc.org/images/uyvy.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-uyvy-format.webp)
 
 
 ### YUV 422P 格式
@@ -251,11 +255,11 @@ YUV 420P 和 YUV 420SP 都是基于  Planar 平面模式 进行存储的，先�
 YUV420SP 的格式：
 
 
-![](https://upload-images.jianshu.io/upload_images/2048812-642a69d2ad1004cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/370)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-420sp.png)
 
 YUV420P 的格式：
 
-![](https://upload-images.jianshu.io/upload_images/2048812-0bc7e7b5c86556ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/371)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-420p.png)
 
 
 ### YU12 和 YV12 格式
@@ -264,7 +268,7 @@ YU12 和 YV12 格式都属于 YUV 420P 类型，即先存储 Y 分量，再存�
 
 YV 12 的存储格式如下图所示：
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC78671.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-yv12-format.gif)
 
 YU 12 又称作 I420 格式，它的存储格式就是把 V 和 U 反过来了。
 
@@ -274,7 +278,7 @@ NV12 和 NV21 格式都属于 YUV420SP 类型。它也是先存储了 Y 分量�
 
 NV12 是 IOS 中有的模式，它的存储顺序是先存 Y 分量，再 UV 进行交替存储。
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC101759.gif)
+![](https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/blog/yuv-nv12-format.gif)
 
 NV21 是 安卓 中有的模式，它的存储顺序是先存 Y 分量，在 VU 交替存储。
 
