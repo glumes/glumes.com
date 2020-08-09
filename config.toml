@@ -1,4 +1,4 @@
-baseURL = "https://www.glumes.com/"
+baseURL = "https://glumes.com/"
 languageCode = "en-us"
 title = "星陨的博客"
 theme = "theme_back"
