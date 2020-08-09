@@ -24,7 +24,7 @@
   <meta name="twitter:description" content="{{ . | truncate 200 }}">
 {{- end }}
   <meta name="author" content="{{ .Site.Author.name }}"/>
-  <meta name="referrer" content="no-referrer" />
+  <meta name="referrer" content="origin" />
 
 {{- with .Site.Params.favicon }}
   <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
