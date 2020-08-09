@@ -1,0 +1,13 @@
+---
+baseurl: "/"
+DefaultContentLanguage: "zh-cn"
+hasCJKLanguage: true
+languageCode: "zh-cn"
+title: "星陨的博客"
+theme: "theme_back"
+metaDataFormat: "yaml"
+algolia:
+  index: "glumes-blog"
+  key: "0607d0b1f4a48bf1713cee593e2a70eb"
+  appID: "HQ5VE9C15Y"
+---

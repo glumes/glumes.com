@@ -9,8 +9,8 @@
 <script src="{{ "js/autocomplete.min.js" | absURL }}"></script>
 <!-- Initialize autocomplete menu -->
 <script>
-var client = algoliasearch("1JDRAS0AZR", "{{ .Site.Params.algolia }}");
-var index = client.initIndex('prod_blog');
+var client = algoliasearch("HQ5VE9C15Y", "ecc1f03a963bd31abd8367bed09764ff");
+var index = client.initIndex('glumes-blog');
 //initialize autocomplete on search input (ID selector must match)
 autocomplete('#aa-search-input',
 { hint: false}, {

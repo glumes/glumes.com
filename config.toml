@@ -28,11 +28,12 @@ googleAnalytics = "UA-84590324-2"
   favicon = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
   rss = true
   reward = true
-  algolia = "8804ac109158bb3bb60d74ce98fa332f" # API key
+  algolia = true
   useWebfont = true
   customCSSAssets = []
   customJSAssets = []
   defaultImg = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/photo-1557380664-dd666ff4e559.jpeg"
+  gcse = true
 
 [params.adsense]
   client = "ca-pub-5376999672787220"

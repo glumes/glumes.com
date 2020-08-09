@@ -123,13 +123,13 @@
           </div>
           <h4 class="py-2">Hi! -That's Me</h4>
           <p class="about-text">大家好，我是星陨，目前就职于字节跳动，从事音视频SDK开发工作。</p>
-          <ul class="list-inline social-link">
+<!--           <ul class="list-inline social-link">
             <li class="list-inline-item"><a href="mailto:icnych@gmail.com"><i class="fa fa-envelope"></i></a></li>
             <li class="list-inline-item"><a href="https://github.com/cnych"><i class="fa fa-github"></i></a></li>
             <li class="list-inline-item"><a href="https://weibo.com/cnych"><i class="fa fa-weibo"></i></a></li>
             <li class="list-inline-item"><a href="/index.xml"><i class="fa fa-rss"></i></a></li>
             <li class="list-inline-item"><a href="https://instagram.com/cnych"><i class="fa fa-instagram"></i></a></li>
-          </ul>
+          </ul> -->
           <!-- <img src="https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/cloudnative-openclass-tekton.png" alt="云原生公开课"> -->
           <!-- <img src="https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/qrcode_for_gh_d6dd87b6ceb4_344.jpg" alt="k8s技术圈"> -->
           <!-- <img src="https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/ydzs-618.png"  alt="优点知识618" /> -->
@@ -138,7 +138,19 @@
           </a> -->
         </div>
 
-        <!-- <div class="sidebar-wrap">
+<!--           <div class="sidebar-block course-wrap">
+          {{ range .Site.Data.beautifulhugo.social.social_icons }}
+              <li>
+                <a href="{{ .url }}" title="{{ .title }}">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{ .icon }} fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          {{ end }}
+          </div> -->
+<!--         <div class="sidebar-wrap">
           <div class="sidebar-block course-wrap">
             <h4 class="sidebar-title">广告</h4>
             <a class="course-post" href="https://kuboard.cn?utm_source=qikqiak&utm_campaign=referral&utm_medium=sidebar" title="kuboard">
