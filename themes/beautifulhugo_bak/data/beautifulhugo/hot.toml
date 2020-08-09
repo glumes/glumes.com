@@ -1,0 +1,71 @@
+[[posts]]
+url = "https://mp.weixin.qq.com/s/Bb0fgFMgH5QOBqYhOj0uqA"
+title = "推荐几个堪称教科书级别的 Android 音视频入门项目"
+cover = "/img/posts/photo-1535383494412-9bdda0d6d9f3.jpeg"
+date = "August 29, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/3h8PZ_CiNIaGcl8-zLQ6sg"
+title = "开通专辑 | 细数那些年写过的技术文章专辑"
+cover = "/img/posts/WX20171110-105351.png"
+date = "November 6, 2017"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/6ZMP6Tc_MqggjAXS_GjV2Q"
+title = "KodeLife | Shader 实时编辑预览的强大工具使用实践"
+cover = "/img/posts/kubeadm-dashboard.png"
+date = "April 14, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/Xc0r6PsxrT-dJ_W4-K7V0Q"
+title = "OpenGL 之 GPUImage 源码分析"
+cover = "/img/posts/cloudnativelives-video.png"
+date = "August 31, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/WPbbsGUSFYQsl7k0cYBIIw"
+title = "Android JNI 中的线程操作"
+cover = "/img/posts/photo-1536620752150-a7e9e62a62ee.jpeg"
+date = "September 12, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/lZYMCGRY5FlvDrwW5IE1NA"
+title = "OpenGL 实现视频编辑中的转场效果"
+cover = "/img/posts/k8s-jenkins-slave.png"
+date = "July 28, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/iTbsEkpfyxNXrTiduSakqA"
+title = "Android NDK 开发之 CMake 必知必会"
+cover = "/img/posts/pipeline-demo5.png"
+date = "July 28, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/taMHYFZunxQ3XNZwR_U-Cg"
+title = "一文读懂 YUV 的采样与格式"
+cover = "/img/posts/blue-demo7.png"
+date = "August 2, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/dDZJ-Btja7zQDsL840aCtQ"
+title = "Google Jetpack 新组件 CameraX 介绍与实践"
+cover = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/lfrvk.jpg"
+date = "December 20, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/oK_0ZgAlEbkRCv-iMEgreA"
+title = "OpenGL ES 学习资源分享"
+cover = "/img/posts/traefik-dashboard-acme.png"
+date = "December 5, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/Ah8bK4dELT-LDjwSk9dHiQ"
+title = "LearnOpenGL 源码在 MAC 上的编译与调试"
+cover = "/img/posts/django2-index.jpg"
+date = "January 9, 2018"
+
+[[posts]]
+url = "https://mp.weixin.qq.com/s/m7BMF1dSiJ5BeHTU1etDqw"
+title = "OpenGL 实践之贝塞尔曲线绘制"
+cover = "/img/posts/WX20180118-150156.png"
+date = "June 22, 2018"
