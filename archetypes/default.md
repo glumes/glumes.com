@@ -1,6 +1,6 @@
 ---
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
-date: {{ .Date }}
+title: "Webrtc Android Setup"
+date: 2020-08-10T21:01:28+08:00
 subtitle: ""
 tags: []
 categories: ["android"]
