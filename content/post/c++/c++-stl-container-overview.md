@@ -3,7 +3,7 @@ title: "C++ 标准容器库小结"
 date: 2018-11-19T10:23:00+08:00
 subtitle: ""
 tags: ["C++","STL"]
-categories: ["android"]
+categories: ["c++"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd6ebghm1j20zk0k0dqt.jpg", desc: ""}]
 draft: false

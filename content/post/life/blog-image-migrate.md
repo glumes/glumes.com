@@ -3,7 +3,7 @@ title: "博客图床迁移记"
 date: 2019-05-02T21:21:40+08:00
 subtitle: ""
 tags: ["Python"]
-categories: ["Life"]
+categories: ["life"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/05/02/WechatIMG513.jpg", desc: ""}]
 draft: false

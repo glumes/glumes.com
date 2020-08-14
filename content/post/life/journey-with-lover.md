@@ -5,7 +5,7 @@ subtitle: "甜蜜之旅"
 tags: ["Life"]
 categories: ["Life"]
 comments: true
-draft: false
+draft: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/love-you-2198772_1280.png", desc: "love"}]
 original: true
 addwechat: true

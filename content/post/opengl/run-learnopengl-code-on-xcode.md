@@ -3,7 +3,7 @@ title: "LearnOpenGL 源码在 MAC 上的编译与调试"
 date: 2020-01-04T22:53:52+08:00
 subtitle: ""
 tags: []
-categories: ["android"]
+categories: ["opengl"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2020/01/04/WechatIMG585.jpg", desc: ""}]
 draft: false

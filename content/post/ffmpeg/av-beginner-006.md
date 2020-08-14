@@ -3,7 +3,7 @@ title: "【音视频连载-006】基础学习篇-SDL 播放 YUV 视频文件"
 date: 2020-03-15T18:38:03+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["音视频开发"]
+categories: ["ffmpeg"]
 comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/U0d90ed6069554297bec5112bed73109aN.jpg", desc: ""}]
 draft: false

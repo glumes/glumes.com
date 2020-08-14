@@ -3,7 +3,7 @@ title: "一文读懂 YUV 的采样与格式"
 date: 2018-09-19T23:12:45+08:00
 subtitle: ""
 tags: ["YUV","RGB"]
-categories: ["FFmpeg"]
+categories: ["ffmpeg"]
 comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
 draft: false

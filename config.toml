@@ -22,10 +22,7 @@ googleAnalytics = "UA-84590324-2"
   subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
   keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
   author = "星陨"
-  navLogo = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-logo-new.png"
-  logo = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
-  avatar = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
-  favicon = "https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/img/blog_avatar.jpeg"
+ 
   rss = true
   reward = true
   algolia = true
@@ -64,43 +61,75 @@ desc = "广州 · 老城区"
 
 [[menu.main]]
     identifier = "Categories"
-    name = "目录"
+    name = "音视频开发"
     weight = 1
 
 [[menu.main]]
     parent = "Categories"
-    name = "Android"
-    url = "categories/android"
+    name = "OpenGL "
+    url = "categories/opengl"
     weight = 1
 
 [[menu.main]]
     parent = "Categories"
-    name = "opencv"
-    url = "categories/opencv"
+    name = "FFmpeg"
+    url = "categories/ffmpeg"
     weight = 2
 
 
 [[menu.main]]
     parent = "Categories"
-    name = "opengl"
-    url = "categories/opengl"
+    name = "Vulkan "
+    url = "categories/vulkan"
     weight = 3
 
 [[menu.main]]
     parent = "Categories"
-    name = "ffmpeg"
-    url = "categories/音视频开发"
+    name = "WebRTC "
+    url = "categories/webrtc"
     weight = 4
+
 
 [[menu.main]]
     parent = "Categories"
-    name = "python"
-    url = "categories/python"
+    name = "opencv "
+    url = "categories/opencv"
     weight = 5
 
 
 [[menu.main]]
-    name = "生活"
+    identifier = "Developer"
+    name = "移动开发"
+    weight = 2
+
+
+[[menu.main]]
+    parent = "Developer"
+    name = "Android"
+    url = "categories/android"
+    weight = 1
+
+[[menu.main]]
+    parent = "Developer"
+    name = "ios"
+    url = "categories/ios"
+    weight = 2
+
+[[menu.main]]
+    parent = "Developer"
+    name = "C++"
+    url = "categories/c++"
+    weight = 3
+
+[[menu.main]]
+    parent = "Developer"
+    name = "Python"
+    url = "categories/python"
+    weight = 4
+
+
+[[menu.main]]
+    name = "程序人生"
     url = "categories/life"
     weight = 2
 

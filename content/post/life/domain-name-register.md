@@ -3,7 +3,7 @@ title: "【喜大普奔】域名终于备案通过啦"
 date: 2020-08-03T20:22:39+08:00
 subtitle: ""
 tags: ["Life"]
-categories: ["android"]
+categories: ["life"]
 comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
 draft: false

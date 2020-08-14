@@ -3,7 +3,7 @@ title: "【音视频连载-010】第二季 FFmpeg 日志打印"
 date: 2020-04-27T23:37:03+08:00
 subtitle: ""
 tags: ["FFmpeg"]
-categories: ["FFmpeg"]
+categories: ["ffmpeg"]
 comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
 draft: false
