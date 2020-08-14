@@ -20,7 +20,8 @@ addwechat: true
 
 在 Vulkan 的系列文章中出现过如下的图片：
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fx80mwln17j21to110woq.jpg)
+
+![](https://image.glumes.com/blog_image/vulkan-instance-device-queue.webp)
 
 这张图片很详细的概括了 Vulkan 中的重要组件以及它们的工作流程，接下来的文章中会针对每个组件进行学习讲解并配上相关的示例代码，首先是 Instance、Device 和 Queue 组件。
 
@@ -73,7 +74,9 @@ typedef struct VkInstanceCreateInfo {
 
 其中：`Layer` 是用来错误校验、调试输出的。为了提供性能，其中的方法之一就是减少驱动进行状态、错误校验，而 Vulkan 就把这一层单独抽出来了。
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fysj4tgc0xj20a80jkmyt.jpg)
+
+
+![](https://image.glumes.com/blog_image/vulkan-layer.webp)
 
 `Layer` 在整个架构中的位置如上图，Vulkan API 直接和驱动对话，而 `Layer` 处于应用和 Vulkan API 之间，供开发者进行调试。
 
@@ -97,7 +100,7 @@ typedef struct VkApplicationInfo {
 
 它的参数释义就比较容易理解了，设置应用的名称、版本号等，有了它们就可以创建 `Instance` 对象了，代码可以参考 [这里](https://github.com/glumes/vulkan_tutorial/blob/master/instance_and_device/src/main/cpp/vulkan_tutorial_1.cpp) 。
 
-具体的代码如下：
+具体的代码如下
 
 ```cpp
     VkApplicationInfo app_info = {};
@@ -141,8 +144,9 @@ typedef struct VkApplicationInfo {
 
 在某些情况下，可能会具有多个物理设备，如下图所示，因此要先枚举一下所有的物理设备：
 
-![](https://image.glumes.com/images/2019/04/27/bc32fd77gy1fyt5sjje8tj203u03za9w.jpg)
 
+
+![](https://image.glumes.com/blog_image/vulkan-device-image.webp)
 
 ```cpp
     LOGI("enumerate gpu device");
@@ -327,7 +331,7 @@ vkGetDeviceQueue(info.device, info.graphics_queue_family_index, 0, &info.queue);
 > [https://github.com/glumes/vulkan_tutorial](https://github.com/glumes/vulkan_tutorial)
 
 
-以上是个人的学习经验，仅供参考，有讲的不对之处，欢迎指出，也可以加我微信一起交流学习: `zh_ying_13` (备注博客).
+以上是个人的学习经验，仅供参考，有讲的不对之处，欢迎指出，也可以加我微信一起交流学习: `ezglumes` (备注博客).
 
 ## 总结
 
