@@ -6,7 +6,7 @@ tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd7qunbo9j20zk0m8jtx.jpg", desc: ""}]
-draft: false
+draft: true
 original: true
 addwechat: true
 ---
