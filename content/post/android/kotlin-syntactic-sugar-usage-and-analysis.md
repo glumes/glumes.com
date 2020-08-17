@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Android","Kotlin"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG420.jpg", desc: "广深沿江高速"}]
 original: true
 addwechat: true
 ---

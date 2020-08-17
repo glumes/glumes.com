@@ -5,7 +5,6 @@ subtitle: ""
 tags: []
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/05/22/-2019-05-23-8.53.26.png", desc: ""}]
 draft: false
 original: true
 ---

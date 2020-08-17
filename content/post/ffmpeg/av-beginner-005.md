@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["SDL"]
 categories: ["ffmpeg"]
 comments: true
-bigimg: [{src: "https://s2.ax1x.com/2020/03/10/8CrHyt.jpg", desc: ""}]
 draft: false
 original: true
 ---

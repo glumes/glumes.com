@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["CMake","NDK"]
 categories: ["Android"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv6hxjf8wgj20zk0f9tfk.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true

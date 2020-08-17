@@ -27,6 +27,9 @@
           {{ partial "toc.html" . }}
         {{ end }}
         {{ .Content }}
+
+                  {{ partial "wechat.html" }}
+
         {{ if isset .Site.Params "reward" }}
           {{ partial "reward.html" }}
         {{ end }}
@@ -40,7 +43,7 @@
 
                  {{ end }} -->
 
-                {{ if not (.Params.nowechat) }}
+<!--                 {{ if not (.Params.nowechat) }}
 
                   <h4>欢迎扫码关注微信公众号：【音视频开发进阶】，获得最新文章推送~~~</h4>
 
@@ -52,8 +55,9 @@
 
                   <br/>
 
-                {{ end }}
+                {{ end }} -->
 
+                <br/>
 
                 {{ if .Params.original }}
 

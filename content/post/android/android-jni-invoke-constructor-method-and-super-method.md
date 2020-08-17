@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG358.jpg", desc: "澳门 · 大三巴牌坊"}]
 original: true
 addwechat: true
 ---

@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Camera"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuxwncgz3uj20zk0npn5q.jpg", desc: ""}]
 
 --- 
 

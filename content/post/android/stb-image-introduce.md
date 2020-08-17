@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["stb_image"]
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/05/12/beautiful-environment-high-2246822.jpg", desc: ""}]
 draft: false
 original: true
 ---

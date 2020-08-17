@@ -6,7 +6,6 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL","Camera"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-122400_vqkkh9.jpg", desc: "Camera"}]
 original: true
 addwechat: true
 ---

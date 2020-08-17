@@ -8,7 +8,7 @@ tags: ["Android","JNI"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftm1y4vr2dj20zk0npaig.jpg", desc: ""}]
+
 
 ---
 

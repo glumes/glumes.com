@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["OkHttp"]
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv5z250xs7j20zk0npjvg.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true

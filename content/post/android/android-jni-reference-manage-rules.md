@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-940380.jpg", desc: "Sunset"}]
 original: true
 addwechat: true
 ---

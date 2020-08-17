@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG360.jpg", desc: "广州塔 · 小蛮腰"}]
 original: true
 addwechat: true
 ---

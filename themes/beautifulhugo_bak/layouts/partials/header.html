@@ -1,7 +1,6 @@
 {{ if .IsHome }}
   {{ $.Scratch.Set "title" .Site.Title }}
   {{ if .Site.Params.subtitle }}{{ $.Scratch.Set "subtitle" .Site.Params.subtitle }}{{ end }}
-  {{ if .Site.Params.hello}}{{ $.Scratch.Set "hello" .Site.Params.hello}}{{ end }}
   {{ if .Site.Params.bigimg }}{{ $.Scratch.Set "bigimg" .Site.Params.bigimg }}{{ end }}
 {{ else }}
   {{ $.Scratch.Set "title" .Title }}

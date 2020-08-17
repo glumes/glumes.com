@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["MediaCodec","YUV","H264","Camera"]
 categories: ["Android"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fvfa41kvcoj20zk0npgmx.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true

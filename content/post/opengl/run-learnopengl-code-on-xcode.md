@@ -5,7 +5,6 @@ subtitle: ""
 tags: []
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2020/01/04/WechatIMG585.jpg", desc: ""}]
 draft: false
 original: true
 ---

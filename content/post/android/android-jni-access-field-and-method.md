@@ -6,7 +6,6 @@ draft: false
 categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/WechatIMG356.jpg", desc: "香港 · 海港城"}]
 original: true
 addwechat: true
 ---

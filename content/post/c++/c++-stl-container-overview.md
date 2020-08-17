@@ -5,7 +5,6 @@ subtitle: ""
 tags: ["C++","STL"]
 categories: ["c++"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fxd6ebghm1j20zk0k0dqt.jpg", desc: ""}]
 draft: false
 original: false
 addwechat: false
