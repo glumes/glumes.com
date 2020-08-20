@@ -10,6 +10,9 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/Y3FsQrJJWQogD3PWWo1cVQ
 
 接下来探索纹理了。
 

@@ -5,10 +5,10 @@ subtitle: ""
 tags: ["libpng","image"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/07/13/adventure-arid-barren-946366.jpg", desc: ""}]
 draft: false
 original: true
 ---
+
 
 在之前的文章中介绍了 `stb_image` 图像库，还顺带提到了 libpng 和 libjpeg ，这篇文章就是介绍如何在 Android 平台上用 CMake 编译 libpng 动态库以及 libpng 使用实践。
 

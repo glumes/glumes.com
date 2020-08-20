@@ -9,6 +9,9 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-247932.jpg", desc: "Robot"}]
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/OCcTOJArxipvY-v_HuD0Eg
 
 在使用 OpenGL 绘制时，我们最多绘制的是一些简单的图形，比如三角形、圆形、立方体等，因为这些图形的顶点数量不多，还是可以手动的写出那些顶点的，可要是绘制一些复杂图形该怎么办呢？
 

@@ -10,6 +10,9 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/AVyNmsO7s6rGPZw3WH5kcA
 
 在 [OpenGL 坐标系统](https://glumes.com/post/opengl/opengl-tutorial-coordinate/) 文章中，根据点的坐标变换得出了如下的公式：
 

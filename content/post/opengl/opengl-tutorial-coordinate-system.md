@@ -10,6 +10,9 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/0HZgyZra90LQLFAq6dQJ9A
 
 
 在前面绘制基本图形中，遇到了很明显的问题，圆形不像圆形，正多边形不像正多边形？就像下面图形一样：

@@ -9,6 +9,9 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/geCmI9XovmxyaA437JIewg
 
 近期，Google 的 Jetpack 组件又出了新的库：CameraX 。
 

@@ -5,10 +5,13 @@ subtitle: ""
 tags: ["OpenGL"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/10/20/action-audience-celebration-3052360.jpg", desc: ""}]
 draft: false
 original: true
 ---
+
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/OuyU_7ieecjdGyDKTx-iFg
 
 ## 转场介绍
 

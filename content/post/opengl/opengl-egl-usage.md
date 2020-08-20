@@ -11,6 +11,10 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/AGMA4xvynzmdCNo-Caur-g
+
 OpenGL 是跨平台的、专业的图形编程接口，而接口的实现是由厂商来完成的。
 
 而当我们使用这组接口完成绘制之后，要把结果显示在屏幕上，就要用到 `EGL` 来完成这个转换工作。

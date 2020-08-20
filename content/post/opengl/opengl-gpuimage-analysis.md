@@ -5,11 +5,14 @@ subtitle: ""
 tags: ["OpenGL"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fuvigpdvurj20zk0c8772.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
 ---
+
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/2EeI91pu6y6Z7pnLPToXYA
 
 [GPUImage](https://github.com/BradLarson/GPUImage) 是 iOS 上一个基于 OpenGL 进行图像处理的开源框架，后来有人借鉴它的想法实现了一个 Android 版本的 [GPUImage](https://github.com/CyberAgent/android-gpuimage) ，本文也主要对 Android 版本的 GPUImage 进行分析。
 

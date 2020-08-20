@@ -5,10 +5,15 @@ subtitle: ""
 tags: ["oepngl","bezier"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/08/20/buttons-close-up-console-1298601ea1e1626d5220c33.jpg", desc: ""}]
 draft: false
 original: true
 ---
+
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/m7BMF1dSiJ5BeHTU1etDqw
+
+
 说到贝塞尔曲线，大家肯定都不陌生，网上有很多关于介绍和理解贝塞尔曲线的优秀文章和动态图。
 
 以下两个是比较经典的动图了。

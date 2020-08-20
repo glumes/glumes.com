@@ -10,6 +10,10 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/0cWh3IF_7wa5PHoGsh8ZcQ
+
 在 [OpenGL 投影矩阵](https://glumes.com/post/opengl/opengl-tutorial-projection-matrix/) 这篇文章中，讲述了 OpenGL 坐标系统中的投影矩阵，有两种类型的投影矩阵，分别是正交投影和透视投影。
 
 这两种投影实质上是两种类型的裁剪空间，分别创建对应视景体对物体坐标进行裁剪，位于裁剪空间内的才会被映射到屏幕上，如下图所示：（图片来源：[https://glumpy.github.io/modern-gl.html](https://glumpy.github.io/modern-gl.html)）

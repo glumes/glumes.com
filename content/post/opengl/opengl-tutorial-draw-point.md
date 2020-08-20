@@ -8,6 +8,9 @@ original: true
 addwechat: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/H6p3cLGpKys5ihF7ymBhJw
 
 终于要开始探索奇妙的 3D 世界了，OpenGL 搞起。
 

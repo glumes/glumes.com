@@ -10,6 +10,11 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/Bb0fgFMgH5QOBqYhOj0uqA
+
+
 在 **[直播](https://mp.weixin.qq.com/s/HlbGGOyfixc8wgoDjTY0Qw)** 中有提到几个不错的开源项目，这里再重点推荐一下：
 
 目前，市面上关于音视频学习的相关书籍并不多，而且即使看了书籍学了理论，最终还是要回归到代码上来。

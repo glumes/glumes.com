@@ -9,6 +9,9 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/Ah8bK4dELT-LDjwSk9dHiQ
 
 学习 OpenGL ，相信肯定有不少人看过这个网站：
 

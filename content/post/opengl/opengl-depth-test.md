@@ -6,9 +6,11 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-137132.jpg", desc: ""}]
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/PpLzxm7hPHDbaQLmAniCzQ
 
 在 OpenGL 世界里，使用深度测试可以来防止被阻挡的面渲染到其他面的前面。
 

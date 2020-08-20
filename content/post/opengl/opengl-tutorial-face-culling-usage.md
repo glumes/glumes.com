@@ -9,6 +9,9 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-220182.jpg", desc: ""}]
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/mMUS1ewazFqCqtRgOchDYw
 
 现在我们用 OpenGL 绘制了如下的立方体：
 

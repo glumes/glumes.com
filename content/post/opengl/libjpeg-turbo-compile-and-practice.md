@@ -5,10 +5,13 @@ subtitle: ""
 tags: ["libjpeg-turbo","image"]
 categories: ["opengl"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/07/13/blue-sky-building-cathedral-2597878.jpg", desc: ""}]
 draft: false
 original: true
 ---
+
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/x-dTLowXcqysnLxZ0BGA2g
 
 在之前的文章中已经陆续介绍了 stb_image、libpng 的使用，相关链接如下：
 

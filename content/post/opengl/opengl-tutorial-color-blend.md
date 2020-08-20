@@ -9,6 +9,10 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-1231023.jpg", desc: ""}]
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/40ss1fbLh3Qr5X4o76GTjA
+
 在 Android 中有一个类 PorterDuffXfermode ，它是用来设置颜色混合方式的，也就是在已有颜色的基础上再绘制一笔颜色，这两个颜色是如何进行混合的，是新绘制的颜色覆盖了原有颜色，还是新绘制的颜色和原有颜色混合组成另一种颜色呢。
 
 

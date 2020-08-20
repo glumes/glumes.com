@@ -9,6 +9,9 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/Mh_cLQeRy5J5AufeaGaOmA
 
 说到图像解码库，最容易想起的就是 `libpng` 和 `libjpeg` 这两个老牌图像解码库了。
 

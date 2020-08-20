@@ -10,6 +10,10 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/6ZMP6Tc_MqggjAXS_GjV2Q
+
 经常有朋友在群里面问想学习 Shader 有什么工具可以推荐？
 
 今天它来了~~~

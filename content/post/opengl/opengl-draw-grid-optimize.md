@@ -10,6 +10,10 @@ draft: false
 original: true
 ---
 
+> 避免图片丢失，建议阅读微信原文：
+> 
+> https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw
+
 前几天发布了这样一篇文章：
 
 > [KodeLife | Shader 实时编辑预览的强大工具使用实践](https://mp.weixin.qq.com/s/6ZMP6Tc_MqggjAXS_GjV2Q)
