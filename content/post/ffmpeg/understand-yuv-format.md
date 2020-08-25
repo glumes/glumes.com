@@ -284,7 +284,10 @@ NV21 是 安卓 中有的模式，它的存储顺序是先存 Y 分量，在 VU 
 
 ## 小结
 
-以上就是关于 YUV 的知识总结，你有看明白了嘛？
+以上就是关于 YUV 的知识总结，你有看明白了嘛？用一张图作为总结吧~~
+
+![](https://image.glumes.com/blog_image/understand-yuv-format.jpeg)
+
 
 ## 参考
 
