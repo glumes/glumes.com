@@ -31,13 +31,21 @@
 
         {{ .Content }}
 
+ {{ partial "reward.html" }}
+
+
+
                   {{ partial "wechat.html" }}
 
-        {{ if .Params.reward }}
-        {{ partial "reward.html" }}
-      {{ end }}
+        <!-- {{ if .Params.reward }} -->
+<!--         {{ partial "reward.html" }}
+        asfd
 
-                <br/>
+        asdfasdf as d
+         {{ partial "reward.html" }} -->
+      <!-- {{ end }} -->
+
+                <!-- <br/> -->
 
                 {{ if .Params.original }}
 
@@ -70,6 +78,11 @@
       </ul>
       {{ end }}
 
+
+  <!--    <div class="disqus-comments">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+           -->
       {{ if (.Params.comments) | or (and (or (not (isset .Params "comments")) (eq .Params.comments nil)) (.Site.Params.comments)) }}
         {{ if .Site.DisqusShortname }}
           <div class="disqus-comments">
