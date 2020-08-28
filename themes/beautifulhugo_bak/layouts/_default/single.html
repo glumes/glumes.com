@@ -26,6 +26,9 @@
         {{ if not (.Params.notoc) }}
           {{ partial "toc.html" . }}
         {{ end }}
+
+            {{ partial "ads.html" }}
+
         {{ .Content }}
 
                   {{ partial "wechat.html" }}
