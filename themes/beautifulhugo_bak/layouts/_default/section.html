@@ -21,28 +21,24 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="posts-list">
             <section id="archive" class="archive">
-                {{- range $index, $element := $paginator.Pages -}}
-                  {{- $thisYear := $element.Date.Format "2006" }}
-                  {{- $lastElement := $index | add -1 | index $paginator.Pages }}
-                  {{ if or (eq $index 0) ( ne ($lastElement.Date.Format "2006") $thisYear ) }}
-                    <div class="collection-title">
-                        <h2 class="archive-year">{{ $thisYear }}</h2>
+            {{ range (.Site.RegularPages).GroupByDate "2006" }}
+            {{ if ne .Key "0001" }}
+                <h2>{{ .Key }}</h2>
+                {{ range where .Pages "Type" "not in" (slice "page") }}
+                <div class="row">
+                    <div class= "col-xs-3 text-right small">
+                        <p-archive>{{ .Date.Format "Jan 2, 2006" }}</p-archive>
                     </div>
-                  {{- end }}
-                  <div class="archive-post">
-                      <span class="archive-post-time">
-                          {{ $element.Date.Format "01-02" }}
-                      </span>
-                      <span class="archive-post-title">
-                          <a href="{{ $element.RelPermalink }}" class="archive-post-link">
-                              {{ .Title }}
-                          </a>
-                      </span>
-                  </div>
-                {{- end -}}
+                    <div class= "col-xs-9 text-left small">
+                        <p-archive><a href="{{ .RelPermalink }}">{{ if .Draft }}<span style="color: darkorange">[Draft]</span> {{ end }}{{ .Title }}</a></p-archive>
+                    </div>
+                </div>
+            {{ end }}
+                {{ end }}
+            {{ end }}
             </section>
         </div>
-        {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+<!--         {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
           <ul class="pager main-pager">
             {{ if .Paginator.HasPrev }}
               <li class="previous">
@@ -55,7 +51,7 @@
               </li>
             {{ end }}
           </ul>
-        {{ end }}
+        {{ end }} -->
       </div>
     </div>
   </div>
