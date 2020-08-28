@@ -150,6 +150,6 @@ desc = "广州 · 老城区"
 
 [[menu.main]]
     identifier = "post"
-    name = "文章集"
+    name = "所有文章"
     url = "post/"
     weight = 5

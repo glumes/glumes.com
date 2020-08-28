@@ -33,32 +33,9 @@
 
                   {{ partial "wechat.html" }}
 
-        {{ if isset .Site.Params "reward" }}
-          {{ partial "reward.html" }}
-        {{ end }}
-<!-- 
-                 {{ if not (.Params.noplanet) }}
-
-
-                  <h4>一起交流学习，答疑解惑，有问题，我们星球见~~~</h4>
-
-                  <img  width = 750px; height = 409px; src="https://image.glumes.com/images/2019/05/24/WechatIMG515.png">
-
-                 {{ end }} -->
-
-<!--                 {{ if not (.Params.nowechat) }}
-
-                  <h4>欢迎扫码关注微信公众号：【音视频开发进阶】，获得最新文章推送~~~</h4>
-
-                  <h4>技术问题欢迎加我微信 ezglumes ，拉你进群交流~~~</h4>
-                  
-                  <br/>
-
-                  <img src="https://glumes2blog.oss-cn-shenzhen.aliyuncs.com/wexin-public.png">
-
-                  <br/>
-
-                {{ end }} -->
+        {{ if .Params.reward }}
+        {{ partial "reward.html" }}
+      {{ end }}
 
                 <br/>
 
@@ -69,10 +46,8 @@
                 {{ end }}
 
                 
-
-
         {{ if not (.Params.noshare) }}
-        <!-- {{ partial "share.html" }} -->
+        {{ partial "share.html" }}
         {{ end }}
       </article>
 
