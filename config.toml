@@ -19,7 +19,7 @@ googleAnalytics = "UA-84590324-2"
 
 
 [params]
-  subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
+  subtitle = "关注 音视频、直播、WebRTC、d 图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
   keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
   author = "星陨"
  
