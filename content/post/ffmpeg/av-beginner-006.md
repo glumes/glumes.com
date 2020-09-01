@@ -26,6 +26,8 @@ original: true
 
 接下来就要这样的操作。
 
+<!--more-->
+
 ## YUV 视频文件素材
 
 还是要准备一下 YUV 视频素材，不用网上到处去下载，用 FFmpeg 命令将 `mp4` 文件转换成 `yuv` 文件就好了。
@@ -46,7 +48,7 @@ ffplay -f rawvideo -video_size  100x100 yuv_filename.yuv
 
 以上命令会打开一个窗口去播放视频内容，如果播放的和原来 mp4 文件内容一致，说明转换是成功的，YUV 文件可用。
 
-<!--more-->
+
 
 ## 代码实践
 
