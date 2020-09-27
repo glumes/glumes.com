@@ -10,11 +10,6 @@ draft: false
 original: true
 ---
 
-音视频技术文章连载：
-
-* [技术开发故事会连载](https://mp.weixin.qq.com/s/3uDZtUKngHbDBZd3jFyzpA)
-* [【音视频连载-001】基础学习篇-SDL 介绍以及工程配置](https://mp.weixin.qq.com/s/ZKrUiauxSKpfctFD4iHT8g)
-
 在前面的文章中我们已经完成了 SDL 的工程配置，接下来就是 SDL 相关功能的开发。
 
 本篇文章主要是创建一个应用程序窗口并显示。

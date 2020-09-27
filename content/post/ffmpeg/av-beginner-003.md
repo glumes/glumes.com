@@ -10,14 +10,6 @@ draft: false
 original: true
 ---
 
-
-音视频学习入门技术文章连载：
-
-* [技术开发故事会连载](https://mp.weixin.qq.com/s/3uDZtUKngHbDBZd3jFyzpA)
-* [【音视频连载-001】基础学习篇-SDL 介绍以及工程配置](https://mp.weixin.qq.com/s/ZKrUiauxSKpfctFD4iHT8g)
-* [【音视频连载-002】基础学习篇-SDL 创建窗口并显示颜色](https://mp.weixin.qq.com/s/-Gh96TxhcQV9dQXDcQCqeA)
-
-
 在前面的文章中已经创建了一个 SDL 窗口并且显示指定的颜色。
 
 为了让窗口显示出来，在程序中写了一个死循环，这几行代码就是 SDL 消息循环和事件响应的核心缩影了。

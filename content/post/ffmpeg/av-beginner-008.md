@@ -10,18 +10,6 @@ draft: false
 original: true
 ---
 
-音视频学习入门技术文章连载：
-
-* [技术开发故事会连载](https://mp.weixin.qq.com/s/3uDZtUKngHbDBZd3jFyzpA)
-* [【音视频连载-001】基础学习篇-SDL 介绍以及工程配置](https://mp.weixin.qq.com/s/ZKrUiauxSKpfctFD4iHT8g)
-* [【音视频连载-002】基础学习篇-SDL 创建窗口并显示颜色](https://mp.weixin.qq.com/s/-Gh96TxhcQV9dQXDcQCqeA)
-* [【音视频连载-003】基础学习篇-SDL 消息循环和事件响应](https://mp.weixin.qq.com/s/OfzfohB3L0zcFcJSLeLbQw)
-* [【音视频连载-004】基础学习篇-SDL 加载图片并显示](https://mp.weixin.qq.com/s/cJHfSK724zYhP65_WLh8Tw)
-* [【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示](https://mp.weixin.qq.com/s/nCidtYLmB8_LtAzbW14skg)
-* [【音视频连载-006】基础学习篇-SDL 播放 YUV 视频文件](https://mp.weixin.qq.com/s/9FSIVhd1TE3dDCIFmU02tw)
-* [【音视频连载-007】基础学习篇-SDL 播放 PCM 音频文件（上）](https://mp.weixin.qq.com/s/VuWqZIG_HhghEsUYxnLwSw)
-
-
 接上篇 SDL 播放 PCM 音频文件，已经实现了 `推` 的模式去播放，接下来看看 `拉` 的模式如何实现。
 
 <!--more-->

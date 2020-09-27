@@ -10,9 +10,6 @@ draft: false
 original: true
 ---
 
-[技术开发故事会连载](https://mp.weixin.qq.com/s/8ob0zrHs9_2pmQTOHXPfjg)
-
-
 这是音视频基础学习系列的第一篇文章，主要讲解 SDL 是什么以及为什么要用到它，看似和音视频没啥卵关系，其实必不可少。
 
 ### SDL 简介
