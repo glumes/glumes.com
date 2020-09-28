@@ -104,6 +104,11 @@ desc = "广州 · 老城区"
     name = "移动开发"
     weight = 2
 
+[[menu.main]]
+    identifier = "zhuanlan"
+    name = "小专栏"
+    url = "https://xiaozhuanlan.com/glumes"
+    weight = 3
 
 [[menu.main]]
     parent = "Developer"
