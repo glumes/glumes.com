@@ -1,6 +1,6 @@
 baseURL = "https://glumes.com/"
 languageCode = "en-us"
-title = "星陨的博客"
+title = "音视频开发进阶"
 theme = "beautifulhugo_bak"
 canonifyURLs = true
 DefaultContentLanguage = "en"
@@ -45,16 +45,6 @@ googleAnalytics = "UA-84590324-2"
   clientId = "bdb76dbb2e9d0786e350"
   clientSecret = "b454b2a08013fd0e32013be7a63fa8fcb262b6c4"
 
-#[[params.banner]]
-#  src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
-#  desc = "打造独当一面的 Kubernetes 运维、开发工程师"
-#  url = "/post/promotion-51/"
-
-
-# [[params.bigimg]]
-#   src = "img/golang-k8s.png"
-#   desc = ""
-#   position = "center top"
 
 [[Params.bigimg]]
 src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
