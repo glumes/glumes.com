@@ -98,11 +98,20 @@
 
           {{ $finalContent |safeHTML }}
 
+
           {{ partial "wechat.html" }}
   
+
+
+                    <p>
+                      原创文章，转载请注明来源: &nbsp;&nbsp; <a href="{{ .Permalink }}">{{ .Title}}</a>
+                    </p>
+
+
           {{ if isset .Site.Params "reward" }}
             {{ partial "reward.html" }}
           {{ end }}
+
           {{ if not (.Params.noshare) }}
             {{ partial "share.html" }}
           {{ end }}
