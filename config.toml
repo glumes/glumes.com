@@ -95,10 +95,17 @@ desc = "广州 · 老城区"
     weight = 2
 
 [[menu.main]]
+  identifier = "Video"
+  name = "视频教学"
+  weight = 3
+  url = "https://space.bilibili.com/105478237"
+
+
+[[menu.main]]
     identifier = "zhuanlan"
     name = "小专栏"
     url = "https://xiaozhuanlan.com/glumes"
-    weight = 3
+    weight = 4
 
 [[menu.main]]
     parent = "Developer"
@@ -133,7 +140,7 @@ desc = "广州 · 老城区"
 [[menu.main]]
   identifier = "Tags"
   name = "标签"
-  weight = 3
+  weight = 5
   url = "tags"
 
 
@@ -141,10 +148,10 @@ desc = "广州 · 老城区"
     identifier = "about"
   name = "关于"
   url = "about/"
-  weight = 4
+  weight = 6
 
 [[menu.main]]
     identifier = "post"
     name = "所有文章"
     url = "post/"
-    weight = 5
+    weight = 7
