@@ -1,22 +1,20 @@
 baseURL = "https://glumes.com/"
 languageCode = "en-us"
 title = "音视频开发进阶"
-theme = "beautifulhugo_bak"
+theme = "beautifulhugo"
 canonifyURLs = true
-DefaultContentLanguage = "en"
 
 
+
+DefaultContentLanguage = "zh"
 pygmentsCodeFences = true
 pygmentsUseClasses = false
 pygmentsStyle = "solarized-light"
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClassic = false
-
-latexDashes = true
 paginate = 12
+#googleAnalytics = "UA-69668147-3"
 autoFigure = true
-googleAnalytics = "UA-84590324-2"
-
 
 [params]
   subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
