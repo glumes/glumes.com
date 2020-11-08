@@ -94,18 +94,6 @@ desc = "广州 · 老城区"
     name = "移动开发"
     weight = 2
 
-[[menu.main]]
-  identifier = "Video"
-  name = "视频教学"
-  weight = 3
-  url = "https://space.bilibili.com/105478237"
-
-
-[[menu.main]]
-    identifier = "zhuanlan"
-    name = "小专栏"
-    url = "https://xiaozhuanlan.com/glumes"
-    weight = 4
 
 [[menu.main]]
     parent = "Developer"
@@ -133,25 +121,45 @@ desc = "广州 · 老城区"
 
 
 [[menu.main]]
+  identifier = "Video"
+  name = "我的视频教学"
+  weight = 3
+
+[[menu.main]]
+    parent = "Video"
+    name = "B 站视频"
+    url = "https://space.bilibili.com/105478237"
+    weight = 1
+
+[[menu.main]]
+    parent = "Video"
+    name = "慕课网视频"
+    url = "http://www.imooc.com/learn/1212"
+    weight = 2
+
+
+
+[[menu.main]]
+    identifier = "zhuanlan"
+    name = "小专栏"
+    url = "https://xiaozhuanlan.com/glumes"
+    weight = 4
+
+
+[[menu.main]]
     name = "程序人生"
     url = "categories/life"
     weight = 2
-
-[[menu.main]]
-  identifier = "Tags"
-  name = "标签"
-  weight = 5
-  url = "tags"
 
 
 [[menu.main]]
     identifier = "about"
   name = "关于"
   url = "about/"
-  weight = 6
+  weight = 5
 
 [[menu.main]]
     identifier = "post"
     name = "所有文章"
     url = "post/"
-    weight = 7
+    weight = 6
