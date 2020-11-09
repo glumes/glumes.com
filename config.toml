@@ -1,7 +1,7 @@
 baseURL = "https://glumes.com/"
 languageCode = "en-us"
 title = "音视频开发进阶"
-theme = "beautifulhugo"
+theme = "beautifulhugo_bak"
 canonifyURLs = true
 
 
@@ -24,7 +24,7 @@ autoFigure = true
   logo = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
   avatar = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
   favicon = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
-  
+
   rss = true
   reward = true
   algolia = true
