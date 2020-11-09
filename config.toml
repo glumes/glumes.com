@@ -20,7 +20,11 @@ autoFigure = true
   subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
   keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
   author = "星陨"
- 
+   navLogo = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
+  logo = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
+  avatar = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
+  favicon = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
+  
   rss = true
   reward = true
   algolia = true
@@ -31,6 +35,7 @@ autoFigure = true
   customJSAssets = []
   defaultImg = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/photo-1557380664-dd666ff4e559.jpeg"
   gcse = true
+
 
 [params.adsense]
   client = "ca-pub-5376999672787220"
