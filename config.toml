@@ -4,8 +4,6 @@ title = "音视频开发进阶"
 theme = "beautifulhugo_bak"
 canonifyURLs = true
 
-
-
 DefaultContentLanguage = "zh"
 pygmentsCodeFences = true
 pygmentsUseClasses = false
