@@ -18,11 +18,13 @@
       {{ if .Site.Data.beautifulhugo.ad.ads }}
       <div class="minor-banner-box container">
         <div class="minor-banner row">
-          {{ range .Site.Data.beautifulhugo.ad.ads }}
+          {{ range .Site.Data.beautifulhugo.ad.ads }}    
           <li class="minor-item col-md-3">
+            <br/>
             <a href="{{ .url }}" title="{{ .title }}">
               <img src="{{ .cover }}" alt="{{ .title }}">
             </a>
+            <!-- <h2>{{ .title }}</h2> -->
           </li>
           {{ end }}
         </div>

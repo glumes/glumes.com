@@ -49,6 +49,25 @@ src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
 desc = "广州 · 老城区"
 
 
+
+
+[[params.banner]]
+  src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
+  desc = "打造独当一面的 Kubernetes 运维、开发工程师"
+  url = "https://glumes.com"  
+
+[[params.banner]]
+  src = "https://image.glumes.com/life/image.jpg"
+  url = "https://glumes.com"
+ 
+[[params.banner]]
+  src = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/k8s-banner-ydzs.jpg"
+  url = "https://glumes.com"
+ 
+[[params.banner]]
+  src = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/k8s-banner-promebook.jpg"
+  url = "https://glumes.com"
+  
 [[menu.main]]
     identifier = "Categories"
     name = "音视频开发"
