@@ -8,7 +8,6 @@ comments: true
 bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
 draft: false
 original: true
-weight: 1
 ---
 
 在前面的文章中已经能够利用 SDL 去播放 YUV 视频文件了，接下来要通过 SDL 去播放 PCM 音频文件。
