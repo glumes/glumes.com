@@ -2,8 +2,8 @@
 title: "iOS 音视频开发的一些基础准备工作"
 date: 2020-11-17T00:22:12+08:00
 subtitle: ""
-tags: []
-categories: ["android"]
+tags: ["ios"]
+categories: ["ios"]
 comments: true
 draft: false
 original: true
