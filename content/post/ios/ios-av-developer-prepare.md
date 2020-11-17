@@ -6,10 +6,14 @@ tags: ["ios"]
 categories: ["ios"]
 comments: true
 draft: false
+bigimg: [{src: "https://image.glumes.com/blog_image/ios-logo-free-medium.jpg", desc: ""}]
 original: true
+
 ---
 
+
 最近在捣鼓 iOS 上的音视频开发，由于之前并没有 iOS 开发经验，直接上手写代码的话压力还是挺大的，因此也趁机看了下 iOS 开发的内容，算是做一些准备工作吧。
+
 
 <!--more-->
 
@@ -34,7 +38,7 @@ iOS 开发语言用的是 Swift ，一些语法和 Kotlin 还是挺像的，上�
 * 删除 AppDelegate.Swift 中的 connectingSceneSession 和 didDiscardSceneSessions 方法。
 * 在 AppDelegate.swift 中添加 UIWindow 变量。
 
-```sh
+```cpp
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -58,7 +62,7 @@ UITableView 通过 UITableViewDataSource 和 UITableViewDelegate 分别来控制
 
 其中 UITableViewDataSource 有如下方法是必现要实现的，指定要展示的数据内容和 TableView 中 Item ，而 UITableViewDelegate 就没强制要求实现方法了，至于协议中的其他方法都可以查看具体源码，有具体的应用场景再使用了。
 
-```sh
+```cpp
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         <#code#>
 }  
@@ -70,7 +74,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 通过 `extension` 语法来实现以上两个协议：
 
-```sh
+```cpp
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 100;
 }
@@ -90,7 +94,7 @@ TableView 的复用逻辑类似于 Android 中的 RecyclerView 了，都是复�
 
 最后在 StoryBoard 中将 UITableView 与 ViewController 建立起关联，并给 UITableView 指定具体协议的实现。
 
-```sh
+```cpp
     @IBOutlet weak var mTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +155,7 @@ iOS 实现页面跳转有多种方式，比如 UINavigationController、UITarBar
 
 这里要用到 Unwind Segue 方法了。在 DetailViewController 中添加如下方法：
 
-```sh
+```cpp
 @IBAction func unwindSegue(segue: UIStoryboardSegue) {
     NSLog("Back to Table View Controller!")
 }
@@ -168,13 +172,13 @@ iOS 实现页面跳转有多种方式，比如 UINavigationController、UITarBar
 
 当想在 ViewController 之间传递数据的话，也可以通过 Segue 进行，它提供了一些方法。
 
-```sh
+```cpp
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender API_AVAILABLE(ios(5.0));
 ```
 
 通过实现 prepareForSegue 方法达到数据传输的目的。
 
-```sh
+```cpp
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "toDetailView" {
         let cv = segue.destination as! DetailViewController
@@ -205,7 +209,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
 可以设置左右按键名称和事件，可以设置中间的标题，还可以设置上层的提示内容以及背景颜色。
 
-```sh
+```cpp
 self.navigationItem.prompt = "loading" 
 self.navigationController?.navigationBar.barTintColor = UIColor.yellow;
 
@@ -220,7 +224,7 @@ self.navigationItem.title = "NavigationItem"
 
 对应的左右按键事件代码如下：
 
-```sh
+```cpp
 @objc func leftAction(){
     print("click left action")
 }
@@ -243,7 +247,7 @@ self.navigationItem.title = "NavigationItem"
 
 NavigationController 是一个管理 UIViewController 的容器，以栈的形式进行管理，提供相应的方法如下：
 
-```sh
+```cpp
 // 将 ViewController 压入栈中
 open func pushViewController(_ viewController: UIViewController, animated: Bool)
 
@@ -271,7 +275,7 @@ open var viewControllers: [UIViewController]
 
 代码如下，在点击事件中进行初始化 ViewController ，并压入栈中。
 
-```sh
+```cpp
 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     let storyboad = UIStoryboard(name: "Main", bundle: nil)
