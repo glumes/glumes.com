@@ -62,8 +62,9 @@
         {{ $finalContent |safeHTML }}
       </article>
 
-      {{ partial "gitalk.html" . }}
+      <!-- {{ partial "gitalk.html" . }} -->
       
+      {{ partial "disqus.html" . }}
     </div>
     
     {{ else }}
@@ -148,7 +149,9 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
   
-        {{ partial "gitalk.html" . }}
+        <!-- {{ partial "gitalk.html" . }} -->
+
+        {{ partial "disqus.html" . }}
 
         {{ if not (.Params.noreadmore) }}
           {{ partial "readmore.html" . }}

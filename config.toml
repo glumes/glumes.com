@@ -12,6 +12,8 @@ pygmentsCodefencesGuessSyntax = true
 pygmentsUseClassic = false
 paginate = 12
 autoFigure = true
+disqusShortname = "glumes"
+
 
 [params]
   subtitle = "关注 音视频、直播、WebRTC、图像渲染、FFmpeg、OpenGL、C++、移动开发等技术"
