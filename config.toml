@@ -11,7 +11,6 @@ pygmentsStyle = "solarized-light"
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClassic = false
 paginate = 12
-#googleAnalytics = "UA-69668147-3"
 autoFigure = true
 
 [params]
