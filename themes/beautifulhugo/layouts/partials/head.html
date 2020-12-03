@@ -56,8 +56,12 @@
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700%7COpen+Sans:400,700" rel="stylesheet">
   {{ end }}
 
+  <link rel="stylesheet" href="{{ "css/bootstrap.min.css?t=123" | absURL }}" />
+  <link rel="stylesheet" href="{{ "css/reward.css" | absURL }}" />
+  <link rel="stylesheet" href="{{ "css/search.css" | absURL }}" />
+  
   <!-- CSS from hugo pipes -->
-  {{- partial "css-assets.html" . -}}
+  <!-- {{- partial "css-assets.html" . -}} -->
   <link rel="stylesheet" href='{{ .Scratch.Get "appcss" }}' integrity='{{ .Scratch.Get "appcssintegrity" }}'>
 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>

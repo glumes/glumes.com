@@ -1,5 +1,5 @@
 <!-- Bootstrap Core CSS -->
-{{- $bootcss := resources.Get "css/bootstrap.min.css" -}}
+<!-- {{- $bootcss := resources.Get "css/bootstrap.min.css" -}} -->
 
 <!-- Theme CSS -->
 {{- $maincss := resources.Get "css/main.css" -}}
@@ -7,7 +7,10 @@
 
 <!-- Custom asset css -->
 {{- $indexScratch := .Scratch -}}
-{{- $indexScratch.Add "cssassets" (slice $bootcss $maincss $searchcss) -}}
+<!-- {{- $indexScratch.Add "cssassets" (slice $bootcss $maincss $searchcss) -}} -->
+
+
+{{- $indexScratch.Add "cssassets" (slice $maincss $searchcss) -}}
 {{ if .Site.Params.reward }}
     {{- $rewardcss := resources.Get "css/reward.css" -}}
     {{- $indexScratch.Add "cssassets" (slice $rewardcss) -}}
