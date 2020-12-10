@@ -36,10 +36,6 @@ disqusShortname = "glumes"
   gcse = true
 
 
-[params.adsense]
-  client = "ca-pub-5376999672787220"
-  inArticleSlot = "5684687044"
-  textSlot = "9165834656"
 
 [params.gitcomment]
   owner = "cnych"
@@ -48,30 +44,22 @@ disqusShortname = "glumes"
   clientSecret = "b454b2a08013fd0e32013be7a63fa8fcb262b6c4"
 
 
-[[Params.bigimg]]
-src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
-desc = "广州 · 老城区"
-
-
 
 
 [[params.banner]]
-  src = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
-  desc = "打造独当一面的 Kubernetes 运维、开发工程师"
-  url = "https://glumes.com"  
-
-[[params.banner]]
-  src = "https://image.glumes.com/life/image.jpg"
+  src = "https://image.glumes.com/website/banner-logo.png"
   url = "https://glumes.com"
  
-[[params.banner]]
-  src = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/k8s-banner-ydzs.jpg"
-  url = "https://glumes.com"
- 
-[[params.banner]]
-  src = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/k8s-banner-promebook.jpg"
+ [[params.banner]]
+  src = "https://image.glumes.com/website/banner-content.png"
   url = "https://glumes.com"
   
+[[params.banner]]
+  src = "https://image.glumes.com/website/banner-end.png"
+  url = "https://glumes.com"
+ 
+
+
 [[menu.main]]
     identifier = "Categories"
     name = "音视频开发"
