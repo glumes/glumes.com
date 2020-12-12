@@ -48,14 +48,14 @@ disqusShortname = "glumes"
 
 [[params.banner]]
   src = "https://image.glumes.com/ads-333.png"
-  url = "https://glumes.com"
+  url = "https://ke.qq.com/course/3133070?flowToken=1030484"
  
  [[params.banner]]
-  src = "https://image.glumes.com/ads/ads-333.png"
-  url = "https://ke.qq.com/course/3133070?flowToken=1030484"
+  src = "https://image.glumes.com/blog_image/h-banner.png"
+  url = "https://glumes.com"
   
 [[params.banner]]
-  src = "https://image.glumes.com/ads/ads-333.png"
+  src = "https://image.glumes.com/website/banner-content.png"
   url = "https://glumes.com"
  
 
