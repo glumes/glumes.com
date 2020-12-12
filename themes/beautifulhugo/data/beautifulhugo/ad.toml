@@ -1,19 +1,24 @@
-#[[ads]]
-#url = "https://glumes.com"
-#title = "test"
-#cover = "https://image.glumes.com/life/image.jpg!resize.h.400"
+[[ads]]
+url = "https://glumes.com"
+title = "test"
+cover = "https://image.glumes.com/blog_image/banner-opengl.png"
 
 
+[[ads]]
+url = "https://glumes.com"
+title = "test"
+cover = "https://image.glumes.com/blog_image/banner-av.png"
 
-#[[ads]]
-#url = "https://glumes.com"
-#title = "test"
-#cover = "https://image.glumes.com/life/imag2.jpg!resize.h.400"
 
+[[ads]]
+url = "https://glumes.com"
+title = "test"
+cover = "https://image.glumes.com/blog_image/banner-android.png"
 
-#[[ads]]
-#url = "https://glumes.com"
-#title = "test"
-#cover = "https://image.glumes.com/life/dongman.jpg!resize.h.400"
+[[ads]]
+url = "https://glumes.com"
+title = "test"
+cover = "https://image.glumes.com/blog_image/banner-ads.png"
+
 
 

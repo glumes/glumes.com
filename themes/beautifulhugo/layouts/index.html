@@ -19,8 +19,9 @@
       <div class="minor-banner-box container">
         <div class="minor-banner row">
           {{ range .Site.Data.beautifulhugo.ad.ads }}    
-          <li class="minor-item col-md-4">
-            <br/>
+          <li class="minor-item col-md-3">
+            <br />
+            <br />
             <a href="{{ .url }}" title="{{ .title }}">
               <img src="{{ .cover }}" alt="{{ .title }}">
             </a>

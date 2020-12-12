@@ -47,7 +47,7 @@ disqusShortname = "glumes"
 
 
 [[params.banner]]
-  src = "https://image.glumes.com/website/banner-logo.png"
+  src = "https://image.glumes.com/blog_image/h-banner.png"
   url = "https://glumes.com"
  
  [[params.banner]]
@@ -55,7 +55,7 @@ disqusShortname = "glumes"
   url = "https://glumes.com"
   
 [[params.banner]]
-  src = "https://image.glumes.com/website/banner-endd.png"
+  src = "https://image.glumes.com/website/banner-content.png"
   url = "https://glumes.com"
  
 
