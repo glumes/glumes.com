@@ -1132,11 +1132,11 @@ aside.toc {
 }
 .carousel .slick-prev {
     left: 60px;
-    background: url("/img/btn-prev.svg") no-repeat 50%/100% 100%;
+    background: url("https://image.glumes.com/blog_source/static/css/btn-prev.svg") no-repeat 50%/100% 100%;
 }
 .carousel .slick-next {
     right: 60px;
-    background: url("/img/btn-next.svg") no-repeat 50%/100% 100%;
+    background: url("https://image.glumes.com/blog_source/static/css/btn-next.svg") no-repeat 50%/100% 100%;
 }
 .carousel .slick-list {
     height: 100%;
