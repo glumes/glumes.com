@@ -20,9 +20,9 @@ disqusShortname = "glumes"
   keywords = "FFmpeg、C++、Android、OpenGL、WebRTC、游戏引擎、SDL"
   author = "星陨"
    navLogo = "https://ae01.alicdn.com/kf/U8e416f129f5040ec903a219b08d4ffcdl.jpg"
-  logo = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
-  avatar = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
-  favicon = "https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/blog-favicon.png"
+  logo = "https://image.glumes.com/video-favicon.png"
+  avatar = "https://image.glumes.com/video-favicon.png"
+  favicon = "https://image.glumes.com/video-favicon.png"
 
   rss = true
   reward = true
