@@ -5,7 +5,7 @@ subtitle: ""
 tags: []
 categories: ["android"]
 comments: true
-bigimg: [{src: "https://ae01.alicdn.com/kf/U63974cc923674332ab8751e2b18d9b9fd.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/blog_image/pexels-felix-mittermeier-956981.jpg", desc: ""}]
 draft: false
 original: true
 ---
