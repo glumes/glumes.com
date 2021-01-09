@@ -55,10 +55,7 @@ disqusShortname = "glumes"
 
 
 
-[[params.banner]]
-  src = "https://image.glumes.com/website/banner-content.png"
-  url = "https://glumes.com"
- 
+
 
 
 [[menu.main]]
