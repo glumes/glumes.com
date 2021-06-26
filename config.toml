@@ -88,7 +88,7 @@ disqusShortname = "glumes"
 
 [[menu.main]]
     parent = "Categories"
-    name = "opencv "
+    name = "OpenCV "
     url = "categories/opencv"
     weight = 5
 
@@ -107,7 +107,7 @@ disqusShortname = "glumes"
 
 [[menu.main]]
     parent = "Developer"
-    name = "ios"
+    name = "iOS"
     url = "categories/ios"
     weight = 2
 
