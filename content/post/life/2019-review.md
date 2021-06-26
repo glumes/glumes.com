@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["年终总结","Life"]
 categories: ["Life"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/12/27/photo-of-woman-sitting-on-rock-3326363.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
 ---
