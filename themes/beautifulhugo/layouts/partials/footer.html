@@ -175,7 +175,3 @@ MathJax.Hub.Config({
 <!-- JS from hugo pipes -->
 {{- partial "js-assets.html" . -}}
 <script src='{{ .Scratch.Get "appjs" }}' integrity='{{ .Scratch.Get "appjsintegrity" }}'></script>
-
-
-
-{{- partial "footer_custom.html" . }}
