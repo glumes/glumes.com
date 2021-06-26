@@ -36,7 +36,6 @@ disqusShortname = "glumes"
   gcse = true
 
 
-
 [params.gitcomment]
   owner = "cnych"
   repo = "blog"
@@ -44,12 +43,15 @@ disqusShortname = "glumes"
   clientSecret = "b454b2a08013fd0e32013be7a63fa8fcb262b6c4"
 
 
- [[params.banner]]
+# [[params.banner]]
+#  src = "https://image.glumes.com/blog_image/h-banner-new.jpeg"
+#  url = "https://glumes.com"
+
+
+[[Params.bigimg]]
   src = "https://image.glumes.com/blog_image/h-banner-new.jpeg"
-  url = "https://glumes.com"
-
-
-
+  desc = ""
+  url  = "https://glumes.com"
 
 
 

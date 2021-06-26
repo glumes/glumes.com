@@ -1,7 +1,6 @@
 ---
 title: "C++ 模板系列小结07-尾置返回类型"
 date: 2021-02-20T21:04:42+08:00
-subtitle: ""
 tags: ["C++","Template"]
 categories: ["c++"]
 comments: true
