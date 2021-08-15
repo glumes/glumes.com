@@ -92,6 +92,12 @@ disqusShortname = "glumes"
     url = "categories/opencv"
     weight = 5
 
+[[menu.main]]
+    parent = "Categories"
+    name = "Unity "
+    url = "categories/unity"
+    weight = 6
+
 
 [[menu.main]]
     identifier = "Developer"
