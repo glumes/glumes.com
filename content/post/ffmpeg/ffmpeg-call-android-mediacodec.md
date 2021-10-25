@@ -10,7 +10,7 @@ draft: false
 original: true
 ---
 
-> 文章原创首发公众号：音视频开发进阶。链接地址：https://mp.weixin.qq.com/s/DMY_pp7zHHT5ndznBnKLzg
+> 文章原创首发公众号：音视频开发进阶。链接地址：https://mp.weixin.qq.com/s/S8NwQnY4uyQulfZnRF7t_A
 
 FFmpeg 在 3.1 版本之后支持调用平台硬件进行解码，也就是说可以通过 FFmpeg 的 C 代码去调用 Android 上的 MediaCodec 了。
 
