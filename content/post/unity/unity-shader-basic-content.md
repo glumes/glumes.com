@@ -19,6 +19,8 @@ ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一
 ShaderLab  使用了一些嵌套在花括号内部的语义来描述一个 Unity Shader 文件的结构，这些结构包含了许多渲染所需的数据。
 
 
+$a_{1}$
+
 一个 Unity Shader 的基本结构如下：
 
 ```cpp
