@@ -171,5 +171,5 @@ disqusShortname = "glumes"
 [[menu.main]]
     identifier = "post"
     name = "所有文章"
-    url = "post/"
+    url = "archive/"
     weight = 6

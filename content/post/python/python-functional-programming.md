@@ -3,6 +3,7 @@ title: "Python 函数式编程"
 date: 2017-12-22T16:10:57+08:00
 categories: ["python"]
 tags: ["Python"]
+bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 comments: true
 original: true
 addwechat: true

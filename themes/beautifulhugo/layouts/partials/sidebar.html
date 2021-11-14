@@ -1,0 +1,70 @@
+<div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    <!-- 课程推荐 -->
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        {{ range .Site.Data.beautifulhugo.course.course_list }}
+        <a class="course-post" href="{{ .url }}" title="{{ .title }}">
+          <img src="{{ .cover }}" alt="{{ .title }}" class="img-fluid">
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    <!-- 分类 -->
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类</h4>
+      <ol class="list-unstyled">
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ if gt $taxonomy.Count 2 }}
+        <li><a href="/tags/{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a></li>
+        {{ end }}
+      {{ end }}
+      </ol>
+    </div>
+    <!-- 热门文章 -->
+    <div class="sidebar-wrap">
+      <div class="sidebar-block latest-post">
+        <h4 class="sidebar-title">热门文章</h4>
+        <ol class="list-unstyled">
+          {{ range .Site.Data.beautifulhugo.hot.posts }}
+          <li>
+            <a href="{{ .url }}">
+              <div class="rpost-img">
+                <img src="{{ .cover }}" alt="{{ .title }}" class="img-fluid">
+              </div>
+              <h5>{{ .title }}</h5>
+              <p class="text-muted">{{ .date }}</p>
+            </a>
+          </li>
+          {{ end }}
+        </ol>
+      </div>
+    </div>
+    <!-- 标签 -->
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ if gt $taxonomy.Count 1 }}
+        <a href="/tags/{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a>
+        {{ end }}
+      {{ end }}
+      </div>
+    </div>
+  </div>

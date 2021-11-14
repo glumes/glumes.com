@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["OpenGL","GLSL"]
 categories: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/bc32fd77gy1fv3beohff0j20hs0bkdge.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true

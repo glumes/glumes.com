@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/pexels-photo-219005.jpg", desc: ""}]
+bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 ---
 
 在之前的绘制过程中，首先都需要将物体的顶点数据保存在内存中，然后 `glDrawArrays` 或 `glDrawElements` 绘制前，将顶点数据送入到显存中，这样会存在 I/O 开销较大的问题，性能也不够好。

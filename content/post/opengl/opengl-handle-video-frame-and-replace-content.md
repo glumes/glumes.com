@@ -6,7 +6,7 @@ draft: false
 categories: ["OpenGL"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/images/2019/04/27/sunset-boat-sea-ship-37730.jpg", desc: "ship"}]
+bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 original: true
 addwechat: true
 ---
