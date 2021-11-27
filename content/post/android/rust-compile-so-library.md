@@ -7,6 +7,7 @@ categories: ["android"]
 comments: true
 draft: false
 original: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 ![](https://image.glumes.com/images/2019/05/19/rust-mm.png)

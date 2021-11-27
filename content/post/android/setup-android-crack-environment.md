@@ -8,6 +8,7 @@ categories: ["android"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 在 MAC 上搭建 Android 反编译环境主要就是三个东西：```apktool``` 、```dex2jar``` 、```jd-gui``` 。

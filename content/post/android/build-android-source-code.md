@@ -8,6 +8,7 @@ categories: ["android"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 花了一两天时间终于在 Mac 上成功编译了 Android 主线最新代码，中间遇到了不少问题，也查阅了好多资料，总算是成功了，看到模拟器启动的那一刻还是挺激动的。

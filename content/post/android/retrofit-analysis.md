@@ -8,6 +8,7 @@ comments: true
 draft: false
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 分析一波 Retrofit 的源码实现。
 

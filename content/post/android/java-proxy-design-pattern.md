@@ -8,6 +8,7 @@ comments: true
 draft: false
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 代理模式的使用场景如下：
 

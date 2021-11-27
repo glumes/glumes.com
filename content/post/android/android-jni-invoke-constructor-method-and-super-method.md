@@ -8,6 +8,7 @@ tags: ["Android","JNI"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 Android 还可以通过 JNI 来调用 Java 一个类的构造方法，从而创建一个 Java 类。

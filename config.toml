@@ -43,6 +43,13 @@ disqusShortname = "glumes"
   clientSecret = "b454b2a08013fd0e32013be7a63fa8fcb262b6c4"
 
 
+[params.utteranc]
+enable = true
+repo = "glumes/glumes.com"
+issue-term = "pathname"
+theme = "github-light"
+
+
 # [[params.banner]]
 #  src = "https://image.glumes.com/blog_image/h-banner-new.jpeg"
 #  url = "https://glumes.com"

@@ -8,6 +8,7 @@ comments: true
 draft: false
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 Android Studio 从 2.2 版本起开始支持 CMake ,可以通过 CMake 和 NDK 将 C/C++ 代码编译成底层的库，然后再配合 Gradle 的编译将库打包到 APK 中。

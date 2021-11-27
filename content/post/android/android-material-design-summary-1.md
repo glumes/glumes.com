@@ -6,6 +6,7 @@ tags: ["Android"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 总结一下 Material Design 控件使用。

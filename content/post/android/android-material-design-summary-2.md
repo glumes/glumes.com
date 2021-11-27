@@ -5,6 +5,7 @@ categories: ["android"]
 tags: ["Android"]
 comments: true
 original: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 addwechat: true
 ---
 

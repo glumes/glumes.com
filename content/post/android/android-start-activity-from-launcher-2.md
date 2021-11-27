@@ -6,6 +6,7 @@ tags: ["Android","Framework"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 

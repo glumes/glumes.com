@@ -7,6 +7,7 @@ categories: ["android"]
 tags: ["Android","JNI"]
 comments: true
 original: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 addwechat: true
 ---
 

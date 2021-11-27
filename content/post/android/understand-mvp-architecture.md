@@ -7,6 +7,7 @@ draft: false
 categories: ["android"]
 comments: true
 original: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 addwechat: true
 ---
 

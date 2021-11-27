@@ -8,6 +8,7 @@ categories: ["android"]
 comments: true
 original: true
 addwechat: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 理解状态机的原理及使用。

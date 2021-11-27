@@ -7,6 +7,7 @@ categories: ["android"]
 comments: true
 draft: false
 original: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 ---
 
 > 避免图片丢失，建议阅读微信原文：
