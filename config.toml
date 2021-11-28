@@ -121,7 +121,7 @@ theme = "github-light"
 [[menu.main]]
     parent = "Developer"
     name = "iOS"
-    url = "categories/ios"
+    url = "categories/iOS"
     weight = 2
 
 [[menu.main]]
