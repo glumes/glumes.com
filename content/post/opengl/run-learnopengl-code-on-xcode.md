@@ -20,11 +20,15 @@ original: true
 
 ![https://learnopengl.com/](https://image.glumes.com/images/2020/01/04/WechatIMG585.jpg)
 
+![](https://image.glumes.com/blog_image/20211128104709.png)
+
 这是它的英文原版网站，后来又有了不同语言的翻译版本，对应中文就是：
 
 > https://learnopengl-cn.github.io/
 
 ![](https://image.glumes.com/images/2020/01/04/WechatIMG586.jpg)
+
+![](https://image.glumes.com/blog_image/20211128105236.png)
 
 这两个网站对于学习 OpenGL 帮助非常大，既可以用作入门的教材，也可以作为工具书，后续进行查漏补缺。
 
@@ -40,11 +44,14 @@ original: true
 
 ![](https://image.glumes.com/images/2020/01/04/2020-01-049.55.35.md.png)
 
+![](https://image.glumes.com/blog_image/20211128105254.png)
+
 在网站上某一章节的内容，就对应于 XCode 工程某一小项的具体代码，我们可以选择要运行的章节代码，在 Mac 看到最终效果。
 
 
 ![](https://image.glumes.com/images/2020/01/04/2020-01-0410.07.59.md.png)
 
+![](https://image.glumes.com/blog_image/20211128105313.png)
 
 > 另外，我们还可以在 XCode 上修改相关代码，调整某些参数，验证自己的想法和实验结果。
 
@@ -57,6 +64,7 @@ original: true
 
 ![](https://image.glumes.com/images/2020/01/04/2020-01-049.49.52.md.png)
 
+![](https://image.glumes.com/blog_image/20211128105326.png)
 
 不得不说，这是位大佬，有兴趣的同学都可以去 Follow 一下。
 
@@ -102,6 +110,8 @@ make -j8
 
 ![](https://image.glumes.com/images/2020/01/04/2020-01-0410.37.58.md.png)
 
+![](https://image.glumes.com/blog_image/20211128105342.png)
+
 虽说我们可以通过 `./xxx` 的方式来运行这些可执行文件，但总不能每改一点代码就全都编译一次吧。
 
 理想的方式就要通过 IDE（集成开发环境） 来编译运行，并且在 IDE 上修改代码，看到结果。
@@ -121,6 +131,8 @@ cmake -G "Xcode" ..
 有变化的就是最后一行了，此行代码会在 build 目录下生成 XCode 工程。
 
 ![](https://image.glumes.com/images/2020/01/04/2020-01-0410.45.56.md.png)
+
+![](https://image.glumes.com/blog_image/20211128105402.png)
 
 双击 `LearnOpenGL.xcodeproj` 就可以打开整个工程啦。
 
