@@ -164,14 +164,14 @@ theme = "github-light"
 
 
 [[menu.main]]
-    name = "程序人生"
+    name = "生活点滴"
     url = "categories/life"
     weight = 2
 
 
 [[menu.main]]
     identifier = "about"
-  name = "关于"
+  name = "关于我"
   url = "about/"
   weight = 5
 
