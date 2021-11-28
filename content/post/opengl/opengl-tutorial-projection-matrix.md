@@ -17,7 +17,7 @@ addwechat: true
 
 在 [OpenGL 坐标系统](https://glumes.com/post/opengl/opengl-tutorial-coordinate/) 文章中，根据点的坐标变换得出了如下的公式：
 
-<div>$$ V_{clip}=M_{projection} \cdot M_{view} \cdot M_{model} \cdot V_{local} $$</div>
+![](https://image.glumes.com/blog_image/20211128232151.png)
 
 这个公式每左乘一个矩阵，都代表了一种坐标系的变换。
 
@@ -57,7 +57,9 @@ OpenGL 提供了两种投影方式：正交投影和透视投影。
 
 ## 正交投影矩阵
 
-![](https://image.glumes.com/images/2019/04/27/opengl_ortho.png)
+
+
+![](https://image.glumes.com/blog_image/20211128232214.png)
 
 不管是正交投影还是透视投影，最终都是将视景体内的物体投影在近平面上，这也是 3D 坐标转换到 2D 坐标的关键一步。
 
@@ -86,8 +88,9 @@ OpenGL 提供了 `Matrix.orthoM` 函数来生成正交投影矩阵。
         float near, float far)
 ```
 
-![](https://image.glumes.com/images/2019/04/27/opengl_ortho_2883b3b5bb574336e.png)
 
+
+![](https://image.glumes.com/blog_image/20211128232236.png)
 需要注意的是，我们的左、上、右、下距离都是相对于近平面中心的。
 
 近平面的坐标原点位于中心，向右为 $X$ 轴正方向，向上为 $Y$ 轴正方向，所以我们的 left、bottom 要为负数，而 right、top 要为正数。同时，近平面和远平面的距离都是指相对于视点的距离，所以 near、far 要为正数，而且 $far > near$。
@@ -118,8 +121,9 @@ OpenGL 提供了两个函数来创建透视投影矩阵：`frustumM` 和 `perspe
 frustumM 函数创建的视景体是一个锥形。
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_frustumM_hgt4sg.jpg)
 
+
+![](https://image.glumes.com/blog_image/20211128232257.png)
 它的视景体有点类似于正交投影，在参数理解上基本都相同的。
 
 ``` java
@@ -153,9 +157,9 @@ frustumM 函数创建的视景体是一个锥形。
 
 ### perspectiveM
 
-![](https://image.glumes.com/images/2019/04/27/opengl_perspectiveM_z2fgys.jpg)
 
 
+![](https://image.glumes.com/blog_image/20211128232318.png)
 OpenGL 还提供了  `perspectiveM` 函数来创建投影矩阵，它的视景体和 `frustumM` 函数相同，但是构造的参数有所不同。
 
 
@@ -182,9 +186,12 @@ OpenGL 还提供了  `perspectiveM` 函数来创建投影矩阵，它的视景�
 
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_fovy_bhplik.png)
 
-![](https://image.glumes.com/images/2019/04/27/opengl_fovy_result_gpzjwz.png)
+
+![](https://image.glumes.com/blog_image/20211128232336.png)
+
+![](https://image.glumes.com/blog_image/20211128232355.png)
+
 
 
 上述图片左边是 90 视角，右边是 45 度视角。显然，视野角度越大，则看到的内容更多，但是物体显得更小，而视野角度越小，则看的内容更少，但物体显得更大。有点类似于成语 **一叶障目** 的感觉。
