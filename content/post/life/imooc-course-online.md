@@ -16,7 +16,7 @@ original: true
 
 如下图所示：
 
-![-2019-12-15-1.21.42.png](https://image.glumes.com/images/2019/12/29/2019-12-15-1.21.42.png)
+![](https://image.glumes.com/blog_image/imooc-ndk-video.png)
 
 在慕课网上通过如下路径就可以找到啦
 
