@@ -18,7 +18,8 @@ addwechat: true
 
 在前面绘制基本图形中，遇到了很明显的问题，圆形不像圆形，正多边形不像正多边形？就像下面图形一样：
 
-![](https://image.glumes.com/images/2019/05/12/opengl_16.png)
+
+![](https://image.glumes.com/blog_image/20211128230612.png)
 
 好好的正五边形却东倒西歪的，这就是因为我们前面的绘制都是把它当成 二维 的绘制，而在 OpenGL 中却是绘制 三维的。在二维和三维之间还有个转换，而之前为了方便学习则忽略了这个转换，现在就要开始理解它了 —— `坐标系统`！！
 
@@ -26,7 +27,7 @@ addwechat: true
 
 ## 坐标系统
 
-![3d-coordinate](https://image.glumes.com/images/2019/04/27/3d_coordinate.jpg)
+![](https://image.glumes.com/blog_image/20211128230639.png)
 
 在立体几何的坐标系里面定义一个点的位置，需要 x、y、z 三个坐标轴的值，而在 OpenGL 中绘制 3D 物体也是需要的。
 
@@ -38,6 +39,7 @@ OpenGL 将定义好的坐标轴的值转换为实际绘制的坐标，需要经�
 
 ![](https://image.glumes.com/images/2019/05/08/blog_world_coordinate.png)
 
+![](https://image.glumes.com/blog_image/20211128230657.png)
 
 这里面涉及到了五个坐标空间和三个转换矩阵：
 
@@ -65,13 +67,15 @@ OpenGL 是一个右手坐标系，正 X 轴在右手边，正 Y 轴朝上，正 
 
 ![](https://image.glumes.com/images/2019/04/27/opengl_coordinate_systems_right_handed.png)
 
+![](https://image.glumes.com/blog_image/20211128230721.png)
+
 与之相对的就是左手坐标系，其正 Z 轴穿过屏幕朝向里面了。
 
 ## 局部空间
 
 局部空间坐标是 OpenGL 绘制坐标的起点，接下来所有的转换操作都是在局部空间坐标基础上进行的。
 
-局部空间坐标就是我们自己定义的起始坐标点，是相对于原点 `$ (0,0,0) $` 的。
+局部空间坐标就是我们自己定义的起始坐标点，是相对于原点 $ (0,0,0) $ 的。
 
 此时所在的空间就是局部空间，也就是说我们在局部空间里面定义物体的起始坐标。
 
@@ -110,7 +114,9 @@ OpenGL 本身是没有摄像机的概念的，不过可以通过把场景中的�
 *	指向摄像机右测的向量
 *	指向摄像机上方的向量
 
-![](https://image.glumes.com/images/2019/04/27/camera_axes.png)
+
+
+![](https://image.glumes.com/blog_image/20211128230923.png)
 
 如图，最终建立了一个以摄像机位置为原点的坐标系。
 
@@ -144,38 +150,45 @@ OpenGL 本身是没有摄像机的概念的，不过可以通过把场景中的�
 ###	正交投影
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_ortho.png)
+
+
+![](https://image.glumes.com/blog_image/20211128230837.png)
 
 正交投影会创建一个类似立方体的视景体。它由左、上、右、下 四个方向距离和近平面距离、远平面距离组成。四个方向距离定义了近平面和远平面的大小。而在近平面和远平面之外的坐标点就会被裁剪掉了。
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_ortho_2.png)
+
+
+![](https://image.glumes.com/blog_image/20211128230901.png)
 
 在场景中处于视景体内的物体会被投影到近平面上，然后再将近平面上投影出的内容映射到屏幕上。
 
 它所用到的矩阵是正交投影矩阵。
 
-![](https://image.glumes.com/images/2019/04/27/opengl_ortho_result.png)
 
-
+![](https://image.glumes.com/blog_image/20211128230943.png)
 由于正交投影是平行投影的一种，其投影线是平行的，所以投影到近平面上的图形不会产生真实世界中的`近大远小`的效果。因为正交投影没有把透视考虑进去，所以，远处的物体不会变小，这适用于一些特定的场合。
 
 
 
 ###	透视投影
 
-![](https://image.glumes.com/images/2019/04/27/perspective_frustum.png)
+
+
+![](https://image.glumes.com/blog_image/20211128230953.png)
 
 透视投影是能够产生`近大远小`效果的，就像我们人眼一样，看远处的物体就变得很小了。
 
 它所用到的矩阵就是透视投影矩阵。
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_frustum.png)
+
+![](https://image.glumes.com/blog_image/20211128231011.png)
 
 透视投影也会创建一个视景体，类似于锥形。它同样也有着近平面距离和远平面距离，而且也是将近平面的内容映射到屏幕视口中，但不同与正交投影近平面和远平面大小相同，所以它的左、上、右、下距离都是相对于近平面的。
 
-![](https://image.glumes.com/images/2019/04/27/opengl_frustum_analysis.png)
+
+![](https://image.glumes.com/blog_image/20211128231220.png)
 
 可以看到，透视投影的投影线互不平行，都相交于视点。因此，同样尺寸的物体，才会近处的投影出来大，远处的投影出来小。
 
@@ -209,8 +222,8 @@ OpenGL 会使用 `glViewPort` 函数来将归一化设备坐标映射到屏幕�
 
 用一张图总结如下：
 
-![](https://image.glumes.com/images/2019/04/27/opengl_coordinate_exchange_pmgaoa.png)
 
+![](https://image.glumes.com/blog_image/20211128231248.png)
 
 ## 坐标的矩阵操作
 
@@ -242,8 +255,8 @@ void main(){
 而归一化设备坐标假定的坐标空间是一个正方形，但手机屏幕的视口却是一个长方形，这样的话，就会有一个方向被拉伸。同样的份数，但长度越长，导致每一份的长度也增加了，所以也就被拉伸了。
 
 
-![](https://image.glumes.com/images/2019/04/27/opengl_aspect.png)
 
+![](https://image.glumes.com/blog_image/20211128231323.png)
 
 要解决这种问题，可以在归一化设备坐标上进行操作，将较长的一边乘以相应的比例系数，转化到同样的长度比上。
 
@@ -254,7 +267,8 @@ x = x * aspect
 y = y 
 ```
 
-![](https://image.glumes.com/images/2019/04/27/opengl_aspect_cube.png)
+
+![](https://image.glumes.com/blog_image/20211128231345.png)
 
 这样一来，将较长的一边的比例放大了，取较短的那一边作为 1 的标准。
 

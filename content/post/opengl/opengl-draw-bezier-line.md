@@ -35,15 +35,16 @@ original: true
 
 现在假设我们要在坐标系中绘制一条直线，直线的方程很简单，就是 `y=x` ，很容易得到下图：
 
-![](https://image.glumes.com/images/2019/08/10/-2019-08-10-3.44.51.md.png)
 
+
+![](https://image.glumes.com/blog_image/20211128231610.png)
 
 现在我们限制一下 x 的取值范围为 `0~1` 的闭区间，那么可以得出 y 的取值范围也是 `0~1`。
 
 而在 `0~1` 的区间范围内，x 能取的数有多少个呢？答案当然是无数个了。
 
-![](https://image.glumes.com/images/2019/08/10/-2019-08-10-4.17.15.md.png)
 
+![](https://image.glumes.com/blog_image/20211128231635.png)
 
 同理，y 的取值个数也是有无数个。每一个 x 都有唯一的 y 与之对应，一个 (x,y) 在坐标系上就是一个点。
 
@@ -90,16 +91,15 @@ original: true
 
 * 二阶贝塞尔曲线：
 
-![](https://image.glumes.com/images/2019/08/10/87a5997cdd29dcf7620f11b53015fcc8_r.jpg)
 
+![](https://image.glumes.com/blog_image/20211128231733.png)
 ![](https://yalantis.com/uploads/ckeditor/pictures/1961/content_content_image00.png)
 
 其中，P0 和 P2 是起始点，P1 是控制点。
 
 * 三阶贝塞尔曲线
 
-![](https://image.glumes.com/images/2019/08/10/5918c8d341e46406bf342725fd37124e_r.jpg)
-
+![](https://image.glumes.com/blog_image/20211128231752.png)
 ![](https://yalantis.com/uploads/ckeditor/pictures/1962/content_content_image09.png)
 
 
@@ -164,7 +164,9 @@ t 越小，那么贝塞尔曲线就退化成一串点组成了。所以说 t 的
 
 绘制效果如下图所示：
 
-![](https://image.glumes.com/images/2019/08/18/opengl_bezier_crop.gif)
+
+
+![](https://image.glumes.com/blog_image/3ogfg403e8.gif)
 
 以下就是实际的代码部分了，关于 OpenGL 的基础理论部分可以参考之前写过的文章和公众号，就不再阐述了。
 
