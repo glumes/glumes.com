@@ -18,7 +18,7 @@ original: true
 
 > https://learnopengl.com/
 
-![https://learnopengl.com/](https://image.glumes.com/images/2020/01/04/WechatIMG585.jpg)
+
 
 ![](https://image.glumes.com/blog_image/20211128104709.png)
 
@@ -26,7 +26,7 @@ original: true
 
 > https://learnopengl-cn.github.io/
 
-![](https://image.glumes.com/images/2020/01/04/WechatIMG586.jpg)
+
 
 ![](https://image.glumes.com/blog_image/20211128105236.png)
 
@@ -42,14 +42,14 @@ original: true
 
 本文主要是讲解如何运行 LearnOpenGL 文章中的示例代码，在 XCode 上进行编译和调试，效果如下：
 
-![](https://image.glumes.com/images/2020/01/04/2020-01-049.55.35.md.png)
+
 
 ![](https://image.glumes.com/blog_image/20211128105254.png)
 
 在网站上某一章节的内容，就对应于 XCode 工程某一小项的具体代码，我们可以选择要运行的章节代码，在 Mac 看到最终效果。
 
 
-![](https://image.glumes.com/images/2020/01/04/2020-01-0410.07.59.md.png)
+
 
 ![](https://image.glumes.com/blog_image/20211128105313.png)
 
@@ -62,7 +62,6 @@ original: true
 在开始 LearnOpenGL 网站的代码讲解之前，先介绍一下他的主人。
 
 
-![](https://image.glumes.com/images/2020/01/04/2020-01-049.49.52.md.png)
 
 ![](https://image.glumes.com/blog_image/20211128105326.png)
 
@@ -108,7 +107,7 @@ make -j8
 
 但是这个编译结果并不是我们想要的，因为它编译出来的都是二进制可执行文件。
 
-![](https://image.glumes.com/images/2020/01/04/2020-01-0410.37.58.md.png)
+
 
 ![](https://image.glumes.com/blog_image/20211128105342.png)
 
@@ -130,7 +129,7 @@ cmake -G "Xcode" ..
 
 有变化的就是最后一行了，此行代码会在 build 目录下生成 XCode 工程。
 
-![](https://image.glumes.com/images/2020/01/04/2020-01-0410.45.56.md.png)
+
 
 ![](https://image.glumes.com/blog_image/20211128105402.png)
 
