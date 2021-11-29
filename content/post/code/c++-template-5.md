@@ -3,7 +3,7 @@ title: "C++ 模板系列小结05-模板类型作为模板参数"
 date: 2021-02-09T12:11:34+08:00
 subtitle: ""
 tags: ["C++","Template"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

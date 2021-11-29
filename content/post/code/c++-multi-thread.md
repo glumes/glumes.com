@@ -3,7 +3,7 @@ title: "C++ 中的多线程的使用和线程池建设"
 date: 2021-02-09T16:38:48+08:00
 subtitle: ""
 tags: ["C++","多线程"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

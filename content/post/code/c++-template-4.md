@@ -3,7 +3,7 @@ title: "C++ 模板系列小结04-类模板中的成员模板"
 date: 2021-02-09T12:11:01+08:00
 subtitle: ""
 tags: ["C++","Template"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

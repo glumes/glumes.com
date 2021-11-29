@@ -3,7 +3,7 @@ title: "C++ 模板系列小结03-在模板中指定变量类型"
 date: 2021-02-09T10:19:51+08:00
 subtitle: ""
 tags: ["C++","Template"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

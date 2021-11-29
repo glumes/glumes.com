@@ -3,7 +3,7 @@ title: "C++ 标准容器库小结"
 date: 2018-11-19T10:23:00+08:00
 subtitle: ""
 tags: ["C++","STL"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 draft: false
 original: false

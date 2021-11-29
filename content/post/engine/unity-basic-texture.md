@@ -3,7 +3,7 @@ title: "Unity Shader 显示一张图片纹理"
 date: 2021-08-23T13:04:19+08:00
 subtitle: ""
 tags: ["unity"]
-categories: ["unity"]
+categories: ["engine"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

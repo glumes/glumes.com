@@ -1,7 +1,7 @@
 ---
 title: "Python 命令行参数解析工具 docopt"
 date: 2017-12-22T16:08:45+08:00
-categories: ["python"]
+categories: ["code"]
 tags: ["Python"]
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 comments: true

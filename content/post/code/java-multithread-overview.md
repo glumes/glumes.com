@@ -3,7 +3,7 @@ title: "Java 显式锁 Lock 与条件队列"
 date: 2018-11-19T15:58:17+08:00
 subtitle: ""
 tags: ["Java"]
-categories: ["android"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

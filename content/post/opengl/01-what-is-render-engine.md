@@ -3,7 +3,7 @@ title: "从零打造渲染引擎系列01-什么是渲染引擎"
 date: 2021-01-12T19:30:33+08:00
 subtitle: ""
 tags: ["engine"]
-categories: ["engine"]
+categories: ["opengl"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

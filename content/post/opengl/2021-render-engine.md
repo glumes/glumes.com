@@ -3,7 +3,7 @@ title: "2021 技术新番 - 从零打造渲染引擎系列"
 date: 2021-01-06T19:44:28+08:00
 subtitle: ""
 tags: ["engine"]
-categories: ["engine"]
+categories: ["opengl"]
 comments: true
 draft: false
 original: true

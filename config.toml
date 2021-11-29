@@ -95,14 +95,8 @@ theme = "github-light"
 
 [[menu.main]]
     parent = "Categories"
-    name = "OpenCV "
-    url = "categories/opencv"
-    weight = 5
-
-[[menu.main]]
-    parent = "Categories"
-    name = "Unity "
-    url = "categories/unity"
+    name = "游戏引擎"
+    url = "categories/engine"
     weight = 6
 
 
@@ -126,15 +120,9 @@ theme = "github-light"
 
 [[menu.main]]
     parent = "Developer"
-    name = "C++"
-    url = "categories/c++"
+    name = "编程语言"
+    url = "categories/code"
     weight = 3
-
-[[menu.main]]
-    parent = "Developer"
-    name = "Python"
-    url = "categories/python"
-    weight = 4
 
 
 [[menu.main]]

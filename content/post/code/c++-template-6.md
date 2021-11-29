@@ -3,7 +3,7 @@ title: "C++ 模板系列小结06-可变参数模板特性"
 date: 2021-02-20T21:03:04+08:00
 subtitle: ""
 tags: ["C++","Template"]
-categories: ["c++"]
+categories: ["code"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
