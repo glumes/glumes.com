@@ -3,7 +3,7 @@ title: "Metal 开发 | 使用 C++ 进行接口调用"
 date: 2021-11-28T22:06:37+08:00
 subtitle: ""
 tags: ["iOS"]
-categories: ["iOS"]
+categories: ["ios"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

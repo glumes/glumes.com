@@ -1,3 +1,6 @@
+
+
+
 {{ define "header" }}
   <header class="header-section ">
     <div class="intro-header no-img">
@@ -15,50 +18,78 @@
   </header>
 {{ end }}
 {{ define "main" }}
-  <div class="container" role="main">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        {{ with .Content }}
+      <div class="col-lg-8 col-md-10">
+        <!-- {{ with .Content }}
           <div class="well">
             {{.}}
           </div>
-        {{ end }}
-        <div class="posts-list">
-          {{ range .Paginator.Pages }}
-            <article class="post-preview">
-              <a href="{{ .Permalink }}">
-                <h2 class="post-title">{{ .Title }}</h2>
+        {{ end }} -->
+        <div class="archive-list">
 
-                {{ if .Params.subtitle }}
+
+          <!-- {{ range .Sections}}
+          <li class="post-item">
+              <a href="{{.Permalink}}">
+                  <span class="post-title">{{.Title}}</span>
+                  <span
+                      class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
+              </a>
+          </li>
+          {{ end}} -->
+
+
+          {{ range (.Paginator 50).Pages }}
+
+    
+          
+            <span>{{ .Date.Format "2006 01 02" }}</span>   
+            <a href="{{ .RelPermalink }}">
+              {{ .Title }}
+            </a>
+            <br />
+
+
+            <!-- <article class="post-preview">
+              <a href="{{ .Permalink }}">
+                <h2 class="post-title">{{ .Title }}</h2> -->
+
+                <!-- {{ if .Params.subtitle }}
                   <h3 class="post-subtitle">
                     {{ .Params.subtitle }}
                   </h3>
-                {{ end }}
+                {{ end }} -->
               </a>
 
-              <p class="post-meta">
+              <!-- <p class="post-meta">
                 {{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
-              </p>
-              <div class="post-entry">
+              </p> -->
+
+
+              <!-- <div class="post-entry">
                 {{ if .Truncated }}
                   {{ .Summary }}
                   <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
                 {{ else }}
                   {{ .Content }}
                 {{ end }}
-              </div>
+              </div> -->
 
-              {{ if .Params.tags }}
+              <!-- {{ if .Params.tags }}
                 <span class="post-meta">
                   {{ range .Params.tags }}
                     #<a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
                   {{ end }}
                 </span>
-              {{ end }}
+              {{ end }} -->
 
-            </article>
+            <!-- </article> -->
           {{ end }}
         </div>
+
+
+
         {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
           <ul class="pager main-pager">
             {{ if .Paginator.HasPrev }}
@@ -74,6 +105,9 @@
           </ul>
         {{ end }}
       </div>
+
+      {{ partial "sidebar.html" . }}
+
     </div>
   </div>
 {{ end }}

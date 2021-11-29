@@ -28,17 +28,22 @@
     </div>
     <!-- 分类 -->
     <div class="sidebar-block">
-      <h4 class="sidebar-title">分类</h4>
+      <h4 class="sidebar-title">分类目录</h4>
       <ol class="list-unstyled">
-        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-        {{ if gt $taxonomy.Count 2 }}
-        <li><a href="/tags/{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a></li>
-        {{ end }}
+
+
+      {{ range .Site.Data.beautifulhugo.category.category_list }}
+
+
+      <li><a href="{{ .url }}">{{ .title }}</a></li>
       {{ end }}
+
       </ol>
     </div>
+
+
     <!-- 热门文章 -->
-    <div class="sidebar-wrap">
+    <!-- <div class="sidebar-wrap">
       <div class="sidebar-block latest-post">
         <h4 class="sidebar-title">热门文章</h4>
         <ol class="list-unstyled">
@@ -55,7 +60,10 @@
           {{ end }}
         </ol>
       </div>
-    </div>
+    </div> -->
+
+
+
     <!-- 标签 -->
     <div class="sidebar-wrap">
       <h4 class="sidebar-title">标签</h4>

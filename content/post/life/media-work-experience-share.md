@@ -2,8 +2,8 @@
 title: "音视频开发工作经验分享 || 视频版"
 date: 2021-11-26T12:47:46+08:00
 subtitle: ""
-tags: ["Life"]
-categories: ["Life"]
+tags: ["生活点滴"]
+categories: ["生活点滴"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
