@@ -8,11 +8,14 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
+image: https://image.glumes.com/blog_image/jianying-100-speed.png
 ---
 
 **昨天周六，群里面还有人在技术交流！！**。
 
 > 默默吐槽一下：这些人真卷啊，大周末还搞技术，是游戏不好玩还是电影不好看。
+
+<!--more-->
 
 ![](https://image.glumes.com/blog_image/jianying-100-speed.png)
 
@@ -21,7 +24,7 @@ original: true
 
 讨论焦点还是围绕如何**丢帧**展开的。
 
-<!--more-->
+
 
 百倍变速，比如正常速度下一帧是播放第 1s 时刻的内容，而变速后要播放 100s 时刻了。
 

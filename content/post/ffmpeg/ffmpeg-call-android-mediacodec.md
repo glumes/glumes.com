@@ -8,11 +8,14 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
+image: https://image.glumes.com/blog_image20211019101917.png
 ---
 
 > 文章原创首发公众号：音视频开发进阶。链接地址：https://mp.weixin.qq.com/s/S8NwQnY4uyQulfZnRF7t_A
 
 FFmpeg 在 3.1 版本之后支持调用平台硬件进行解码，也就是说可以通过 FFmpeg 的 C 代码去调用 Android 上的 MediaCodec 了。
+
+<!--more-->
 
 在官网上有对应说明，地址如下：
 
@@ -22,7 +25,7 @@ https://trac.ffmpeg.org/wiki/HWAccelIntro
 
 从图中可以看到，不仅仅是 Android 上支持 MediaCodec，iOS 上也支持 VideoToolbox，连 Windows 上的 Direct3D 11 都有支持了。
 
-<!--more-->
+
 
 > 注意：Android MediaCodec 目前仅支持解码，还不支持编码呢。
 
