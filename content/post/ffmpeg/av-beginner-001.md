@@ -12,6 +12,8 @@ original: true
 
 这是音视频基础学习系列的第一篇文章，主要讲解 SDL 是什么以及为什么要用到它，看似和音视频没啥卵关系，其实必不可少。
 
+<!--more-->
+
 ### SDL 简介
 
 SDL 是 “Simple DirectMedia Layer” 的缩写，它是一个跨平台的多媒体库，可以在 Mac、Windows、Linux 以及更多的系统上运行。
@@ -25,7 +27,7 @@ SDL 提供了统一的针对音频、视频、键盘、鼠标、控制杆以及 
 由于 SDL 的跨平台特性，在后续学习 FFmpeg 时就可以利用 SDL 进行音视频的播放操作，而不用像在 Android 平台上搞 FFmpeg 还得编译 so、写 JNI 、写界面那么麻烦，另外 ffplay 源码里面也是用的 SDL 进行播放的，可以从中进行借鉴。
 
 
-<!--more-->
+
 
 ### SDL 下载安装
 

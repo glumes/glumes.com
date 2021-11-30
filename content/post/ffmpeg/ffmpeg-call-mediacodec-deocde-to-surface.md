@@ -12,6 +12,8 @@ original: true
 
 这是关于 FFmpeg 和 MediaCodec 爱恨情仇系列的第三篇文章了。
 
+<!--more-->
+
 之前写了 FFmpeg 调用 MediaCodec 进行硬解码的内容。
 
 * [FFmpeg 调用 Android MediaCodec 进行硬解码](https://mp.weixin.qq.com/s/S8NwQnY4uyQulfZnRF7t_A)
@@ -28,7 +30,7 @@ original: true
 
 再看了更多资料之后，发现 FFmpeg 调用 MediaCodec 已经可以解码到 Surface 上。
 
-<!--more-->
+
 
 具体参考的是这篇邮件内容：
 
