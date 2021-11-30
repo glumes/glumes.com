@@ -26,69 +26,12 @@
             {{.}}
           </div>
         {{ end }}
-        <div class="archive-list">
 
-
-          <!-- {{ range .Sections}}
-          <li class="post-item">
-              <a href="{{.Permalink}}">
-                  <span class="post-title">{{.Title}}</span>
-                  <span
-                      class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
-              </a>
-          </li>
-          {{ end}} -->
-
-
-          {{ range (.Paginator 50).Pages }}
-
-    
-          
-            <span>{{ .Date.Format "2006 01 02" }}</span>   
-            <a href="{{ .RelPermalink }}">
-              {{ .Title }}
-            </a>
-            <br />
-
-
-            <!-- <article class="post-preview">
-              <a href="{{ .Permalink }}">
-                <h2 class="post-title">{{ .Title }}</h2> -->
-
-                <!-- {{ if .Params.subtitle }}
-                  <h3 class="post-subtitle">
-                    {{ .Params.subtitle }}
-                  </h3>
-                {{ end }} -->
-              </a>
-
-              <!-- <p class="post-meta">
-                {{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
-              </p> -->
-
-
-              <!-- <div class="post-entry">
-                {{ if .Truncated }}
-                  {{ .Summary }}
-                  <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
-                {{ else }}
-                  {{ .Content }}
-                {{ end }}
-              </div> -->
-
-              <!-- {{ if .Params.tags }}
-                <span class="post-meta">
-                  {{ range .Params.tags }}
-                    #<a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
-                  {{ end }}
-                </span>
-              {{ end }} -->
-
-            <!-- </article> -->
+        <div class="posts-list">
+          {{ range .Paginator.Pages }}
+            {{ partial "post_preview.html" .}}
           {{ end }}
         </div>
-
-
 
         {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
           <ul class="pager main-pager">
