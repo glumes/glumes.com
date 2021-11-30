@@ -10,6 +10,8 @@ draft: false
 original: true
 ---
 
+<!--more-->
+
 > 避免图片丢失，建议阅读微信原文：
 > 
 > https://mp.weixin.qq.com/s/x-dTLowXcqysnLxZ0BGA2g
@@ -38,7 +40,7 @@ original: true
 > [https://github.com/libjpeg-turbo/libjpeg-turbo](https://github.com/libjpeg-turbo/libjpeg-turbo)
 
 
-<!--more-->
+
 
 ## 编译
 
