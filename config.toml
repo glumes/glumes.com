@@ -10,7 +10,6 @@ pygmentsUseClasses = false
 pygmentsStyle = "solarized-light"
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClassic = false
-paginate = 12
 autoFigure = true
 disqusShortname = "glumes"
 
