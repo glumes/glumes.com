@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+image: "/img/banner.jpg"
 ---
 
 前两天在群里面看到大佬转发一篇文章：**Getting started with Metal-cpp** 。
