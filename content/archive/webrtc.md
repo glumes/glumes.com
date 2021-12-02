@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: code_archive
+layout: archive/webrtc
 ---

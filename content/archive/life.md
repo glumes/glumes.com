@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: ffmpeg_archive
+layout: archive/life
 ---

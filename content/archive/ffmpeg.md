@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: opengl_archive
+layout: archive/ffmpeg
 ---

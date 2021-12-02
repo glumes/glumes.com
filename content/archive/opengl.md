@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: vulkan_archive
+layout: archive/opengl
 ---
