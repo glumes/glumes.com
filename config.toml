@@ -165,5 +165,5 @@ theme = "github-light"
 [[menu.main]]
     identifier = "post"
     name = "所有文章"
-    url = "android_archive/"
+    url = "archive/"
     weight = 6
