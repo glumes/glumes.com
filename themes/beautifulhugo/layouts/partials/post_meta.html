@@ -1,4 +1,4 @@
-<span class="post-meta">
+<!-- <span class="post-meta">
   {{ if not (.Params.landing) }}
     {{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
   {{ end }}
@@ -9,5 +9,12 @@
     {{- $linksOutput := delimit $cleanLinks (i18n "translationsSeparator") -}}
     &nbsp;&bull;&nbsp; {{ i18n "translationsLabel" }}{{ $linksOutput }}
   {{- end }}
+
+  {{ .Date.Format "Jan 2, 2006" }}
+</span> -->
+
+
+<span class="post-meta">
+  发表于 &nbsp;{{ .Date.Format "Jan 2, 2006" }}
 </span>
 
