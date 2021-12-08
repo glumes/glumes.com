@@ -14,6 +14,10 @@ cover = "https://image.glumes.com/blog_image/banner-av.png"
 url = "https://glumes.com"
 title = "移动开发专精"
 cover = "https://image.glumes.com/blog_image/banner-android.png"
+#url = "https://mp.weixin.qq.com/s/i8-H7K-nlsq-lSIiuktL-g"
+#title = "七牛云战略大会"
+#cover = "https://image.glumes.com/blog_imageqiniuyun.jpeg"
+
 
 [[ads]]
 url = "https://mp.weixin.qq.com/s/OyGyE5NkXOcgio0w6kTYEA"
