@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>Shader 优化 | OpenGL 绘制网格效果</title>
+  <meta property="og:title" content="Shader 优化 | OpenGL 绘制网格效果" />
+  <meta name="twitter:title" content="Shader 优化 | OpenGL 绘制网格效果" />
+
+  <meta name="description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw
+
+前几天发布了这样一篇文章：
+
+KodeLife | Shader 实时编辑预览的强大工具使用实践
+
+除了介绍 KodeLife 的使用之外，还附带了一个 Shader 绘制网格效果的代码。
+把这篇文章发到技术群里，随机就有大佬指出不足之处，提示说代码还可以进一步优化，并且提供了源码学习。
+
+可见加入一个高质量的技术群是多么重要，哪怕平时不说话，围观大佬们聊天都能学到很多。
+
+现在加入还来得及，尚有余位，详情点击如下链接：
+
+移动端技术交流喊你入群啦~~~
+">
+  <meta property="og:description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw
+
+前几天发布了这样一篇文章：
+
+KodeLife | Shader 实时编辑预览的强大工具使用实践
+
+除了介绍 KodeLife 的使用之外，还附带了一个 Shader 绘制网格效果的代码。
+把这篇文章发到技术群里，随机就有大佬指出不足之处，提示说代码还可以进一步优化，并且提供了源码学习。
+
+可见加入一个高质量的技术群是多么重要，哪怕平时不说话，围观大佬们聊天都能学到很多。
+
+现在加入还来得及，尚有余位，详情点击如下链接：
+
+移动端技术交流喊你入群啦~~~
+">
+  <meta name="twitter:description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw
+
+前几天发布了这样一篇文章：
+
+KodeLife | Shader 实时编辑预览的强大工具使用实践
+
+除了介绍 KodeLife 的使用之外，还附带了一个 Shader 绘制网格效果的代码。
+把这篇文章发到技术群里，随机就有大佬指出不足之处，提示说代码还可以进一步 …">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/opengl/opengl-draw-grid-optimize/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/opengl/opengl-draw-grid-optimize/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    Shader 优化 | OpenGL 绘制网格效果
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;May 22, 2020
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>Shader 优化 | OpenGL 绘制网格效果</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;May 22, 2020
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/opengl/">OpenGL</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw">https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw</a></p>
+</blockquote>
+<p>前几天发布了这样一篇文章：</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/6ZMP6Tc_MqggjAXS_GjV2Q">KodeLife | Shader 实时编辑预览的强大工具使用实践</a></p>
+</blockquote>
+<p>除了介绍 KodeLife 的使用之外，还附带了一个 Shader 绘制网格效果的代码。</p>
+<p>把这篇文章发到技术群里，随机就有大佬指出不足之处，提示说代码还可以进一步优化，并且提供了源码学习。</p>
+<blockquote>
+<p>可见加入一个高质量的技术群是多么重要，哪怕平时不说话，围观大佬们聊天都能学到很多。</p>
+</blockquote>
+<p>现在加入还来得及，尚有余位，详情点击如下链接：</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/M4IiA-dTg1R68TeFaFvNPg">移动端技术交流喊你入群啦~~~</a></p>
+</blockquote>
+<hr>
+<h2 id="shader-讲解">Shader 讲解</h2>
+<p>在我的 Shader 代码中是这样绘制网格的：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#268bd2">vec2</span> <span style="color:#268bd2">fragcoord</span> = <span style="color:#268bd2">vec2</span>(<span style="color:#268bd2">gl_FragCoord</span>.<span style="color:#268bd2">xy</span> / <span style="color:#268bd2">u_resolution</span>);
+    <span style="color:#268bd2">vec3</span> <span style="color:#268bd2">bgColor</span> = <span style="color:#268bd2">vec3</span>(<span style="color:#2aa198;font-weight:bold">1.0</span>,<span style="color:#2aa198;font-weight:bold">1.0</span>,<span style="color:#2aa198;font-weight:bold">1.0</span>);
+    <span style="color:#268bd2">vec3</span> <span style="color:#268bd2">pixelColor</span> = <span style="color:#268bd2">bgColor</span>;
+    <span style="color:#268bd2">vec3</span> <span style="color:#268bd2">gridColor</span> = <span style="color:#268bd2">vec3</span>(<span style="color:#2aa198;font-weight:bold">0.5</span>,<span style="color:#2aa198;font-weight:bold">0.5</span>,<span style="color:#2aa198;font-weight:bold">0.5</span>);
+
+    <span style="color:#859900">const</span> <span style="color:#859900;font-weight:bold">float</span> <span style="color:#268bd2">width</span> = <span style="color:#2aa198;font-weight:bold">0.1</span>;
+    <span style="color:#859900">const</span> <span style="color:#859900;font-weight:bold">float</span> <span style="color:#268bd2">minWidth</span> = <span style="color:#2aa198;font-weight:bold">0.003</span>;
+    <span style="color:#859900">for</span>(<span style="color:#859900;font-weight:bold">float</span> <span style="color:#268bd2">i</span> = <span style="color:#2aa198;font-weight:bold">0.0</span>; <span style="color:#268bd2">i</span> &lt; <span style="color:#2aa198;font-weight:bold">1.0</span>; <span style="color:#268bd2">i</span>+=<span style="color:#268bd2">width</span>){
+    <span style="color:#859900">if</span> (<span style="color:#268bd2">mod</span>(<span style="color:#268bd2">fragcoord</span>.<span style="color:#268bd2">x</span>,<span style="color:#268bd2">width</span>) &lt; <span style="color:#268bd2">minWidth</span> || <span style="color:#268bd2">mod</span>(<span style="color:#268bd2">fragcoord</span>.<span style="color:#268bd2">y</span>,<span style="color:#268bd2">width</span>) &lt; <span style="color:#268bd2">minWidth</span>){
+            <span style="color:#268bd2">pixelColor</span> = <span style="color:#268bd2">gridColor</span>;
+        }
+    }
+    <span style="color:#268bd2">gl_FragColor</span> = <span style="color:#268bd2">vec4</span>(<span style="color:#268bd2">pixelColor</span>,<span style="color:#2aa198;font-weight:bold">1.0</span>);
+</code></pre></div><p>首先，讲解几个概念：</p>
+<p><code>gl_FragCoord</code> 代表当前像素相对于屏幕的坐标，屏幕左下角为原点。</p>
+<p><code>u_resolution</code> 是当前图像的分辨率。</p>
+<p>用 <code>gl_FragCoord</code> 除以 <code>u_resolution</code> 得到的结果 <code>fragcoord</code> 就是归一化的屏幕坐标。</p>
+<p>由于已经归一化了那么 <code>fragcoord</code> 的值就在 <code>[0,1]</code> 的闭区间内。</p>
+<p>同时用 <code>gridColor</code> 作为网格的颜色，<code>bgColor</code> 作为背景色，也是默认的颜色，<code>pixelColor</code> 作为最后输出的颜色。</p>
+<p>那么，代码的重点就在于 <code>for</code> 循环里面了。</p>
+<p>由于 <code>fragcoord</code> 归一化有了确定的值域范围，所以可以在 <code>for</code> 循环中将它十等分。</p>
+<p>另外，因为片段着色器每个像素都会执行一遍，每次 <code>fragcoord</code> 值都是变化的，但不管怎么变化，它的范围都会落在 <code>for</code> 循环的十等份里面。</p>
+<p>比如其中某一份的范围是 <code>[0.2,0.3)</code> 的左闭右开区间，当前像素就落在这个范围内。</p>
+<p>那么 <code>mod</code> 取模函数就会判断当前值距离左区间阈值是否在 <code>minWidth</code> 范围内，其中 <code>minWidth</code> 相当于是指定网格线的宽度。</p>
+<p>如果在范围内，那么显示的颜色就是网格色，否则就是默认的背景色。</p>
+<p>以上的讲解对于坐标的 <code>x</code> 和 <code>y</code> 值是一样的道理。原理通过判断该像素点的坐标是否位于临界范围内来选择性着色。</p>
+<p>显示这种绘制方式是有它的弊端，因为每一个像素执行片段着色器的时候，都要进行一次 <code>for</code> 循环判断它处于哪个区域内。</p>
+<p>这样就有了太多不必要的计算流程，尤其是 <code>for</code> 循环的每次遍历。</p>
+<hr>
+<p>接下来就是微信群中大佬给出的 Shader 代码：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">vec2</span> <span style="color:#268bd2">st</span> = <span style="color:#268bd2">vec2</span>(<span style="color:#268bd2">gl_FragCoord</span>.<span style="color:#268bd2">xy</span> / <span style="color:#268bd2">u_resolution</span>);
+<span style="color:#268bd2">st</span>.<span style="color:#268bd2">x</span> *= <span style="color:#268bd2">u_resolution</span>.<span style="color:#268bd2">x</span> / <span style="color:#268bd2">u_resolution</span>.<span style="color:#268bd2">y</span>;
+
+<span style="color:#268bd2">vec3</span> <span style="color:#268bd2">color</span> = <span style="color:#268bd2">vec3</span>(<span style="color:#2aa198;font-weight:bold">.0</span>);
+
+<span style="color:#268bd2">st</span> *= <span style="color:#2aa198;font-weight:bold">10.</span>;
+
+<span style="color:#268bd2">vec2</span> <span style="color:#268bd2">i_st</span> = <span style="color:#268bd2">floor</span>(<span style="color:#268bd2">st</span>);
+<span style="color:#268bd2">vec2</span> <span style="color:#268bd2">f_st</span> = <span style="color:#268bd2">fract</span>(<span style="color:#268bd2">st</span>);
+
+<span style="color:#268bd2">color</span> += <span style="color:#268bd2">step</span>(<span style="color:#2aa198;font-weight:bold">.98</span>,<span style="color:#268bd2">f_st</span>.<span style="color:#268bd2">x</span>) + <span style="color:#268bd2">step</span>(<span style="color:#2aa198;font-weight:bold">.98</span>,<span style="color:#268bd2">f_st</span>.<span style="color:#268bd2">y</span>);
+
+<span style="color:#268bd2">gl_FragColor</span> = <span style="color:#268bd2">vec4</span>(<span style="color:#268bd2">color</span>,<span style="color:#2aa198;font-weight:bold">1.0</span>);
+</code></pre></div><p>可以一眼看出这里面没有 <code>for</code> 循环的操作了。</p>
+<p>还是先讲解几个级别操作：</p>
+<p><code>floor</code> 函数就是向下取整的操作</p>
+<p><code>fract</code> 函数是 <code>x - floor(x)</code> 的操作，也就是取小数部分的意思。</p>
+<p>通过对 <code>st</code> 进行 <code>floor</code> 和 <code>fract</code> 操作可以分出它的整数和小数部分。</p>
+<p><code>step</code> 函数类似于 <code>if</code> 判断，当第二个参数大于等于第一个参数，则返回 1 ，否则返回 0 。</p>
+<p>整个 Shader 代码第一行还是相同的，都是归一化操作。</p>
+<p>然后在第二行</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">st</span>.<span style="color:#268bd2">x</span> *= <span style="color:#268bd2">u_resolution</span>.<span style="color:#268bd2">x</span> / <span style="color:#268bd2">u_resolution</span>.<span style="color:#268bd2">y</span>
+</code></pre></div><p>实际上是做了一个比例切换的操作。将 <code>st</code> 的 <code>x</code> ，<code>y</code> 值按照图像分辨率的宽高比做了调整，其中以 <code>y</code> 为基准 1 。</p>
+<p>这样一来，<code>st</code> 的 <code>y</code> 值还是在 <code>[0,1]</code> 范围内，而 <code>x</code> 值可能大于也可能小于这个范围了，这都取决于图像分辨率了。</p>
+<p>接下来将 <code>st</code> 乘了 10 ，这下 st 的值域范围就在 <code>[0,10]</code> 了 ，这样的操作是为了接下来的 <code>floor</code> 函数，因为它是取整，如果都在 <code>[0,1]</code> 范围内，取的整数永远都是 0 了。</p>
+<p>前面转换操作是为了接下来的重点函数 <code>step</code> 。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">color</span> += <span style="color:#268bd2">step</span>(<span style="color:#2aa198;font-weight:bold">.98</span>,<span style="color:#268bd2">f_st</span>.<span style="color:#268bd2">x</span>) + <span style="color:#268bd2">step</span>(<span style="color:#2aa198;font-weight:bold">.98</span>,<span style="color:#268bd2">f_st</span>.<span style="color:#268bd2">y</span>);
+</code></pre></div><p>前面的 <code>floor</code> 其实也是将 <code>x</code> 和 <code>y</code> 轴做了等分，比如 <code>y</code> 的值域是 <code>[0,1]</code> ，乘以 10 之后，就是十等分，<code>x</code> 的值域如果是 <code>[0,1.7]</code> ，乘以 10 之后，就是十七等分。</p>
+<p>而 <code>fract</code> 操作的结果范围必然是 <code>[0,1)</code> 的左闭右开区间。</p>
+<p><code>step</code> 函数的意图就是如果该像素点的坐标接近于等分线，那么 color 的颜色值返回的就是 1 ，显示白色，否则返回 0 ，显示黑色。</p>
+<p>比如，st 的 <code>x</code> 值是 7.99 了，接近于 8 ，那么就要显示白色网格线了，对于 <code>y</code> 值同理。</p>
+<p>这样一来就可以对每个像素点进行判断，根据它的坐标决定要显示什么颜色。</p>
+<h2 id="总结对比">总结对比</h2>
+<p>在第二种绘制中，由于做了比例转换操作，所以绘制出来的网格大小都是一致的，且都是正方形。</p>
+<p>而第一种没有比例切换操作，当宽高不同的情况下，同样进行十等分的话，画出来的网格是个长方形了。</p>
+<p>但是，两种绘制的思路都是相同的，姑且称它为 <code>接近法</code> 吧，当绘制的像素接近等分线时，就显示不一样的颜色。</p>
+<p>于是，等分线的操作思路就各有不同了。前者是利用 <code>for</code> 循环来制造划分，后者则是利用当前像素的 <code>x</code>、<code>y</code> 值的特点来绘制的。</p>
+<p>当然更推崇后者的绘制方式了，也是学到了新技巧~~~</p>
+<p>能力不足，经验有限，文中有何不对的地方欢迎批评指正，也可以加我微信 ezglumes 交流~~</p>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/opengl/opengl-draw-grid-optimize/">Shader 优化 | OpenGL 绘制网格效果</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/opengl/shader-tool-kodelife-introduce/">KodeLife | Shader 实时编辑预览的强大工具使用实践</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-transition/">OpenGL 实现视频编辑中的转场效果</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-glsl-3-mark/">OpenGL ES 3.0 着色器语言 GLSL 学习 Mark </a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-glsl-2-mark/">OpenGL ES 2.0 着色器语言 GLSL 学习 Mark </a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-framebuffer-object-usage/">OpenGL 之 帧缓冲  使用实践</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-egl-usage/">OpenGL 之 EGL 使用实践</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-gpuimage-analysis/">OpenGL 之 GPUImage 源码分析</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-axially-aligned-bounding-box/">《OpenGL ES 3.x 游戏开发》碰撞检测之 AABB 包围盒</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-tutorial-light-mix/">《OpenGL ES 3.x 游戏开发》光照系列之效果混合</a></li>
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-tutorial-specular-light/">《OpenGL ES 3.x 游戏开发》光照系列之镜面光</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/opengl/shader-tool-kodelife-introduce/" data-toggle="tooltip" data-placement="top" title="KodeLife | Shader 实时编辑预览的强大工具使用实践">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/life/domain-name-register/" data-toggle="tooltip" data-placement="top" title="【喜大普奔】域名终于备案通过啦">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

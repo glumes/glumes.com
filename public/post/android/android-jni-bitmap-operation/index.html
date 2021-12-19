@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>Android JNI 之 Bitmap 操作</title>
+  <meta property="og:title" content="Android JNI 之 Bitmap 操作" />
+  <meta name="twitter:title" content="Android JNI 之 Bitmap 操作" />
+
+  <meta name="description" content="在 Android 中通过 JNI 去操作 Bitmap。">
+  <meta property="og:description" content="在 Android 中通过 JNI 去操作 Bitmap。">
+  <meta name="twitter:description" content="在 Android 中通过 JNI 去操作 Bitmap。">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/android/android-jni-bitmap-operation/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/android/android-jni-bitmap-operation/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://glumes.com/img/banner.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    Android JNI 之 Bitmap 操作
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Jul 25, 2018
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>Android JNI 之 Bitmap 操作</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Jul 25, 2018
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/android/">Android</a> &nbsp;
+              
+                  <a href="https://glumes.com/tags/jni/">JNI</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+<aside class="toc">
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#检索-bitmap-对象信息">检索 Bitmap 对象信息</a></li>
+        <li><a href="#访问原生像素缓存">访问原生像素缓存</a></li>
+        <li><a href="#释放原生像素缓存">释放原生像素缓存</a></li>
+      </ul>
+    </li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#通过-jni-将-bitmap-旋转">通过 JNI 将 Bitmap 旋转</a></li>
+        <li><a href="#通过-jni-将-bitmap-上下翻转和左右镜像">通过 JNI 将 Bitmap 上下翻转和左右镜像</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <p>在 Android 中通过 JNI 去操作 Bitmap。</p>
+<p>在 Android 通过 JNI 去调用 Bitmap，通过 CMake 去编 so 动态链接库的话，需要添加 jnigraphics 图像库。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#cb4b16">target_link_libraries</span>( <span style="color:#93a1a1;font-style:italic"># Specifies the target library.
+</span><span style="color:#93a1a1;font-style:italic"></span>                       <span style="color:#2aa198">native-operation</span>
+                       <span style="color:#2aa198">jnigraphics</span>
+                       ${<span style="color:#268bd2">log-lib</span>} )
+</code></pre></div><p>在 Android 中关于 JNI Bitmap 的操作，都定义在 <code>bitmap.h</code> 的头文件里面了，主要就三个函数，明白它们的含义之后就可以去实践体会了。</p>
+<h3 id="检索-bitmap-对象信息">检索 Bitmap 对象信息</h3>
+<p>AndroidBitmap_getInfo 函数允许原生代码检索 Bitmap 对象信息，如它的大小、像素格式等，函数签名如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/**
+</span><span style="color:#93a1a1;font-style:italic"> * Given a java bitmap object, fill out the AndroidBitmapInfo struct for it.
+</span><span style="color:#93a1a1;font-style:italic"> * If the call fails, the info parameter will be ignored.
+</span><span style="color:#93a1a1;font-style:italic"> */</span>
+<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">AndroidBitmap_getInfo</span>(<span style="color:#268bd2">JNIEnv</span>* <span style="color:#268bd2">env</span>, <span style="color:#268bd2">jobject</span> <span style="color:#268bd2">jbitmap</span>,
+                          <span style="color:#268bd2">AndroidBitmapInfo</span>* <span style="color:#268bd2">info</span>);
+</code></pre></div><p>其中，第一个参数就是 JNI 接口指针，第二个参数就是 Bitmap 对象的引用，第三个参数是指向 AndroidBitmapInfo 结构体的指针。</p>
+<p>AndroidBitmapInfo 结构体如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/** Bitmap info, see AndroidBitmap_getInfo(). */</span>
+<span style="color:#859900">typedef</span> <span style="color:#859900">struct</span> {
+    <span style="color:#93a1a1;font-style:italic">/** The bitmap width in pixels. */</span>
+    <span style="color:#859900;font-weight:bold">uint32_t</span>    <span style="color:#268bd2">width</span>;
+    <span style="color:#93a1a1;font-style:italic">/** The bitmap height in pixels. */</span>
+    <span style="color:#859900;font-weight:bold">uint32_t</span>    <span style="color:#268bd2">height</span>;
+    <span style="color:#93a1a1;font-style:italic">/** The number of byte per row. */</span>
+    <span style="color:#859900;font-weight:bold">uint32_t</span>    <span style="color:#268bd2">stride</span>;
+    <span style="color:#93a1a1;font-style:italic">/** The bitmap pixel format. See {@link AndroidBitmapFormat} */</span>
+    <span style="color:#859900;font-weight:bold">int32_t</span>     <span style="color:#268bd2">format</span>;
+    <span style="color:#93a1a1;font-style:italic">/** Unused. */</span>
+    <span style="color:#859900;font-weight:bold">uint32_t</span>    <span style="color:#268bd2">flags</span>;      <span style="color:#93a1a1;font-style:italic">// 0 for now
+</span><span style="color:#93a1a1;font-style:italic"></span>} <span style="color:#268bd2">AndroidBitmapInfo</span>;
+</code></pre></div><p>其中，width 就是 Bitmap 的宽，height 就是高，format 就是图像的格式，而 stride 就是每一行的字节数。</p>
+<p>图像的格式有如下支持：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/** Bitmap pixel format. */</span>
+<span style="color:#859900">enum</span> <span style="color:#cb4b16">AndroidBitmapFormat</span> {
+    <span style="color:#93a1a1;font-style:italic">/** No format. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_FORMAT_NONE</span>      = <span style="color:#2aa198;font-weight:bold">0</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Red: 8 bits, Green: 8 bits, Blue: 8 bits, Alpha: 8 bits. **/</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_FORMAT_RGBA_8888</span> = <span style="color:#2aa198;font-weight:bold">1</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Red: 5 bits, Green: 6 bits, Blue: 5 bits. **/</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_FORMAT_RGB_565</span>   = <span style="color:#2aa198;font-weight:bold">4</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Deprecated in API level 13. Because of the poor quality of this configuration, it is advised to use ARGB_8888 instead. **/</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_FORMAT_RGBA_4444</span> = <span style="color:#2aa198;font-weight:bold">7</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Alpha: 8 bits. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_FORMAT_A_8</span>       = <span style="color:#2aa198;font-weight:bold">8</span>,
+};
+</code></pre></div><p>如果 AndroidBitmap_getInfo 执行成功的话，会返回 0 ，否则返回一个负数，代表执行的错误码列表如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/** AndroidBitmap functions result code. */</span>
+<span style="color:#859900">enum</span> {
+    <span style="color:#93a1a1;font-style:italic">/** Operation was successful. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_RESULT_SUCCESS</span>           = <span style="color:#2aa198;font-weight:bold">0</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Bad parameter. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_RESULT_BAD_PARAMETER</span>     = -<span style="color:#2aa198;font-weight:bold">1</span>,
+    <span style="color:#93a1a1;font-style:italic">/** JNI exception occured. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_RESULT_JNI_EXCEPTION</span>     = -<span style="color:#2aa198;font-weight:bold">2</span>,
+    <span style="color:#93a1a1;font-style:italic">/** Allocation failed. */</span>
+    <span style="color:#268bd2">ANDROID_BITMAP_RESULT_ALLOCATION_FAILED</span> = -<span style="color:#2aa198;font-weight:bold">3</span>,
+};
+</code></pre></div><h3 id="访问原生像素缓存">访问原生像素缓存</h3>
+<p>AndroidBitmap_lockPixels 函数锁定了像素缓存以确保像素的内存不会被移动。</p>
+<p>如果 Native 层想要访问像素数据并操作它，该方法返回了像素缓存的一个原生指针，</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/**
+</span><span style="color:#93a1a1;font-style:italic"> * Given a java bitmap object, attempt to lock the pixel address.
+</span><span style="color:#93a1a1;font-style:italic"> * Locking will ensure that the memory for the pixels will not move
+</span><span style="color:#93a1a1;font-style:italic"> * until the unlockPixels call, and ensure that, if the pixels had been
+</span><span style="color:#93a1a1;font-style:italic"> * previously purged, they will have been restored.
+</span><span style="color:#93a1a1;font-style:italic"> *
+</span><span style="color:#93a1a1;font-style:italic"> * If this call succeeds, it must be balanced by a call to
+</span><span style="color:#93a1a1;font-style:italic"> * AndroidBitmap_unlockPixels, after which time the address of the pixels should
+</span><span style="color:#93a1a1;font-style:italic"> * no longer be used.
+</span><span style="color:#93a1a1;font-style:italic"> *
+</span><span style="color:#93a1a1;font-style:italic"> * If this succeeds, *addrPtr will be set to the pixel address. If the call
+</span><span style="color:#93a1a1;font-style:italic"> * fails, addrPtr will be ignored.
+</span><span style="color:#93a1a1;font-style:italic"> */</span>
+<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">AndroidBitmap_lockPixels</span>(<span style="color:#268bd2">JNIEnv</span>* <span style="color:#268bd2">env</span>, <span style="color:#268bd2">jobject</span> <span style="color:#268bd2">jbitmap</span>, <span style="color:#859900;font-weight:bold">void</span>** <span style="color:#268bd2">addrPtr</span>);
+</code></pre></div><p>其中，第一个参数就是 JNI 接口指针，第二个参数就是 Bitmap 对象的引用，第三个参数是指向像素缓存地址的指针。</p>
+<p>AndroidBitmap_lockPixels 执行成功的话返回 0 ，否则返回一个负数，错误码列表就是上面提到的。</p>
+<h3 id="释放原生像素缓存">释放原生像素缓存</h3>
+<p>对 Bitmap 调用完 AndroidBitmap_lockPixels 之后都应该对应调用一次 AndroidBitmap_unlockPixels  用来释放原生像素缓存。</p>
+<p>当完成对原生像素缓存的读写之后，就应该释放它，一旦释放后，Bitmap Java 对象又可以在 Java 层使用了，函数签名如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#93a1a1;font-style:italic">/**
+</span><span style="color:#93a1a1;font-style:italic"> * Call this to balance a successful call to AndroidBitmap_lockPixels.
+</span><span style="color:#93a1a1;font-style:italic"> */</span>
+<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">AndroidBitmap_unlockPixels</span>(<span style="color:#268bd2">JNIEnv</span>* <span style="color:#268bd2">env</span>, <span style="color:#268bd2">jobject</span> <span style="color:#268bd2">jbitmap</span>);
+</code></pre></div><p>其中，第一个参数就是 JNI 接口指针，第二个参数就是 Bitmap 对象的引用，如果执行成功返回 0，否则返回 1。</p>
+<blockquote>
+<p>对 Bitmap 的操作，最重要的就是 AndroidBitmap_lockPixels 函数拿到所有像素的缓存地址，然后对每个像素值进行操作，从而更改 Bitmap 。</p>
+</blockquote>
+<h2 id="实践">实践</h2>
+<p>通过对 Bitmap 进行旋转，上下翻转，左右镜像来体验 JNI 的开发。</p>
+<p>效果如下：</p>
+<p><img src="https://image.glumes.com/images/2019/04/27/bc32fd77gy1ftl40fytkxj20u01hcdmh.jpg" alt=""></p>
+<p>具体代码可以参考我的 Github 项目，欢迎 Star。</p>
+<blockquote>
+<p><a href="https://github.com/glumes/AndroidDevWithCpp">https://github.com/glumes/AndroidDevWithCpp</a></p>
+</blockquote>
+<h3 id="通过-jni-将-bitmap-旋转">通过 JNI 将 Bitmap 旋转</h3>
+<p>首先定义一个这样的 native 函数：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#93a1a1;font-style:italic">// 顺时针旋转 90° 的操作
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900">public</span> <span style="color:#859900">native</span> <span style="color:#268bd2">Bitmap</span> <span style="color:#268bd2">rotateBitmap</span>(<span style="color:#268bd2">Bitmap</span> <span style="color:#268bd2">bitmap</span>);
+</code></pre></div><p>传入一个 Bitmap 对象，然后返回一个 Bitmap 对象。</p>
+<p>然后在 C++ 代码中，首先检索 Bitmap 的信息，看看是否成功。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#268bd2">AndroidBitmapInfo</span> <span style="color:#268bd2">bitmapInfo</span>;
+    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">ret</span>;
+    <span style="color:#859900">if</span> ((<span style="color:#268bd2">ret</span> = <span style="color:#268bd2">AndroidBitmap_getInfo</span>(<span style="color:#268bd2">env</span>, <span style="color:#268bd2">bitmap</span>, &amp;<span style="color:#268bd2">bitmapInfo</span>)) &lt; <span style="color:#2aa198;font-weight:bold">0</span>) {
+        <span style="color:#268bd2">LOGE</span>(<span style="color:#2aa198">&#34;AndroidBitmap_getInfo() failed ! error=%d&#34;</span>, <span style="color:#268bd2">ret</span>);
+        <span style="color:#859900">return</span> <span style="color:#cb4b16">NULL</span>;
+    }
+</code></pre></div><p>接下来就是获得 Bitmap 的像素缓存指针：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#93a1a1;font-style:italic">// 读取 bitmap 的像素内容到 native 内存
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900;font-weight:bold">void</span> *<span style="color:#268bd2">bitmapPixels</span>;
+    <span style="color:#859900">if</span> ((<span style="color:#268bd2">ret</span> = <span style="color:#268bd2">AndroidBitmap_lockPixels</span>(<span style="color:#268bd2">env</span>, <span style="color:#268bd2">bitmap</span>, &amp;<span style="color:#268bd2">bitmapPixels</span>)) &lt; <span style="color:#2aa198;font-weight:bold">0</span>) {
+        <span style="color:#268bd2">LOGE</span>(<span style="color:#2aa198">&#34;AndroidBitmap_lockPixels() failed ! error=%d&#34;</span>, <span style="color:#268bd2">ret</span>);
+        <span style="color:#859900">return</span> <span style="color:#cb4b16">NULL</span>;
+    }
+</code></pre></div><p>这个指针指向的就是 Bitmap 像素内容，它是一个以一维数组的形式保存所有的像素点的值，但是我们在定义 Bitmap 图像时，都会定义宽和高，这就相对于是一个二维的了，那么就存在 Bitmap 的像素内容如何转成指针指向的一维内容，是按照行排列还是按照列排列呢？</p>
+<p>在这里是按照行进行排列的，而且行的排列是从左往右，列的排列是从上往下，起始点就和屏幕坐标原点一样，位于左上角。</p>
+<p>通过 AndroidBitmap_lockPixels 方法，bitmapPixels 指针就指向了 Bitmap 的像素内容，它的长度就是 Bitmap 的宽和高的乘积。</p>
+<p>要将 Bitmap 进行旋转，可以通过直接更改 bitmapPixels 指针指向的像素点的值，也可以通过创建一个新的 Bitmap 对象，然后将像素值填充到 Bitmap 对象中，这里选择后者的实现方式。</p>
+<p>首先创建一个新的 Bitmap 对象，参考之前文章中提到的方式：<a href="https://glumes.com/post/android/android-jni-access-field-and-method/">Android 通过 JNI 访问 Java 字段和方法调用</a>。</p>
+<p>在 Java 代码中，通过  createBitmap 方法可以创建一个 Bitmap，如下所示：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#268bd2">Bitmap</span>.<span style="color:#268bd2">createBitmap</span>(<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">width</span>, <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">height</span>, <span style="color:#268bd2">@NonNull</span> <span style="color:#268bd2">Config</span> <span style="color:#268bd2">config</span>)`
+</code></pre></div><p>所以在 JNI 中就需要调用 Bitmap 的静态方法来创建一个 Bitmap 对象。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">jobject</span> <span style="color:#268bd2">generateBitmap</span>(<span style="color:#268bd2">JNIEnv</span> *<span style="color:#268bd2">env</span>, <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">width</span>, <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">height</span>) {
+
+    <span style="color:#268bd2">jclass</span> <span style="color:#268bd2">bitmapCls</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">FindClass</span>(<span style="color:#2aa198">&#34;android/graphics/Bitmap&#34;</span>);
+    <span style="color:#268bd2">jmethodID</span> <span style="color:#268bd2">createBitmapFunction</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">GetStaticMethodID</span>(<span style="color:#268bd2">bitmapCls</span>,
+                                                            <span style="color:#2aa198">&#34;createBitmap&#34;</span>,
+                                                            <span style="color:#2aa198">&#34;(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;&#34;</span>);
+    <span style="color:#268bd2">jstring</span> <span style="color:#268bd2">configName</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">NewStringUTF</span>(<span style="color:#2aa198">&#34;ARGB_8888&#34;</span>);
+    <span style="color:#268bd2">jclass</span> <span style="color:#268bd2">bitmapConfigClass</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">FindClass</span>(<span style="color:#2aa198">&#34;android/graphics/Bitmap$Config&#34;</span>);
+    <span style="color:#268bd2">jmethodID</span> <span style="color:#268bd2">valueOfBitmapConfigFunction</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">GetStaticMethodID</span>(
+            <span style="color:#268bd2">bitmapConfigClass</span>, <span style="color:#2aa198">&#34;valueOf&#34;</span>,
+            <span style="color:#2aa198">&#34;(Ljava/lang/String;)Landroid/graphics/Bitmap$Config;&#34;</span>);
+
+    <span style="color:#268bd2">jobject</span> <span style="color:#268bd2">bitmapConfig</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">CallStaticObjectMethod</span>(<span style="color:#268bd2">bitmapConfigClass</span>,
+                                                       <span style="color:#268bd2">valueOfBitmapConfigFunction</span>, <span style="color:#268bd2">configName</span>);
+
+    <span style="color:#268bd2">jobject</span> <span style="color:#268bd2">newBitmap</span> = <span style="color:#268bd2">env</span>-&gt;<span style="color:#268bd2">CallStaticObjectMethod</span>(<span style="color:#268bd2">bitmapCls</span>,
+                                                    <span style="color:#268bd2">createBitmapFunction</span>,
+                                                    <span style="color:#268bd2">width</span>,
+                                                    <span style="color:#268bd2">height</span>, <span style="color:#268bd2">bitmapConfig</span>);
+    <span style="color:#859900">return</span> <span style="color:#268bd2">newBitmap</span>;
+}
+</code></pre></div><p>首先通过 <code>FindClass</code> 方法找到 Config 类，得到一个 ARGB_8888 的配置，然后得到 Bitmap 类，调用它的静态方法 <code>createBitmap</code> 创建一个新的 Bitmap 对象，具体可以参考之前的文章。</p>
+<p>在这里要传入新 Bitmap 的宽高，这个宽高也是通过 <code>AndroidBitmap_getInfo</code> 方法得到原来的宽高之后，根据不同的操作计算后得到的。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">	<span style="color:#93a1a1;font-style:italic">// 旋转操作，新 Bitmap 的宽等于原来的高，新 Bitmap 的高等于原来的宽
+</span><span style="color:#93a1a1;font-style:italic"></span>   <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">newWidth</span> = <span style="color:#268bd2">bitmapInfo</span>.<span style="color:#268bd2">height</span>;
+    <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">newHeight</span> = <span style="color:#268bd2">bitmapInfo</span>.<span style="color:#268bd2">width</span>;
+</code></pre></div><p>有了新的 Bitmap 对象，又有了原有的 Bitmap 像素指针，接下来就是创建新的像素指针，并填充像素内容，然后把这个像素内容再填充到 Bitmap 上。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#93a1a1;font-style:italic">// 创建一个新的数组指针，把这个新的数组指针填充像素值
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#859900;font-weight:bold">uint32_t</span> *<span style="color:#268bd2">newBitmapPixels</span> = <span style="color:#859900">new</span> <span style="color:#859900;font-weight:bold">uint32_t</span>[<span style="color:#268bd2">newWidth</span> * <span style="color:#268bd2">newHeight</span>];
+    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">whereToGet</span> = <span style="color:#2aa198;font-weight:bold">0</span>;
+    <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">y</span> = <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">y</span> &lt; <span style="color:#268bd2">newHeight</span>; ++<span style="color:#268bd2">y</span>) {
+        <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">x</span> = <span style="color:#268bd2">newWidth</span> - <span style="color:#2aa198;font-weight:bold">1</span>; <span style="color:#268bd2">x</span> &gt;= <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">x</span>--) {
+            <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">pixel</span> = ((<span style="color:#859900;font-weight:bold">uint32_t</span> *) <span style="color:#268bd2">bitmapPixels</span>)[<span style="color:#268bd2">whereToGet</span>++];
+            <span style="color:#268bd2">newBitmapPixels</span>[<span style="color:#268bd2">newWidth</span> * <span style="color:#268bd2">y</span> + <span style="color:#268bd2">x</span>] = <span style="color:#268bd2">pixel</span>;
+        }
+    }
+</code></pre></div><p>在这两个 <code>for</code>循环里面就是从原来的像素指针中取出像素值，然后把它按照特定的排列顺序填充到新的像素指针中对应位置的值，这里也就是前面强调的像素指针是按照行进行排列的，起点是 Bitmap 的左上角。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#859900;font-weight:bold">void</span> *<span style="color:#268bd2">resultBitmapPixels</span>;
+    <span style="color:#859900">if</span> ((<span style="color:#268bd2">ret</span> = <span style="color:#268bd2">AndroidBitmap_lockPixels</span>(<span style="color:#268bd2">env</span>, <span style="color:#268bd2">newBitmap</span>, &amp;<span style="color:#268bd2">resultBitmapPixels</span>)) &lt; <span style="color:#2aa198;font-weight:bold">0</span>) {
+        <span style="color:#268bd2">LOGE</span>(<span style="color:#2aa198">&#34;AndroidBitmap_lockPixels() failed ! error=%d&#34;</span>, <span style="color:#268bd2">ret</span>);
+        <span style="color:#859900">return</span> <span style="color:#cb4b16">NULL</span>;
+    }
+    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">pixelsCount</span> = <span style="color:#268bd2">newWidth</span> * <span style="color:#268bd2">newHeight</span>;
+    <span style="color:#268bd2">memcpy</span>((<span style="color:#859900;font-weight:bold">uint32_t</span> *) <span style="color:#268bd2">resultBitmapPixels</span>, <span style="color:#268bd2">newBitmapPixels</span>, <span style="color:#859900">sizeof</span>(<span style="color:#859900;font-weight:bold">uint32_t</span>) * <span style="color:#268bd2">pixelsCount</span>);
+    <span style="color:#268bd2">AndroidBitmap_unlockPixels</span>(<span style="color:#268bd2">env</span>, <span style="color:#268bd2">newBitmap</span>);
+</code></pre></div><p>再次创建一个 resultBitmapPixels 指针，并调用 AndroidBitmap_lockPixels 方法获取新的 Bitmap 的像素指针缓存，然后调用 <code>memcpy</code> 方法，将待填充的像素指针填充到 resultBitmapPixels 上，这样就完成了像素的赋值，最后调用 <code>AndroidBitmap_unlockPixels</code> 方法释放像素指针缓存，完成整个赋值过程。</p>
+<p>就这样通过读取原有 Bitmap 的像素内容然后进行操作后再赋值给新的 Bitmap 对象就完成了 JNI 操作 Bitmap 。</p>
+<h3 id="通过-jni-将-bitmap-上下翻转和左右镜像">通过 JNI 将 Bitmap 上下翻转和左右镜像</h3>
+<p>将 Bitmap 进行上下翻转以及左右镜像和旋转操作类似了，只是针对像素指针的操作方式不同。</p>
+<p>上下翻转的操作：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">whereToGet</span> = <span style="color:#2aa198;font-weight:bold">0</span>;
+    <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">y</span> = <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">y</span> &lt; <span style="color:#268bd2">newHeight</span>; ++<span style="color:#268bd2">y</span>) {
+        <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">x</span> = <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">x</span> &lt; <span style="color:#268bd2">newWidth</span>; <span style="color:#268bd2">x</span>++) {
+            <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">pixel</span> = ((<span style="color:#859900;font-weight:bold">uint32_t</span> *) <span style="color:#268bd2">bitmapPixels</span>)[<span style="color:#268bd2">whereToGet</span>++];
+            <span style="color:#268bd2">newBitmapPixels</span>[<span style="color:#268bd2">newWidth</span> * (<span style="color:#268bd2">newHeight</span> - <span style="color:#2aa198;font-weight:bold">1</span> - <span style="color:#268bd2">y</span>) + <span style="color:#268bd2">x</span>] = <span style="color:#268bd2">pixel</span>;
+        }
+    }
+</code></pre></div><p>左右镜像的操作：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">whereToGet</span> = <span style="color:#2aa198;font-weight:bold">0</span>;
+    <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">y</span> = <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">y</span> &lt; <span style="color:#268bd2">newHeight</span>; ++<span style="color:#268bd2">y</span>) {
+        <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">x</span> = <span style="color:#268bd2">newWidth</span> - <span style="color:#2aa198;font-weight:bold">1</span>; <span style="color:#268bd2">x</span> &gt;= <span style="color:#2aa198;font-weight:bold">0</span>; <span style="color:#268bd2">x</span>--) {
+            <span style="color:#859900;font-weight:bold">uint32_t</span> <span style="color:#268bd2">pixel</span> = ((<span style="color:#859900;font-weight:bold">uint32_t</span> *) <span style="color:#268bd2">bitmapPixels</span>)[<span style="color:#268bd2">whereToGet</span>++];
+            <span style="color:#268bd2">newBitmapPixels</span>[<span style="color:#268bd2">newWidth</span> * <span style="color:#268bd2">y</span> + <span style="color:#268bd2">x</span>] = <span style="color:#268bd2">pixel</span>;
+        }
+    }
+</code></pre></div><p>其他的操作都相同了，具体还是看项目代码吧。</p>
+<p>参考</p>
+<ol>
+<li>《Android C++ 高级编程&ndash;使用 NDK》</li>
+</ol>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/android/android-jni-bitmap-operation/">Android JNI 之 Bitmap 操作</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/android/android-jni-thread-operation/">Android JNI 中的线程操作</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-exception-handle/">Android JNI 调用时的异常处理</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-reference-manage-rules/">Android JNI 中的引用管理</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-cache-fieldid-and-methodid/">Android  JNI 调用时缓存字段和方法 ID</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-invoke-constructor-method-and-super-method/">Android 通过 JNI 调用 Java 类的构造方法和父类的方法</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-access-field-and-method/">Android 通过 JNI 访问 Java 字段和方法调用</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-array-operation/">Android JNI 数组 操作</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-jni-basic-operation/">Android JNI 基本操作 </a></li>
+    
+    <li><a href="https://glumes.com/post/android/kotlin-syntactic-sugar-usage-and-analysis/">Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析</a></li>
+    
+    <li><a href="https://glumes.com/post/android/android-camrea-api-evolution/">Android Camera 模型及 API 接口演变</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/opengl/opengl-tutorial-light-mix/" data-toggle="tooltip" data-placement="top" title="《OpenGL ES 3.x 游戏开发》光照系列之效果混合">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/opengl/opengl-axially-aligned-bounding-box/" data-toggle="tooltip" data-placement="top" title="《OpenGL ES 3.x 游戏开发》碰撞检测之 AABB 包围盒">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

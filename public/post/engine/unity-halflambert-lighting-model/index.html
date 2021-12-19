@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>Unity Shader 光照基础之 Half Lambert 光照模型</title>
+  <meta property="og:title" content="Unity Shader 光照基础之 Half Lambert 光照模型" />
+  <meta name="twitter:title" content="Unity Shader 光照基础之 Half Lambert 光照模型" />
+
+  <meta name="description" content="Half Lambert 模型（也叫作半兰伯特模型）在 Lambert 模型的基础之上做了一些优化。
+在 Lambert 模型中，光照无法到达的区域，比如模型的背面，模型外观通常是全黑的，没有任何明暗变化，而 Half Lambert 模型就是改善这一状况。
+
+回顾 Lambert 模型的计算公式如下：
+$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot  max (0,n \cdot I)$">
+  <meta property="og:description" content="Half Lambert 模型（也叫作半兰伯特模型）在 Lambert 模型的基础之上做了一些优化。
+在 Lambert 模型中，光照无法到达的区域，比如模型的背面，模型外观通常是全黑的，没有任何明暗变化，而 Half Lambert 模型就是改善这一状况。
+
+回顾 Lambert 模型的计算公式如下：
+$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot  max (0,n \cdot I)$">
+  <meta name="twitter:description" content="Half Lambert 模型（也叫作半兰伯特模型）在 Lambert 模型的基础之上做了一些优化。
+在 Lambert 模型中，光照无法到达的区域，比如模型的背面，模型外观通常是全黑的，没有任何明暗变化，而 Half Lambert 模型就是改善这一状况。
+
+回顾 Lambert 模型的计算公式如下：
+$c_{diffuse} = (c_{light} \cdot m_{diffuse}) …">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/engine/unity-halflambert-lighting-model/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/engine/unity-halflambert-lighting-model/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    Unity Shader 光照基础之 Half Lambert 光照模型
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Sep 2, 2021
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>Unity Shader 光照基础之 Half Lambert 光照模型</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Sep 2, 2021
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/unity/">unity</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <p>Half Lambert 模型（也叫作半兰伯特模型）在 Lambert 模型的基础之上做了一些优化。</p>
+<p>在 Lambert 模型中，光照无法到达的区域，比如模型的背面，模型外观通常是全黑的，没有任何明暗变化，而 Half Lambert 模型就是改善这一状况。</p>
+<p><img src="https://image.glumes.com/blog_image/20210829145830.png" alt=""></p>
+<p>回顾 Lambert 模型的计算公式如下：</p>
+<p>$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot  max (0,n \cdot I)$</p>
+<p>当光源和法向量夹角的余弦值为负数的时候，所得到的结果始终都是 0 了，所以就会有图中看到的一片黑。</p>
+<p>Half Labmert 模型的计算公式如下：</p>
+<p>$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot ( a  (n \cdot I) + b)$</p>
+<p>同样会计算余弦值，但是会把余弦值先缩放 a 倍，再偏移 b 大小，不再用 max 函数避免为负值。</p>
+<p>绝大多数情况下，a 和 b 的值都是 0.5，所以也是为什么叫 half 了。</p>
+<p>$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot ( 0.5  (n \cdot I) + 0.5)$</p>
+<p>余弦值的取值范围是 [-1,1] ，经过缩放和偏移后就是 [0,1] 了，这样一来原本余弦值为负数导致直接取 0 的点，变成了取值结果在 [0,0.5] 了，从而就可以体现出明暗变化，不同的点积结果会映射到不同的值上。</p>
+<p>对于 unity shader 的计算，也不会有太大的改变，主要如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">worldNormal</span> = <span style="color:#268bd2">normalize</span>(<span style="color:#268bd2">mul</span>(<span style="color:#268bd2">v</span>.<span style="color:#268bd2">normal</span>, (<span style="color:#268bd2">float3x3</span>)<span style="color:#268bd2">unity_WorldToObject</span>));
+<span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">worldLight</span> = <span style="color:#268bd2">normalize</span>(<span style="color:#268bd2">_WorldSpaceLightPos0</span>.<span style="color:#268bd2">xyz</span>);                
+<span style="color:#268bd2">fixed</span> <span style="color:#268bd2">halfLambert</span> = <span style="color:#268bd2">dot</span>(<span style="color:#268bd2">worldNormal</span>,<span style="color:#268bd2">worldLight</span>) * <span style="color:#2aa198;font-weight:bold">0.5</span> + <span style="color:#2aa198;font-weight:bold">0.5</span>;
+</code></pre></div><p>原本用 <strong>saturate</strong> 函数对点积结果做取值范围约束，现在直接通过映射来保证范围了。</p>
+<p>具体的 shader 代码如下，以逐顶点着色为例：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">Shader</span> <span style="color:#2aa198">&#34;Custom/HalfLambertShader&#34;</span>
+{
+   <span style="color:#268bd2">Properties</span>
+    {
+        <span style="color:#268bd2">_Diffuse</span> (<span style="color:#2aa198">&#34;Diffuse&#34;</span>,<span style="color:#268bd2">Color</span>) = (<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>)
+    }
+    <span style="color:#268bd2">SubShader</span>
+    {
+ 
+        <span style="color:#268bd2">Pass</span>
+        {
+            <span style="color:#268bd2">Tags</span>{ <span style="color:#2aa198">&#34;LightMode&#34;</span> = <span style="color:#2aa198">&#34;ForwardBase&#34;</span>}
+            <span style="color:#268bd2">CGPROGRAM</span>
+            <span style="color:#93a1a1;font-style:italic">#pragma vertex vert
+</span><span style="color:#93a1a1;font-style:italic"></span>            <span style="color:#93a1a1;font-style:italic">#pragma fragment frag
+</span><span style="color:#93a1a1;font-style:italic"></span>            <span style="color:#93a1a1;font-style:italic">#include</span> <span style="color:#93a1a1;font-style:italic">&#34;UnityCG.cginc&#34;</span><span style="color:#93a1a1;font-style:italic">
+</span><span style="color:#93a1a1;font-style:italic"></span>            <span style="color:#93a1a1;font-style:italic">#include</span> <span style="color:#93a1a1;font-style:italic">&#34;Lighting.cginc&#34;</span><span style="color:#93a1a1;font-style:italic">
+</span><span style="color:#93a1a1;font-style:italic"></span>            <span style="color:#268bd2">fixed4</span> <span style="color:#268bd2">_Diffuse</span>;
+            <span style="color:#859900">struct</span> <span style="color:#cb4b16">appdata</span>
+            {
+                <span style="color:#268bd2">float4</span> <span style="color:#268bd2">vertex</span> : <span style="color:#268bd2">POSITION</span>;
+                <span style="color:#268bd2">float3</span> <span style="color:#268bd2">normal</span> : <span style="color:#268bd2">NORMAL</span>;
+            };
+            <span style="color:#859900">struct</span> <span style="color:#cb4b16">v2f</span>
+            {
+                <span style="color:#268bd2">float4</span> <span style="color:#268bd2">pos</span> : <span style="color:#268bd2">SV_POSITION</span>;
+                <span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">color</span> : <span style="color:#268bd2">COLOR</span>;
+            };
+            <span style="color:#268bd2">v2f</span> <span style="color:#268bd2">vert</span> (<span style="color:#268bd2">appdata</span> <span style="color:#268bd2">v</span>)
+            {
+                <span style="color:#268bd2">v2f</span> <span style="color:#268bd2">o</span>;
+                <span style="color:#268bd2">o</span>.<span style="color:#268bd2">pos</span> = <span style="color:#268bd2">UnityObjectToClipPos</span>(<span style="color:#268bd2">v</span>.<span style="color:#268bd2">vertex</span>);
+                
+                <span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">ambient</span> = <span style="color:#268bd2">UNITY_LIGHTMODEL_AMBIENT</span>.<span style="color:#268bd2">xyz</span>;
+                <span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">worldNormal</span> = <span style="color:#268bd2">normalize</span>(<span style="color:#268bd2">mul</span>(<span style="color:#268bd2">v</span>.<span style="color:#268bd2">normal</span>, (<span style="color:#268bd2">float3x3</span>)<span style="color:#268bd2">unity_WorldToObject</span>));
+                <span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">worldLight</span> = <span style="color:#268bd2">normalize</span>(<span style="color:#268bd2">_WorldSpaceLightPos0</span>.<span style="color:#268bd2">xyz</span>);
+                
+                <span style="color:#268bd2">fixed</span> <span style="color:#268bd2">halfLambert</span> = <span style="color:#268bd2">dot</span>(<span style="color:#268bd2">worldNormal</span>,<span style="color:#268bd2">worldLight</span>) * <span style="color:#2aa198;font-weight:bold">0.5</span> + <span style="color:#2aa198;font-weight:bold">0.5</span>;
+                <span style="color:#268bd2">fixed3</span> <span style="color:#268bd2">diffuse</span> = <span style="color:#268bd2">_LightColor0</span>.<span style="color:#268bd2">rgb</span> * <span style="color:#268bd2">_Diffuse</span>.<span style="color:#268bd2">rgb</span> * <span style="color:#268bd2">halfLambert</span>;
+                <span style="color:#268bd2">o</span>.<span style="color:#268bd2">color</span> = <span style="color:#268bd2">ambient</span> + <span style="color:#268bd2">diffuse</span>;
+                <span style="color:#859900">return</span> <span style="color:#268bd2">o</span>;
+            }
+            <span style="color:#268bd2">fixed4</span> <span style="color:#268bd2">frag</span> (<span style="color:#268bd2">v2f</span> <span style="color:#268bd2">i</span>) : <span style="color:#268bd2">SV_Target</span>
+            {
+                <span style="color:#859900">return</span> <span style="color:#268bd2">fixed4</span>(<span style="color:#268bd2">i</span>.<span style="color:#268bd2">color</span>,<span style="color:#2aa198;font-weight:bold">1.0</span>);
+            }
+            <span style="color:#268bd2">ENDCG</span>
+        }
+    }
+}
+</code></pre></div><p>渲染效果如下：</p>
+<p><img src="https://image.glumes.com/blog_image/20210829151329.png" alt=""></p>
+<p>可以看到 Half Lambert 模型在背面有了明显的亮暗变化。</p>
+<p><img src="https://image.glumes.com/blog_image/20210829151456.png" alt=""></p>
+<p>同时 Half Lambert 模型在正面也会更加明亮一点。</p>
+<h2 id="小结">小结</h2>
+<p>Half Lambert 模型在 Lambert 基础之上做了优化，而这正是应了图像渲染里面的那就话：<strong>如果看起来是对的，那么它就是对的</strong>。</p>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/engine/unity-halflambert-lighting-model/">Unity Shader 光照基础之 Half Lambert 光照模型</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/engine/unity-lambert-lighting-model/">Unity Shader 光照基础之Lambert光照模型</a></li>
+    
+    <li><a href="https://glumes.com/post/engine/unity-basic-lighting/">Unity Shader 光照基础内容</a></li>
+    
+    <li><a href="https://glumes.com/post/engine/unity-basic-texture/">Unity Shader 显示一张图片纹理</a></li>
+    
+    <li><a href="https://glumes.com/post/engine/unity-shader-basic-content/">UnityShader 的基本概念</a></li>
+    
+    <li><a href="https://glumes.com/post/engine/unity-basic-object-operation/">Unity 物体的基本操作</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/engine/unity-lambert-lighting-model/" data-toggle="tooltip" data-placement="top" title="Unity Shader 光照基础之Lambert光照模型">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/webrtc/webrtc-setup-camera-preview/" data-toggle="tooltip" data-placement="top" title="WebRTC 系列1--创建相机预览">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

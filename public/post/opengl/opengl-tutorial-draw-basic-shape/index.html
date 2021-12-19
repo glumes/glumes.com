@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>OpenGL 学习系列---基本形状的绘制</title>
+  <meta property="og:title" content="OpenGL 学习系列---基本形状的绘制" />
+  <meta name="twitter:title" content="OpenGL 学习系列---基本形状的绘制" />
+
+  <meta name="description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ
+
+在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。">
+  <meta property="og:description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ
+
+在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。">
+  <meta name="twitter:description" content="
+避免图片丢失，建议阅读微信原文：
+https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ
+
+在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/opengl/opengl-tutorial-draw-basic-shape/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/opengl/opengl-tutorial-draw-basic-shape/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    OpenGL 学习系列---基本形状的绘制
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Dec 22, 2017
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>OpenGL 学习系列---基本形状的绘制</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Dec 22, 2017
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/opengl/">OpenGL</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ">https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ</a></p>
+</blockquote>
+<p>在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。</p>
+<h2 id="绘制直线">绘制直线</h2>
+<p>两点确定一条直线，显然绘制一条直线是需要两个顶点数据的。</p>
+<p>定义如下顶点数据，绘制一条屏幕对角线的直线：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#859900;font-weight:bold">float</span>[] <span style="color:#268bd2">lineVertex</span> = {
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>,
+            <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>
+    };
+</code></pre></div><p>而我们的顶点着色器和片段着色器也会发生一些变化，最终还是绘制一条单一颜色的直线。</p>
+<p>顶点着色器代码：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#268bd2">attribute</span> <span style="color:#268bd2">vec4</span> <span style="color:#268bd2">a_Position</span>;
+<span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">main</span>(){
+    <span style="color:#268bd2">gl_Position</span> = <span style="color:#268bd2">a_Position</span>;
+}
+</code></pre></div><p>由于是绘制的直线，相比于绘制点，就没有了 <code>gl_PointSize</code>变量来确定大小了。</p>
+<p>片段着色器代码：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#268bd2">precision</span> <span style="color:#268bd2">mediump</span> <span style="color:#859900;font-weight:bold">float</span>;
+<span style="color:#268bd2">uniform</span> <span style="color:#268bd2">vec4</span> <span style="color:#268bd2">u_Color</span>;
+<span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">main</span>()
+{
+    <span style="color:#268bd2">gl_FragColor</span> = <span style="color:#268bd2">u_Color</span>;
+}
+</code></pre></div><p>依旧是纯色，目前还没有涉及到颜色的变化。</p>
+<p>而在我们给着色器变量绑定数据时，依旧是通过<code>glGetUniformLocation</code>和<code>glGetAttribLocation</code>方法给<code>uniform</code>和<code>attribute</code>类型的<code>u_Color</code>和<code>a_Position</code>变量赋值。</p>
+<p>最后还是通过<code>glDrawArrays</code>方法执行绘制。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#268bd2">glDrawArrays</span>(<span style="color:#268bd2">GL_LINES</span>, <span style="color:#268bd2">0</span>, <span style="color:#268bd2">2</span>);
+</code></pre></div><p><code>GL_LINES</code>代表绘制的类型是直线，而<code>0，2</code>则是绘制的顶点范围。</p>
+<h2 id="绘制三角形">绘制三角形</h2>
+<p>绘制三角形和绘制直线基本差不多，从两个点的直线变成了三个点的三角形。</p>
+<p>顶点数据也发生了相应的改动，假设如下的数据，注意要以逆时针定义数据。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#859900;font-weight:bold">float</span>[] <span style="color:#268bd2">triangleVertex</span> = {
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>,
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>,
+            <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>
+    };
+</code></pre></div><p>那么最后绘制时，绘制类型也会发生变化了，顶点个数范围也会变化。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#268bd2">glDrawArrays</span>(<span style="color:#268bd2">GL_TRIANGLES</span>, <span style="color:#268bd2">0</span>, <span style="color:#268bd2">3</span>);
+</code></pre></div><p>绘制三角形结果如图：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_11.png" alt=""></p>
+<h2 id="绘制矩形">绘制矩形</h2>
+<p>显然，OpenGL 是没有提供矩形这一基本图元的，但是我们可以用两个三角形来拼接成一个矩形。</p>
+<p>OpenGL 中提供了一个绘制类型叫做<code>三角形扇</code>，如下图所示：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_12.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_triangle_fan.png"></p>
+<p>在上图中，矩形的每一条边上的顶点都被两个三角形使用了，而且中心的顶点被所有四个三角形使用了。</p>
+<p>我们不必输入四个三角形的顶点数据来绘制四个三角形从而组成矩形，可以告诉 OpenGL 重用那些顶点数据，把这些顶点作为一个三角形扇绘制。</p>
+<p>一个三角形扇以一个中心顶点作为起始，使用相邻的两个顶点创建第一个三角形，接下来的每个顶点都会创建一个三角形，围绕起始的中心点按扇形展开，为了使扇形闭合，我们需要在最后重复第二个点。</p>
+<p>所以，以三角形扇的形式绘制一个矩形，我们可以重新定义矩形的顶点数据：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">   <span style="color:#859900;font-weight:bold">float</span>[] <span style="color:#268bd2">rectangleVertex</span> = {
+		   <span style="color:#93a1a1;font-style:italic">// 第一个点就是三角形扇的中心点
+</span><span style="color:#93a1a1;font-style:italic"></span>            <span style="color:#268bd2">0f</span>,    <span style="color:#268bd2">0f</span>, 
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>,   
+            <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>,   
+            <span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>,  <span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>,   
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>,  <span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>,   
+            -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">5f</span>, -<span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>
+          <span style="color:#93a1a1;font-style:italic">// 重复第二个点，使三角形扇闭合
+</span><span style="color:#93a1a1;font-style:italic"></span>    };
+</code></pre></div><p>而着色器代码依旧不变，绘制一个纯色的矩形，绘制代码如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#268bd2">glDrawArrays</span>(<span style="color:#268bd2">GL_TRIANGLE_FAN</span>, <span style="color:#268bd2">0</span>, <span style="color:#268bd2">6</span>);
+</code></pre></div><p>绘制类型为<code>GL_TRIANGLE_FAN</code>，顶点数量也变成了 6 个。</p>
+<p>那么问题来了，OpenGL 到底为我们提供哪些绘制方式呢？如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>绘制类型</th>
+<th>绘制方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL_POINTS</td>
+<td>将传入的顶点坐标作为单独的点绘制</td>
+</tr>
+<tr>
+<td>GL_LINES</td>
+<td>将传入的坐标作为单独线条绘制，ABCDEFG六个顶点，绘制AB、CD、EF三条线</td>
+</tr>
+<tr>
+<td>GL_LINE_STRIP</td>
+<td>将传入的顶点作为折线绘制，ABCD四个顶点，绘制AB、BC、CD三条线</td>
+</tr>
+<tr>
+<td>GL_LINE_LOOP</td>
+<td>将传入的顶点作为闭合折线绘制，ABCD四个顶点，绘制AB、BC、CD、DA四条线。</td>
+</tr>
+<tr>
+<td>GL_TRIANGLES</td>
+<td>将传入的顶点作为单独的三角形绘制，ABCDEF绘制ABC,DEF两个三角形</td>
+</tr>
+<tr>
+<td>GL_TRIANGLE_STRIP</td>
+<td>将传入的顶点作为三角条带绘制，ABCDEF绘制ABC,BCD,CDE,DEF四个三角形</td>
+</tr>
+<tr>
+<td>GL_TRIANGLE_FAN</td>
+<td>将传入的顶点作为扇面绘制，ABCDEF绘制ABC、ACD、ADE、AEF四个三角形</td>
+</tr>
+</tbody>
+</table>
+<h2 id="绘制圆形">绘制圆形</h2>
+<p>现在我们要绘制一个圆形，显然 OpenGL 是没有提供圆形的绘制类型的，这就要用到上面提供的绘制方式了。</p>
+<p>以绘制一个实心的圆形为例子：</p>
+<p>有了上面<code>三角形扇绘</code>制矩形的例子，我们按照同样的思想，把一个圆形分成多个三角形组成，如下图所示：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_13.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_circle_fan.jpeg"></p>
+<p>我们分的三角形越多，三角形个数趋向于无限大的时候，整个图案也就越趋向于圆。</p>
+<p>这样一来，顶点数据就不能再靠手写了。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#93a1a1;font-style:italic">// 圆形分割的数量，分成 360 份，可由 360 个线段组成空心圆，也可以由 360 个三角形组成实心圆
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900">public</span> <span style="color:#859900">static</span> <span style="color:#859900">final</span> <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">VERTEX_DATA_NUM</span> = <span style="color:#268bd2">360</span>;
+    <span style="color:#93a1a1;font-style:italic">// 360 个顶点的位置，因为有 x 和 y 坐标，所以 double 一下，再加上中心点 和 闭合的点
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900;font-weight:bold">float</span>[] <span style="color:#268bd2">circleVertex</span> = <span style="color:#859900">new</span> <span style="color:#859900;font-weight:bold">float</span>[<span style="color:#268bd2">VERTEX_DATA_NUM</span> * <span style="color:#268bd2">2</span> + <span style="color:#268bd2">4</span>];
+    <span style="color:#93a1a1;font-style:italic">// 分成 360 份，每一份的弧度
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900;font-weight:bold">float</span> <span style="color:#268bd2">radian</span> = (<span style="color:#859900;font-weight:bold">float</span>) (<span style="color:#268bd2">2</span> * <span style="color:#268bd2">Math</span>.<span style="color:#268bd2">PI</span> / <span style="color:#268bd2">VERTEX_DATA_NUM</span>);
+    <span style="color:#93a1a1;font-style:italic">// 绘制的半径
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900;font-weight:bold">float</span> <span style="color:#268bd2">radius</span> = <span style="color:#268bd2">0</span>.<span style="color:#268bd2">8f</span>;
+    
+    <span style="color:#93a1a1;font-style:italic">// 初始化圆形的顶点数据
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#859900">private</span> <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">initVertexData</span>() {
+        <span style="color:#93a1a1;font-style:italic">// 中心点
+</span><span style="color:#93a1a1;font-style:italic"></span>        <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">0</span>] = <span style="color:#268bd2">0f</span>;
+        <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">1</span>] = <span style="color:#268bd2">0f</span>;
+        <span style="color:#93a1a1;font-style:italic">// 圆的 360 份的顶点数据
+</span><span style="color:#93a1a1;font-style:italic"></span>        <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">i</span> = <span style="color:#268bd2">0</span>; <span style="color:#268bd2">i</span> &lt; <span style="color:#268bd2">VERTEX_DATA_NUM</span>; <span style="color:#268bd2">i</span>++) {
+            <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">2</span> * <span style="color:#268bd2">i</span> + <span style="color:#268bd2">2</span>] = (<span style="color:#859900;font-weight:bold">float</span>) (<span style="color:#268bd2">radius</span> * <span style="color:#268bd2">Math</span>.<span style="color:#268bd2">cos</span>(<span style="color:#268bd2">radian</span> * <span style="color:#268bd2">i</span>));
+            <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">2</span> * <span style="color:#268bd2">i</span> + <span style="color:#268bd2">1</span> + <span style="color:#268bd2">2</span>] = (<span style="color:#859900;font-weight:bold">float</span>) (<span style="color:#268bd2">radius</span> * <span style="color:#268bd2">Math</span>.<span style="color:#268bd2">sin</span>(<span style="color:#268bd2">radian</span> * <span style="color:#268bd2">i</span>));
+        }
+        <span style="color:#93a1a1;font-style:italic">// 闭合点
+</span><span style="color:#93a1a1;font-style:italic"></span>        <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">VERTEX_DATA_NUM</span> * <span style="color:#268bd2">2</span> + <span style="color:#268bd2">2</span>] = (<span style="color:#859900;font-weight:bold">float</span>) (<span style="color:#268bd2">radius</span> * <span style="color:#268bd2">Math</span>.<span style="color:#268bd2">cos</span>(<span style="color:#268bd2">radian</span>));
+        <span style="color:#268bd2">circleVertex</span>[<span style="color:#268bd2">VERTEX_DATA_NUM</span> * <span style="color:#268bd2">2</span> + <span style="color:#268bd2">3</span>] = (<span style="color:#859900;font-weight:bold">float</span>) (<span style="color:#268bd2">radius</span> * <span style="color:#268bd2">Math</span>.<span style="color:#268bd2">sin</span>(<span style="color:#268bd2">radian</span>));
+    }
+</code></pre></div><p>把圆分成了 360 份。圆形的顶点数据也分为了三部分了，以原心作为我们的中心点，中间的 360 个点用来绘制三角形，最后一个点使得我们的图形闭合。</p>
+<p>在绘制时依旧使用三角形扇的形式来绘制。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#93a1a1;font-style:italic">// 要把顶点数据个数对应上
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#268bd2">glDrawArrays</span>(<span style="color:#268bd2">GL_TRIANGLE_FAN</span>, <span style="color:#268bd2">0</span>, <span style="color:#268bd2">VERTEX_DATA_NUM</span> + <span style="color:#268bd2">2</span>);
+</code></pre></div><p>当然，在绘制圆形时，我们也可以不单独定义原点和闭合点，直接使用圆形的 360 个顶点来绘制，最终的结果依旧会是一个圆形。</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_14.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_circle_small.png"></p>
+<p>当然，我们也可以使用其他的绘制类型，比如直线，来绘制一个空心的圆形。</p>
+<p>还是上面定义的顶点数据，但是我们只用其中分割成 360 份的那部分顶点数据就好了，也就是去掉首位两个点，然后把这个 360 个点依次连接绘制成圆形。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">        <span style="color:#268bd2">glDrawArrays</span>(<span style="color:#268bd2">GL_LINE_LOOP</span>, <span style="color:#268bd2">1</span>, <span style="color:#268bd2">VERTEX_DATA_NUM</span> );
+</code></pre></div><p><img src="https://image.glumes.com/images/2019/05/12/opengl_15.png" alt="hhttp://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_circle_empty_yellow.png"></p>
+<p>这样就完成一个圆形的绘制。</p>
+<h2 id="正多边形的绘制">正多边形的绘制</h2>
+<p>在绘制圆形的基础上，我们还可以进行拓展一下。</p>
+<p>要知道，最后我们的圆形实际上是一个正多边形来趋近于圆形的，只是肉眼难以观察到了，毕竟它是一个正三百六十边形&hellip;</p>
+<p>那么假设我们要绘制正五边形、正六边形、正七边形呢？</p>
+<p>实际上也很简单，只要把圆分成五份、六份、七份就好了。</p>
+<p>展示一些绘制图如下：</p>
+<p>正五边形：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_16.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_five.png"></p>
+<p>正六边形：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_17.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_six.png"></p>
+<p>正七边形：</p>
+<p><img src="https://image.glumes.com/images/2019/05/12/opengl_18.png" alt="http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_seven.png"></p>
+<h2 id="小结">小结</h2>
+<p>到此，基本讲述了 OpenGL 的绘制流程以及基本图形的绘制。</p>
+<p>根据图形和绘制类型来采用以何种方式进行绘制，以及定义顶点数据，最后直接绘制对应图形即可。</p>
+<p>但显然，这还是不够的，还是有很多问题的。</p>
+<p>想要绘制一个圆形，结果却成了椭圆；想要绘制一个正五边形，却成了歪的；这到底是道德的沦丧还是人性的泯灭，一切的揭晓就在下一篇博客中了。</p>
+<p>具体代码详情，可以参考我的 Github 项目：
+<a href="https://github.com/glumes/AndroidOpenGLTutorial">https://github.com/glumes/AndroidOpenGLTutorial</a></p>
+<h2 id="参考">参考</h2>
+<p>1、http://blog.csdn.net/junzia/article/details/52818488</p>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/opengl/opengl-tutorial-draw-basic-shape/">OpenGL 学习系列---基本形状的绘制</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/opengl/opengl-tutorial-draw-point/">OpenGL 学习系列---基础的绘制流程</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/opengl/opengl-tutorial-draw-point/" data-toggle="tooltip" data-placement="top" title="OpenGL 学习系列---基础的绘制流程">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/anything/docker-summary/" data-toggle="tooltip" data-placement="top" title="Docker 基础知识">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>FFmpeg 3.0 版本视频解码浅析 </title>
+  <meta property="og:title" content="FFmpeg 3.0 版本视频解码浅析 " />
+  <meta name="twitter:title" content="FFmpeg 3.0 版本视频解码浅析 " />
+
+  <meta name="description" content="MPEG封装格式到PCM数据格式">
+  <meta property="og:description" content="MPEG封装格式到PCM数据格式">
+  <meta name="twitter:description" content="MPEG封装格式到PCM数据格式">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/ffmpeg/ffmpeg-convert-mpeg-to-pcm/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/ffmpeg/ffmpeg-convert-mpeg-to-pcm/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    FFmpeg 3.0 版本视频解码浅析 
+                    
+                </h1>
+                  
+                    
+                      <h2 class="post-subheading">MPEG封装格式到PCM数据格式</h2>
+                    
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Dec 22, 2017
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>FFmpeg 3.0 版本视频解码浅析 </h1>
+                
+                  
+                    <h2 class="post-subheading">MPEG封装格式到PCM数据格式</h2>
+                  
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Dec 22, 2017
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/ffmpeg/">FFmpeg</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <p>有了上一篇文章基础，这里就只关注 FFmpeg 如何解析的具体实践了。</p>
+<p>在开始工程之前，第一步要做的就是编译 FFmpeg 源码，生成 Android 平台上使用的 so 库。</p>
+<p>在生成完了之后，导入 Android 工程项目中，并且配置 CMake 文件，添加对应的库，就可以开始开发了。</p>
+<p>如果觉得麻烦，也可以直接从网上找一个工程使用现成的东西，也可以参考的我的学习项目：<a href="https://github.com/glumes/FFMPEGLearn">https://github.com/glumes/FFMPEGLearn</a></p>
+<h2 id="ffmpeg-30-与-20-的不同之处">FFmpeg 3.0 与 2.0 的不同之处</h2>
+<p>如果是刚开始学习，完全可以参照雷神的博客来写例子，而且还能运行成功。不过，既然 FFmpeg 都出了 3.0 版本了，还是要跟进学习一下。</p>
+<p>FFmpeg 2.0 解码流程大致如下：</p>
+<p><img src="http://7xqe3m.com1.z0.glb.clouddn.com/ffmpeg.png" alt="ffmpeg"></p>
+<p>而 FFmpeg 3.0 就开始有点变化了。</p>
+<p><img src="http://7xqe3m.com1.z0.glb.clouddn.com/ffmpeg3.0-outline.png" alt="ffmpeg-outline"></p>
+<p>可以看到，在具体解析操作时发生了变化，不再是之前的<code>avcodec_decode_video2</code>函数，而是拆分成了两个函数，<code>avcodec_send_packet</code>和<code>avcodec_receive_frame</code>。</p>
+<p><code>avcodec_send_packet</code>负责发送编码压缩后的数据，也就是 Packet 数据，而<code>avcodec_receive_frame</code>负责接收解码后的原始数据，也就是 Frame 数据，这么一来一回的配合，每次从文件中读取一部分内容，直到将整个文件解码完成。</p>
+<h2 id="解码流程代码">解码流程代码</h2>
+<p>FFmpge 的解码流程大都是相同的，只是在细节地方会有差异，主体流程还是没变，看了好多解码的代码，大多也是这样的，只是在解码成具体的某些格式时，对原始数据 Frame 的操作会有不同。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#93a1a1;font-style:italic">// 声明一堆待会要用到的变量
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#268bd2">AVCodecContext</span> *<span style="color:#268bd2">avCodecContext</span> = <span style="color:#268bd2">nullptr</span>;
+    <span style="color:#268bd2">AVCodec</span> *<span style="color:#268bd2">avCodec</span> = <span style="color:#268bd2">nullptr</span>;
+    <span style="color:#268bd2">AVCodecParserContext</span> *<span style="color:#268bd2">parserContext</span> = <span style="color:#268bd2">nullptr</span>;
+    <span style="color:#268bd2">AVPacket</span> *<span style="color:#268bd2">packet</span>;
+    <span style="color:#268bd2">AVFrame</span> *<span style="color:#268bd2">frame</span>;
+
+    <span style="color:#93a1a1;font-style:italic">// 为上面声明的变量在赋值，并且检查赋值是否成功
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#268bd2">avcodec_register_all</span>()
+	<span style="color:#93a1a1;font-style:italic">// 为解码器赋值，并制定解码器类型
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#268bd2">avCodec</span> = <span style="color:#268bd2">avcodec_find_decoder</span>(<span style="color:#268bd2">AV_CODEC_ID_HEVC</span>);
+	<span style="color:#93a1a1;font-style:italic">// 为 AVCodecParserContext 和 AVCodecContext 赋值
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#268bd2">parserContext</span> = <span style="color:#268bd2">av_parser_init</span>(<span style="color:#268bd2">avCodec</span>-&gt;<span style="color:#268bd2">id</span>);
+	<span style="color:#268bd2">avCodecContext</span> = <span style="color:#268bd2">avcodec_alloc_context3</span>(<span style="color:#268bd2">avCodec</span>);
+	<span style="color:#93a1a1;font-style:italic">// 打开解码器
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#268bd2">avcodec_open2</span>(<span style="color:#268bd2">avCodecContext</span>, <span style="color:#268bd2">avCodec</span>, <span style="color:#268bd2">nullptr</span>);
+	<span style="color:#93a1a1;font-style:italic">// 为 Packet 和 Frame 赋值
+</span><span style="color:#93a1a1;font-style:italic"></span>    <span style="color:#268bd2">frame</span> = <span style="color:#268bd2">av_frame_alloc</span>();
+    <span style="color:#268bd2">packet</span> = <span style="color:#268bd2">av_packet_alloc</span>();
+
+    <span style="color:#859900">while</span> <span style="color:#93a1a1;font-style:italic">// 开始一点点的解码文件内容，直到文件末尾
+</span><span style="color:#93a1a1;font-style:italic"></span>    	<span style="color:#93a1a1;font-style:italic">// 解码从 while 中一次读取到的内容
+</span><span style="color:#93a1a1;font-style:italic"></span>    	<span style="color:#268bd2">av_parser_parse2</span>
+    	<span style="color:#93a1a1;font-style:italic">// 发送读取到的 packet
+</span><span style="color:#93a1a1;font-style:italic"></span>    	<span style="color:#268bd2">avcodec_send_packet</span>
+    	<span style="color:#93a1a1;font-style:italic">// 接收解析完的 frame
+</span><span style="color:#93a1a1;font-style:italic"></span>    	<span style="color:#268bd2">avcodec_receive_frame</span>
+		<span style="color:#93a1a1;font-style:italic">// 对原生数据进行相关操作，解码成不同数据格式，操作不同。
+</span><span style="color:#93a1a1;font-style:italic"></span>		<span style="color:#93a1a1;font-style:italic">// todo
+</span><span style="color:#93a1a1;font-style:italic"></span>	
+	<span style="color:#93a1a1;font-style:italic">//最后，释放上面声明的变量
+</span><span style="color:#93a1a1;font-style:italic"></span>	<span style="color:#268bd2">av_frame_free</span>
+	<span style="color:#268bd2">av_packet_free</span>
+	<span style="color:#268bd2">avcodec_free_context</span>
+	<span style="color:#268bd2">av_parser_close</span>
+
+</code></pre></div><h2 id="mpeg-pcm-的解码">MPEG-&gt;PCM 的解码</h2>
+<p>在了解视频文件的相关基础以及 FFmpeg 解码的大致流程后，就可以开始进行 MPEG-&gt;PCM的解码工作了。</p>
+<p>不过，在这里还是少了两个重要的概念：</p>
+<ol>
+<li>FFmpeg 各种类以及变量的含义。</li>
+<li>各种音视频文件的格式协议。</li>
+</ol>
+<p>前半部分还好，对着雷神的博客一点点的看，还是能看懂的。至于各种音视频文件的协议，那就要靠慢慢积累了。</p>
+<p>这里就不贴上全部的代码了，可以参考如下两个地方：</p>
+<ol>
+<li><a href="http://ffmpeg.org/doxygen/trunk/decode_video_8c-example.html">http://ffmpeg.org/doxygen/trunk/decode_video_8c-example.html</a></li>
+<li><a href="https://github.com/glumes/FFMPEGLearn/blob/master/FFmpegLib/src/main/cpp/ffmpeg_examples/decode_video.cpp">https://github.com/glumes/FFMPEGLearn/blob/master/FFmpegLib/src/main/cpp/ffmpeg_examples/decode_video.cpp</a></li>
+</ol>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="http://www.jianshu.com/p/7e96223ff329">http://www.jianshu.com/p/7e96223ff329</a></li>
+<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/42181271">http://blog.csdn.net/leixiaohua1020/article/details/42181271</a></li>
+</ol>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/ffmpeg/ffmpeg-convert-mpeg-to-pcm/">FFmpeg 3.0 版本视频解码浅析 </a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/ffmpeg/encode-and-decode-summary/">音视频编解码的那些基础理论</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/ffmpeg/encode-and-decode-summary/" data-toggle="tooltip" data-placement="top" title="音视频编解码的那些基础理论">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/code/python-docopt/" data-toggle="tooltip" data-placement="top" title="Python 命令行参数解析工具 docopt">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>UnityShader 的基本概念</title>
+  <meta property="og:title" content="UnityShader 的基本概念" />
+  <meta name="twitter:title" content="UnityShader 的基本概念" />
+
+  <meta name="description" content="Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。
+ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。">
+  <meta property="og:description" content="Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。
+ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。">
+  <meta name="twitter:description" content="Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。
+ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/engine/unity-shader-basic-content/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/engine/unity-shader-basic-content/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    UnityShader 的基本概念
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Aug 15, 2021
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>UnityShader 的基本概念</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Aug 15, 2021
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/unity/">unity</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <p>Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。</p>
+<p>ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。</p>
+<p>ShaderLab  使用了一些嵌套在花括号内部的语义来描述一个 Unity Shader 文件的结构，这些结构包含了许多渲染所需的数据。</p>
+<p>$a_{1}$</p>
+<p>一个 Unity Shader 的基本结构如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">Shader</span> <span style="color:#2aa198">&#34;shaderName&#34;</span> {
+    <span style="color:#268bd2">Properties</span>{
+        <span style="color:#93a1a1;font-style:italic">// 属性
+</span><span style="color:#93a1a1;font-style:italic"></span>    }
+    
+    <span style="color:#268bd2">SubShader</span>{
+        <span style="color:#93a1a1;font-style:italic">// 显卡 A 使用的子着色器
+</span><span style="color:#93a1a1;font-style:italic"></span>    }
+    
+    <span style="color:#268bd2">SubShader</span>{
+        <span style="color:#93a1a1;font-style:italic">// 显卡 B 使用的子着色器
+</span><span style="color:#93a1a1;font-style:italic"></span>    }
+    <span style="color:#268bd2">Fallback</span> <span style="color:#2aa198">&#34;VertexLit&#34;</span>
+}
+</code></pre></div><p>可以在 Properties 语句块中定义着色器所需的各种属性，这些属性将会出现在材质面板中。</p>
+<h2 id="unityshader-中的属性">UnityShader 中的属性</h2>
+<p>UnityShader 中共有 8 种属性类型，如下代码所示：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">Shader</span> <span style="color:#2aa198">&#34;Basic/BasicPropertiesShader&#34;</span>
+{
+    <span style="color:#268bd2">Properties</span>
+    {
+        <span style="color:#268bd2">_Int</span> (<span style="color:#2aa198">&#34;Int&#34;</span>,<span style="color:#268bd2">Int</span>) = <span style="color:#2aa198;font-weight:bold">100</span>
+        <span style="color:#268bd2">_Float</span>(<span style="color:#2aa198">&#34;Float&#34;</span>,<span style="color:#268bd2">Float</span>) = <span style="color:#2aa198;font-weight:bold">10.0</span>
+        <span style="color:#268bd2">_Range</span>(<span style="color:#2aa198">&#34;Range&#34;</span>,<span style="color:#268bd2">Range</span>(<span style="color:#2aa198;font-weight:bold">0.0</span>,<span style="color:#2aa198;font-weight:bold">5.0</span>)) = <span style="color:#2aa198;font-weight:bold">3.0</span>
+        <span style="color:#268bd2">_Color</span>(<span style="color:#2aa198">&#34;Color&#34;</span>,<span style="color:#268bd2">Color</span>) = (<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>,<span style="color:#2aa198;font-weight:bold">1</span>)
+        <span style="color:#268bd2">_Vector</span>(<span style="color:#2aa198">&#34;Vector&#34;</span>,<span style="color:#268bd2">Vector</span>) = (<span style="color:#2aa198;font-weight:bold">2</span>,<span style="color:#2aa198;font-weight:bold">3</span>,<span style="color:#2aa198;font-weight:bold">6</span>,<span style="color:#2aa198;font-weight:bold">1</span>)
+        <span style="color:#268bd2">_2D</span>(<span style="color:#2aa198">&#34;2D&#34;</span>,<span style="color:#2aa198;font-weight:bold">2</span><span style="color:#268bd2">D</span>) = <span style="color:#2aa198">&#34;&#34;</span>{}
+        <span style="color:#268bd2">_Cube</span>(<span style="color:#2aa198">&#34;Cube&#34;</span>,<span style="color:#268bd2">Cube</span>) = <span style="color:#2aa198">&#34;while&#34;</span>{}
+        <span style="color:#268bd2">_3D</span>(<span style="color:#2aa198">&#34;3D&#34;</span>,<span style="color:#2aa198;font-weight:bold">3</span><span style="color:#268bd2">D</span>) = <span style="color:#2aa198">&#34;black&#34;</span>{}
+    }
+    <span style="color:#268bd2">Fallback</span> <span style="color:#2aa198">&#34;Diffuse&#34;</span>
+}
+</code></pre></div><p>Int、Float、Range 类型对应单独的数字，Color、Vector 类型对应四维向量，2D、3D、Cube 对应纹理类型，默认值通过一个字符串和花括号来指定，字符串要么是空的，要么是内置的纹理名称，比如“while”、“black”、“gray”等。</p>
+<p>定义这些属性之后就可以在参数面板里面去调节对应值。</p>
+<p><img src="https://image.glumes.com//blog_image/unity-shader-custom-properties.png" alt=""></p>
+<p>要想真正使用这些值去调节 Shader 效果，还需要在 SubShader 中再定义一遍。</p>
+<h2 id="subshader-的使用">SubShader 的使用</h2>
+<p>每一个 UnityShader 可以包含多个 SubShader 语义块，但最少要有一个。</p>
+<p>SubShader 语义块中包含的定义如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">SubShader</span> {
+   <span style="color:#93a1a1;font-style:italic">// 可选
+</span><span style="color:#93a1a1;font-style:italic"></span>   [<span style="color:#268bd2">Tags</span>] 
+   
+   <span style="color:#93a1a1;font-style:italic">// 可选
+</span><span style="color:#93a1a1;font-style:italic"></span>   [<span style="color:#268bd2">RenderSetup</span>]
+   
+   <span style="color:#268bd2">Pass</span>{
+   
+   }
+   
+   <span style="color:#93a1a1;font-style:italic">// Other Pass
+</span><span style="color:#93a1a1;font-style:italic"></span>}
+</code></pre></div><p>SubShader 中定义了一系列 Pass 和可选的状态（RenderSetup）和标签（Tags），每个 Pass 定义了一次完整的渲染流程。</p>
+<p>Pass 中也可以定义状态（RenderSetup）和标签（Tags）。</p>
+<p>但是 SubShader 中的标签是特定的，和 Pass 中使用的标签是不一样的。</p>
+<p>而状态设置的语法是相同的，但 SubShader 中设置了状态，会是全局生效作用于所有的 Pass ，不过 Pass 中不想用全局状态可以在 Pass 另外定义状态来修改。</p>
+<h3 id="状态设置">状态设置</h3>
+<p>ShaderLab 中提供的状态设置主要就是渲染时是否开启深度测试、混合模式等。</p>
+<p>如果有了解 OpenGL 渲染的，就应该对这些不陌生了，只是 OpenGL 通过 API 调用来设定，而 ShaderLab 通过在 Shader 中来指定了。</p>
+<p>ShaderLab 中提供的渲染状态如下，直接摘抄自 《Unity Shader 入门精要》的附图了。</p>
+<p><img src="https://image.glumes.com//blog_image/unity-subshader-render-setup.png" alt=""></p>
+<h3 id="tag-标签">Tag 标签</h3>
+<p>SubShader 的标签是一个键值对，键和值都是字符串类型，这些键值对是 SubShader 和渲染引擎之间的沟通桥梁，它们用来告诉 Unity 的渲染引擎：SubShader 希望怎样以及何时渲染这个对象。</p>
+<p>具体的标签类型如下，，直接摘抄自 《Unity Shader 入门精要》的附图了。</p>
+<p><img src="https://image.glumes.com//blog_image/unity-subshader-tag.png" alt=""></p>
+<h3 id="pass-块">Pass 块</h3>
+<p>Pass 语义块的结构如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">Pass</span> {
+    [<span style="color:#268bd2">Name</span>]
+    [<span style="color:#268bd2">Tags</span>]
+    [<span style="color:#268bd2">RenderSetup</span>]
+    <span style="color:#93a1a1;font-style:italic">// render code
+</span><span style="color:#93a1a1;font-style:italic"></span>}
+</code></pre></div><p>在 Pass 语义块进行渲染之前也有一些状态要设置，Name 就是该 Pass 的名字，渲染状态和 SubShader 中提到的渲染状态一致。</p>
+<p>Pass 中的标签不同于 SubShader 中的标签，可用的如下：</p>
+<p><img src="https://image.glumes.com//blog_image/unity-pass-tags.png" alt=""></p>
+<h3 id="fallback">Fallback</h3>
+<p>最后的 Fallback 块就是当前面的渲染都不行才会走到这里了，相当于是兜底了。</p>
+<p>另外，当 UnityShader 有问题的话，物体的颜色会出现粉红色的异常。</p>
+<p><img src="https://image.glumes.com//blog_image/unity-shader-pink-error-code.png" alt=""></p>
+<h2 id="shader-分类">Shader 分类</h2>
+<p>UnityShader 共有三种类型的 Shader ，分别是表面着色器、顶点/片元着色器、固定函数着色器。</p>
+<h3 id="表面着色器-surface-shader">表面着色器 Surface Shader</h3>
+<p>表面着色器是 Unity 自己创造的一种着色器代码类型，需要的代码量很少，但渲染的代价很大。</p>
+<p>Unity 在表面着色器背后做了很多工作，将它们转换成对应的顶点/片元着色器。</p>
+<h3 id="顶点片元着色器-vertexfragment-shader">顶点/片元着色器 Vertex/Fragment Shader</h3>
+<p>顶点/片元着色器就是 OpenGL 中常用的着色器了，只不过这里统一在一个文件中描述，而且渲染流程和 OpenGL 的流程也大同小异，代码上会有些区别，原理都是一样的。</p>
+<h3 id="固定函数着色器">固定函数着色器</h3>
+<p>固定函数着色器用的就比较少了，也渐渐淘汰了，实际上它最后也被 Unity 转换成了顶点/片元着色器。</p>
+<h2 id="小结">小结</h2>
+<p>以上就是关于 UnityShader 的基本概念，也算是 《UntiyShader入门精要》的读书笔记了。</p>
+<p>看完一遍书，再来博客总结一遍内容，用输出促进输入，从而学的更牢固一点，接下来就要进入正式的 UnityShader 编写了。</p>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/engine/unity-shader-basic-content/">UnityShader 的基本概念</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/engine/unity-basic-object-operation/">Unity 物体的基本操作</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/engine/unity-basic-object-operation/" data-toggle="tooltip" data-placement="top" title="Unity 物体的基本操作">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/engine/unity-basic-texture/" data-toggle="tooltip" data-placement="top" title="Unity Shader 显示一张图片纹理">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+

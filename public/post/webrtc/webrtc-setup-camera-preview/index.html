@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+  <title>WebRTC 系列1--创建相机预览</title>
+  <meta property="og:title" content="WebRTC 系列1--创建相机预览" />
+  <meta name="twitter:title" content="WebRTC 系列1--创建相机预览" />
+
+  <meta name="description" content="用 WebRTC 创建相机预览，不到 50 行核心代码就可以轻松搞定了。
+WebRTC 依赖版本
+直接使用官方给的版本就好了，不需要再去额外编译。
+implementation &#39;org.webrtc:google-webrtc:1.0.30039&#39;
+后面都会使用该版本做测试的。">
+  <meta property="og:description" content="用 WebRTC 创建相机预览，不到 50 行核心代码就可以轻松搞定了。
+WebRTC 依赖版本
+直接使用官方给的版本就好了，不需要再去额外编译。
+implementation &#39;org.webrtc:google-webrtc:1.0.30039&#39;
+后面都会使用该版本做测试的。">
+  <meta name="twitter:description" content="用 WebRTC 创建相机预览，不到 50 行核心代码就可以轻松搞定了。
+WebRTC 依赖版本
+直接使用官方给的版本就好了，不需要再去额外编译。
+implementation &#39;org.webrtc:google-webrtc:1.0.30039&#39;
+后面都会使用该版本做测试的。">
+  <meta name="author" content=""/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://glumes.com/post/webrtc/webrtc-setup-camera-preview/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="音视频开发进阶" />
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="canonical" href="https://glumes.com/post/webrtc/webrtc-setup-camera-preview/" />
+  <link rel="alternate" href="https://glumes.com/index.xml" type="application/rss+xml" title="音视频开发进阶">
+
+  
+  
+
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/reward.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/search.css" />
+  <link rel="stylesheet" href="https://image.glumes.com/blog_source/assets/css/main.css" />
+
+
+  
+  
+  
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  
+  
+    
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <![endif]-->
+
+<link rel="stylesheet" href="https://res.cloudinary.com/glumes-com/raw/upload/v1516330613/website/css/prism.css" />
+
+
+
+
+
+
+
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://glumes.com/" title="音视频开发进阶">
+        
+        音视频开发进阶
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">音视频开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/opengl">OpenGL </a>
+                
+                  <a href="https://glumes.com/categories/ffmpeg">FFmpeg</a>
+                
+                  <a href="https://glumes.com/categories/vulkan">Vulkan </a>
+                
+                  <a href="https://glumes.com/categories/webrtc">WebRTC </a>
+                
+                  <a href="https://glumes.com/categories/engine">游戏引擎</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="生活点滴" href="https://glumes.com/categories/life">生活点滴</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">移动开发</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://glumes.com/categories/android">Android</a>
+                
+                  <a href="https://glumes.com/categories/ios">iOS</a>
+                
+                  <a href="https://glumes.com/categories/code">编程语言</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">我的视频教学</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://space.bilibili.com/105478237">B 站视频</a>
+                
+                  <a href="http://www.imooc.com/learn/1212">慕课网视频</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="小专栏" href="https://xiaozhuanlan.com/glumes">小专栏</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="https://glumes.com/about/">关于我</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="所有文章" href="https://glumes.com/archive/">所有文章</a>
+            </li>
+          
+        
+
+        
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg" ></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img" onclick="window.open('https://glumes.com')"> 
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-offset-0">
+              <div class="post-heading">
+                <h1>
+                    
+                    WebRTC 系列1--创建相机预览
+                    
+                </h1>
+                  
+                  
+                    
+
+
+<span class="post-meta">
+  发表于 &nbsp;Sep 2, 2021
+</span>
+
+
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+              <h1>WebRTC 系列1--创建相机预览</h1>
+                
+                
+                  
+
+
+<span class="post-meta">
+  发表于 &nbsp;Sep 2, 2021
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </header>
+
+
+    
+
+
+
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-lg-8  col-md-10">
+        <div>
+            
+            
+            <h5 id="tags" style="margin-top: 30px;">标签:
+              
+                  <a href="https://glumes.com/tags/webrtc/">webrtc</a> &nbsp;
+              
+            </h5>
+            
+        </div>
+  
+        <article role="main" class="blog-post" itemprop="articleBody" id="content">
+          
+            
+<aside class="toc">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#webrtc-依赖版本">WebRTC 依赖版本</a></li>
+    <li><a href="#相机权限申请">相机权限申请</a></li>
+    <li><a href="#相机预览">相机预览</a>
+      <ul>
+        <li><a href="#创建相机实例">创建相机实例</a></li>
+        <li><a href="#相机预览接收">相机预览接收</a></li>
+        <li><a href="#开启相机预览">开启相机预览</a></li>
+        <li><a href="#完整代码示例">完整代码示例：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+          
+  
+
+          
+
+
+
+
+          
+          
+          
+  
+          
+          
+          
+  
+          
+          
+          
+
+          <p>用 WebRTC 创建相机预览，不到 50 行核心代码就可以轻松搞定了。</p>
+<h2 id="webrtc-依赖版本">WebRTC 依赖版本</h2>
+<p>直接使用官方给的版本就好了，不需要再去额外编译。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">implementation</span> &#39;<span style="color:#268bd2">org</span>.<span style="color:#268bd2">webrtc</span>:<span style="color:#268bd2">google</span>-<span style="color:#268bd2">webrtc</span>:<span style="color:#2aa198;font-weight:bold">1.0.30039</span>&#39;
+</code></pre></div><p>后面都会使用该版本做测试的。</p>
+<h2 id="相机权限申请">相机权限申请</h2>
+<p>WebRTC 虽说功能强大，代码简洁，但是并没有封装一个应用权限申请的接口，这需要自己去操作了。</p>
+<h2 id="相机预览">相机预览</h2>
+<p>有个段子是把大象放进冰箱有多少步骤，共三步，打开冰箱，塞进大象，关上冰箱。</p>
+<p>用 WebRTC 创建相机预览和上面的段子步骤一样，打开相机，设置接收，开启预览。</p>
+<p>至于中间的繁琐步骤，比如相机创建的内部实现，预览绘制的内部实现都不用去关心了，调用好接口，设置好参数就行。</p>
+<h3 id="创建相机实例">创建相机实例</h3>
+<p>在 WebRTC 中相机实例统一继承了 VideoCapturer 接口，不管是 Camera1 还是 Camera2 。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#859900">public</span> <span style="color:#268bd2">interface</span> <span style="color:#268bd2">VideoCapturer</span> {
+    <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">SurfaceTextureHelper</span> <span style="color:#268bd2">var1</span>, <span style="color:#268bd2">Context</span> <span style="color:#268bd2">var2</span>, <span style="color:#268bd2">CapturerObserver</span> <span style="color:#268bd2">var3</span>);
+
+    <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">startCapture</span>(<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var1</span>, <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var2</span>, <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var3</span>);
+
+    <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">stopCapture</span>() <span style="color:#859900">throws</span> <span style="color:#268bd2">InterruptedException</span>;
+
+    <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">changeCaptureFormat</span>(<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var1</span>, <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var2</span>, <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">var3</span>);
+
+    <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">dispose</span>();
+
+    <span style="color:#268bd2">boolean</span> <span style="color:#268bd2">isScreencast</span>();
+}
+</code></pre></div><p>该接口也比较简单，只需要相机实例对外提供一些简单的预览能力就好。</p>
+<p>创建相机实例的代码如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#859900">private</span> <span style="color:#268bd2">fun</span> <span style="color:#268bd2">createVideoCapture</span>(): <span style="color:#268bd2">VideoCapturer</span>? {
+    <span style="color:#268bd2">val</span> <span style="color:#268bd2">enumerator</span> = <span style="color:#268bd2">Camera1Enumerator</span>(<span style="color:#cb4b16">false</span>)
+    <span style="color:#268bd2">val</span> <span style="color:#268bd2">deviceNames</span> = <span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">deviceNames</span>
+
+    <span style="color:#859900">for</span> (<span style="color:#268bd2">deviceName</span> <span style="color:#268bd2">in</span> <span style="color:#268bd2">deviceNames</span>) {
+        <span style="color:#859900">if</span> (<span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">isFrontFacing</span>(<span style="color:#268bd2">deviceName</span>)) {
+            <span style="color:#268bd2">val</span> <span style="color:#268bd2">videoCapture</span> = <span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">createCapturer</span>(<span style="color:#268bd2">deviceName</span>, <span style="color:#268bd2">null</span>)
+            <span style="color:#859900">if</span> (<span style="color:#268bd2">videoCapture</span> != <span style="color:#268bd2">null</span>) {
+                <span style="color:#859900">return</span> <span style="color:#268bd2">videoCapture</span>
+            }
+        }
+    }
+    <span style="color:#859900">return</span> <span style="color:#268bd2">null</span>
+}
+</code></pre></div><p>Camera1Enumerator 是用来枚举设备上有多少摄像头的，一般只有前置和后置两种，，也可以用 Camera2Enumerator 来获取 Camera2 的相机调用。</p>
+<p>deviceNames 对应 getDeviceNames 方法，只不过用了 kotlin 变成缩写了，它表示设备上的摄像头集合，这个接口其实就已经屏蔽了 Camera1 和 Camera2 内部检索不同摄像头的实现。</p>
+<p>满足前后置条件时，调用 createCapturer 来创建相机实例就好了。</p>
+<h3 id="相机预览接收">相机预览接收</h3>
+<p>需要有分别对应的组件去接收相机输出的画面并且显示到屏幕上。</p>
+<p>显示到屏幕上的控件既不是 SurfaceView 也不是 TextureView ，而是 WebRTC 自己封装的控件 SurfaceViewRenderer 。</p>
+<p>它其实就是继承了 SurfaceView ，并且内部有个 <strong>SurfaceEglRenderer</strong> 变量，用来将外界传递的 VideoFrame 绘制到屏幕上。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">&lt;<span style="color:#268bd2">org</span>.<span style="color:#268bd2">webrtc</span>.<span style="color:#268bd2">SurfaceViewRenderer</span> <span style="color:#268bd2">android</span>:<span style="color:#268bd2">id</span>=<span style="color:#2aa198">&#34;@+id/localView&#34;</span>
+                            <span style="color:#268bd2">android</span>:<span style="color:#268bd2">layout_width</span>=<span style="color:#2aa198">&#34;match_parent&#34;</span>
+                            <span style="color:#268bd2">android</span>:<span style="color:#268bd2">layout_height</span>=<span style="color:#2aa198">&#34;match_parent&#34;</span>/&gt;
+
+<span style="color:#93a1a1;font-style:italic">// SurfaceViewRenderer 的绘制方法
+</span><span style="color:#93a1a1;font-style:italic"></span><span style="color:#859900">public</span> <span style="color:#859900;font-weight:bold">void</span> <span style="color:#268bd2">onFrame</span>(<span style="color:#268bd2">VideoFrame</span> <span style="color:#268bd2">frame</span>) {
+        <span style="color:#859900">this</span>.<span style="color:#268bd2">eglRenderer</span>.<span style="color:#268bd2">onFrame</span>(<span style="color:#268bd2">frame</span>);
+}
+</code></pre></div><p>SurfaceEglRenderer 也是走的 OpenGL 渲染进行预览，在创建 OpenGL 环境可以决定是否要以 ShareContext 的形式创建。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">val</span> <span style="color:#268bd2">eglBaseContext</span> = <span style="color:#268bd2">EglBase</span>.<span style="color:#268bd2">create</span>().<span style="color:#268bd2">eglBaseContext</span>
+<span style="color:#268bd2">localView</span>.<span style="color:#268bd2">init</span>(<span style="color:#268bd2">eglBaseContext</span>, <span style="color:#268bd2">null</span>)
+</code></pre></div><p>接收相机预览流的组件就是 SurfaceTexture ，只不过 WebRTC 将它包装到了 SurfaceTextureHelper 变量中。</p>
+<p>创建 SurfaceTextureHelper 的方法如下：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">val</span> <span style="color:#268bd2">eglBaseContext</span> = <span style="color:#268bd2">EglBase</span>.<span style="color:#268bd2">create</span>().<span style="color:#268bd2">eglBaseContext</span>
+<span style="color:#268bd2">val</span> <span style="color:#268bd2">surfaceTextureHelper</span> = <span style="color:#268bd2">surfaceTextureHelper</span>.<span style="color:#268bd2">create</span>(<span style="color:#2aa198">&#34;CaptureThread&#34;</span>, <span style="color:#268bd2">eglBaseContext</span>)
+</code></pre></div><p>SurfaceTextureHelper 内部会创建一个线程，并且也可以通过外部传递 EGLContext 以决定是否要走 ShareContext 方式的调用。</p>
+<p>有了相机实例 VideoCapturer 和接收预览的组件 SurfaceTextureHelper ，就可以将他们关联起来：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">surfaceTextureHelper</span>, <span style="color:#268bd2">applicationContext</span>, <span style="color:#268bd2">videoSource</span>?.<span style="color:#268bd2">capturerObserver</span>)
+<span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">startCapture</span>(<span style="color:#2aa198;font-weight:bold">480</span>, <span style="color:#2aa198;font-weight:bold">640</span>, <span style="color:#2aa198;font-weight:bold">30</span>)
+</code></pre></div><p>videoCapture 调用 initialize 方法实现两者的关联，同时 startCapture 方法决定相机采集的宽高和帧率。</p>
+<h3 id="开启相机预览">开启相机预览</h3>
+<p>在开启相机预览时，就需要涉及到和 WebRTC 相关内容了。</p>
+<p>WebRTC 本身是用来做即时通信的，它将音频和视频流都抽象成了一个个轨道 MediaStreamTrack ，有音频轨 AudioTrack 也有视频轨 VideoTrack。</p>
+<p>而轨道上的内容来源就对应 MedisSource ，有音频源 AudioSource 和视频源 VideoSource 。</p>
+<p>相机输出就是提供视频源的，需要将 VideoCapturer 和 VideoSource 关联起来。</p>
+<p>在上面代码中 initialize 方法实际上就建立了关联。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">videoSource</span> = <span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">isScreencast</span>?.<span style="color:#268bd2">let</span> { <span style="color:#268bd2">factory</span>.<span style="color:#268bd2">createVideoSource</span>(<span style="color:#268bd2">it</span>) }
+<span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">surfaceTextureHelper</span>, <span style="color:#268bd2">applicationContext</span>, <span style="color:#268bd2">videoSource</span>?.<span style="color:#268bd2">capturerObserver</span>)
+</code></pre></div><p>initialize 方法的最后一个参数就是一个回调，典型的观察者模式，VideoCapturer 相关的状态都会通过 capturerObserver 通知到 VideoSource ，从而实现关联。</p>
+<p>创建 videoSource 的 factory ，对应的就是一条即时通信端对端的连接，而 videoTrack 和 audioTrack 就是这条连接上的内容。</p>
+<p>创建 factory 的代码比较固定：</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">val</span> <span style="color:#268bd2">options</span> = <span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">InitializationOptions</span>.<span style="color:#268bd2">builder</span>(<span style="color:#859900">this</span>).<span style="color:#268bd2">createInitializationOptions</span>();
+<span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">options</span>)
+<span style="color:#268bd2">factory</span> = <span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">builder</span>().<span style="color:#268bd2">createPeerConnectionFactory</span>()
+</code></pre></div><p>创建 VideoTrack 的代码如下，需要将视频源和视频轨道关联起来。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">videoTrack</span> = <span style="color:#268bd2">factory</span>.<span style="color:#268bd2">createVideoTrack</span>(<span style="color:#2aa198">&#34;101&#34;</span>,<span style="color:#268bd2">videoSource</span>)
+</code></pre></div><p>完成了所有的创建和关联之后，就可以开启预览了。需要将视频轨道内容显示到画面上，也就是上面的 SurfaceViewRenderer 控件上。</p>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#268bd2">videoTrack</span>?.<span style="color:#268bd2">addSink</span>(<span style="color:#268bd2">localView</span>)
+</code></pre></div><h3 id="完整代码示例">完整代码示例：</h3>
+<div class="highlight"><pre style="color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#859900">class</span> <span style="color:#cb4b16">CameraActivity</span> : <span style="color:#268bd2">AppCompatActivity</span>() {
+
+    <span style="color:#859900">private</span> <span style="color:#268bd2">lateinit</span> <span style="color:#268bd2">var</span> <span style="color:#268bd2">factory</span>: <span style="color:#268bd2">PeerConnectionFactory</span>
+    <span style="color:#859900">private</span> <span style="color:#268bd2">var</span> <span style="color:#268bd2">videoCapture</span>:<span style="color:#268bd2">VideoCapturer</span>? = <span style="color:#268bd2">null</span>
+    <span style="color:#859900">private</span> <span style="color:#268bd2">var</span> <span style="color:#268bd2">videoSource</span>: <span style="color:#268bd2">VideoSource</span>? = <span style="color:#268bd2">null</span>
+    <span style="color:#859900">private</span> <span style="color:#268bd2">var</span> <span style="color:#268bd2">videoTrack</span>: <span style="color:#268bd2">VideoTrack</span>? = <span style="color:#268bd2">null</span>
+    <span style="color:#859900">private</span> <span style="color:#268bd2">lateinit</span> <span style="color:#268bd2">var</span> <span style="color:#268bd2">localView</span>:<span style="color:#268bd2">SurfaceViewRenderer</span>
+
+    <span style="color:#859900">override</span> <span style="color:#268bd2">fun</span> <span style="color:#268bd2">onCreate</span>(<span style="color:#268bd2">savedInstanceState</span>: <span style="color:#268bd2">Bundle</span>?) {
+        <span style="color:#268bd2">super</span>.<span style="color:#268bd2">onCreate</span>(<span style="color:#268bd2">savedInstanceState</span>)
+
+        <span style="color:#268bd2">setContentView</span>(<span style="color:#268bd2">R</span>.<span style="color:#268bd2">layout</span>.<span style="color:#268bd2">activity_camera</span>)
+        <span style="color:#268bd2">localView</span> = <span style="color:#268bd2">findViewById</span>(<span style="color:#268bd2">R</span>.<span style="color:#268bd2">id</span>.<span style="color:#268bd2">localView</span>)
+        
+        <span style="color:#268bd2">val</span> <span style="color:#268bd2">options</span> = <span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">InitializationOptions</span>.<span style="color:#268bd2">builder</span>(<span style="color:#859900">this</span>).<span style="color:#268bd2">createInitializationOptions</span>();
+        <span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">options</span>)
+        <span style="color:#268bd2">factory</span> = <span style="color:#268bd2">PeerConnectionFactory</span>.<span style="color:#268bd2">builder</span>().<span style="color:#268bd2">createPeerConnectionFactory</span>()
+
+        <span style="color:#268bd2">val</span> <span style="color:#268bd2">eglBaseContext</span> = <span style="color:#268bd2">EglBase</span>.<span style="color:#268bd2">create</span>().<span style="color:#268bd2">eglBaseContext</span>
+        <span style="color:#268bd2">val</span> <span style="color:#268bd2">surfaceTextureHelper</span> = <span style="color:#268bd2">SurfaceTextureHelper</span>.<span style="color:#268bd2">create</span>(<span style="color:#2aa198">&#34;CaptureThread&#34;</span>, <span style="color:#268bd2">eglBaseContext</span>)
+
+        <span style="color:#268bd2">videoCapture</span> = <span style="color:#268bd2">createVideoCapture</span>()
+        <span style="color:#268bd2">videoSource</span> = <span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">isScreencast</span>?.<span style="color:#268bd2">let</span> { <span style="color:#268bd2">factory</span>.<span style="color:#268bd2">createVideoSource</span>(<span style="color:#268bd2">it</span>) }
+
+        <span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">initialize</span>(<span style="color:#268bd2">surfaceTextureHelper</span>, <span style="color:#268bd2">applicationContext</span>, <span style="color:#268bd2">videoSource</span>?.<span style="color:#268bd2">capturerObserver</span>)
+        <span style="color:#268bd2">videoCapture</span>?.<span style="color:#268bd2">startCapture</span>(<span style="color:#2aa198;font-weight:bold">480</span>, <span style="color:#2aa198;font-weight:bold">640</span>, <span style="color:#2aa198;font-weight:bold">30</span>)
+
+        <span style="color:#268bd2">localView</span>.<span style="color:#268bd2">setMirror</span>(<span style="color:#cb4b16">true</span>)
+        <span style="color:#268bd2">localView</span>.<span style="color:#268bd2">init</span>(<span style="color:#268bd2">eglBaseContext</span>, <span style="color:#268bd2">null</span>)
+
+        <span style="color:#268bd2">videoTrack</span> = <span style="color:#268bd2">factory</span>.<span style="color:#268bd2">createVideoTrack</span>(<span style="color:#2aa198">&#34;101&#34;</span>,<span style="color:#268bd2">videoSource</span>)
+        <span style="color:#268bd2">videoTrack</span>?.<span style="color:#268bd2">addSink</span>(<span style="color:#268bd2">localView</span>)
+    }
+
+    <span style="color:#859900">private</span> <span style="color:#268bd2">fun</span> <span style="color:#268bd2">createVideoCapture</span>(): <span style="color:#268bd2">VideoCapturer</span>? {
+        <span style="color:#268bd2">val</span> <span style="color:#268bd2">enumerator</span> = <span style="color:#268bd2">Camera1Enumerator</span>(<span style="color:#cb4b16">false</span>)
+        <span style="color:#268bd2">val</span> <span style="color:#268bd2">deviceNames</span> = <span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">deviceNames</span>
+
+        <span style="color:#859900">for</span> (<span style="color:#268bd2">deviceName</span> <span style="color:#268bd2">in</span> <span style="color:#268bd2">deviceNames</span>) {
+            <span style="color:#859900">if</span> (<span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">isFrontFacing</span>(<span style="color:#268bd2">deviceName</span>)) {
+                <span style="color:#268bd2">val</span> <span style="color:#268bd2">videoCapture</span> = <span style="color:#268bd2">enumerator</span>.<span style="color:#268bd2">createCapturer</span>(<span style="color:#268bd2">deviceName</span>, <span style="color:#268bd2">null</span>)
+                <span style="color:#859900">if</span> (<span style="color:#268bd2">videoCapture</span> != <span style="color:#268bd2">null</span>) {
+                    <span style="color:#859900">return</span> <span style="color:#268bd2">videoCapture</span>
+                }
+            }
+        }
+        <span style="color:#859900">return</span> <span style="color:#268bd2">null</span>
+    }
+}
+</code></pre></div><p>不到 50 行代码就完成了相机预览，Github 仓库地址后续会给出。</p>
+<p>这篇文章就先讲到这里，持续更新中~~</p>
+
+
+          <h2>微信公众号</h2>
+
+<p>扫描下面的二维码关注我的微信公众号《音视频开发进阶》，推送更多精彩内容！</p>
+
+
+
+<p>添加我的微信 ezglumes 拉你入音视频与图形图像技术群一起交流学习~</p>
+
+
+
+<img src="https://image.glumes.com/blog_image/20211114145512.png" alt="wechat-account-qrcode">
+
+
+  
+          <p>
+            原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/post/webrtc/webrtc-setup-camera-preview/">WebRTC 系列1--创建相机预览</a>
+          </p>
+
+
+          
+
+          
+          
+        </article>
+  
+        
+          
+
+<h3>相关文章</h3>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/post/webrtc/webrtc-android-setup/">WebRTC &amp; Android 开发学习环境搭建~</a></li>
+    
+</ul>
+
+
+
+<h3>留言板</h3>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+        
+  
+        
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://glumes.com/post/engine/unity-halflambert-lighting-model/" data-toggle="tooltip" data-placement="top" title="Unity Shader 光照基础之 Half Lambert 光照模型">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://glumes.com/post/ffmpeg/ffmpeg-call-android-mediacodec/" data-toggle="tooltip" data-placement="top" title="FFmpeg 调用 Android MediaCodec 进行硬解码（附源码）">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+        
+
+      </div>
+    
+    
+    <div class="col-lg-4 col-md-2">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        
+        <a class="course-post" href="http://www.imooc.com/learn/1212" title="Android NDK 以及 CMake 免费课程">
+          <img src="https://image.glumes.com/blog_image/cmake-imooc-course.png" alt="Android NDK 以及 CMake 免费课程" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337181710408302593&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="Android OpenGL 入门系列">
+          <img src="https://image.glumes.com/blog_image/android-opengl-share.png" alt="Android OpenGL 入门系列" class="img-fluid">
+        </a>
+        
+        <a class="course-post" href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&amp;album_id=1337162736165535744&amp;__biz=MzA4MjU1MDk3Ng==&amp;scene=21#wechat_redirect" title="音视频 FFmpeg 入门系列">
+          <img src="https://image.glumes.com/blog_image/ffmpeg-share.png" alt="音视频 FFmpeg 入门系列" class="img-fluid">
+        </a>
+        
+      </div>
+    </div>
+    
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    
+
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(8)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(31)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93">年终总结(2)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+
+          
+          
+          
+              <li>
+                <a href="mailto:zhaoying9402@outlook.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://github.com/glumes" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+              <li>
+                <a href="https://weibo.com/u/3157458295" title="微博">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2021
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/">音视频开发进阶</a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://glumes.com/sitemap.xml">网站地图</a>
+          
+             &nbsp;&bull;&nbsp;
+                      <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+        </p>
+
+
+
+
+
+
+                <p class="text-center text-muted">
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;&bull;&nbsp;
+          <span id="busuanzi_container_site_uv" style="display:none">
+            访客数<span id="busuanzi_value_site_uv"></span>人次
+          </span>
+          &nbsp;&bull;&nbsp;
+                 <span id="busuanzi_container_page_pv" style="display:none">
+            阅读量<span id="busuanzi_value_page_pv"></span>人次
+          </span>
+        </p>
+
+<p>
+<a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+<img style="height:20px;width:auto;"; src="https://www.upyun.com/static/img/%E6%A0%B7%E5%BC%8F%E5%9B%BE.7cf927c.png"; />
+</a>
+</P>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.68.3</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/cnych/qikqiak.com">qikqiak-blog</a> 移植自 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://glumes.com/js/jquery-1.11.2.min.js"></script>
+<script src="https://glumes.com/js/bootstrap.min.js"></script>
+<script src="https://glumes.com/js/main.min.js"></script>
+<script src="https://glumes.com/js/reward.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script src='https://glumes.com/js/bundle.min.dd00fc477b5e611b3b15869e7f4ffa218efd3a1b6f00902db8b25e1e9a1d90fc.js' integrity='sha256-3QD8R3teYRs7FYaef0/6IY79OhtvAJAtuLJeHpodkPw='></script>
+
+  </body>
+</html>
+
