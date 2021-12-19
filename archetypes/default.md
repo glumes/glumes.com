@@ -1,6 +1,7 @@
 ---
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
+slug: "url"
 subtitle: ""
 tags: []
 categories: ["android"]
@@ -8,6 +9,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+image: ""
 ---
 
 <!--more-->
