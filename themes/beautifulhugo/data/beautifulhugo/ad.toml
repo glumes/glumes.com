@@ -11,9 +11,9 @@ cover = "https://image.glumes.com/blog_image/banner-av.png"
 
 
 [[ads]]
-url = "https://glumes.com"
-title = "移动开发专精"
-cover = "https://image.glumes.com/blog_image/banner-android.png"
+url = "http://www.shenlanxueyuan.com/channel/PQXo72DeuX/detail"
+title = "智能语音-干货合集"
+cover = "/img/posts/audio-course.png"
 #url = "https://mp.weixin.qq.com/s/i8-H7K-nlsq-lSIiuktL-g"
 #title = "七牛云战略大会"
 #cover = "https://image.glumes.com/blog_imageqiniuyun.jpeg"
