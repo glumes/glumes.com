@@ -85,9 +85,10 @@
             {{ partial "toc.html" . }}
           {{ end }}
   
-
-          {{ partial "ads.html" }}
-
+          
+          {{ if not (.Params.not_ads)}}
+            {{ partial "ads.html" }}
+          {{ end }}
 
           {{ $reAltIn := "<p><img src=\"([^\"]+)\" alt=\"([^\"]+)\" /></p>" }}
           {{ $reAltOut := "<figure><img src=\"$1\" alt=\"$2\"><figcaption>$2</figcaption></figure>" }}

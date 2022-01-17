@@ -25,6 +25,7 @@ disqusShortname = "glumes"
 
   rss = true
   reward = true
+  ads = true
   algolia = true
   useWebfont = true
   customimg = true
