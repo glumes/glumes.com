@@ -22,9 +22,9 @@ image: ""
 
 <!--more-->
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220117225027.png)
+![](https://image.glumes.com/blog_image20220326201219.png)
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220117225122.png)
+![](https://image.glumes.com/blog_image20220326201238.png)
 
 那时候就已经有滤镜支持了，比如 scale_vulkan、chromaber_vulkan 等。
 
@@ -110,7 +110,7 @@ static int process_frames(AVFilterContext *avctx, AVFrame *outframe, AVFrame *in
 以上代码要是看的费劲的话，还是只看核心的 shader 部分吧：
 
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220117234746.png)                                                       
+![](https://image.glumes.com/blog_image20220326201302.png)                                                 
 
 可以看出，做水平或者垂直翻转也只是更改了 texture 采样坐标而已，如果你会 OpenGL 的话，一样可以做出类似的 filter 。
 

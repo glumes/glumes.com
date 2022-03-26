@@ -23,7 +23,7 @@ image: ""
 
 **Vulkan Game Engine 视频合集：**
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220212225550.png)
+![](https://image.glumes.com/blog_image20220326202708.png)
 
 链接地址如下：
 
@@ -33,7 +33,7 @@ https://www.youtube.com/c/BrendanGalea/playlists
 
 不仅能学到 Vulkan 的知识还能实践到游戏引擎的开发中，目前这个系列还在连载中：
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220212225637.png)
+![](https://image.glumes.com/blog_image20220326202726.png)
 
 作者更新速度可能慢一点，但内容质量还是相当高的。
 

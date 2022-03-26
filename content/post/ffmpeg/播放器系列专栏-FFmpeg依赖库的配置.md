@@ -23,7 +23,7 @@ image: ""
 
 项目工程的每个目录介绍已经在上篇文章中讲过了，这里会说一下如何打开项目。
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317202707.png)
+![](https://image.glumes.com/blog_image20220326201628.png)
 
 如图所示，1 和 2 代表两个 CMakeLists.txt 文件，其中 1 代表的是 SDK 工程 CMake 配置文件，2 代表的是播放器工程 CMake 配置文件。
 
@@ -33,7 +33,7 @@ image: ""
 
 当用 CLion 打开工程时如果选择了根目录下的 CMakeLists.txt 就是 SDK 工程了，选择了 demo 目录下的就是播放器项目了，差别就是在 CLion 中能否有 PlanetPlayerDemo 这个构建，如下图所示：
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317203856.png)
+![](https://image.glumes.com/blog_image20220326201651.png)
 
 选择 SDK 工程打开方式时就只有 2 和 3 的选项了，其中 2 是 SDK 的构建，3 是单测的构建，而 1 是播放器打开方式才有的，前期很多时候都只要 SDK 打开方式就行了。
 
@@ -51,7 +51,7 @@ brew install ffmpeg
 
 众所周知，FFmpeg 是有很多编译选项和依赖选项的，那么上面的命令到底指定了哪些依赖呢？
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317205013.png)
+![](https://image.glumes.com/blog_image20220326201710.png)
 
 如上图，✅ 和 ❎ 表示的意思很明确了。
 
@@ -59,11 +59,11 @@ brew install ffmpeg
 
 我们的播放器项目就是在 Mac 上运行的，所以完全可以直接用 brew 安装好的 ffmpeg 库。
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317205642.png)
+![](https://image.glumes.com/blog_image20220326201726.png)
 
 如上命令，在 finder 中打开 ffmpeg 的安装目录。
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317205831.png)
+![](https://image.glumes.com/blog_image20220326201742.png)
 
 其中 include 目录就是头文件目录，lib 目录里面放着 ffmpeg 的动态库和静态库。
 
@@ -98,11 +98,11 @@ endif ()
 
 然后添加链接 FFmpeg 库的方法：
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317211205.png)
+![](https://image.glumes.com/blog_image20220326201805.png)
 
 可以看到链接库时用到了上面指定的平台和架构信息，这和我们的目录结构是相互依赖的。
 
-![](https://gitee.com/glumes-com/glumes_blog_image/raw/master/image/20220317211345.png)
+![](https://image.glumes.com/blog_image20220326201820.png)
 
 有了这两个方法，在 SDK 工程和播放器工程都可以复用了。
 
