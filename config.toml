@@ -152,8 +152,8 @@ theme = "github-light"
 
 
 [[menu.main]]
-    name = "生活点滴"
-    url = "categories/life"
+    name = "播放器项目实践"
+    url = "https://glumes.com/player_book/"
     weight = 2
 
 
