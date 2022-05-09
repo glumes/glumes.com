@@ -4,7 +4,7 @@ date: 2017-12-22T09:53:04+08:00
 description: "setup opencv environment"
 categories: ["anything"]
 tags: ["Opencv"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
 comments: true
 original: true
 addwechat: true
