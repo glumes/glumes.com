@@ -1,5 +1,5 @@
 ---
-title: "006 | 播放器专栏在Mac上查看MP4格式信息"
+title: "006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息"
 date: 2022-05-05T21:39:07+08:00
 slug: "mac-mp4-info"
 subtitle: ""
