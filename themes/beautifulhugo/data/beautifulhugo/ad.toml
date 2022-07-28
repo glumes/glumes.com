@@ -1,13 +1,13 @@
 [[ads]]
 url = "https://www.glumes.com/categories/opengl/"
 title = "OpenGL-特效开发"
-cover = "https://image.glumes.com/blog_image/banner-opengl.png"
+cover = "/image/banner/banner-opengl.png"
 
 
 [[ads]]
 url = "https://www.glumes.com/post/android/android-av-beginner-resource/"
 title = "音视频开发进阶"
-cover = "https://image.glumes.com/blog_image/banner-av.png"
+cover = "/image/banner/banner-av.png"
 
 
 [[ads]]
@@ -19,7 +19,7 @@ cover = "https://image.glumes.com/blog_image/banner-av.png"
 #cover = "https://image.glumes.com/blog_imageqiniuyun.jpeg"
 url = "https://glumes.com/post/ffmpeg/graphics-resources-for-spring-festival/"
 title = "音视频内卷指南"
-cover = "/img/posts/banner-android.png"
+cover = "/image/banner/banner-android.png"
 
 
 
