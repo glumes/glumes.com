@@ -9,6 +9,7 @@ bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0s
 draft: false
 original: true
 image: https://image.glumes.com/blog_image/jianying-100-speed.png
+slug: "ffmpeg-decode-drop-frame"
 ---
 
 **昨天周六，群里面还有人在技术交流！！**。

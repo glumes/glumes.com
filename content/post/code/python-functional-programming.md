@@ -7,6 +7,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 comments: true
 original: true
 addwechat: true
+slug: "python-functional-programming"
 ---
 
 

@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "av-beginner-003"
 ---
 
 在前面的文章中已经创建了一个 SDL 窗口并且显示指定的颜色。

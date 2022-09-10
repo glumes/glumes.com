@@ -3,6 +3,7 @@ title: "进击的 Vulkan 移动开发之 Instance & Device & Queue"
 date: 2019-01-07T11:03:18+08:00
 subtitle: ""
 tags: ["Vulkan"]
+slug: "vulkan-tutorial-instance-device-queue"
 categories: ["Vulkan"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

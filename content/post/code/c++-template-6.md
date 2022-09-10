@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-6"
 ---
 
 C++11 中引入了可变参数模板的特性，可变参数模板就是一个接受可变数目参数的模板函数或者模板类。

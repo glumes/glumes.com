@@ -4,6 +4,7 @@ date: 2021-08-14T21:53:16+08:00
 subtitle: ""
 tags: ["unity"]
 categories: ["engine"]
+slug: "unity-basic-object-operation"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

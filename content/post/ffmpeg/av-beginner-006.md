@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "av-beginner-006"
 ---
 
 在前面的文章中，我们已经能够加载 YUV 帧并显示了，那是把一张图片转换成 YUV 帧得到的素材。

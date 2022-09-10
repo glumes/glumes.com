@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-2"
 ---
 
 前面已经介绍了函数模板和类模板，还介绍了类模板的默认参数，在代码示例中都是用具体类型来作为模板参数的。

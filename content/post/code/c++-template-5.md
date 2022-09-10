@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-5"
 ---
 
 在前面的文章中，模板参数除了是类型之外，还可以是非类型参数，但只有整型和指向外部链接对象的指针才可以。

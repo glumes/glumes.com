@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "av-beginner-008"
 ---
 
 接上篇 SDL 播放 PCM 音频文件，已经实现了 `推` 的模式去播放，接下来看看 `拉` 的模式如何实现。

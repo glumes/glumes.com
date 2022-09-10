@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-3"
 ---
 
 在之前的代码示例中，频繁用到 `typename` 关键字。

@@ -2,6 +2,7 @@
 title: "进击的 Vulkan 移动开发（一）之今生前世"
 date: 2018-12-07T22:31:49+08:00
 subtitle: ""
+slug: "vulkan-tutorial-concept"
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true

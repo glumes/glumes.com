@@ -4,6 +4,7 @@ date: 2020-02-26T23:33:35+08:00
 subtitle: ""
 tags: ["SDL"]
 categories: ["ffmpeg"]
+slug: "av-beginner-001"
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

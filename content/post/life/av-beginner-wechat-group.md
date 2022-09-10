@@ -3,6 +3,7 @@ title: "音视频交流群又来啦~~~"
 date: 2020-08-31T21:01:28+08:00
 subtitle: ""
 tags: ["群聊"]
+slug: "av-beginner-wechat-group"
 categories: ["life"]
 comments: true
 draft: false

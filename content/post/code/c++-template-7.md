@@ -7,6 +7,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-7"
 ---
 在使用模板时可以显示指定模板类型，尤其是针对有返回类型的模板，显示指定可以避免类型转换带来的困扰。
 

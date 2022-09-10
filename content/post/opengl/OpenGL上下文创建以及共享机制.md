@@ -1,10 +1,10 @@
 ---
 title: "OpenGL上下文创建以及共享机制"
 date: 2022-06-18T13:08:36+08:00
-slug: "url"
+slug: "opengl-share-context"
 subtitle: ""
-tags: []
-categories: ["android"]
+tags: ["OpenGL"]
+categories: ["OpenGL"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

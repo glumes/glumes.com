@@ -4,6 +4,7 @@ date: 2020-08-03T20:22:39+08:00
 subtitle: ""
 tags: ["Life"]
 categories: ["life"]
+slug: "domain-name-register"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

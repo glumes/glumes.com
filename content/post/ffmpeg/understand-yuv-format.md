@@ -9,6 +9,7 @@ bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0s
 draft: false
 original: true
 addwechat: true
+slug: "ffmpeg/understand-yuv-format"
 ---
 
 

@@ -2,6 +2,7 @@
 title: "WebRTC & Android 开发学习环境搭建~"
 date: 2020-08-10T21:01:28+08:00
 subtitle: ""
+slug: "webrtc-android-setup"
 tags: ["webrtc"]
 categories: ["webrtc"]
 comments: true

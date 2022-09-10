@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "av-beginner-010"
 ---
 
 音视频连载系列已经停更一段时间，再这么停下去估计就要掉粉了，捡起来继续更新~~~

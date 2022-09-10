@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
+slug: "how-to-compile-ffmpeg-library"
 ---
 
 前几天发了一篇 [FFmpeg 调用 Android MediaCodec 进行硬解码](https://mp.weixin.qq.com/s/S8NwQnY4uyQulfZnRF7t_A) 的文章，这里面的技术点不算太难，也还是调用 FFmpeg 的常用接口操作，但重点在于 FFmpeg 的版本选择以及编译选项要开启 MediaCodec 才行。

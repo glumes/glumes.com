@@ -9,6 +9,7 @@ bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0s
 draft: false
 original: true
 image: https://image.glumes.com/blog_image20211019101917.png
+slug: "ffmpeg-call-android-mediacodec"
 ---
 
 > 文章原创首发公众号：音视频开发进阶。链接地址：https://mp.weixin.qq.com/s/S8NwQnY4uyQulfZnRF7t_A

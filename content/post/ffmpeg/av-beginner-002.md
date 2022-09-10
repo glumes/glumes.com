@@ -3,6 +3,7 @@ title: "【音视频连载-002】基础学习篇-SDL 创建窗口并显示颜色
 date: 2020-03-02T20:40:02+08:00
 subtitle: ""
 tags: ["SDL"]
+slug: "av-beginner-002"
 categories: ["ffmpeg"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

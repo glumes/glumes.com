@@ -8,6 +8,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 comments: true
 draft: false
 original: true
+slug: "av-beginner-005"
 ---
 
 

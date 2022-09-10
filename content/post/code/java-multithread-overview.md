@@ -10,6 +10,7 @@ draft: false
 original: false
 addwechat: false
 notoc: true
+slug: "java-multithread-overview"
 ---
 
 

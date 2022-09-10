@@ -8,6 +8,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+slug: "c++-template-4"
 ---
 
 在之前的类模板中，只在类声明时用了 typename 指定模板参数类型，之后的成员函数复用模板参数类型。

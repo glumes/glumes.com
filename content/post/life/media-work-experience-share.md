@@ -4,6 +4,7 @@ date: 2021-11-26T12:47:46+08:00
 subtitle: ""
 tags: ["生活点滴"]
 categories: ["生活点滴"]
+slug: "media-work-experience-share"
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

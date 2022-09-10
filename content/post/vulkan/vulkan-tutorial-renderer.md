@@ -4,6 +4,7 @@ date: 2018-12-07T22:39:51+08:00
 subtitle: ""
 tags: ["Vulkan"]
 categories: ["Vulkan"]
+slug: "vulkan-tutorial-renderer"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: true

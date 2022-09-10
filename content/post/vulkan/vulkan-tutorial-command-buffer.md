@@ -2,6 +2,7 @@
 title: "进击的 Vulkan 移动开发之 Command Buffer"
 date: 2019-01-09T09:50:20+08:00
 subtitle: ""
+slug: "vulkan-tutorial-command-buffer"
 tags: ["Vulkan"]
 categories: ["Vulkan"]
 comments: true

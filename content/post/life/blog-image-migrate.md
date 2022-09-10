@@ -4,6 +4,7 @@ date: 2019-05-02T21:21:40+08:00
 subtitle: ""
 tags: ["Python"]
 categories: ["life"]
+slug: "blog-image-migrate"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
