@@ -1,7 +1,7 @@
 ---
 title: "用 UE4 虚幻引擎做个捏脸小功能~~"
 date: 2022-11-05T14:56:53+08:00
-slug: "UE4-ControlRig-Face"
+slug: "UE4-ControlRig-Face-Edit"
 subtitle: ""
 tags: ["UE4"]
 categories: ["engine"]
