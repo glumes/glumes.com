@@ -1,5 +1,5 @@
 ---
-title: "UE 4.27 添加自定义ShadingModel"
+title: "UE 4.27 添加自定义 ShadingModel"
 date: 2022-12-27T22:24:27+08:00
 slug: "ue4.27-add-custom-shading-model"
 subtitle: ""
