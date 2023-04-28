@@ -9,6 +9,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 slug: "av-beginner-011"
+toc: true
 ---
 
 本篇文章主要是讲解如何通过 FFmpeg 代码来获取文件信息。
