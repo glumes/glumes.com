@@ -1,0 +1,45 @@
+.sidebar-wrap {
+    padding-bottom: 1rem!important;
+    padding-top: 1rem!important;
+  }
+  
+  .sidebar-title {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid#eee;
+  }
+  
+  .tags-cloud a {
+    padding: 5px 10px;
+    background: #2a55f4;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: capitalize;
+    display: inline-block;
+    margin-bottom: 5px;
+    line-height: 27px;
+  }
+  
+  .sidebar-block {
+    margin-top: 10px;
+    padding: 15px;
+    -webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  }
+  .sidebar-block ol li {
+    margin-bottom: 10px;
+  }
+  .sidebar-block ol li a {
+    color: #444;
+    font-size: 15px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  .sidebar-block ol li a:hover {
+    text-decoration: none;
+  }

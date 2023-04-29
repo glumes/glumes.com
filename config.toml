@@ -1,7 +1,7 @@
 baseURL = "http://localhost:1313/"
 title = "音视频开发进阶"
 languageCode = "en-us"
-theme = "hugo-theme-puppet"
+theme = "hugo-theme-cleanwhite"
 canonifyURLs = true
 
 copyright = ""
@@ -20,13 +20,19 @@ enableEmoji = true
 
 
 [params]
-author = "Puppet"
+author = "glumes"
 description = "A simple and clean theme for Hugo"
 keywords = "blog,developer,personal"
-img_home = "img/h-banner-new.jpeg"
+img_home = "img/home-bg.jpg"
 img_404 = "img/404-bg.jpg"
+header_image = "img/home-bg.jpg"
 
+about_me = true
+sidebar_avatar = "image/avatar.jpeg"
+sidebar_about_description = "你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~\n技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！"
 
+omit_categories = true
+reward = false
 
 # prevent build failures when using Hugo's template _internal/opengraph.html 
 [taxonomies]
@@ -47,12 +53,10 @@ style = "dracula"
 unsafe = true
 
 
-
-
 useFaviconGenerator = true
 
 custom_js = []
-custom_css = [] # ["css/custom.css"]  Add your file to assets folder  [assets/css/custom.css]
+custom_css = ["css/sidebar.css"] # ["css/custom.css"]  Add your file to assets folder  [assets/css/custom.css]
 
 [params.sidebar]
 enable = true
@@ -62,4 +66,18 @@ avatar = "img/home-bg.jpg"
 bio = "a personal website"
 
 
+[params.utteranc]
+enable = true
+repo = "glumes/glumes.com"
+issue-term = "pathname"
+theme = "github-light"
 
+
+[[params.addtional_menus]]
+title = "about"
+href = "/about/"
+
+
+[[params.addtional_menus]]
+title = "archive"
+href = "/archive/"

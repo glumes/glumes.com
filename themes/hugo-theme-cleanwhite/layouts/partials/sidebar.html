@@ -1,264 +1,82 @@
+<div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container">
 
-<!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    <!-- Short About -->
-	{{ if .Site.Params.about_me }}
-    <section class="visible-md visible-lg">
-	<!--<hr><h5><a href="{{ "/about" | relLangURL }}">ABOUT ME</a></h5>-->
-        <div class="short-about">
-            {{ with .Site.Params.sidebar_avatar }}
-            <a href="{{ "/about" | relLangURL }}">
-               <img src="{{ . | relURL }}" alt="avatar" style="cursor: pointer" />
-            </a>
-            {{ end }}
-            {{ with .Site.Params.sidebar_about_description }}
-                <p>{{ . }}</p>
-            {{ end }}
-           <!-- SNS Link -->
-           <ul class="list-inline">
-               {{ if .Site.Params.social.email }}
-               <li>
-                   <a href="mailto:{{ .Site.Params.social.email }}">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                      </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.twitter }}
-               <li>
-                   <a href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.zhihu }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-stack-1x fa-inverse">知</i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.weibo }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-weibo fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.facebook }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.wechat }}
-               <li>
-                   <a target="_blank" href="{{ . | relURL}}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.github }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.gitlab }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.git }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-git fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.linkedin }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.medium }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
-                            </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.stackoverflow }}
-                    <li>
-                        <a target="_blank" href="{{ . }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-            {{ end }}
-            {{ with .Site.Params.social.reddit }}
-                    <li>
-                        <a target="_blank" href="{{ . }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-            {{ end }}
-            {{ with .Site.Params.social.mastodon }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-mastodon fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.keybase }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-keybase fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.xing }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-xing fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.instagram }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-               {{ with .Site.Params.social.flickr }}
-               <li>
-                   <a target="_blank" href="{{ . }}">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-flickr fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               {{ end }}
-                </ul>
-            </div>
-    </section>
-	{{ end }}
-    <!-- Bookmarks -->
-    {{ if .Site.Params.bookmarks }}
-    <section>
-        <hr>
-        <h5>QUICK LINKS</h5>
-        <ul class="list-inline">
-            {{ range .Site.Params.bookmark_link }}
-            <li><a target="_blank" href="{{.href }}">{{.title}}</a></li>
-            {{ end }}
-        </ul>
-    </section>
-    {{ end }}
-    <!-- Featured Tags -->
-    {{ if .Site.Params.featured_tags }}
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            {{ $featured_condition_size := .Site.Params.featured_condition_size }}
-            {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-               {{ if gt (len $taxonomy.Pages) $featured_condition_size }}
-                    <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
-                        {{ $name }}
-                    </a>
-               {{ end }}
-            {{ end }}
-        </div>
-    </section>
-    {{ end }}
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
 
-    <!-- Friends Blog -->
-    {{ if .Site.Params.friends }}
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-            {{ range .Site.Params.friend_link }}
-            <li><a target="_blank" href="{{.href}}">{{.title}}</a></li>
-            {{ end }}
-        </ul>
-    </section>
-    {{ end }}
-    {{ if .Site.Params.publications }}
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>{{ .Site.Params.publications.Title }}</h5>
-        <div class="short-about">
-        {{ range .Site.Params.publications.items }}
-        <a href="{{.href}}">
-            <img src="{{.image}}" alt="avatar" style="cursor: pointer" />
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，曾就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、项目合作、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+
+    <!-- 课程推荐 -->
+    <!-- <div class="sidebar-wrap">
+      <div class="sidebar-block course-wrap">
+        <h4 class="sidebar-title">学习系列</h4>
+        {{ range .Site.Data.beautifulhugo.course.course_list }}
+        <a class="course-post" href="{{ .url }}" title="{{ .title }}">
+          <img src="{{ .cover }}" alt="{{ .title }}" class="img-fluid">
         </a>
         {{ end }}
-        </div>
-    </section>
-    {{ end }}
-</div>
+      </div>
+    </div> -->
+    <!-- 分类 -->
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      {{ range .Site.Data.beautifulhugo.category.category_list }}
+
+
+      <li><a href="{{ .url }}">{{ .title }}</a></li>
+      {{ end }}
+
+      </ol>
+    </div>
+
+
+    <!-- 热门文章 -->
+    <!-- <div class="sidebar-wrap">
+      <div class="sidebar-block latest-post">
+        <h4 class="sidebar-title">热门文章</h4>
+        <ol class="list-unstyled">
+          {{ range .Site.Data.beautifulhugo.hot.posts }}
+          <li>
+            <a href="{{ .url }}">
+              <div class="rpost-img">
+                <img src="{{ .cover }}" alt="{{ .title }}" class="img-fluid">
+              </div>
+              <h5>{{ .title }}</h5>
+              <p class="text-muted">{{ .date }}</p>
+            </a>
+          </li>
+          {{ end }}
+        </ol>
+      </div>
+    </div> -->
+
+
+
+    <!-- 标签 -->
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ if gt $taxonomy.Count 1 }}
+        <a href="/tags/{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a>
+        {{ end }}
+      {{ end }}
+      </div>
+    </div>
+  </div>

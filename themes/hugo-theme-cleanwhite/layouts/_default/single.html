@@ -79,10 +79,16 @@
                 -->
                 {{ .Content }}
 
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="{{ .Permalink }}">{{ .Title}}</a>
+                </p>
+
                 {{ if .Site.Params.reward }}
                 {{ partial "reward.html" . }}
                 {{ end }}
 
+
+           
                 {{ if or (.PrevInSection) (.NextInSection) }}
                 <hr>
                 <ul class="pager">
@@ -101,7 +107,16 @@
                 </ul>
                 {{ end }}
 
+                {{ if not (.Params.single_page)}}
+
+                    {{ if not (.Params.unrelated) }}
+                    {{ partial "related.html" . }}
+                    {{ end }}
+
+                {{ end }}
+                
                 {{ partial "comments.html" . }}
+
             </div>
 
             <!-- Side Catalog Container -->

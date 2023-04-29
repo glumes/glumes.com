@@ -9,7 +9,6 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
-image: ""
 ---
 
 基于 UE 4.27 的版本添加自定义的 ShadingModel ，大致分为两步：
