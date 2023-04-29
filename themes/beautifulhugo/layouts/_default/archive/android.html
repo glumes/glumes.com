@@ -1,15 +1,15 @@
 
-
-
-
-
 {{ define "main" }}
 {{ $pages := (where (where .Site.Pages "Type" "post") "IsPage" true) }}
 
-<div class="container">
+<div data-pagefind-ignore="all" class="container">
     <div class="row">
    	    <div class="
-           col-lg-8  col-md-10
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
         ">
             <div class="archive-list">
                 <!-- {{ range ($pages.GroupByDate "2006") }}
@@ -48,10 +48,11 @@
                 </ul>
             </div>
        	</div>
-           {{ partial "sidebar.html" . }}
+        {{ partial "sidebar.html" . }}
 	</div>
 </div>
 
 
 <hr />
 {{ end }}
+
