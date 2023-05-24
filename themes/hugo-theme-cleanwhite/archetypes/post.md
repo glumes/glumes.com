@@ -1,10 +1,25 @@
 ---
-title:       "An Example Post"
-subtitle:    ""
-description: ""
-date:        2018-06-04
-author:      ""
-image:       ""
-tags:        ["tag1", "tag2"]
-categories:  ["Tech" ]
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+slug: "url"
+author: "ezglumes"
+subtitle: ""
+tags: []
+categories: ["android"]
+comments: true
+bigimg: [{src: "/img/banner.jpg", desc: ""}]
+draft: false
+original: true
+image: ""
 ---
+
+<!--more-->
+
+
+
+{{< gallery>}}
+
+	{{< figure src="" >}}
+
+{{< /gallery >}}
+

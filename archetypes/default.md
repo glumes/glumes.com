@@ -2,6 +2,7 @@
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
 slug: "url"
+author: "ezglumes"
 subtitle: ""
 tags: []
 categories: ["android"]
