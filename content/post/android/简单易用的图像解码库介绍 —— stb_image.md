@@ -9,6 +9,7 @@ draft: false
 original: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 slug: "stb-image-introduce"
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

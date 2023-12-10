@@ -9,6 +9,7 @@ comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

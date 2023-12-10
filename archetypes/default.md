@@ -11,6 +11,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
+author: "glumes"
 ---
 
 <!--more-->

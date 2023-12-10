@@ -10,6 +10,7 @@ original: true
 addwechat: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 slug: "setup-android-crack-environment"
+author: "glumes"
 ---
 
 在 MAC 上搭建 Android 反编译环境主要就是三个东西：```apktool``` 、```dex2jar``` 、```jd-gui``` 。

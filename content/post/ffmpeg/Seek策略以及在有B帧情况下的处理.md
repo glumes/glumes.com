@@ -10,6 +10,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
+author: "glumes"
 ---
 
 最近在做 Seek 相关功能时遇到的问题排查，顺便也学到了一些新的东西，和大家分享下。

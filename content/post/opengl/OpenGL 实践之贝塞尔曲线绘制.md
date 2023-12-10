@@ -9,6 +9,7 @@ comments: true
 draft: false
 original: true
 slug: "opengl-draw-bezier-line"
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

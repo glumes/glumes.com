@@ -11,6 +11,7 @@ addwechat: true
 notoc: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 slug: "okhttp-analysis"
+author: "glumes"
 ---
 
 分析一波 OkHttp 的源码实现。

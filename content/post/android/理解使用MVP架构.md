@@ -10,6 +10,7 @@ original: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 addwechat: true
 slug: "understand-mvp-architecture"
+author: "glumes"
 ---
 
 

@@ -5,6 +5,7 @@ hasCJKLanguage: true
 languageCode: "zh-cn"
 title: "星陨的博客"
 theme: "theme_back"
+author: "glumes"
 metaDataFormat: "yaml"
 algolia:
   index: "glumes-blog"

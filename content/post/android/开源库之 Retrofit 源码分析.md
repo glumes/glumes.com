@@ -10,6 +10,7 @@ original: true
 addwechat: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 slug: "retrofit-analysis"
+author: "glumes"
 ---
 
 分析一波 Retrofit 的源码实现。

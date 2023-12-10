@@ -8,6 +8,7 @@ tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 slug: "opengl-tutorial-face-culling-usage"
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

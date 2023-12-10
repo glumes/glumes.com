@@ -11,6 +11,7 @@ addwechat: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 slug: "android-rxjava"
 categoriessss: true
+author: "glumes"
 ---
 
 

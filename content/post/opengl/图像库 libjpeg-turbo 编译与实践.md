@@ -9,6 +9,7 @@ bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0s
 comments: true
 draft: false
 original: true
+author: "glumes"
 ---
 
 <!--more-->
