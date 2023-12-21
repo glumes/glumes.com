@@ -10,6 +10,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
+author: "星陨"
 ---
 
 最近在学习 UE 相关的使用，正好看到一篇文章讲解用 Control Rig 实现简单捏脸功能，这种小而美的完整案例挺适合来练手的，涉及到了 UI、蓝图、动画、骨骼等方面，值得推荐一下。

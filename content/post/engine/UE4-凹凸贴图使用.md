@@ -10,6 +10,7 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
+author: "星陨"
 ---
 
 UE 中提供了 `凹凸贴图偏移` 的贴图来实现修改 UV 坐标达到提升表面细节，使材质产生深度错觉。凹凸贴图偏移是 UE4 中的术语，其实就对应于 LearnOpenGL 网站上的 `视差贴图`。
