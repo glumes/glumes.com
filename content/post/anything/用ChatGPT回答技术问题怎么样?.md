@@ -1,7 +1,7 @@
 ---
 title: "用 ChatGPT 回答技术问题怎么样 ? "
 date: 2023-05-24T19:27:46+08:00
-author: "ezglumes"
+author: "星陨"
 slug: "chatgpt-for-tech-q&a"
 subtitle: ""
 tags: ["知识星球"]

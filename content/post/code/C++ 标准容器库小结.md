@@ -10,6 +10,7 @@ slug: "c++-stl-container-overview"
 original: false
 addwechat: false
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
+author: "星陨"
 ---
 
 
