@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="Unity Shader 显示一张图片纹理" />
+    <meta property="og:title" content="Unity Shader 显示一张图片纹理" />
+    <meta property="twitter:title" content="Unity Shader 显示一张图片纹理" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>Unity Shader 显示一张图片纹理 | </title>
+
+    <link rel="canonical" href="https://glumes.com/unity-basic-texture/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/unity" title="unity">
+                            unity
+                        </a>
+                        
+                    </div>
+                    <h1>Unity Shader 显示一张图片纹理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Monday, August 23, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>用 Unity 去显示一张图片纹理比用 OpenGL 代码去显示图片要简单多了，而这正是因为 Unity 在背后做了很多封装工作。</p>
+<p>要显示的图片如下所示：</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/v2-a560282d5e3515d6dc819c0173f9620b_720w.jpg" alt="">
+
+</p>
+<p>它的分辨率是 2560x1600 ，也就是矩形图片，并非正方形。</p>
+<h2 id="unityshader-编写">UnityShader 编写</h2>
+<p>前面已经学习了 UnityShader 的整体结构，在 <strong>Properties</strong>  块中定义属性，可以在参数面板中调节对应的值；在 <strong>SubShader</strong>  的 <strong>Pass</strong> 块中编写具体的渲染代码。</p>
+<p>实现图片纹理要写一个<strong>顶点/片元着色器</strong>，不同于 OpenGL 需要两个 Shader 文件，Unity 一个 Shader 文件就可以了。</p>
+<p>通过如下宏定义来标识后续的顶点和片元着色器对应哪个函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">#pragma vertex vert
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ff79c6">#pragma fragment frag
+</span></span></span></code></pre></div><h3 id="顶点着色器">顶点着色器</h3>
+<p>按照写 OpenGL Shader 的经验，在顶点着色器中需要处理外界传过来的顶点坐标和纹理坐标。</p>
+<p>而在 Unity 中这些东西都假设给你传好了，只要自己去接收就行。</p>
+<p>比如需要顶点坐标，那么就定义在 <strong>POSITION</strong> 中；需要纹理坐标，就定义在 <strong>TEXCOORD0</strong>  中；需要法向量，就定义在 <strong>NORMAL</strong> 中 。</p>
+<p>显示图片纹理，当然需要顶点坐标和纹理坐标，那么代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>float2 <span style="color:#8be9fd;font-style:italic">uv</span> : TEXCOORD0;
+</span></span></code></pre></div><p>定义了 vertex 和 uv 两个变量，类型分别是 float4 和 float2 ，代表不同个数的浮点数，后面就指定了这个变量要接收 Unity 传过来的数据含义。</p>
+<p>在顶点着色器中就需要上面的数据作为函数参数，Unity 中可以定义一个结构体来包装上面的数据统一作为顶点着色器的参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">appdata</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    float2 <span style="color:#8be9fd;font-style:italic">uv</span> : TEXCOORD0;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>};
+</span></span></code></pre></div><p>说完了顶点着色器的参数，接下来就是顶点着色器函数的返回值，除了需要把经过 MVP 坐标转换后的顶点坐标返回出去，还需要把纹理采样坐标返回出去，在 OpenGL Shader 中可以通过 <strong>varying</strong> 关键字来实现。</p>
+<p>在 Unity 中通过 <strong>SV_POSITION</strong> 关键字来定义着色器之间传递的顶点坐标。而着色器之间传递纹理坐标并没有直接的定义了，可以用符合自己要求的数据结构来表示。</p>
+<p>具体代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : SV_POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4">// 传递纹理坐标可以用 COLOR 也可以用 TEXCOORD0 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>float2 <span style="color:#8be9fd;font-style:italic">uv</span> : COLOR;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4">// float2 uv : TEXCOORD0;
+</span></span></span></code></pre></div><p>传递纹理坐标，用 COLOR 和 TEXCOORD0 都是一样的，不过都是用到前面两位的数据。</p>
+<p>同样，也可以用结构体将上面的数据包装起来：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">v2f</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : SV_POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>float2 <span style="color:#8be9fd;font-style:italic">uv</span> : COLOR;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>};
+</span></span></code></pre></div><p>这样，就可以定义顶点着色器的函数了，大致框架如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>v2f <span style="color:#50fa7b">vert</span>(appdata v)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// 函数执行内容
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>函数输入参数和输出内容都是上面提到过的数据，至于具体的执行内容就和 OpenGL Shader 差不多了，要将顶点坐标经过一系列的转换，另外也要将纹理坐标经过一些转换，不同的是 Unity 中有一些辅助函数帮忙做这些操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>v2f <span style="color:#50fa7b">vert</span> (appdata v)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    v2f o;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    o.vertex <span style="color:#ff79c6">=</span> mul(UNITY_MATRIX_MVP, v.vertex);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    o.uv <span style="color:#ff79c6">=</span> v.uv <span style="color:#ff79c6">*</span> _MainTex_ST.xy <span style="color:#ff79c6">+</span> _MainTex_ST.zw;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#6272a4">// 使用 unity 内置更便捷的函数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// o.vertex = UnityObjectToClipPos(v.vertex);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> o;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>}
+</span></span></code></pre></div><p>unity 中通过 <strong>UNITY_MATRIX_MVP</strong> 变量指定了坐标转换的 MVP 矩阵，通过 <strong>mul</strong> 函数进行相乘。</p>
+<p>另外，纹理坐标也经过了一些操作，实际上也可以不操作，直接传递 <strong>uv</strong> 值就行，多了的这些操作是方便对纹理进行调节，这会在后面内容提到。</p>
+<p>除了自己计算之外，还可以直接用 unity 中现成的函数，简单方便。</p>
+<p><strong>UnityObjectToClipPos</strong> 函数实现将坐标转换到裁剪空间，<strong>TRANSFORM_TEX</strong> 函数实现纹理的偏移操作，这些函数都是在 <strong>UnityCG.cginc</strong> 中定义的，所以在 <strong>Pass</strong> 中要它们 <strong>inlucde</strong> 进来。</p>
+<p>另外，要在 Shader 中使用纹理，还得在 <strong>Properties</strong> 块中定义一个纹理属性，这样参数面板中就可以选择不同的图片作为纹理。而 <strong>Pass</strong> 中使用 <strong>Properties</strong> 定义的纹理还需要再定义一遍才行，如下代码所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Properties 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    _MainTex (<span style="color:#f1fa8c">&#34;Texture&#34;</span>, <span style="color:#bd93f9">2</span>D) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;white&#34;</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>SubShader{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    Pass{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        sampler2D _MainTex;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        float4 _MainTex_ST;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div><h3 id="片段着色器">片段着色器</h3>
+<p>完成了顶点着色器之后，就是片段着色器了，它要输出一个最终的颜色，而 unity 中通过 <strong>SV_Target</strong> 来标识输出颜色，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>fixed4 <span style="color:#50fa7b">frag</span> (v2f i) <span style="color:#ff79c6">:</span> SV_Target
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">//  执行代码
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>片段着色器的输出就是一个 fixed4 类型的颜色值，而输入就是顶点着色器的输出，具体的指定内容就很简单了，和 OpenGL Shader 一样，采样坐标点的颜色值即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>fixed4 <span style="color:#50fa7b">frag</span> (v2f i) <span style="color:#ff79c6">:</span> SV_Target
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    fixed4 col <span style="color:#ff79c6">=</span> tex2D(_MainTex,  i.uv);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#ff79c6">return</span> col;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><h3 id="完整代码">完整代码</h3>
+<p>通过如上的学习就可以显示图片纹理了，完整代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Shader <span style="color:#f1fa8c">&#34;Custom/Shader-1&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    Properties
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        _MainTex (<span style="color:#f1fa8c">&#34;Texture&#34;</span>, <span style="color:#bd93f9">2</span>D) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;white&#34;</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    SubShader
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        Pass
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            CGPROGRAM
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            <span style="color:#ff79c6">#pragma vertex vert
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#ff79c6"></span>            <span style="color:#ff79c6">#pragma fragment frag
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#ff79c6"></span>            <span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&#34;UnityCG.cginc&#34;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#ff79c6"></span>            <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">appdata</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>            {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>                float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                float2 <span style="color:#8be9fd;font-style:italic">uv</span> : TEXCOORD0;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>            };
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>            <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">v2f</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>            {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>                float2 <span style="color:#8be9fd;font-style:italic">uv</span> : COLOR;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>                float4 <span style="color:#8be9fd;font-style:italic">vertex</span> : SV_POSITION;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>            };
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>            sampler2D _MainTex;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>            float4 _MainTex_ST;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>            v2f <span style="color:#50fa7b">vert</span> (appdata v)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>            {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>                v2f o;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>   
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>                o.vertex <span style="color:#ff79c6">=</span> mul(UNITY_MATRIX_MVP,v.vertex);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>                o.uv <span style="color:#ff79c6">=</span> v.uv <span style="color:#ff79c6">*</span> _MainTex_ST.xy <span style="color:#ff79c6">+</span> _MainTex_ST.zw;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>                <span style="color:#6272a4">// o.vertex = UnityObjectToClipPos(v.vertex);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span><span style="color:#6272a4"></span>                <span style="color:#6272a4">// o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span><span style="color:#6272a4"></span>                
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>                <span style="color:#ff79c6">return</span> o;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>            fixed4 <span style="color:#50fa7b">frag</span> (v2f i) <span style="color:#ff79c6">:</span> SV_Target
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>            {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>                fixed4 col <span style="color:#ff79c6">=</span> tex2D(_MainTex, <span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">-</span>  i.uv);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>                <span style="color:#ff79c6">return</span> col;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>            ENDCG
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>}
+</span></span></code></pre></div><p>显示效果如下：</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/20210822162951.png" alt="">
+
+</p>
+<h3 id="纹理设置">纹理设置</h3>
+<p>另外，参数面板上还有两个参数可以让我们调节纹理显示效果的，分别是  <strong>Tiling</strong> 和 <strong>Offset</strong> 。</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/20210822171441.png" alt="">
+
+</p>
+<p>这两个参数和纹理的设置有关，选中纹理图片，可以看到纹理的平铺模式。</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/20210822172716.png" alt="">
+
+</p>
+<p>平铺模式决定纹理坐标超过 [0,1] 之后是重复还是使用边界值。</p>
+<p>而 Tiling 值就是调节纹理的选取范围的，正常是 [0,1] 选取整个图片，也可以 [0.5,0.5] 选取四分之一图片。</p>
+<p>而 Offset 就是决定纹理坐标原点的偏移量的，正常是从 [0,0] 开始，也可以从 [0.5,0.5] 中心点开始。</p>
+<p>事实上 Tiling 和 Offset 共同决定了纹理的选择范围。要使这两个参数生效，就得在代码中乘以这两个参数，在上面的代码中也有 提到。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>o.uv <span style="color:#ff79c6">=</span> v.uv <span style="color:#ff79c6">*</span> _MainTex_ST.xy <span style="color:#ff79c6">+</span> _MainTex_ST.zw;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4">// 或者下面这种
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4">// o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+</span></span></span></code></pre></div><h2 id="小结">小结</h2>
+<p>以上就是 Unity Shader 显示一张图片纹理的操作，和 OpenGL  理论上都一样的，但流程更简单了，可以更快捷的看到 Shader 效果。</p>
+<p>流程介绍的比较详细，后面熟悉这个流程，就可以更快速的学习实践了。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/unity-basic-texture/">Unity Shader 显示一张图片纹理</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/unity-shader-basic-content/" data-toggle="tooltip" data-placement="top" title="UnityShader 的基本概念">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/unity-basic-lighting/" data-toggle="tooltip" data-placement="top" title="Unity Shader 光照基础内容">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/unity-shader-basic-content/">UnityShader 的基本概念</a></li>
+    
+    <li><a href="https://glumes.com/unity-basic-object-operation/">Unity 物体的基本操作</a></li>
+    
+    <li><a href="https://glumes.com/c-template-7/">C&#43;&#43; 模板系列小结07-尾置返回类型</a></li>
+    
+    <li><a href="https://glumes.com/c-template-6/">C&#43;&#43; 模板系列小结06-可变参数模板特性</a></li>
+    
+    <li><a href="https://glumes.com/c-multi-thread/">C&#43;&#43; 中的多线程的使用和线程池建设</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

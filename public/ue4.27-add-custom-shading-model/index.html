@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="UE 4.27 添加自定义 ShadingModel" />
+    <meta property="og:title" content="UE 4.27 添加自定义 ShadingModel" />
+    <meta property="twitter:title" content="UE 4.27 添加自定义 ShadingModel" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>UE 4.27 添加自定义 ShadingModel | </title>
+
+    <link rel="canonical" href="https://glumes.com/ue4.27-add-custom-shading-model/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/ue4" title="UE4">
+                            UE4
+                        </a>
+                        
+                    </div>
+                    <h1>UE 4.27 添加自定义 ShadingModel</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Tuesday, December 27, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>基于 UE 4.27 的版本添加自定义的 ShadingModel ，大致分为两步：</p>
+<p><strong>1. 在 UE Editor 中添加自定义的 ShadingModel 入口。这样在创建材质时可以选择对应的 ShadingModel 。</strong></p>
+<p><strong>2. 在 Shader 中对自定义的 ShadingModel 做渲染上的处理。比如自定义的 BxDF 函数，以及对光照的特殊处理等。</strong></p>
+<h2 id="editor-中添加-shadingmodel-入口">Editor 中添加 ShadingModel 入口</h2>
+<h3 id="定义-shadingmodel-宏">定义 ShadingModel 宏</h3>
+<p>首先是找到 EngineTypes.h 文件，在这里添加自定义 ShadingModel 对应的宏。</p>
+<p>
+  <img src="https://glumes.com/image/engine/372A3215-A025-48AC-A986-0D1D5A8E5F16.png" alt="">
+
+</p>
+<p>同时要注意下面红框中的内容，提示 ShadingModel 数量要小于等于 16 个，这样一来留给我们拓展的数量就有限了。</p>
+<p>通过全局搜索，可以找到 ShadingModel 对应的宏都在哪里被引用了，比如 MSM_ThinTranslucent 的搜索结果：</p>
+<p>
+  <img src="https://glumes.com/image/engine/0952E851-44C2-45B1-995D-E3BDE116A41A.png" alt="">
+
+</p>
+<p>照着这个引用方式进行处理就可以。</p>
+<h3 id="材质添加自定义数据">材质添加自定义数据</h3>
+<p>接下来为自定义的 ShadingModel 添加额外的自定义数据，会在创建材质时多出额外的连接节点。</p>
+<p>找到 Material.cpp 文件 IsPropertyActive_Internal 的函数，添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/5D079E05-5305-43FD-A44E-0E2CB05595B9.png" alt="">
+
+</p>
+<p>在 MP_CustomData1 和 MP_CustomData0 中添加自定义 ShadingModel 的宏。</p>
+<p>同时在 MaterialShared.cpp 文件的 GetAttributeOverrideForMaterial 函数中添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/A3D954BF-DBE4-4842-BFDE-57D594AF9821.png" alt="">
+
+</p>
+<p>这一步是为自定义的数据添加相关的描述，添加好了之后编译引擎会得到如下效果。</p>
+<p>
+  <img src="https://glumes.com/image/engine/3E51D01A-C0FF-49C6-B9FC-353B06F399C3.png" alt="">
+
+</p>
+<p>ShadingModel 中有了我们定义的宏，连接节点中有了我们自定义的数据。</p>
+<h3 id="定义材质中的宏">定义材质中的宏</h3>
+<p>添加了自定义 ShadingModel 的宏之外，还需要添加一个材质的宏，可以在材质中进行对该 ShadingModel 进行判断处理。</p>
+<p>找到 HLSLMaterialTranslator.cpp 文件中的 GetMaterialEnvironment 函数，添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/AF16E344-8099-4556-A00E-4DA0A0ADF097.png" alt="">
+
+</p>
+<h2 id="shadingmodel-渲染处理">ShadingModel 渲染处理</h2>
+<h3 id="添加-shadingmodelid">添加 ShadingModelID</h3>
+<p>除了 Editor 中添加自定义 ShadingModel 的宏之外，还需要添加 ShadingModelID ，在后续的 Shader 中更多的是用这个宏来做判断，找到 ShadingCommmon.ush 文件，添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/2F537631-7F12-4A38-B100-C45E31ED56D0.png" alt="">
+
+</p>
+<h3 id="定义-shadingmodel-的调试显示颜色">定义 ShadingModel 的调试显示颜色</h3>
+<p>在 ShadingCommon.ush 文件中还可以定义 ShadingModel 调试时的显示颜色，在 GetShadingModelColor 函数中，添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/74B1675E-A564-4DA1-AD33-CF8B509B9078.png" alt="">
+
+</p>
+<p>默认的 DEFAULT_LIT 调试颜色是绿色，上面定义的是黄色，效果如下：</p>
+<p>
+  <img src="https://glumes.com/image/engine/1C2A0F9B-9855-468E-8ACF-0E1A83429DD1.png" alt="">
+
+</p>
+<h3 id="自定义数据写入-gbuffer">自定义数据写入 GBuffer</h3>
+<p>要是 ShadingModel 中添加了自定义数据节点，要把它添加到 GBuffer 上，需要开启对应的选项才行，在 BassPassCommon.ush 文件中，添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/2BECA407-35B7-4F57-8F35-0D178857B586.png" alt="">
+
+</p>
+<p>WRITES_CUSTOMDATA_TO_GBUFFER 宏定义中添加预先定义好的数据。</p>
+<p>除此之外，在 DeferredShadingModel.ush 文件的 HasCustomGBufferData 函数中增加自定义的 ShadingModelID 。</p>
+<p>
+  <img src="https://glumes.com/image/engine/4F25FBEB-8DA6-4F9B-9B7F-0712F73EBF8D.png" alt="">
+
+</p>
+<p>HasCustomGBufferData 函数是在解码 GBuffer 数据时根据 ShadingModelID 判断该 GBuffer 上有没有自定义的数据内容。</p>
+<p>接下来就是往 GBuffer 中写入自定义数据，在 ShadingModelsMaterial.ush 文件的 SetGBufferForShadingModel 函数中添加如下代码：</p>
+<p>
+  <img src="https://glumes.com/image/engine/9A6756F7-5FE5-49BF-A896-BD45D3456F9C.png" alt="">
+
+</p>
+<p>该代码会先判断材质中有没有定义相应的宏，其次是判断 ShadingModelID 对不对，所以这两个宏都是必须要定义的。</p>
+<p>通过 GetMaterialCustomData0 函数去获取蓝图连接点上的数据并且通过 saturate 函数将返回值限定在 0~1 之间，如果小于 0 就返回 0 ，如果大于 1 就返回 1 。</p>
+<p>SetGBufferForShadingModel 函数会在 BasePassPixelShader.usf 中进行调用，写入 GBuffer 数据为延迟渲染使用。</p>
+<h3 id="自定义渲染效果-bxdf">自定义渲染效果 BxDF</h3>
+<p>接下来是最重要也最灵活多变的自定义渲染效果了，核心在于定义 BxDF 函数。</p>
+<p>![](UE 4.27 添加自定义 ShadingModel.resources/4854FADB-4E01-45E0-9B58-076F2922A471.png)</p>
+<p>在 DeferredLightPixelShaders.usf 文件中的如下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>FRectTexture RectTexture <span style="color:#ff79c6">=</span> InitRectTexture(DeferredLightUniforms.SourceTexture);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#8be9fd">float</span> SurfaceShadow <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0f</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ff79c6">const</span> float4 Radiance <span style="color:#ff79c6">=</span> GetDynamicLighting(WorldPosition, CameraVector, HairScreenSpaceData.GBuffer, HairScreenSpaceData.AmbientOcclusion, HairScreenSpaceData.GBuffer.ShadingModelID, LightData, LightAttenuation, Dither, PixelCoord, RectTexture, SurfaceShadow);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">float</span>  Attenuation <span style="color:#ff79c6">=</span> ComputeLightProfileMultiplier(WorldPosition, DeferredLightUniforms.Position, <span style="color:#ff79c6">-</span>DeferredLightUniforms.Direction, DeferredLightUniforms.Tangent);
+</span></span></code></pre></div><p>GeyDynamicLighting 函数中的 GetDynamicLightingSplit 函数会调用 IntegrateBxDF 来计算各个 ShadingModelID 对应的 BxDF 函数。</p>
+<p>这里作为对比，定义了一个简单的 BxDF 函数，将漫反射颜色设置为 0 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>FDirectLighting <span style="color:#50fa7b">CustomBxDF</span>(FGBufferData GBuffer, half3 N, half3 V, half3 L, <span style="color:#8be9fd">float</span> Falloff, <span style="color:#8be9fd">float</span> NoL, FAreaLight AreaLight, FShadowTerms Shadow )
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>	BxDFContext Context;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>	
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>	Init(Context, N, V, L);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>	SphereMaxNoH(Context, AreaLight.SphereSinAlpha, <span style="color:#8be9fd;font-style:italic">true</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>	
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>	Context.NoV <span style="color:#ff79c6">=</span> saturate(abs( Context.NoV ) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1e-5</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>	FDirectLighting Lighting;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>	<span style="color:#6272a4">// Lighting.Diffuse  = AreaLight.FalloffColor * (Falloff * NoL) * Diffuse_Lambert( GBuffer.DiffuseColor );
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>	Lighting.Diffuse  <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>	
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>	Lighting.Specular <span style="color:#ff79c6">=</span> AreaLight.FalloffColor <span style="color:#ff79c6">*</span> (Falloff <span style="color:#ff79c6">*</span> NoL) <span style="color:#ff79c6">*</span> SpecularGGX(GBuffer.Roughness, GBuffer.SpecularColor, Context, NoL, AreaLight);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>	Lighting.Transmission <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>	<span style="color:#ff79c6">return</span> Lighting;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>}
+</span></span></code></pre></div><p>在只有 DirectionalLight 光照情况下的效果如下：</p>
+<p>
+  <img src="https://glumes.com/image/engine/4C38D0A2-2C60-4CAB-873A-5926B0979202.png" alt="">
+
+</p>
+<p>可以看到高光效果还是有的，缺少了漫反射效果，整个物体都偏黑了。</p>
+<p>作为对比，把高光颜色设置为 0 ，正常使用漫反射颜色效果如下：</p>
+<p>
+  <img src="https://glumes.com/image/engine/A6047772-A300-445D-9588-251A8B8A7EBB.png" alt="">
+
+</p>
+<p>可以看到有正常的颜色，但是没有了高光效果。</p>
+<p>更多效果都可以在 BxDF 函数中去定义了，作为添加自定义 ShadingModel 的流程基本就完成了。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/ue4.27-add-custom-shading-model/">UE 4.27 添加自定义 ShadingModel</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/ue4-controlrig-face-edit/" data-toggle="tooltip" data-placement="top" title="用 UE4 虚幻引擎做个捏脸小功能~~">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/multimedia-new-beginner/" data-toggle="tooltip" data-placement="top" title="音视频开发系统入门大致路线">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/ue4-controlrig-face-edit/">用 UE4 虚幻引擎做个捏脸小功能~~</a></li>
+    
+    <li><a href="https://glumes.com/ue4-dump-offset/">UE4 材质练习 之 凹凸贴图偏移的使用</a></li>
+    
+    <li><a href="https://glumes.com/ue4-material-practice/">UE4 材质练习系列基础</a></li>
+    
+    <li><a href="https://glumes.com/opengl-share-context/">OpenGL上下文创建以及共享机制</a></li>
+    
+    <li><a href="https://glumes.com/007-parse-mp4-info/">007 | 播放器系列专栏-解析 MP4 文件读取信息</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

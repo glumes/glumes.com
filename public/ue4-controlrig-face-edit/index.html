@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="用 UE4 虚幻引擎做个捏脸小功能~~" />
+    <meta property="og:title" content="用 UE4 虚幻引擎做个捏脸小功能~~" />
+    <meta property="twitter:title" content="用 UE4 虚幻引擎做个捏脸小功能~~" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>用 UE4 虚幻引擎做个捏脸小功能~~ | </title>
+
+    <link rel="canonical" href="https://glumes.com/ue4-controlrig-face-edit/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/ue4" title="UE4">
+                            UE4
+                        </a>
+                        
+                    </div>
+                    <h1>用 UE4 虚幻引擎做个捏脸小功能~~</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Saturday, November 5, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>最近在学习 UE 相关的使用，正好看到一篇文章讲解用 Control Rig 实现简单捏脸功能，这种小而美的完整案例挺适合来练手的，涉及到了 UI、蓝图、动画、骨骼等方面，值得推荐一下。</p>
+<p><strong>从这个小功能出发，在学习其他内容时如果有个简单案例可以将一系列功能点都串起来，那么往往会起到事半功倍的效果。</strong></p>
+<p>正好我也实现了一个简单捏脸效果，视频号里分享一下：</p>
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    
+    <style type="text/css">
+      .aspect-ratio {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+      }
+
+      .aspect-ratio iframe {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="aspect-ratio">
+      <iframe
+              src="https://player.bilibili.com/player.html?bvid=BV1te4y147vL&page=1&high_quality=1&danmaku=0"
+              scrolling="no" 
+              border="0" 
+              frameborder="no" 
+              framespacing="0" 
+              allowfullscreen="true"
+              sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"
+              >
+      </iframe>
+      
+      
+    </div>
+  </body>
+
+</html>
+<p>欢迎大家关注我的视频号，后续考虑更多地以视频形式来展示内容。</p>
+<p>接下来就是这个捏脸功能的实现逻辑了。底层的实现很复杂，很多都是由 UE 虚幻引擎来提供的，但是理论上的实现很简单，体现在个人上更多的是操作经验。</p>
+<p>UE 在导入人物模型时会带有一个骨架，如下图所示。人物的行动就是由一根根骨骼的变化来实现的，而面部的捏脸调节也是基于这一点。通过改变脸部相关骨骼的位置从而实现面部的变形，间接达到一个类似捏脸的效果。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ControlRig-Face.jpeg" alt="">
+
+</p>
+<p>由于不会 3D 建模，使用了 UE 提供的免费模型。图上这个就是 &ldquo;虚幻争霸：心菲&rdquo; 模型了。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-asset-xinfei.png" alt="">
+
+</p>
+<p>想要调节人物的骨骼，就要用到 Control Rig 插件功能了。它是一套骨骼绑定系统，可以对人物的骨骼建立相关的控制点，然后通过调节控制点的变换，就实现对骨骼的变换啦。</p>
+<p>如下图所示，针对眉毛、眼睛、鼻子、脸颊、嘴唇这五个部位建立了相应的控制点。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-control-rig-point.jpeg" alt="">
+
+</p>
+<p>控制点的性质、颜色以及位置都是可以调节的，建立的时候要选择好相应的骨骼位置。这个地方其实挺考验审美的，因为我只是写个小功能，就没有用到很复杂的骨骼，但是很逼真的调节效果就需要反复打磨骨骼模型以及控制点了。</p>
+<p>然后就是在蓝图中把骨骼和控制点的变换进行关联，并且暴露相关的调整参数让外部进行调整。</p>
+<p>由于 UE 的很多功能都是由蓝图来实现的，也不太好贴代码，就只能贴个蓝图的连接了，比拼一下谁的蓝图连线方式更优雅~~</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-bp-control-rig.jpeg" alt="">
+
+</p>
+<p>完成了骨骼和控制点的绑定之后，就可以在动画蓝图中设置人物的姿势是由 Control Rig 调整后的姿势（哪怕就是调整了个脸部）。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-control-rig-anim-graph.jpeg" alt="">
+
+</p>
+<p>在动画蓝图中增加了几个变量去调节 Control Rig 中控制点的范围，这几个变量的值是由 UI 界面中的滑竿来调节的，并且在动画每次更新时都会更新这些值。</p>
+<p>这里用代码来实现了 UE 中的一个子系统 FaceEditSubsystem ，主要功能就是用来存储数据的值，并且它可以在动画蓝图和 UI 蓝图中访问到，这一点很重要，否则这两个蓝图无法建立数据上的关联了。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-control-subsystem.jpeg" alt="">
+
+</p>
+<p>接下来就是设置 UI 界面了，和用 Android Studio 操作界面差不多，拖一下控件绑定相关事件就好，具体效果就和上面视频展示的一样了。</p>
+<p>
+  <img src="https://glumes.com/image/engine/ue4-control-subsystem-edit.jpeg" alt="">
+
+</p>
+<p>完整了上面全部功能之后，再把相机位置调整一下对准人物的脸部，就可以看到运行效果啦。</p>
+<p>总结一下整体的实现就如上面所说，<strong>UE 虚幻引擎提供的功能很强大，强大到只要熟练一点使用就可以实现一点小功能了</strong>，而这些功能的实现都可以不需要一行行代码的。</p>
+<p><strong>那么问题来了，在这种情况下，程序员学习 UE 怎样才能算是有自己的独特竞争力呢？莫非要比拼对 UE 软件的使用熟练度吗？那反而还失去了程序员的编码能力，恐怕还是要深入其源码，研究更多的底层功能实现。</strong></p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/ue4-controlrig-face-edit/">用 UE4 虚幻引擎做个捏脸小功能~~</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/ue4-dump-offset/" data-toggle="tooltip" data-placement="top" title="UE4 材质练习 之 凹凸贴图偏移的使用">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/ue4.27-add-custom-shading-model/" data-toggle="tooltip" data-placement="top" title="UE 4.27 添加自定义 ShadingModel">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/ue4-dump-offset/">UE4 材质练习 之 凹凸贴图偏移的使用</a></li>
+    
+    <li><a href="https://glumes.com/ue4-material-practice/">UE4 材质练习系列基础</a></li>
+    
+    <li><a href="https://glumes.com/opengl-share-context/">OpenGL上下文创建以及共享机制</a></li>
+    
+    <li><a href="https://glumes.com/007-parse-mp4-info/">007 | 播放器系列专栏-解析 MP4 文件读取信息</a></li>
+    
+    <li><a href="https://glumes.com/mac-mp4-info/">006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="UnityShader 的基本概念" />
+    <meta property="og:title" content="UnityShader 的基本概念" />
+    <meta property="twitter:title" content="UnityShader 的基本概念" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>UnityShader 的基本概念 | </title>
+
+    <link rel="canonical" href="https://glumes.com/unity-shader-basic-content/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/unity" title="unity">
+                            unity
+                        </a>
+                        
+                    </div>
+                    <h1>UnityShader 的基本概念</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Sunday, August 15, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。</p>
+<p>ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。</p>
+<p>ShaderLab  使用了一些嵌套在花括号内部的语义来描述一个 Unity Shader 文件的结构，这些结构包含了许多渲染所需的数据。</p>
+<p>$a_{1}$</p>
+<p>一个 Unity Shader 的基本结构如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Shader <span style="color:#f1fa8c">&#34;shaderName&#34;</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    Properties{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#6272a4">// 属性
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    SubShader{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#6272a4">// 显卡 A 使用的子着色器
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    SubShader{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        <span style="color:#6272a4">// 显卡 B 使用的子着色器
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    Fallback <span style="color:#f1fa8c">&#34;VertexLit&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>}
+</span></span></code></pre></div><p>可以在 Properties 语句块中定义着色器所需的各种属性，这些属性将会出现在材质面板中。</p>
+<h2 id="unityshader-中的属性">UnityShader 中的属性</h2>
+<p>UnityShader 中共有 8 种属性类型，如下代码所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Shader <span style="color:#f1fa8c">&#34;Basic/BasicPropertiesShader&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    Properties
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        _Int (<span style="color:#f1fa8c">&#34;Int&#34;</span>,Int) <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">100</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        _Float(<span style="color:#f1fa8c">&#34;Float&#34;</span>,Float) <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10.0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        _Range(<span style="color:#f1fa8c">&#34;Range&#34;</span>,Range(<span style="color:#bd93f9">0.0</span>,<span style="color:#bd93f9">5.0</span>)) <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3.0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        _Color(<span style="color:#f1fa8c">&#34;Color&#34;</span>,Color) <span style="color:#ff79c6">=</span> (<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        _Vector(<span style="color:#f1fa8c">&#34;Vector&#34;</span>,Vector) <span style="color:#ff79c6">=</span> (<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">6</span>,<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        _2D(<span style="color:#f1fa8c">&#34;2D&#34;</span>,<span style="color:#bd93f9">2</span>D) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>{}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        _Cube(<span style="color:#f1fa8c">&#34;Cube&#34;</span>,Cube) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;while&#34;</span>{}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        _3D(<span style="color:#f1fa8c">&#34;3D&#34;</span>,<span style="color:#bd93f9">3</span>D) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;black&#34;</span>{}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    Fallback <span style="color:#f1fa8c">&#34;Diffuse&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>}
+</span></span></code></pre></div><p>Int、Float、Range 类型对应单独的数字，Color、Vector 类型对应四维向量，2D、3D、Cube 对应纹理类型，默认值通过一个字符串和花括号来指定，字符串要么是空的，要么是内置的纹理名称，比如“while”、“black”、“gray”等。</p>
+<p>定义这些属性之后就可以在参数面板里面去调节对应值。</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/unity-shader-custom-properties.png" alt="">
+
+</p>
+<p>要想真正使用这些值去调节 Shader 效果，还需要在 SubShader 中再定义一遍。</p>
+<h2 id="subshader-的使用">SubShader 的使用</h2>
+<p>每一个 UnityShader 可以包含多个 SubShader 语义块，但最少要有一个。</p>
+<p>SubShader 语义块中包含的定义如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>SubShader {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>   <span style="color:#6272a4">// 可选
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>   [Tags] 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>   
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>   <span style="color:#6272a4">// 可选
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>   [RenderSetup]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>   
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>   Pass{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>   
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>   }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>   
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>   <span style="color:#6272a4">// Other Pass
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>SubShader 中定义了一系列 Pass 和可选的状态（RenderSetup）和标签（Tags），每个 Pass 定义了一次完整的渲染流程。</p>
+<p>Pass 中也可以定义状态（RenderSetup）和标签（Tags）。</p>
+<p>但是 SubShader 中的标签是特定的，和 Pass 中使用的标签是不一样的。</p>
+<p>而状态设置的语法是相同的，但 SubShader 中设置了状态，会是全局生效作用于所有的 Pass ，不过 Pass 中不想用全局状态可以在 Pass 另外定义状态来修改。</p>
+<h3 id="状态设置">状态设置</h3>
+<p>ShaderLab 中提供的状态设置主要就是渲染时是否开启深度测试、混合模式等。</p>
+<p>如果有了解 OpenGL 渲染的，就应该对这些不陌生了，只是 OpenGL 通过 API 调用来设定，而 ShaderLab 通过在 Shader 中来指定了。</p>
+<p>ShaderLab 中提供的渲染状态如下，直接摘抄自 《Unity Shader 入门精要》的附图了。</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/unity-subshader-render-setup.png" alt="">
+
+</p>
+<h3 id="tag-标签">Tag 标签</h3>
+<p>SubShader 的标签是一个键值对，键和值都是字符串类型，这些键值对是 SubShader 和渲染引擎之间的沟通桥梁，它们用来告诉 Unity 的渲染引擎：SubShader 希望怎样以及何时渲染这个对象。</p>
+<p>具体的标签类型如下，，直接摘抄自 《Unity Shader 入门精要》的附图了。</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/unity-subshader-tag.png" alt="">
+
+</p>
+<h3 id="pass-块">Pass 块</h3>
+<p>Pass 语义块的结构如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Pass {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    [Name]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    [Tags]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    [RenderSetup]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#6272a4">// render code
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>在 Pass 语义块进行渲染之前也有一些状态要设置，Name 就是该 Pass 的名字，渲染状态和 SubShader 中提到的渲染状态一致。</p>
+<p>Pass 中的标签不同于 SubShader 中的标签，可用的如下：</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/unity-pass-tags.png" alt="">
+
+</p>
+<h3 id="fallback">Fallback</h3>
+<p>最后的 Fallback 块就是当前面的渲染都不行才会走到这里了，相当于是兜底了。</p>
+<p>另外，当 UnityShader 有问题的话，物体的颜色会出现粉红色的异常。</p>
+<p>
+  <img src="https://image.glumes.com//blog_image/unity-shader-pink-error-code.png" alt="">
+
+</p>
+<h2 id="shader-分类">Shader 分类</h2>
+<p>UnityShader 共有三种类型的 Shader ，分别是表面着色器、顶点/片元着色器、固定函数着色器。</p>
+<h3 id="表面着色器-surface-shader">表面着色器 Surface Shader</h3>
+<p>表面着色器是 Unity 自己创造的一种着色器代码类型，需要的代码量很少，但渲染的代价很大。</p>
+<p>Unity 在表面着色器背后做了很多工作，将它们转换成对应的顶点/片元着色器。</p>
+<h3 id="顶点片元着色器-vertexfragment-shader">顶点/片元着色器 Vertex/Fragment Shader</h3>
+<p>顶点/片元着色器就是 OpenGL 中常用的着色器了，只不过这里统一在一个文件中描述，而且渲染流程和 OpenGL 的流程也大同小异，代码上会有些区别，原理都是一样的。</p>
+<h3 id="固定函数着色器">固定函数着色器</h3>
+<p>固定函数着色器用的就比较少了，也渐渐淘汰了，实际上它最后也被 Unity 转换成了顶点/片元着色器。</p>
+<h2 id="小结">小结</h2>
+<p>以上就是关于 UnityShader 的基本概念，也算是 《UntiyShader入门精要》的读书笔记了。</p>
+<p>看完一遍书，再来博客总结一遍内容，用输出促进输入，从而学的更牢固一点，接下来就要进入正式的 UnityShader 编写了。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/unity-shader-basic-content/">UnityShader 的基本概念</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/unity-basic-object-operation/" data-toggle="tooltip" data-placement="top" title="Unity 物体的基本操作">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/unity-basic-texture/" data-toggle="tooltip" data-placement="top" title="Unity Shader 显示一张图片纹理">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/unity-basic-object-operation/">Unity 物体的基本操作</a></li>
+    
+    <li><a href="https://glumes.com/c-template-7/">C&#43;&#43; 模板系列小结07-尾置返回类型</a></li>
+    
+    <li><a href="https://glumes.com/c-template-6/">C&#43;&#43; 模板系列小结06-可变参数模板特性</a></li>
+    
+    <li><a href="https://glumes.com/c-multi-thread/">C&#43;&#43; 中的多线程的使用和线程池建设</a></li>
+    
+    <li><a href="https://glumes.com/c-template-5/">C&#43;&#43; 模板系列小结05-模板类型作为模板参数</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

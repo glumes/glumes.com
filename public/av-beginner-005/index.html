@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示" />
+    <meta property="og:title" content="【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示" />
+    <meta property="twitter:title" content="【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示 | </title>
+
+    <link rel="canonical" href="https://glumes.com/av-beginner-005/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/sdl" title="SDL">
+                            SDL
+                        </a>
+                        
+                    </div>
+                    <h1>【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Tuesday, March 10, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>在前面的文章中已经完成了图片的加载和显示，接下来要做的就是加载 YUV 文件并显示。</p>
+<h2 id="yuv-文件素材准备">YUV 文件素材准备</h2>
+<p>做这个功能点比较麻烦的是素材问题，上哪去找一个 YUV 文件出来，谷歌和百度搜索都不好使，其实直接使用 FFmpeg 生成文件就好了。</p>
+<p>使用如下命令将图片文件转成 YUV 文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 把 filename 改为图片对应的文件名
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>ffmpeg <span style="color:#ff79c6">-</span>i image_filename.png <span style="color:#ff79c6">-</span>pix_fmt yuv420p yuv_filename.yuv
+</span></span></code></pre></div><p>在这里将 YUV 文件格式固定为 <code>YUV420P</code> 了，如果你对 YUV 格式不懂的话，强烈建议看看我之前写过的文章，图文并茂，清晰易懂，使用谷歌搜索 YUV 关键字，搜索结果排名前五的必有我这篇文章。</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/taMHYFZunxQ3XNZwR_U-Cg">一文读懂 YUV 的采样与格式</a></p>
+</blockquote>
+<p>顺便可以使用 FFplay 验证生成的 YUV 文件是否有效，使用如下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 100x100 代表图片的宽高，这里只是举例，换成实际的宽高
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4">// 把 filename 改为 YUV 对应的文件名
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>ffplay <span style="color:#ff79c6">-</span>f rawvideo <span style="color:#ff79c6">-</span>video_size  <span style="color:#bd93f9">100</span>x100 yuv_filename.yuv
+</span></span></code></pre></div><p>以上命令会打开一个窗口去展示图片，如果该图片和未转换成 YUV 的图片内容一致，那说明把图片转换成 YUV 格式文件是成功了，这样就有了实验素材。</p>
+<h2 id="代码实践">代码实践</h2>
+<p>有了素材，接下来就是代码实践环节：</p>
+<h3 id="创建纹理-sdl_texture">创建纹理 SDL_Texture</h3>
+<p>与 SDL 显示图片的方式有些不同，显示图片是将图片转换成了 SDL_Surface，然后将这个 SDL_Surface 的内容转换到 SDL_Window 对应的 SDL_Surface 上，最后上屏就显示图片了。</p>
+<p>显示 YUV 文件需要创建一个纹理，然后将纹理内容渲染上屏，这类似于 OpenGL 的操作了。</p>
+<p>首先通过 <code>SDL_CreateTexture</code> 方法创建 <code>SDL_Texture</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>SDL_CreateTexture(SDL_Renderer <span style="color:#ff79c6">*</span> renderer,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                Uint32 format,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>                <span style="color:#8be9fd">int</span> access, <span style="color:#8be9fd">int</span> w,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>                <span style="color:#8be9fd">int</span> h);
+</span></span></code></pre></div><p>参数 <code>renderer</code> 是之前文章提到的创建渲染器，<code>w</code> 和 <code>h</code> 是纹理的宽高，重点是 <code>format</code> 参数。</p>
+<p>根据文件格式的不同，<code>format</code> 参数也不同，比如这里文件是 <code>YUV420P</code>，那么对应的就是 <code>IYUV</code>.</p>
+<p>更多格式可以参考 <code>SDL_pixels.h</code> 文件中定义，摘录部分如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    SDL_PIXELFORMAT_UYVY <span style="color:#ff79c6">=</span>      <span style="color:#6272a4">/**&lt; Packed mode: U0+Y0+V0+Y1 (1 plane) */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        SDL_DEFINE_PIXELFOURCC(<span style="color:#f1fa8c">&#39;U&#39;</span>, <span style="color:#f1fa8c">&#39;Y&#39;</span>, <span style="color:#f1fa8c">&#39;V&#39;</span>, <span style="color:#f1fa8c">&#39;Y&#39;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    SDL_PIXELFORMAT_YVYU <span style="color:#ff79c6">=</span>      <span style="color:#6272a4">/**&lt; Packed mode: Y0+V0+Y1+U0 (1 plane) */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        SDL_DEFINE_PIXELFOURCC(<span style="color:#f1fa8c">&#39;Y&#39;</span>, <span style="color:#f1fa8c">&#39;V&#39;</span>, <span style="color:#f1fa8c">&#39;Y&#39;</span>, <span style="color:#f1fa8c">&#39;U&#39;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    SDL_PIXELFORMAT_NV12 <span style="color:#ff79c6">=</span>      <span style="color:#6272a4">/**&lt; Planar mode: Y + U/V interleaved  (2 planes) */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        SDL_DEFINE_PIXELFOURCC(<span style="color:#f1fa8c">&#39;N&#39;</span>, <span style="color:#f1fa8c">&#39;V&#39;</span>, <span style="color:#f1fa8c">&#39;1&#39;</span>, <span style="color:#f1fa8c">&#39;2&#39;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    SDL_PIXELFORMAT_NV21 <span style="color:#ff79c6">=</span>      <span style="color:#6272a4">/**&lt; Planar mode: Y + V/U interleaved  (2 planes) */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        SDL_DEFINE_PIXELFOURCC(<span style="color:#f1fa8c">&#39;N&#39;</span>, <span style="color:#f1fa8c">&#39;V&#39;</span>, <span style="color:#f1fa8c">&#39;2&#39;</span>, <span style="color:#f1fa8c">&#39;1&#39;</span>),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    SDL_PIXELFORMAT_EXTERNAL_OES <span style="color:#ff79c6">=</span>      <span style="color:#6272a4">/**&lt; Android video texture format */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        SDL_DEFINE_PIXELFOURCC(<span style="color:#f1fa8c">&#39;O&#39;</span>, <span style="color:#f1fa8c">&#39;E&#39;</span>, <span style="color:#f1fa8c">&#39;S&#39;</span>, <span style="color:#f1fa8c">&#39; &#39;</span>)
+</span></span></code></pre></div><h3 id="打开文件并读取内容">打开文件并读取内容</h3>
+<p>接下来就是打开文件操作了，直接根据 C 语言里面相关方法调用就行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#6272a4">// 打开文件
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    FILE <span style="color:#ff79c6">*</span>pFile <span style="color:#ff79c6">=</span> fopen(path.c_str(), <span style="color:#f1fa8c">&#34;rb&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 读取文件内容到 buffer 中
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>yuv_data;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#6272a4">// yuv420p 格式的文件大小
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">int</span> frameSize <span style="color:#ff79c6">=</span> width <span style="color:#ff79c6">*</span> height <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    yuv_data <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">static_cast</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*&gt;</span>(malloc(frameSize <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">sizeof</span>(<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span>)));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    fread(yuv_data,<span style="color:#bd93f9">1</span>,frameSize,pFile);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#6272a4">// 关闭文件
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    fclose(pFile);
+</span></span></code></pre></div><p>打开文件，读取文件内容，注意 <code>YUV420P</code> 格式文件大小的计算方式是 <code>width * height * 3 / 2</code> ，它比正常的 <code>RGBA</code> 格式文件要小一点的。</p>
+<p>因为读取了文件内容之后，后续也就用不到了，直接 fclose 关闭掉。</p>
+<h2 id="渲染纹理上屏">渲染纹理上屏</h2>
+<p>有了纹理，也有了 YUV 文件内容，接下来就是把 YUV 文件内容转换到纹理上，在把纹理渲染上屏。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#ff79c6">if</span> (texture <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        SDL_Event windowEvent;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#ff79c6">while</span> (<span style="color:#8be9fd;font-style:italic">true</span>){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            <span style="color:#ff79c6">if</span> (SDL_PollEvent(<span style="color:#ff79c6">&amp;</span>windowEvent)){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>                <span style="color:#ff79c6">if</span> (SDL_QUIT <span style="color:#ff79c6">==</span> windowEvent.type){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            <span style="color:#6272a4">// 更新纹理内容，就是把读取的 YUV 数据转换成纹理
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>            SDL_UpdateTexture(texture, <span style="color:#ff79c6">nullptr</span>,yuv_data,width);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            <span style="color:#6272a4">// 清屏操作
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>            SDL_RenderClear(renderer);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            <span style="color:#6272a4">// 将指定纹理复制到要渲染的地方
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>            SDL_RenderCopy(renderer,texture, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">nullptr</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#6272a4">// 上屏操作
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#6272a4"></span>            SDL_RenderPresent(renderer);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>        SDL_DestroyWindow(window);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        SDL_Quit();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    }
+</span></span></code></pre></div><p>首先调用 <code>SDL_UpdateTexture</code> 方法将 YUV 内容转换成纹理，然后 <code>SDL_RenderClear</code> 清屏操作，OpenGL 相关的渲染也是要清屏操作的。</p>
+<p>接下来将 <code>SDL_Texture</code> 拷贝到要渲染的地方，然后 <code>SDL_RenderPresent</code> 执行上屏操作就行了。</p>
+<p>渲染纹理上屏的操作流程基本都是这样了，根据文件格式的不同，转换成纹理的方式也有不同，除了 <code>SDL_UpdateTexture</code> 方法之外，还有 <code>SDL_UpdateYUVTexture</code> 方法，后面会遇到的。</p>
+<p>最后别忘了释放和销毁相应的指针和变量。</p>
+<p>运行程序就会看到打开一个窗口，显示一张图片，和之前用 FFmpeg 显示的图片内容一致。</p>
+<p>
+  <img src="https://ae01.alicdn.com/kf/U8ba2831c2a6f498e944fc48bbb3f4e6bE.jpg" alt="">
+
+</p>
+<h2 id="总结">总结</h2>
+<p>以上就是音视频基础学习连载的 <code>005</code> 篇。</p>
+<p>内容相对比较简单，对于 SDL 接口的一些调用也不算难。实际上并不用太深究 SDL 的接口机制和实现原理，做一些实验性入门基础功能会用好了，毕竟在实际工作中不太会用到。</p>
+<p>另外，既然已经可以显示一张 YUV 帧内容了，那么假如是一个 YUV 视频文件又该如何显示了？想知后事如何，请看下回分解。</p>
+<p>本文具体代码见仓库：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/av-beginner">https://github.com/glumes/av-beginner</a></p>
+</blockquote>
+<p>本篇文章对应的提交 <code>tag</code> 为 <code>av-beginner-004</code>，可切换至对应源码查看。</p>
+<p>能力有限，文中有不对之处，欢迎加我微信 ezglumes 进行交流~~</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/av-beginner-005/">【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/av-beginner-004/" data-toggle="tooltip" data-placement="top" title="【音视频连载-004】基础学习篇-SDL 加载图片并显示">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/av-beginner-006/" data-toggle="tooltip" data-placement="top" title="【音视频连载-006】基础学习篇-SDL 播放 YUV 视频文件">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/av-beginner-004/">【音视频连载-004】基础学习篇-SDL 加载图片并显示</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-003/">【音视频连载-003】基础学习篇-SDL 消息循环和事件响应</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-002/">【音视频连载-002】基础学习篇-SDL 创建窗口并显示颜色</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-001/">【音视频连载-001】基础学习篇- SDL 介绍以及工程配置</a></li>
+    
+    <li><a href="https://glumes.com/run-learnopengl-code-on-xcode/">LearnOpenGL 源码在 MAC 上的编译与调试</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

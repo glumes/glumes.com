@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="UE4 材质练习 之 凹凸贴图偏移的使用" />
+    <meta property="og:title" content="UE4 材质练习 之 凹凸贴图偏移的使用" />
+    <meta property="twitter:title" content="UE4 材质练习 之 凹凸贴图偏移的使用" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>UE4 材质练习 之 凹凸贴图偏移的使用 | </title>
+
+    <link rel="canonical" href="https://glumes.com/ue4-dump-offset/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/ue4" title="UE4">
+                            UE4
+                        </a>
+                        
+                    </div>
+                    <h1>UE4 材质练习 之 凹凸贴图偏移的使用</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Monday, September 12, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>UE 中提供了 <code>凹凸贴图偏移</code> 的贴图来实现修改 UV 坐标达到提升表面细节，使材质产生深度错觉。凹凸贴图偏移是 UE4 中的术语，其实就对应于 LearnOpenGL 网站上的 <code>视差贴图</code>。</p>
+<h2 id="视差贴图原理">视差贴图原理</h2>
+<p>理解了视差贴图的含义就很容易明白凹凸贴图偏移的作用了，它的原理如下图所示：</p>
+<p>
+  <img src="https://glumes.com/image/engine/parallax_mapping_scaled_height.png" alt="">
+
+</p>
+<p>首先需要提供一张代表高度图的纹理，这样每个像素点都对应一个高度值，上图中的红线可以理解成高度值分布，点 A 对应的高度值就是 H(A)。</p>
+<p>以视线方向看向点 A 时，由于高度的遮挡实际看见的是点 B，所以在纹理采样时只要在点 A 的坐标基础上加上点 B 的坐标偏移就行了，但是实际上很难准确预测点 B 的存在，它只是粗略估算得到的。</p>
+<p>所以在实际操作时，一般采样点 A 对应的高度值，然后在视线方向以高度值大小进行缩放，向量 P 就是缩放后的结果，这个时候再用点 A 的坐标加上向量 P 在坐标轴上的偏移就行了。</p>
+<p>视差贴图存在一定的局限性，主要在于点 B 和向量 P 之间有时候变化很块导致预测误差较大，所以才有了后面的陡峭视差映射和视差遮蔽映射，在 UE 中也提供了视差遮蔽映射的计算，不过本篇先使用简单的视差映射。</p>
+<p>理解了视差映射的基础概念后，就很容易明白 UE 中凹凸贴图偏移的对外参数含义了。</p>
+<h2 id="bumpoffset-使用">BumpOffset 使用</h2>
+<p>
+  <img src="https://glumes.com/image/engine/ue-mat-bump-offset.png" alt="">
+
+</p>
+<p>首先针对每个像素都要有个高度值，这一般用个高度图来表示就行了，对应 BumpOffset 中的 Height 节点，其实也可以用一个常量来表示高度值。</p>
+<p>一般都是用一张高度度来表示每个像素的高度信息，不过 BumpOffset 并不接受 RGB 通道作为连接节点，因为高度信息使用 R、G、B 单个通道来表示就行了。</p>
+<p>同时由于高度图要进行纹理采样，那么务必涉及到对纹理坐标 UV 的操作了，BumpOffset 中的 Coordinate 节点就是对应 UV 的调整。</p>
+<p>最后的输入节点 HeightRationInput 就是对采样的高度值进行比例系数的缩放，可让外部调整放大的倍数。不光是 BumpOffset 有这系数操作，在涉及到纹理采样的操作中都会有对采样后的 RGB 数据进行相应的调节操作，比如对采样后的 RGB 数据乘以 1 保持原始状态，也可以把要乘的数作为参数暴露给外界进行调整。</p>
+<p>根据视差贴图的原理可知，BumpOffset 的输出结果就是对纹理采样坐标的偏移，通过这个偏移实现深度错觉，所以要把输出节点连接到 Diffuse、Roughness、Normal 节点的 UV 上。</p>
+<h2 id="视差遮蔽映射">视差遮蔽映射</h2>
+<p>UE 还提供了视差遮蔽映射的方法，如下图所示：</p>
+<p>
+  <img src="https://glumes.com/image/engine/parallax_occlusiont_mapping.png" alt="">
+
+</p>
+<p>它同样也是用来实现高度效果的，原理就是 LearnOpenGL 网站上的 <code>视差遮蔽映射</code> 。</p>
+<p>其中输入参数 Heightmap Texture 对应高度图纹理对象，不再是纹理采样，而 Heightmap Channel 表示选择纹理对象的哪个通道作为高度值，UVs 表示对高度图纹理坐标进行相关操作</p>
+<p>输入参数 Min Steps 和 Max Steps 表示分层最小和最大数目，输出参数 Parallax UVs 和 BumpOffset 的输出参数一致，表示对纹理采样的偏移值。</p>
+<p>视差遮蔽映射会比简单的视差贴图实现更好的效果，但是性能上也会损耗多一些。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/ue4-dump-offset/">UE4 材质练习 之 凹凸贴图偏移的使用</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/ue4-material-practice/" data-toggle="tooltip" data-placement="top" title="UE4 材质练习系列基础">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/ue4-controlrig-face-edit/" data-toggle="tooltip" data-placement="top" title="用 UE4 虚幻引擎做个捏脸小功能~~">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/ue4-material-practice/">UE4 材质练习系列基础</a></li>
+    
+    <li><a href="https://glumes.com/opengl-share-context/">OpenGL上下文创建以及共享机制</a></li>
+    
+    <li><a href="https://glumes.com/007-parse-mp4-info/">007 | 播放器系列专栏-解析 MP4 文件读取信息</a></li>
+    
+    <li><a href="https://glumes.com/mac-mp4-info/">006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息</a></li>
+    
+    <li><a href="https://glumes.com/get-video-thumbnail/">干货 | 快速抽取缩略图是怎么练成的？</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

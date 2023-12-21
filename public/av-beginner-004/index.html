@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="【音视频连载-004】基础学习篇-SDL 加载图片并显示" />
+    <meta property="og:title" content="【音视频连载-004】基础学习篇-SDL 加载图片并显示" />
+    <meta property="twitter:title" content="【音视频连载-004】基础学习篇-SDL 加载图片并显示" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>【音视频连载-004】基础学习篇-SDL 加载图片并显示 | </title>
+
+    <link rel="canonical" href="https://glumes.com/av-beginner-004/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/sdl" title="SDL">
+                            SDL
+                        </a>
+                        
+                    </div>
+                    <h1>【音视频连载-004】基础学习篇-SDL 加载图片并显示</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                glumes
+                             
+                            on 
+                            Sunday, March 8, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>在前面的文章中已经介绍完 SDL 显示窗口、消息循环和事件响应这些基础内容，有了这些基础就可以进行功能性开发了。</p>
+<p>本篇的主要内容是利用 SDL 加载并显示一张图片，然后再去进行更多的音视频操作。</p>
+<h3 id="sdl2_image-配置">SDL2_Image 配置</h3>
+<p>之前写过两篇 libpng 和 libjpeg-turbo 编译与实践的文章：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/rVhm5BD2cPR9h7rsW0xiQA">图像库 libpng 编译与实践</a></li>
+<li><a href="https://mp.weixin.qq.com/s/x-dTLowXcqysnLxZ0BGA2g">图像库 libjpeg-turbo 编译与实践</a></li>
+</ul>
+<p>有需要的可以去翻阅一下。</p>
+<p>在 SDL 中加载 png 或者 jpeg 图片用不到上面两个库了，需要用到 SDL 特定的图片库 SDL_Image ，执行以下命令去下载：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>brew install sdl2_image
+</span></span></code></pre></div><p>我用的版本是 <code>2.0.5</code> ，也是目前最新的版本，之后我们要在 CMake 中去配置它。</p>
+<h3 id="cmake-工程配置">CMake 工程配置</h3>
+<p>对 <code>av-beginner</code> 项目的 CMake 配置做了一些改动，创建了一个 <code>cmake_utils</code> 的目录，在该目录下创建了一个 <code>CMakeLists.txt</code> ，里面存放一些自定义的函数，专门用来做开源库的链接加载工作，如下图红框内容所示：</p>
+<p>
+  <img src="https://ae01.alicdn.com/kf/Ue4fe40bf8e5b4255918707a022680d99H.jpg" alt="">
+
+</p>
+<p>定义了一个 <code>init_path</code> 的宏，宏的功能和函数是有些类似的，在里面定义了不同开源库的路径变量，后续只要引用这些变量就好了。如果你的电脑上路径不同，修改这里的宏定义就行。</p>
+<blockquote>
+<p>如果对 CMake 的操作不熟悉的话，建议阅读之前写过的文章，涵盖了很多基础操作。
+<a href="https://mp.weixin.qq.com/s/7pBjoVGDl_zGDwWWBOhkmg">Android NDK 开发之 CMake 必知必会</a></p>
+</blockquote>
+<p>当下载了 SDL_Image 之后，找到它的路径，把它的库加载到 CMake 链接目录中来，也就是要调用 <code>link_directories</code> 方法，这里同样可以定义一个宏：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>macro(link_sdl_image)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    message(<span style="color:#f1fa8c">&#34;link sdl image library and path is ${sdl_image_dir}&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    include_directories(${sdl_image_dir}<span style="color:#ff79c6">/</span>include<span style="color:#ff79c6">/</span>SDL2)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    link_directories(${sdl_image_dir}<span style="color:#ff79c6">/</span>lib)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>endmacro()
+</span></span></code></pre></div><p>之后就需要把目标执行文件或者目标库与 SDL_Image 开源库关联起来，也就是 <code>target_link_libraries</code> 方法，同样定义一个宏：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>macro(target_link_sdl_image name)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    message(<span style="color:#f1fa8c">&#34;${name} link sdl image&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    target_link_libraries(${name}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>            SDL2_image
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>            )
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>endmacro()
+</span></span></code></pre></div><p>这个宏有个参数 <code>name</code> ，它就是要链接的目标文件 target 。</p>
+<blockquote>
+<p>对于 SDL 库或者其他库，也可以创建类似的宏，具体在源码中能看到。</p>
+</blockquote>
+<p>在完成了 SDL_Image 的 CMake 配置之后，就需要在工程的主 <code>CMakeLists.txt</code> 文件中把它包含进去，现在还只是在 <code>cmake_utils</code> 目录中，这样是引用不到宏的。</p>
+<p>通过 <code>add_subdirectory</code> 方法将定义的功能添加进来，接下来就可以使用了。</p>
+<p>
+  <img src="https://ae01.alicdn.com/kf/U8741a1d307cf451eba3265c18a4f8347L.jpg" alt="">
+
+</p>
+<p>同时，对于 SDL 项目代码，单独创建一个文件夹去存放，再根据每个小项又划分文件夹：</p>
+<p>
+  <img src="https://ae01.alicdn.com/kf/U689dc973b5a44c32a785fc6318d56c214.jpg" alt="">
+
+</p>
+<p>如上图所示，针对每个小项又有单独的 <code>CMakeLists.txt</code> 配置文件，在里面按需执行动态库的关联就好了。</p>
+<p>经过以上的工程配置整改，对于后续的开发模块划分是很有帮助的，不仅便于添加各种开源库，更利于去单个编译项目。</p>
+<p>后续添加的库都会按照这个模式进行添加。</p>
+<h3 id="sdl_image-加载-图片并显示">SDL_Image 加载 图片并显示</h3>
+<p>完成了配置之后，就可以进行 SDL_Image 的开发了，整个开发流程比较简单。</p>
+<p>前面的文章中我们创建并展示了 <code>SDL_Window</code>，SDL_Window 内有一个叫做 <code>SDL_Surface</code> 的结构，实际上它才是最终渲染展示的。</p>
+<p>我们加载一张图片，并将图片转换成 <code>SDL_Surface</code> ，然后把图片对应的 SDL_Surface 转换到 SDL_Window 对应的 SDL_Surface ，再更新一下 SDL_Window 的 SDL_Surface 内容，渲染到屏幕就好了。</p>
+<p>核心代码如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#6272a4">// 得到 SDL_Window 的 SDL_Surface
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    SDL_Surface <span style="color:#ff79c6">*</span>pWindowSurface <span style="color:#ff79c6">=</span> SDL_GetWindowSurface(pWindow);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 根据图片创建一个 SDL_Surface
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    SDL_Surface <span style="color:#ff79c6">*</span>pImageSurface <span style="color:#ff79c6">=</span> IMG_Load(image_path.c_str());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#8be9fd">bool</span> bQuit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">false</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    SDL_Event windowEvent;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>bQuit){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        <span style="color:#ff79c6">while</span> (SDL_PollEvent(<span style="color:#ff79c6">&amp;</span>windowEvent)){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            <span style="color:#ff79c6">switch</span> (windowEvent.type){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                <span style="color:#ff79c6">case</span> <span style="color:#8be9fd;font-style:italic">SDL_QUIT</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>                    bQuit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>                <span style="color:#ff79c6">default</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>        <span style="color:#6272a4">// 将 pImageSurface 的内容传输到 上
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#6272a4"></span>        SDL_BlitSurface(pImageSurface, <span style="color:#ff79c6">nullptr</span>,pWindowSurface,<span style="color:#ff79c6">nullptr</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        <span style="color:#6272a4">// 上屏操作，将 Surface 内容显示到屏幕上
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#6272a4"></span>        SDL_UpdateWindowSurface(pWindow);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    }
+</span></span></code></pre></div><p>最终结果如下：</p>
+<p>
+  <img src="https://ae01.alicdn.com/kf/Ube8bd81e3da0444e82d90bdd24dc8b3d9.jpg" alt="">
+
+</p>
+<h3 id="总结">总结</h3>
+<p>以上就是音视频基础学习连载的 <code>004</code> 篇。</p>
+<p>完成了 SDL 加载图片并显示的流程，整体代码比较简单，很多东西都是之前文章提到过的，反而重点更侧重于工程的 CMake 配置，有兴趣的可以看看代码。</p>
+<p>具体代码见仓库：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/av-beginner">https://github.com/glumes/av-beginner</a></p>
+</blockquote>
+<p>本篇文章对应的提交 <code>tag</code> 为 <code>av-beginner-004</code>，可切换至对应源码查看。</p>
+<p>能力有限，文中有不对之处，欢迎加我微信 ezglumes 进行交流~~</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/av-beginner-004/">【音视频连载-004】基础学习篇-SDL 加载图片并显示</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/av-beginner-003/" data-toggle="tooltip" data-placement="top" title="【音视频连载-003】基础学习篇-SDL 消息循环和事件响应">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/av-beginner-005/" data-toggle="tooltip" data-placement="top" title="【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/av-beginner-003/">【音视频连载-003】基础学习篇-SDL 消息循环和事件响应</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-002/">【音视频连载-002】基础学习篇-SDL 创建窗口并显示颜色</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-001/">【音视频连载-001】基础学习篇- SDL 介绍以及工程配置</a></li>
+    
+    <li><a href="https://glumes.com/run-learnopengl-code-on-xcode/">LearnOpenGL 源码在 MAC 上的编译与调试</a></li>
+    
+    <li><a href="https://glumes.com/2019-review/">2019 年终总结与回顾</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

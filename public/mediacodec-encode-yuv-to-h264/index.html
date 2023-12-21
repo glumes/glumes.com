@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="MediaCodec 硬编码之相机内容编码成 H264 文件" />
+    <meta property="og:title" content="MediaCodec 硬编码之相机内容编码成 H264 文件" />
+    <meta property="twitter:title" content="MediaCodec 硬编码之相机内容编码成 H264 文件" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>MediaCodec 硬编码之相机内容编码成 H264 文件 | </title>
+
+    <link rel="canonical" href="https://glumes.com/mediacodec-encode-yuv-to-h264/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/mediacodec" title="MediaCodec">
+                            MediaCodec
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/yuv" title="YUV">
+                            YUV
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/h264" title="H264">
+                            H264
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/camera" title="Camera">
+                            Camera
+                        </a>
+                        
+                    </div>
+                    <h1>MediaCodec 硬编码之相机内容编码成 H264 文件</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Wednesday, September 19, 2018
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/8Kq9JgvGhlJCpNIyb7zK2w">https://mp.weixin.qq.com/s/8Kq9JgvGhlJCpNIyb7zK2w</a></p>
+</blockquote>
+<p>在 Android 4.1 版本提供了 MediaCodec 接口来访问设备的编解码器，不同于 FFmpeg 的软件编解码，它采用的是硬件编解码能力，因此在速度上会比软解更具有优势，但是由于 Android 的碎片化问题，机型众多，版本各异，导致 MediaCodec 在机型兼容性上需要花精力去适配，并且编解码流程不可控，全交由厂商的底层硬件去实现，最终得到的视频质量不一定很理想。</p>
+<p>虽然 MediaCodec 仍然存在一定的弊端，但是对于快速实现编解码需求，还是很值得参考的。</p>
+<p>以将相机预览的 YUV 数据编码成 H264 视频流为例来解析 MediaCodec 的使用。</p>
+<h2 id="使用解析">使用解析</h2>
+<h3 id="mediacodec-工作模型">MediaCodec 工作模型</h3>
+<p>下图展示了 MediaCodec 的工作方式，一个典型的生产者消费者模型，两边的 Client 分别代表输入端和输出端，输入端将数据交给 MediaCodec 进行编码或者解码，而输出端就得到编码或者解码后的内容。</p>
+<p>
+  <img src="https://image.glumes.com/images/2019/04/27/bc32fd77gy1fufzrm63n9j21no0oc0wm.jpg" alt="">
+
+</p>
+<p>输入端和输出端是通过输入队列缓冲区和输出队列缓冲区，两条缓冲区队列的形式来和 MediaCodec  传递数据。</p>
+<p>首先从输入队列中出队得到一个可用的缓冲区，将它填满数据之后，再将缓冲区入队，交由 MediaCodec 去处理。</p>
+<p>MediaCodec 处理完了之后，再从输出队列中出队得到一个可用的缓冲区，这个缓冲里面的数据就是编码或者解码后的数据了，把这些数据进行相应的处理之后，还需要释放这个缓冲区，让它回到队列中去，可供下一次使用。</p>
+<h3 id="mediacodec-生命周期">MediaCodec 生命周期</h3>
+<p>另外，MediaCodec 也存在相应的 <strong>生命周期</strong>，如下图所示：</p>
+<p>
+  <img src="https://image.glumes.com/images/2019/04/27/bc32fd77gy1fug07wfwvwj20tk0kttaw.jpg" alt="">
+
+</p>
+<p>当创建了 MediaCodec 之后，是处于未初始化的 <code>Uninitialized</code> 状态，调用 configure 方法之后就处于 <code>Configured</code> 状态，调用了 start 方法之后，就处于 <code>Executing</code> 状态。</p>
+<p>在 <code>Executing</code> 状态下开始处理数据，它又有三个子状态，分别是：</p>
+<ul>
+<li>Flushed</li>
+<li>Running</li>
+<li>End of Stream</li>
+</ul>
+<p>当一调用 start 方法之后，就进入了 <code>Flushed</code> 状态，从输入缓冲区队列中取出一个缓冲区就进入了 <code>Running</code> 状态，当入队的缓冲区带有 <code>EOS</code> 标志时， 就会切换到 <code>End of Stream</code> 状态， MediaCodec 不再接受入队的缓冲区，但是仍然会对已入队的且没有进行编解码操作的缓冲区进行操作、输出，直到输出的缓冲区带有 <code>EOS</code> 标志，表示编解码操作完成了。</p>
+<p>在 <code>Executing</code> 状态下可以调用 flush 方法，使 MediaCodec 切换到 <code>Flushed</code> 状态。</p>
+<p>在 <code>Executing</code> 状态下可以调用 stop 方法，使 MediaCodec 切换到 <code>Uninitialized</code> 状态，然后再次调用 configure 方法进入 <code>Configured</code> 状态。另外，当调用 reset 方法也会进入到 <code>Uninitialized</code> 状态。</p>
+<p>当不再需要 MediaCodec 时，调用 release 方法将它释放掉，进入 <code>Released</code> 状态。</p>
+<p>当 MediaCodec 工作发生异常时，会进入到 <code>Error</code> 状态，此时还是可以通过 reset 方法恢复过来，进入 <code>Uninitialized</code> 状态。</p>
+<h3 id="mediacodec-调用流程">MediaCodec 调用流程</h3>
+<p>理解了 MediaCodec 的生命周期和工作流程之后，就可以上手来进行编码工作了。</p>
+<p>以 MediaCodec 同步调用为例，使用过程如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span> <span style="color:#6272a4">// 创建 MediaCodec，此时是 Uninitialized 状态</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span> MediaCodec codec <span style="color:#ff79c6">=</span> MediaCodec.<span style="color:#50fa7b">createByCodecName</span>(name);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span> <span style="color:#6272a4">// 调用 configure 进入 Configured 状态</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span> codec.<span style="color:#50fa7b">configure</span>(format, …);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span> MediaFormat outputFormat <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">getOutputFormat</span>(); <span style="color:#6272a4">// option B</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span> <span style="color:#6272a4">// 调用 start 进入 Executing 状态，开始编解码工作</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span> codec.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span> <span style="color:#ff79c6">for</span> (;;) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>   <span style="color:#6272a4">// 从输入缓冲区队列中取出可用缓冲区，并填充数据</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>   <span style="color:#8be9fd">int</span> inputBufferId <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">dequeueInputBuffer</span>(timeoutUs);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>   <span style="color:#ff79c6">if</span> (inputBufferId <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>     ByteBuffer inputBuffer <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">getInputBuffer</span>(…);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>     <span style="color:#6272a4">// fill inputBuffer with valid data</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>     …
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>     codec.<span style="color:#50fa7b">queueInputBuffer</span>(inputBufferId, …);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>   }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>   <span style="color:#6272a4">// 从输出缓冲区队列中拿到编解码后的内容，进行相应操作后释放，供下一次使用</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>   <span style="color:#8be9fd">int</span> outputBufferId <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">dequeueOutputBuffer</span>(…);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>   <span style="color:#ff79c6">if</span> (outputBufferId <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>     ByteBuffer outputBuffer <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">getOutputBuffer</span>(outputBufferId);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>     MediaFormat bufferFormat <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">getOutputFormat</span>(outputBufferId); <span style="color:#6272a4">// option A</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>     <span style="color:#6272a4">// bufferFormat is identical to outputFormat</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>     <span style="color:#6272a4">// outputBuffer is ready to be processed or rendered.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>     …
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>     codec.<span style="color:#50fa7b">releaseOutputBuffer</span>(outputBufferId, …);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>   } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (outputBufferId <span style="color:#ff79c6">==</span> MediaCodec.<span style="color:#50fa7b">INFO_OUTPUT_FORMAT_CHANGED</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>     <span style="color:#6272a4">// Subsequent data will conform to new format.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>     <span style="color:#6272a4">// Can ignore if using getOutputFormat(outputBufferId)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>     outputFormat <span style="color:#ff79c6">=</span> codec.<span style="color:#50fa7b">getOutputFormat</span>(); <span style="color:#6272a4">// option B</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>   }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span> <span style="color:#6272a4">// 调用 stop 方法进入 Uninitialized 状态</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span> codec.<span style="color:#50fa7b">stop</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span> <span style="color:#6272a4">// 调用 release 方法释放，结束操作</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span> codec.<span style="color:#50fa7b">release</span>();
+</span></span></code></pre></div><h2 id="代码解析">代码解析</h2>
+<h3 id="mediaformat-设置">MediaFormat 设置</h3>
+<p>首先需要创建并设置好 MediaFormat 对象，它表示媒体数据格式的相关信息，对于视频主要有以下信息要设置：</p>
+<ul>
+<li>颜色格式</li>
+<li>码率</li>
+<li>码率控制模式</li>
+<li>帧率</li>
+<li>I 帧间隔</li>
+</ul>
+<p>其中，码率就是指单位传输时间传送的数据位数，一般用 <code>kbps</code> 即千位每秒来表示。而帧率就是指每秒显示的帧数。</p>
+<p>其实对于码率有三种模式可以控制：</p>
+<ul>
+<li>BITRATE_MODE_CQ
+<ul>
+<li>表示不控制码率，尽最大可能保证图像质量</li>
+</ul>
+</li>
+<li>BITRATE_MODE_VBR
+<ul>
+<li>表示 MediaCodec 会根据图像内容的复杂度来动态调整输出码率，图像负责则码率高，图像简单则码率低</li>
+</ul>
+</li>
+<li>BITRATE_MODE_CBR
+<ul>
+<li>表示 MediaCodec 会把输出的码率控制为设定的大小</li>
+</ul>
+</li>
+</ul>
+<p>对于颜色格式，由于是将 YUV 数据编码成 H264，而 YUV 格式又有很多，这又涉及到机型兼容性问题。在对相机编码时要做好格式的处理，比如相机使用的是 <code>NV21</code> 格式，MediaFormat 使用的是 <code>COLOR_FormatYUV420SemiPlanar</code>，也就是 <code>NV12</code> 模式，那么就得做一个转换，把 <code>NV21</code> 转换到 <code>NV12</code> 。</p>
+<p>对于 I 帧间隔，也就是隔多久出现一个 H264 编码中的 I 帧。</p>
+<p>完整 MediaFormat 设置示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>        MediaFormat mediaFormat <span style="color:#ff79c6">=</span> MediaFormat.<span style="color:#50fa7b">createVideoFormat</span>(MediaFormat.<span style="color:#50fa7b">MIMETYPE_VIDEO_AVC</span>, width, height);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>        mediaFormat.<span style="color:#50fa7b">setInteger</span>(MediaFormat.<span style="color:#50fa7b">KEY_COLOR_FORMAT</span>, MediaCodecInfo.<span style="color:#50fa7b">CodecCapabilities</span>.<span style="color:#50fa7b">COLOR_FormatYUV420SemiPlanar</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#6272a4">// 马率</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        mediaFormat.<span style="color:#50fa7b">setInteger</span>(MediaFormat.<span style="color:#50fa7b">KEY_BIT_RATE</span>, width <span style="color:#ff79c6">*</span> height <span style="color:#ff79c6">*</span> 5);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#6272a4">// 调整码率的控流模式</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        mediaFormat.<span style="color:#50fa7b">setInteger</span>(MediaFormat.<span style="color:#50fa7b">KEY_BITRATE_MODE</span>, MediaCodecInfo.<span style="color:#50fa7b">EncoderCapabilities</span>.<span style="color:#50fa7b">BITRATE_MODE_VBR</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        <span style="color:#6272a4">// 设置帧率 </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        mediaFormat.<span style="color:#50fa7b">setInteger</span>(MediaFormat.<span style="color:#50fa7b">KEY_FRAME_RATE</span>, 30);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#6272a4">// 设置 I 帧间隔</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        mediaFormat.<span style="color:#50fa7b">setInteger</span>(MediaFormat.<span style="color:#50fa7b">KEY_I_FRAME_INTERVAL</span>, 1);
+</span></span></code></pre></div><p>当开始编解码操作时，开启编解码线程，处理相机预览返回的 YUV 数据。</p>
+<p>在这里用到了相机的一个封装库：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/EzCameraKit">https://github.com/glumes/EzCameraKit</a></p>
+</blockquote>
+<h3 id="编解码操作">编解码操作</h3>
+<p>编解码操作代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">while</span> (isEncoding) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#6272a4">// YUV 颜色格式转换</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>mEncodeDataQueue.<span style="color:#50fa7b">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        input <span style="color:#ff79c6">=</span> mEncodeDataQueue.<span style="color:#50fa7b">poll</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> yuv420sp <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[</span>mWidth <span style="color:#ff79c6">*</span> mHeight <span style="color:#ff79c6">*</span> 3 <span style="color:#ff79c6">/</span> 2<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        NV21ToNV12(input, yuv420sp, mWidth, mHeight);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        input <span style="color:#ff79c6">=</span> yuv420sp;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">if</span> (input <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            <span style="color:#6272a4">// 从输入缓冲区队列中拿到可用缓冲区，填充数据，再入队</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            ByteBuffer<span style="color:#ff79c6">[]</span> inputBuffers <span style="color:#ff79c6">=</span> mMediaCodec.<span style="color:#50fa7b">getInputBuffers</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            ByteBuffer<span style="color:#ff79c6">[]</span> outputBuffers <span style="color:#ff79c6">=</span> mMediaCodec.<span style="color:#50fa7b">getOutputBuffers</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>            <span style="color:#8be9fd">int</span> inputBufferIndex <span style="color:#ff79c6">=</span> mMediaCodec.<span style="color:#50fa7b">dequeueInputBuffer</span>(<span style="color:#ff79c6">-</span>1);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#ff79c6">if</span> (inputBufferIndex <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>                <span style="color:#6272a4">// 计算时间戳</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>                pts <span style="color:#ff79c6">=</span> computePresentationTime(generateIndex);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                ByteBuffer inputBuffer <span style="color:#ff79c6">=</span> inputBuffers<span style="color:#ff79c6">[</span>inputBufferIndex<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>                inputBuffer.<span style="color:#50fa7b">clear</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>                inputBuffer.<span style="color:#50fa7b">put</span>(input);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>                mMediaCodec.<span style="color:#50fa7b">queueInputBuffer</span>(inputBufferIndex, 0, input.<span style="color:#50fa7b">length</span>, pts, 0);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>                generateIndex <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>            MediaCodec.<span style="color:#50fa7b">BufferInfo</span> bufferInfo <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MediaCodec.<span style="color:#50fa7b">BufferInfo</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>            <span style="color:#8be9fd">int</span> outputBufferIndex <span style="color:#ff79c6">=</span> mMediaCodec.<span style="color:#50fa7b">dequeueOutputBuffer</span>(bufferInfo, TIMEOUT_USEC);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>            <span style="color:#6272a4">// 从输出缓冲区队列中拿到编码好的内容，对内容进行相应处理后在释放</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>            <span style="color:#ff79c6">while</span> (outputBufferIndex <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>                ByteBuffer outputBuffer <span style="color:#ff79c6">=</span> outputBuffers<span style="color:#ff79c6">[</span>outputBufferIndex<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>                <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> outData <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[</span>bufferInfo.<span style="color:#50fa7b">size</span><span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>                outputBuffer.<span style="color:#50fa7b">get</span>(outData);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>                <span style="color:#6272a4">// flags 利用位操作，定义的 flag 都是 2 的倍数</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>                <span style="color:#ff79c6">if</span> ((bufferInfo.<span style="color:#50fa7b">flags</span> <span style="color:#ff79c6">&amp;</span> MediaCodec.<span style="color:#50fa7b">BUFFER_FLAG_CODEC_CONFIG</span>) <span style="color:#ff79c6">!=</span> 0) { <span style="color:#6272a4">// 配置相关的内容，也就是 SPS，PPS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>                    mOutputStream.<span style="color:#50fa7b">write</span>(outData, 0, outData.<span style="color:#50fa7b">length</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>                } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> ((bufferInfo.<span style="color:#50fa7b">flags</span> <span style="color:#ff79c6">&amp;</span> MediaCodec.<span style="color:#50fa7b">BUFFER_FLAG_KEY_FRAME</span>) <span style="color:#ff79c6">!=</span> 0) { <span style="color:#6272a4">// 关键帧</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>					mOutputStream.<span style="color:#50fa7b">write</span>(outData, 0, outData.<span style="color:#50fa7b">length</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>                    <span style="color:#6272a4">// 非关键帧和SPS、PPS,直接写入文件，可能是B帧或者P帧</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>                    mOutputStream.<span style="color:#50fa7b">write</span>(outData, 0, outData.<span style="color:#50fa7b">length</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>                }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>                mMediaCodec.<span style="color:#50fa7b">releaseOutputBuffer</span>(outputBufferIndex, <span style="color:#ff79c6">false</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>                outputBufferIndex <span style="color:#ff79c6">=</span> mMediaCodec.<span style="color:#50fa7b">dequeueOutputBuffer</span>(bufferInfo, TIMEOUT_USEC);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>            }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>        } <span style="color:#ff79c6">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>            Log.<span style="color:#50fa7b">e</span>(TAG, e.<span style="color:#50fa7b">getMessage</span>());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>            Thread.<span style="color:#50fa7b">sleep</span>(500);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>            Log.<span style="color:#50fa7b">e</span>(TAG, e.<span style="color:#50fa7b">getMessage</span>());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>}
+</span></span></code></pre></div><p>首先，要把要把相机的 <code>NV21</code> 格式转换成 <code>NV12</code> 格式，然后 通过 <code>dequeueInputBuffer</code> 方法去从可用的输入缓冲区队列中出队取出缓冲区，填充完数据后再通过 <code>queueInputBuffer</code> 方法入队。</p>
+<p><code>dequeueInputBuffer</code> 返回缓冲区索引，如果索引小于 0 ，则表示当前没有可用的缓冲区。它的参数 <code>timeoutUs</code> 表示超时时间 ，毕竟用的是 MediaCodec 的同步模式，如果没有可用缓冲区，就会阻塞指定参数时间，如果参数为负数，则会一直阻塞下去。</p>
+<p><code>queueInputBuffer</code> 方法将数据入队时，除了要传递出队时的索引值，然后还需要传入当前缓冲区的时间戳 <code>presentationTimeUs</code> 和当前缓冲区的一个标识 <code>flag</code> 。</p>
+<p>其中，时间戳通常是缓冲区渲染的时间，而标识则有多种标识，标识当前缓冲区属于那种类型：</p>
+<ul>
+<li>BUFFER_FLAG_CODEC_CONFIG
+<ul>
+<li>标识当前缓冲区携带的是编解码器的初始化信息，并不是媒体数据</li>
+</ul>
+</li>
+<li>BUFFER_FLAG_END_OF_STREAM
+<ul>
+<li>结束标识，当前缓冲区是最后一个了，到了流的末尾</li>
+</ul>
+</li>
+<li>BUFFER_FLAG_KEY_FRAME
+<ul>
+<li>表示当前缓冲区是关键帧信息，也就是 I 帧信息</li>
+</ul>
+</li>
+</ul>
+<p>在编码的时候可以计算当前缓冲区的时间戳，也可以直接传递 0 就好了，对于标识也可以直接传递 0 作为参数。</p>
+<p>把数据传入给 MediaCodec 之后，通过 <code>dequeueOutputBuffer</code> 方法取出编解码后的数据，除了指定超时时间外，还需要传入 <code>MediaCodec.BufferInfo</code> 对象，这个对象里面有着编码后数据的长度、偏移量以及标识符。</p>
+<p>取出 <code>MediaCodec.BufferInfo</code> 内的数据之后，根据不同的标识符进行不同的操作：</p>
+<ul>
+<li>BUFFER_FLAG_CODEC_CONFIG
+<ul>
+<li>表示当前数据是一些配置数据，在 H264 编码中就是 SPS 和 PPS 数据，也就是 <code>00 00 00 01 67</code> 和 <code>00 00 00 01 68</code> 开头的数据，这个数据是必须要有的，它里面有着视频的宽、高信息。</li>
+</ul>
+</li>
+<li>BUFFER_FLAG_KEY_FRAME
+<ul>
+<li>关键帧数据，对于 I 帧数据，也就是开头是 <code>00 00 00 01 65</code> 的数据，</li>
+</ul>
+</li>
+<li>BUFFER_FLAG_END_OF_STREAM
+<ul>
+<li>表示结束，MediaCodec 工作结束</li>
+</ul>
+</li>
+</ul>
+<p>对于返回的 flags ，不符合预定义的标识，则可以直接写入，那些数据可能代表的是 H264 中的 P 帧 或者 B 帧。</p>
+<p>对于编解码后的数据，进行操作后，通过 <code>releaseOutputBuffer</code> 方法释放对应的缓冲区，其中第二个参数 <code>render</code> 代表是否要渲染到 surface 上，这里暂时不需要就为 false 。</p>
+<h3 id="停止编码">停止编码</h3>
+<p>当想要停止编码时，通过 MediaCodec 的 <code>stop</code> 方法切换到 <code>Uninitialized</code> 状态，然后再调用 <code>release</code> 方法释放掉。</p>
+<p>这里并没有采用使用 <code>BUFFER_FLAG_END_OF_STREAM</code> 标识符的方式来停止编码，而是直接切换状态了，在通过 Surface 方式进行录制时，再去采用这种方式了。</p>
+<p>对于 MediaCodec 硬编码解析之相机内容编码成 H264 文件就到这里了，主要还是讲述了关于 MediaCodec 的使用，一旦熟悉使用了，完成编码工作也就很简单了。</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://wangyantao.github.io/mediacodec/">android MediaCodec解析</a></li>
+<li><a href="http://ragnraok.github.io/android_video_record.html">谈谈关于Android视频编码的那些坑</a></li>
+</ol>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/mediacodec-encode-yuv-to-h264/">MediaCodec 硬编码之相机内容编码成 H264 文件</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/ffmpeg/understand-yuv-format/" data-toggle="tooltip" data-placement="top" title="一文读懂 YUV 的采样与格式">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/c-stl-container-overview/" data-toggle="tooltip" data-placement="top" title="C&#43;&#43; 标准容器库小结">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/ffmpeg/understand-yuv-format/">一文读懂 YUV 的采样与格式</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-view-matrix/">OpenGL 学习系列---观察矩阵</a></li>
+    
+    <li><a href="https://glumes.com/android-camrea-api-evolution/">Android Camera 模型及 API 接口演变</a></li>
+    
+    <li><a href="https://glumes.com/android-camera-aspect-ratio--and-orientation/">Android 相机开发中的尺寸和方向问题</a></li>
+    
+    <li><a href="https://glumes.com/cmake-best-practices/">Android NDK 开发之 CMake 必知必会</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

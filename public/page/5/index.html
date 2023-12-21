@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta name="generator" content="Hugo 0.121.1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="" />
+    <meta property="og:title" content="" />
+    <meta property="twitter:title" content="" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title></title>
+
+    <link rel="canonical" href="https://glumes.com/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>音视频开发进阶 </h1>
+                    
+		    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+  
+<div data-pagefind-ignore="all" class="container">
+    <div class="row">
+        
+        
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
+            
+<div data-pagefind-ignore="all">
+
+<div class="post-preview">
+    <a href="https://glumes.com/unity-basic-object-operation/">
+        <h2 class="post-title">
+            Unity 物体的基本操作
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            Unity 的基本操作主要是对游戏对象的操作，包括观察视角、平移、缩放、旋转这些。
+更具体一点就是控制面板上这几个按键如何操作：
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Saturday, August 14, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-7/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结07-尾置返回类型
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            在使用模板时可以显示指定模板类型，尤其是针对有返回类型的模板，显示指定可以避免类型转换带来的困扰。
+但有时候显示指定模板实参类型会给用户增添额外负担，而且不会带来什么好处。
+比如如下代码，接受表示序列的一对迭代器和返回序列中的一个元素的引用：
+1template&amp;lt;typename It&amp;gt; 2??? &amp;amp;fcn(It beg,It end){ …
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Saturday, February 20, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-6/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结06-可变参数模板特性
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            C++11 中引入了可变参数模板的特性，可变参数模板就是一个接受可变数目参数的模板函数或者模板类。
+可变数目的参数被称为参数包，存在如下两种参数包：
+模板参数包：表示零个或多个模板参数 函数参数包：表示零个或多个函数参数 具体如下所示，声明了一个可变参数函数模板。
+1// Args 是一个模板参数包；rest 是一个函数参数包 2// Args 表示零个或多 …
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Saturday, February 20, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-multi-thread/">
+        <h2 class="post-title">
+            C&#43;&#43; 中的多线程的使用和线程池建设
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            C++ 11 引入了 std::thread 标准库，方便了多线程相关的开发工作。
+说到多线程开发，可不仅仅是创建一个新线程就好了，不可避免的要涉及到线程同步的问题。
+而保证线程同步，实现线程安全，就要用到相关的工具了，比如信号量、互斥量、条件变量、原子变量等等。
+这些名词概念都是来操作系统里面引申来的，并不是属于哪一种编程语言所特有的，在不同语言上的表现形 …
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Tuesday, February 9, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-5/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结05-模板类型作为模板参数
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            在前面的文章中，模板参数除了是类型之外，还可以是非类型参数，但只有整型和指向外部链接对象的指针才可以。
+除此之外，模板类型同样可以作为类型参数，并且还很有用处。
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Tuesday, February 9, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-4/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结04-类模板中的成员模板
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            在之前的类模板中，只在类声明时用了 typename 指定模板参数类型，之后的成员函数复用模板参数类型。
+但实际上，类成员也可以是模板，嵌套类和成员函数都可以作为模板。
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Tuesday, February 9, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-3/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结03-在模板中指定变量类型
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            在之前的代码示例中，频繁用到 typename 关键字。
+它的作用就是声明模板参数是类型参数（对于非类型参数，之前的文章也有提到了），也可以用 class 关键字来代替，但为了避免歧义，大多还是使用 typename 了。
+除此之外，在模板的定义也可以使用 typename 关键字，用来指定变量的类型。
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Tuesday, February 9, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-2/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结02-非类型模板参数
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            前面已经介绍了函数模板和类模板，还介绍了类模板的默认参数，在代码示例中都是用具体类型来作为模板参数的。
+实际上，模板参数不局限于类型，普通值也可以作为模板参数，也就是本篇要讲的内容：非类型模板参数。
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Monday, February 8, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/c-template-1/">
+        <h2 class="post-title">
+            C&#43;&#43; 模板系列小结01-函数模板和类模板
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            现如今，掌握 C++ 模板技巧并且熟练使用可以说是能力进阶的必备内容了。
+在一些优秀的开源项目中经常能看到模板的使用，要是不了解其使用方法，对分析源码都会有些阻碍。
+推荐阅读《C++ Templates 中文版》一书，或许可以让你对 C++ 模板有个更加系统的概念，同时辅助阅读网上相关的博客文章加深理解，在代码实践中去掌握提高。
+C++ 模板主要可以分为函数 …
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Monday, February 8, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://glumes.com/opengl/01-what-is-render-engine/">
+        <h2 class="post-title">
+            从零打造渲染引擎系列01-什么是渲染引擎
+        </h2>
+	
+        <div class="post-content-preview">
+            
+            前情回顾：2021 技术新番 - 从零打造渲染引擎系列
+在开始写代码之前，要先明确渲染引擎到底是什么东西，才能知道要写什么东西。
+
+             
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by 音视频开发进阶 on Tuesday, January 12, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+</div>
+
+            
+
+
+<ul class="pager" data-pagefind-ignore="all">
+    
+    <li class="previous">
+        <a href="https://glumes.com/page/4/">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="https://glumes.com/page/6/">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+       	</div>
+        <div class="col-lg-3 col-lg-offset-0
+col-md-3 col-md-offset-0
+col-sm-12
+col-xs-12
+sidebar-container">
+
+    <div class="sidebar-wrap sidebar-about">
+      <div class="about-img">
+        <img src="https://image.glumes.com/blog_image/blog_avatar.jpeg" alt="星陨" class="rounded-circle">
+      </div>
+      <h4 class="py-2">Hi! -That's Me</h4>
+
+      <p class="about-text">你好，我是星陨，多媒体开发工程师，曾就职于抖音，从事音视频 SDK 开发工作。</p>
+      <p class="about-text">分享 Android 应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~</p>
+      <p class="about-text">技术交流、项目合作、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！</p>
+      <p class="sidebar-title">关注微信公众号：音视频开发进阶</p>
+      <img src="https://image.glumes.com/blog_image/Ub50036cdfce34aedb18e6f0b2521aee4f.jpg" alt="音视频开发进阶">
+
+    </div>
+
+    <div class="sidebar-block">
+      <h4 class="sidebar-title">分类目录</h4>
+      <ol class="list-unstyled">
+
+
+      
+
+
+      <li><a href="https://glumes.com/archive/android/">Android 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ios/">iOS 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/code/">编程语言</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/ffmpeg/">FFmpeg 开发</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/webrtc/">WebRTC 即时通信</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/opengl/">OpenGL 图形学</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/vulkan/">Vulkan 图像渲染</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/engine/">游戏引擎</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/life/">生活点滴</a></li>
+      
+
+
+      <li><a href="https://glumes.com/archive/anything/">杂七杂八</a></li>
+      
+
+      </ol>
+    </div>
+
+
+    
+    <div class="sidebar-wrap">
+      <h4 class="sidebar-title">标签</h4>
+      <div class="list-unstyled tags-cloud">
+      
+        
+        <a href="https://glumes.com/tags/android">android(36)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/c&#43;&#43;">c&#43;&#43;(9)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/camera">camera(4)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/engine">engine(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ffmpeg">ffmpeg(18)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/framework">framework(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/glsl">glsl(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/image">image(2)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/ios">ios(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/java">java(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/jni">jni(10)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/kotlin">kotlin(3)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/life">life(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/opengl">opengl(33)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/python">python(3)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/rxjava">rxjava(3)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/sdl">sdl(8)</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/template">template(7)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/ue4">ue4(4)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/unity">unity(6)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/vulkan">vulkan(5)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/webrtc">webrtc(2)</a>
+        
+      
+        
+        <a href="https://glumes.com/tags/yuv">yuv(2)</a>
+        
+      
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9E%E8%B7%B5">播放器实践(7)</a>
+        
+      
+        
+      
+        
+        <a href="https://glumes.com/tags/%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83">知识星球(4)</a>
+        
+      
+        
+      
+        
+      
+      </div>
+    </div>
+  </div>
+	</div>
+</div>
+
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>engine on 音视频开发进阶</title>
+    <link>https://glumes.com/categories/engine/</link>
+    <description>Recent content in engine on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Dec 2022 22:24:27 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/categories/engine/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UE 4.27 添加自定义 ShadingModel</title>
+      <link>https://glumes.com/ue4.27-add-custom-shading-model/</link>
+      <pubDate>Tue, 27 Dec 2022 22:24:27 +0800</pubDate>
+      <guid>https://glumes.com/ue4.27-add-custom-shading-model/</guid>
+      <description>&lt;p&gt;基于 UE 4.27 的版本添加自定义的 ShadingModel ，大致分为两步：&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. 在 UE Editor 中添加自定义的 ShadingModel 入口。这样在创建材质时可以选择对应的 ShadingModel 。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;2. 在 Shader 中对自定义的 ShadingModel 做渲染上的处理。比如自定义的 BxDF 函数，以及对光照的特殊处理等。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>用 UE4 虚幻引擎做个捏脸小功能~~</title>
+      <link>https://glumes.com/ue4-controlrig-face-edit/</link>
+      <pubDate>Sat, 05 Nov 2022 14:56:53 +0800</pubDate>
+      <guid>https://glumes.com/ue4-controlrig-face-edit/</guid>
+      <description>&lt;p&gt;最近在学习 UE 相关的使用，正好看到一篇文章讲解用 Control Rig 实现简单捏脸功能，这种小而美的完整案例挺适合来练手的，涉及到了 UI、蓝图、动画、骨骼等方面，值得推荐一下。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UE4 材质练习 之 凹凸贴图偏移的使用</title>
+      <link>https://glumes.com/ue4-dump-offset/</link>
+      <pubDate>Mon, 12 Sep 2022 11:58:15 +0800</pubDate>
+      <guid>https://glumes.com/ue4-dump-offset/</guid>
+      <description>&lt;p&gt;UE 中提供了 &lt;code&gt;凹凸贴图偏移&lt;/code&gt; 的贴图来实现修改 UV 坐标达到提升表面细节，使材质产生深度错觉。凹凸贴图偏移是 UE4 中的术语，其实就对应于 LearnOpenGL 网站上的 &lt;code&gt;视差贴图&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UE4 材质练习系列基础</title>
+      <link>https://glumes.com/ue4-material-practice/</link>
+      <pubDate>Sat, 10 Sep 2022 17:08:48 +0800</pubDate>
+      <guid>https://glumes.com/ue4-material-practice/</guid>
+      <description>&lt;p&gt;学习 UE4 虚幻引擎的一些练习。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unity Shader 光照基础之 Half Lambert 光照模型</title>
+      <link>https://glumes.com/unity-halflambert-lighting-model/</link>
+      <pubDate>Thu, 02 Sep 2021 10:45:56 +0800</pubDate>
+      <guid>https://glumes.com/unity-halflambert-lighting-model/</guid>
+      <description>&lt;p&gt;Half Lambert 模型（也叫作半兰伯特模型）在 Lambert 模型的基础之上做了一些优化。&lt;/p&gt;&#xA;&lt;p&gt;在 Lambert 模型中，光照无法到达的区域，比如模型的背面，模型外观通常是全黑的，没有任何明暗变化，而 Half Lambert 模型就是改善这一状况。&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com/blog_image/20210829145830.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;回顾 Lambert 模型的计算公式如下：&lt;/p&gt;&#xA;&lt;p&gt;$c_{diffuse} = (c_{light} \cdot m_{diffuse}) \cdot  max (0,n \cdot I)$&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unity Shader 光照基础之Lambert光照模型</title>
+      <link>https://glumes.com/unity-lambert-lighting-model/</link>
+      <pubDate>Thu, 02 Sep 2021 10:45:46 +0800</pubDate>
+      <guid>https://glumes.com/unity-lambert-lighting-model/</guid>
+      <description>&lt;p&gt;在标准光照模型中，可以把光照分为四种：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;自发光&lt;/strong&gt;。常用英文 &lt;strong&gt;emissive&lt;/strong&gt; 来表示，用于描述当给定一个方向时，一个物体表面会向该方向发射多少辐射量，也就是有多少光照出来，一般计算都忽略这个值了。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;高光反射&lt;/strong&gt;，也叫作&lt;strong&gt;镜面反射&lt;/strong&gt;。常用英文 &lt;strong&gt;specular&lt;/strong&gt; 来表示，用于描述当光线从光源照射到模型表面时，该表面会在完全镜面发射反向散射多少辐射量，也是就发出多少光。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;漫反射&lt;/strong&gt;。常用英文 &lt;strong&gt;diffuse&lt;/strong&gt; 来表示，用于描述当光线从光源照射到模型表面，该表面会向每个方向散射多少辐射量，也就是发出多少光。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;环境光&lt;/strong&gt;。常用英文 &lt;strong&gt;ambient&lt;/strong&gt; 来表示，用户描述其他所有间接光照。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;用一张图来表示各个光照：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com/blog_image/light-type.jpg&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;而 Lambert 光照模型主要是处理物体漫反射的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unity Shader 光照基础内容</title>
+      <link>https://glumes.com/unity-basic-lighting/</link>
+      <pubDate>Thu, 02 Sep 2021 10:44:03 +0800</pubDate>
+      <guid>https://glumes.com/unity-basic-lighting/</guid>
+      <description>&lt;p&gt;光照可以说是整个计算机图形学里面最重要的部分了，当展现物体时如何模拟真实世界中的光照环境，这往往是很复杂的。&lt;/p&gt;&#xA;&lt;p&gt;由于光是可以散射的，一个物体不仅仅可以接收来自直接光源的照射，还可以接收来自周围环境的散射光，而在渲染时，要计算周围环境的散射光就无疑加大了计算量，因为周围环境远比光源复杂多了。&lt;/p&gt;&#xA;&lt;p&gt;下面就是一张很逼真的光照渲染实例：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com/blog_image/global_light_demo.jpg&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;如果说这是用手机拍的照片，可能我都分不出来哪里有问题，而计算机模拟真实感渲染就是追求这一目标吧。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unity Shader 显示一张图片纹理</title>
+      <link>https://glumes.com/unity-basic-texture/</link>
+      <pubDate>Mon, 23 Aug 2021 13:04:19 +0800</pubDate>
+      <guid>https://glumes.com/unity-basic-texture/</guid>
+      <description>&lt;p&gt;用 Unity 去显示一张图片纹理比用 OpenGL 代码去显示图片要简单多了，而这正是因为 Unity 在背后做了很多封装工作。&lt;/p&gt;&#xA;&lt;p&gt;要显示的图片如下所示：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com//blog_image/v2-a560282d5e3515d6dc819c0173f9620b_720w.jpg&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;它的分辨率是 2560x1600 ，也就是矩形图片，并非正方形。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UnityShader 的基本概念</title>
+      <link>https://glumes.com/unity-shader-basic-content/</link>
+      <pubDate>Sun, 15 Aug 2021 15:18:06 +0800</pubDate>
+      <guid>https://glumes.com/unity-shader-basic-content/</guid>
+      <description>&lt;p&gt;Unity 中的 Shader 不同于 OpenGL 的 GLSL ，它是通过 ShaderLab 语言编写的。&lt;/p&gt;&#xA;&lt;p&gt;ShaderLab 是 Unity 为开发者提供的高层级的渲染抽象层，它是一种说明性语言。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unity 物体的基本操作</title>
+      <link>https://glumes.com/unity-basic-object-operation/</link>
+      <pubDate>Sat, 14 Aug 2021 21:53:16 +0800</pubDate>
+      <guid>https://glumes.com/unity-basic-object-operation/</guid>
+      <description>&lt;p&gt;Unity 的基本操作主要是对游戏对象的操作，包括观察视角、平移、缩放、旋转这些。&lt;/p&gt;&#xA;&lt;p&gt;更具体一点就是控制面板上这几个按键如何操作：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com//blog_image/unity_basic_operation.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

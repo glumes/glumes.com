@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息" />
+    <meta property="og:title" content="006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息" />
+    <meta property="twitter:title" content="006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息 | </title>
+
+    <link rel="canonical" href="https://glumes.com/mac-mp4-info/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9E%E8%B7%B5" title="播放器实践">
+                            播放器实践
+                        </a>
+                        
+                    </div>
+                    <h1>006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Thursday, May 5, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>之前介绍了在 Windows 上查看 MP4 格式信息，使用的是 <strong>Mp4 Explorer</strong> 软件，具体使用如下：</p>
+<p><a href="https://glumes.com/post/ffmpeg/windows-mp4-info/">005 | 播放器系列专栏-在 Windows 上查看 MP4 格式</a></p>
+<p>现在该介绍一下 MAC 上用的软件了，它就是 MediaInfo 软件，官网地址如下：</p>
+<p><a href="https://mediaarea.net/MediaInfo">https://mediaarea.net/MediaInfo</a></p>
+<p>使用起来也很简单，打开视频文件就可以看到信息了。</p>
+<p>如下图：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image20220501215721.png" alt="">
+
+</p>
+<p>现在 MediaInfo 也要收费使用了，而且还不能显示 Box 信息，其内容和 FFmpeg 命令显示差不多的，所以在 Mac 上还是建议直接用 FFmpeg 好。</p>
+<hr>
+<h2 id="bento4-介绍">Bento4 介绍</h2>
+<p>那么如何在 Mac 上显示 MP4 的 Box 信息呢？答案就是用 <strong>Bento4</strong> 软件。</p>
+<p>Bento4 的官网地址如下：</p>
+<p><a href="https://www.bento4.com/">https://www.bento4.com/</a></p>
+<p>它的 Github 地址如下：</p>
+<p><a href="https://github.com/axiomatic-systems/Bento4">https://github.com/axiomatic-systems/Bento4</a></p>
+<p>Bento4 是一款开源软件，有 C++、Java、Python 三种对外接口，可以用来对 MP4 视频进行各种操作。</p>
+<p>比如显示 Box 结构、加解密视频、抽取音视频流等，还可以将 MP4 文件转换成 TS 文件或者 HLS 文件，或者将 MP4 转换成 Fragment MP4 格式。</p>
+<p>详细功能在 Github 中介绍的很全面了，如下图：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image20220501222822.png" alt="">
+
+</p>
+<p>中文翻译版本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>mp4info         显示有关MP4文件的高级信息，包括所有tracks和codec的详细信息。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>mp4dump         显示MP4文件的整个atom<span style="color:#ff79c6">/</span>box结构。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>mp4edit         添加<span style="color:#ff79c6">/</span>插入<span style="color:#ff79c6">/</span>移除<span style="color:#ff79c6">/</span>替换 MP4文件的atom<span style="color:#ff79c6">/</span>box项。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>mp4extract      从MP4文件中提取atom<span style="color:#ff79c6">/</span>box
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>mp4encrypt      加密MP4文件（支持多种加密方案）
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>mp4decrypt      解密MP4文件（支持多种加密方案）
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>mp4dcfpackager  将媒体文件加密为OMA DCF文件
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>mp4compact      将“stsz”表转换为“stz2”表以创建更紧凑的MP4文件
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>mp4fragment     从非碎片化的MP4文件创建碎片化MP4文件。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>mp4split        将支离破碎的MP4文件拆分为离散的文件
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>mp4tag          显示<span style="color:#ff79c6">/</span>编辑MP4元数据（iTunes样式和其他样式）
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>mp4mux          将一个或多个基本流（H264<span style="color:#ff79c6">/</span>AVC、H265<span style="color:#ff79c6">/</span>HEVC、AAC）多路复用到MP4文件中
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>mp42aac         从MP4文件中提取原始AAC基本流
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>mp42avc         从MP4文件中提取原始AVC<span style="color:#ff79c6">/</span>H<span style="color:#bd93f9">.264</span>基本流
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>mp42hls         将MP4文件转换为HLS（HTTP Live Streaming）演示文稿，包括生成片段和.m3u8播放列表以及AES<span style="color:#ff79c6">-</span><span style="color:#bd93f9">128</span>和SAMPLE<span style="color:#ff79c6">-</span>AES（用于公平播放）加密。这可以作为苹果mediafilesegmenter工具的替代品。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>mp42ts          将MP4文件转换为MPEG2<span style="color:#ff79c6">-</span>TS文件。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>mp4dash         从一个或多个MP4文件（包括加密）创建MPEG破折号输出。作为一种选择，还可以同时生成带有MP4片段的HLS播放列表，允许将单个流用作DASH和HLS。这是一个功能齐全的MPEG DASH<span style="color:#ff79c6">/</span>HLS打包机。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>mp4dashclone    创建远程或本地MPEG破折号演示文稿的本地克隆，并在克隆片段时对其进行加密。
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>mp4hls          从一个或多个MP4文件创建多比特率HLS主播放列表，包括对加密和仅I帧播放列表的支持。此工具在内部使用“mp42hls”低级工具，因此该低级工具支持的所有选项也都可用。这可以作为苹果variantplaylistcreator工具的替代品。
+</span></span></code></pre></div><h2 id="安装-bento4">安装 Bento4</h2>
+<p>安装很简单，一行命令搞定：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>brew install bento4
+</span></span></code></pre></div><p>然后就拥有了上面图片中的所有命令行工具。</p>
+<h2 id="bento4-工具使用">Bento4 工具使用</h2>
+<p>别看上面命令行工具很多，使用起来非常简单。</p>
+<p>
+  <img src="https://image.glumes.com/blog_image20220501223716.png" alt="">
+
+</p>
+<p>直接输入命令，就可以看到使用提示。</p>
+<p>想要查看 MP4 的 Box 信息，使用如下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 换成你的路径
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>mp4dump video<span style="color:#ff79c6">-</span><span style="color:#bd93f9">640</span>x360.mp4
+</span></span></code></pre></div><p>显示如下：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image20220501224049.png" alt="">
+
+</p>
+<p>除了显示 Box 信息，还有一些其他的操作，比如将 MP4 转成 TS 格式文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>mp42ts video<span style="color:#ff79c6">-</span><span style="color:#bd93f9">640</span>x360.mp4 ideo<span style="color:#ff79c6">-</span><span style="color:#bd93f9">640</span>x360.ts
+</span></span></code></pre></div><p>另外还可以将 MP4 文件进行切片支持 HLS 流格式，从而支持 m3u8 的形式进行播放。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>mp42hls video<span style="color:#ff79c6">-</span><span style="color:#bd93f9">640</span>x360.mp4
+</span></span></code></pre></div><p>生成的文件如下：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image20220501225440.png" alt="">
+
+</p>
+<p>总之，Bento4 的功能还是很强大的，非常值得学习和使用。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/mac-mp4-info/">006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/get-video-thumbnail/" data-toggle="tooltip" data-placement="top" title="干货 | 快速抽取缩略图是怎么练成的？">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/007-parse-mp4-info/" data-toggle="tooltip" data-placement="top" title="007 | 播放器系列专栏-解析 MP4 文件读取信息">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/windows-mp4-info/">005 | 播放器系列专栏-在 Windows 上查看 MP4 格式信息</a></li>
+    
+    <li><a href="https://glumes.com/what-is-mp4-2/">004 | 播放器系列专栏-认识MP4视频（下）</a></li>
+    
+    <li><a href="https://glumes.com/what-is-mp4-1/">003 | 播放器系列专栏-认识MP4视频（上）</a></li>
+    
+    <li><a href="https://glumes.com/planet-player-project-configure-ffmpeg/">002 | 播放器系列专栏-FFmpeg依赖库的配置</a></li>
+    
+    <li><a href="https://glumes.com/planet-player-project/">001 | 播放器系列专栏-关于播放器项目的一个小实践</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析" />
+    <meta property="og:title" content="Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析" />
+    <meta property="twitter:title" content="Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析 | </title>
+
+    <link rel="canonical" href="https://glumes.com/kotlin-syntactic-sugar-usage-and-analysis/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/android" title="Android">
+                            Android
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                    </div>
+                    <h1>Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Friday, June 29, 2018
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>在 Kotlin 有一些可以简化代码的语法糖，比如 run、let、with、apply、also、takeIf、takeUnless  等。</p>
+<p>再不明白这些语法糖的情况下去看 Kotlin 代码就会一脸懵逼，可当明白之后就会觉得原来可以这样简化。</p>
+<h2 id="带接收者的函数字面值">带接收者的函数字面值</h2>
+<p>使用这些语法糖之前回顾一下 Kotlin 的函数式编程，在分析 <a href="https://glumes.com/post/android/kotlin-functional-programming-whth-anko/">Kotlin 使用 Anko 构建布局</a> 文章中有提到 <strong>带接收者的函数字面值</strong>。</p>
+<p>它的形式是这样的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 定义一个类
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ReceiveObject</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4">// 定义一个函数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">exec</span>(invoke: <span style="color:#50fa7b">ReceiveObject</span>.()<span style="color:#ff79c6">-&gt;</span> Int){}
+</span></span></code></pre></div><p>在 Kotlin 中，函数也可以当做变量传参，例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">funAsArg</span>(args:()<span style="color:#ff79c6">-&gt;</span>Int){}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4">// 调用
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>funAsArg { <span style="color:#bd93f9">2</span> }
+</span></span></code></pre></div><p><strong>args</strong> 是变量名，它的类型就是函数，函数形式在变量名后面约定：<code>()-&gt;Int</code>，函数没有参数，但是会返回一个 Int 类型的值。</p>
+<p>而带接收者的函数字面值，就是在作为传入参数的函数变量的具体函数形式的参数前面多了接收者对象，简单说就是在 <code>()</code>前面多了一个点和一个对象，成了如下的形式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">exec</span>(invoke: <span style="color:#50fa7b">ReceiveObject</span>.()<span style="color:#ff79c6">-&gt;</span> Int){}
+</span></span></code></pre></div><p>就是这多了的一个点和一个对象，让它有了不一样的功能。</p>
+<p>简单的说，invoke 变量是一个函数作为变量，需要传递一个具体函数实现作为形参给 invoke，那么在具体函数实现里面就可以调用接收者对象 ReceiveObject 的相关方法，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>	<span style="color:#6272a4">// 接收者对象，有个 show 方法
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ReceiveObject</span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>	    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">show</span>(){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>	        println(<span style="color:#f1fa8c">&#34;call&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>	    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>	}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>	<span style="color:#6272a4">// 具体函数实现
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">val</span> invoke: <span style="color:#50fa7b">ReceiveObject</span>.() <span style="color:#ff79c6">-&gt;</span> Int = {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#ff79c6">this</span>.show() <span style="color:#6272a4">// 用 this 指代 接收者对象 ReceiveObject
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>        <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    exec(invoke)
+</span></span></code></pre></div><p>如上，在 invoke 方法里面使用 <code>this</code> 指代 ReceiveObject 对象，可以调用它的方法。</p>
+<p>而 invoke 变量是作为参数传递给 exec 函数的，如果 exec 函数为空，那么 inkoke 具体实现的 show 方法也不会被调用的，在 exec 中调用 invoke 的方法如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">exec</span>(invoke: <span style="color:#50fa7b">ReceiveObject</span>.() <span style="color:#ff79c6">-&gt;</span> Int){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">val</span> receObj = ReceiveObject()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// 两种调用形式
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 类似于 ReceiceObject 拓展函数一样的调用
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4"></span>    receObj.invoke() 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    <span style="color:#6272a4">// 把 ReceiceObject 作为参数传递给 invoke 调用
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#6272a4"></span>    invoke(receObj)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>}
+</span></span></code></pre></div><p>在 exec 的具体调用中，我们需要构造一个 ReceiveObject 对象实例，不然怎么去调用它的 show 方法呢。</p>
+<p>在上面的例子中，还需要构造一个指定的接收者对象实例才能完成 invoke 的调用，而 Kotlin 的语法糖中还有一种叫做 <code>拓展函数</code>。</p>
+<h2 id="拓展函数">拓展函数</h2>
+<p>拓展函数相当于给某个类添加函数，但这个函数并不属于这个类的函数，和 static 方法是两码事。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>	<span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Context</span>.showToast(msg: String) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>	    <span style="color:#50fa7b">Toast</span>.makeText(<span style="color:#ff79c6">this</span>, msg, <span style="color:#50fa7b">Toast</span>.LENGTH_SHORT).show()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>	}
+</span></span></code></pre></div><p>在拓展函数中，使用 this 指代被拓展的类实例，上面代码中 this 指代就是 Context 。</p>
+<p>有了 拓展函数和带接收者的函数字面值，就可以实现文章标题提到的那些语法糖了。</p>
+<p>例如，针对 ReceiveObject 对象添加它的拓展函数，拓展函数的参数又是一个函数，函数是带接收者的函数字面值，这个接收者对象就是 ReceiveObject 对象它本身，这样调用 invoke 方法就不用再构造 ReceiveObject 对象了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">ReceiveObject</span>.exec(invoke: <span style="color:#50fa7b">ReceiveObject</span>.() <span style="color:#ff79c6">-&gt;</span> Int){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    invoke()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><h3 id="语法糖">语法糖</h3>
+<p>下面介绍的语法糖都是位于 Kotlin Standard.kt 文件中的。</p>
+<h3 id="run-语法糖">run 语法糖</h3>
+<p>run 的语法糖有两种：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">R</span>&gt; <span style="color:#50fa7b">run</span>(block: () <span style="color:#ff79c6">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    contract {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        callsInPlace(block, <span style="color:#50fa7b">InvocationKind</span>.EXACTLY_ONCE)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#ff79c6">return</span> block()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}
+</span></span></code></pre></div><p>这种语法糖传递的参数就仅仅是一个函数，不是带接收者对象的函数字面值，它的返回结果就是 block 函数调用后的结果。</p>
+<p>调用示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#ff79c6">var</span> result = kotlin.run { 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>            <span style="color:#f1fa8c">&#34;value&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        }
+</span></span></code></pre></div><p>相对于给 arg 变量赋值为 value 字符串。</p>
+<p>run 的另一种语法糖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>, <span style="color:#50fa7b">R</span>&gt; <span style="color:#50fa7b">T</span>.run(block: <span style="color:#50fa7b">T</span>.() <span style="color:#ff79c6">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    contract {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        callsInPlace(block, <span style="color:#50fa7b">InvocationKind</span>.EXACTLY_ONCE)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#ff79c6">return</span> block()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>}
+</span></span></code></pre></div><p>首先，这个语法糖是一个拓展函数，而且用到了泛型 <code>&lt;T,R&gt;</code>，T 类型的拓展函数，返回的是 R 类型，T 和 R 可以相同。</p>
+<p>其次，传递的参数是带接收者对象的函数字面值，也就是说可以在 block 函数里面调用 T 的相关方法，通过 this 来指代 T ，在 run 方法内部就是调用了 block 方法，返回 block 函数调用后的结果。</p>
+<p>调用示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>            <span style="color:#ff79c6">val</span> result = <span style="color:#f1fa8c">&#34;a&#34;</span>.run {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                <span style="color:#ff79c6">this</span>.plus(<span style="color:#f1fa8c">&#34;b&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>            }
+</span></span></code></pre></div><h3 id="contracts-dsl">Contracts DSL</h3>
+<p>在 run 的语法糖里面还出现了如下一段代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span> contract {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>      callsInPlace(block, <span style="color:#50fa7b">InvocationKind</span>.EXACTLY_ONCE)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>   }
+</span></span></code></pre></div><p>Google 了一番之后</p>
+<ul>
+<li><a href="https://discuss.kotlinlang.org/t/status-of-kotlin-internal-contracts/6392/2">https://discuss.kotlinlang.org/t/status-of-kotlin-internal-contracts/6392/2</a></li>
+<li><a href="https://stackoverflow.com/questions/49729037/how-does-kotlin-internal-contracts-contractbuilderktcontract-work-in-kotlin">https://stackoverflow.com/questions/49729037/how-does-kotlin-internal-contracts-contractbuilderktcontract-work-in-kotlin</a></li>
+<li><a href="https://aisia.moe/2018/03/25/kotlin-contracts-dsl/">https://aisia.moe/2018/03/25/kotlin-contracts-dsl/</a></li>
+</ul>
+<p>得出原来这是 Kotlin 1.2.x 版本中出现的，但实际并没有用，是 Kotlin 后续发展用来解决如下代码问题的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">if</span> (!x.isNullOrEmpty()) { 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>  <span style="color:#6272a4">// we know that &#39;x != null&#39; here 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>  println(x.length)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><p>假设 x 是可以为 null 的，经过 isNullOrEmpty 函数判断之后，再执行 println 函数，那么它肯定就不是 null 了，就不需要再加两个 <code>!!</code> 来表示 x 不为 null 了，而现在的情况是要添加 <code>!!</code> 。</p>
+<p>从 Google 来的信息得知， contract 这段代码就是为了这样的问题的。</p>
+<p>由于语法糖都有那样一段代码，所以就先把它们去掉了。</p>
+<h3 id="let-语法糖">let 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>, <span style="color:#50fa7b">R</span>&gt; <span style="color:#50fa7b">T</span>.let(block: (T) <span style="color:#ff79c6">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> block(<span style="color:#ff79c6">this</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><p>let 语法糖传递的参数是一个函数，不是带接收者的函数字面值，但 block 函数的参数就是 T 类型，所以可以在 block 里面调用 T 类型的方法，但不能通过 this 来指代 T 了，通过 it 来指代 T 类型。</p>
+<p>调用示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>            <span style="color:#ff79c6">val</span> result = <span style="color:#f1fa8c">&#34;a&#34;</span>.let {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                <span style="color:#ff79c6">it</span>.plus(<span style="color:#f1fa8c">&#34;b&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>            }
+</span></span></code></pre></div><h3 id="with-语法糖">with 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>, <span style="color:#50fa7b">R</span>&gt; <span style="color:#50fa7b">with</span>(<span style="color:#ff79c6">receiver</span>: T, block: <span style="color:#50fa7b">T</span>.() <span style="color:#ff79c6">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">receiver</span>.block()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><p>with 语法糖不再是一个拓展函数了，而是需要在语法糖的第一个参数里面传入接收者对象的实例，第二个参数就是带接收者的函数字面值实例，返回的也是 block 调用的结果，这一点和 run 语法糖类似。</p>
+<p>调用示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>            <span style="color:#ff79c6">val</span> result = with(<span style="color:#f1fa8c">&#34;a&#34;</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                <span style="color:#ff79c6">this</span>.plus(<span style="color:#f1fa8c">&#34;b&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>            }
+</span></span></code></pre></div><h3 id="apply-语法糖">apply 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">T</span>.apply(block: <span style="color:#50fa7b">T</span>.() <span style="color:#ff79c6">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    block()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><p>apply 语法糖和 run 语法糖都类似，只不过它返回的不是 block 函数调用的结果，而是返回调用者本身，返回 T 类型。</p>
+<h3 id="also-语法糖">also 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">T</span>.also(block: (T) <span style="color:#ff79c6">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    block(<span style="color:#ff79c6">this</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><p>also 语法糖和 let 语法糖有点类似，只不过返回的结果不是 block 调用结果，而是返回它本身，返回 T 类型。</p>
+<p>调用示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>            <span style="color:#ff79c6">var</span> result = <span style="color:#f1fa8c">&#34;a&#34;</span>.also {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                <span style="color:#ff79c6">it</span>.plus(<span style="color:#f1fa8c">&#34;b&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>            }
+</span></span></code></pre></div><h3 id="takeif-语法糖">takeIf 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">T</span>.takeIf(predicate: (T) <span style="color:#ff79c6">-&gt;</span> Boolean): T? {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">if</span> (predicate(<span style="color:#ff79c6">this</span>)) <span style="color:#ff79c6">this</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">null</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><p>takeIf 语法糖会调用 predicate 函数进行判断，如果为 true 就返回它本身，否则返回 null 。</p>
+<h3 id="takeunless-语法糖">takeUnless 语法糖</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">public</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">T</span>.takeUnless(predicate: (T) <span style="color:#ff79c6">-&gt;</span> Boolean): T? {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">if</span> (!predicate(<span style="color:#ff79c6">this</span>)) <span style="color:#ff79c6">this</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">null</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><p>takeUnless 和 takeIf 正好相反，如果 predicate 返回 false 就返回它本身，否则返回 null 。</p>
+<h2 id="总结">总结</h2>
+<p>这么多的语法糖，其实他们的原理都是类似的，共同点在于都是有返回值的，而区别就在于对原有的值进行了哪些操作，然后如何返回最终的值。</p>
+<p>最后，光是了解他们的原理和调用情况还是不够的，再不影响代码阅读的情况下要把它们引入到我们的代码中去，灵活地使用它们。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/kotlin-syntactic-sugar-usage-and-analysis/">Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/opengl-tutorial-gldrawelements-method/" data-toggle="tooltip" data-placement="top" title="OpenGL 的 glDrawElements  绘制方法">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/opengl-tutorial-import-3d-object/" data-toggle="tooltip" data-placement="top" title="《OpenGL ES 3.x 游戏开发》 3D 模型加载和渲染">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/kotlin-functional-programming-whth-anko/">Kotlin 函数式编程与 Anko 构建布局实现原理分析</a></li>
+    
+    <li><a href="https://glumes.com/kotlin-with-anko/">Kotlin 使用 Anko 布局那些事</a></li>
+    
+    <li><a href="https://glumes.com/android-jni-exception-handle/">Android JNI 调用时的异常处理</a></li>
+    
+    <li><a href="https://glumes.com/android-jni-reference-manage-rules/">Android JNI 中的引用管理</a></li>
+    
+    <li><a href="https://glumes.com/android-jni-cache-fieldid-and-methodid/">Android  JNI 调用时缓存字段和方法 ID</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

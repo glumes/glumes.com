@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archives on 音视频开发进阶</title>
+    <link>https://glumes.com/archive/</link>
+    <description>Recent content in Archives on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Dec 2017 15:23:52 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/archive/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/android/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/android/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/anything/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/anything/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/code/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/engine/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/engine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/ffmpeg/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/ffmpeg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/ios/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/ios/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/life/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/life/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/opengl/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/opengl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/vulkan/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/vulkan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文章合集</title>
+      <link>https://glumes.com/archive/webrtc/</link>
+      <pubDate>Wed, 20 Dec 2017 15:23:52 +0800</pubDate>
+      <guid>https://glumes.com/archive/webrtc/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

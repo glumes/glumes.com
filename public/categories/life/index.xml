@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life on 音视频开发进阶</title>
+    <link>https://glumes.com/categories/life/</link>
+    <description>Recent content in Life on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Aug 2020 21:01:28 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>音视频交流群又来啦~~~</title>
+      <link>https://glumes.com/av-beginner-wechat-group/</link>
+      <pubDate>Mon, 31 Aug 2020 21:01:28 +0800</pubDate>
+      <guid>https://glumes.com/av-beginner-wechat-group/</guid>
+      <description>&lt;p&gt;最近有不少朋友加我微信，要求进群交流学习的。&lt;/p&gt;&#xA;&lt;p&gt;可是早先创建的技术交流群，渐渐地都开始满员了。&lt;/p&gt;&#xA;&lt;p&gt;于是乎，要开始创建第三群啦~~~&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【喜大普奔】域名终于备案通过啦</title>
+      <link>https://glumes.com/domain-name-register/</link>
+      <pubDate>Mon, 03 Aug 2020 20:22:39 +0800</pubDate>
+      <guid>https://glumes.com/domain-name-register/</guid>
+      <description>&lt;p&gt;前段时间博客网站一直无法访问，还有不少朋友特意发微信告诉我，感谢大家的好意了!&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;网站是：https://glumes.com&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;其实是博客域名在备案啦。&lt;/p&gt;&#xA;&lt;p&gt;之前博客搭建用的是 Github Pages 方案，访问速度一直被人诟病。&lt;/p&gt;&#xA;&lt;p&gt;上个月就决定把服务器换成阿里云了，访问速度如火箭般提升🚀🚀🚀~~&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2019 年终总结与回顾</title>
+      <link>https://glumes.com/2019-review/</link>
+      <pubDate>Fri, 27 Dec 2019 15:40:54 +0800</pubDate>
+      <guid>https://glumes.com/2019-review/</guid>
+      <description>&lt;p&gt;时光荏苒，岁月如梭。&lt;/p&gt;&#xA;&lt;p&gt;又到了回顾过去，展望未来的(chui)高(niu)光(bi)时刻了~~&lt;/p&gt;&#xA;&lt;h2 id=&#34;职业回顾&#34;&gt;职业回顾&lt;/h2&gt;&#xA;&lt;p&gt;去年年底准备跑路，然后年前面试，拿了头条的 offer，年后就入职了~~~&lt;/p&gt;&#xA;&lt;p&gt;应聘的岗位是 Android-多媒体开发工程师，具体招聘岗位见官网：&lt;a href=&#34;https://job.bytedance.com/job/detail/26456&#34;&gt;多媒体平台研发工程师-Android — 抖音火山&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;工作内容简单说就是做音视频 SDK，支持头条的一些业务。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Android NDK 开发的免费技术视频来啦~~</title>
+      <link>https://glumes.com/imooc-course-online/</link>
+      <pubDate>Fri, 27 Dec 2019 10:58:55 +0800</pubDate>
+      <guid>https://glumes.com/imooc-course-online/</guid>
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;&#xA;&lt;p&gt;前段时间在慕课网上体验了一把做讲师的感觉，录制了一套免费技术视频~~&lt;/p&gt;&#xA;&lt;p&gt;如下图所示：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://image.glumes.com/blog_image/imooc-ndk-video.png&#34; alt=&#34;&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;在慕课网上通过如下路径就可以找到啦&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;免费课程 -&amp;gt; 课程 -&amp;gt; 移动开发 -&amp;gt; Android -&amp;gt; Android CMake 以及 NDK 实践基础&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>博客图床迁移记</title>
+      <link>https://glumes.com/blog-image-migrate/</link>
+      <pubDate>Thu, 02 May 2019 21:21:40 +0800</pubDate>
+      <guid>https://glumes.com/blog-image-migrate/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;微博图床一时爽，迁移火葬场&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;前几天在群里看到说新浪微博图床挂掉了，图床上的图片链接单独访问还可以，但是在博客文章上就显示不出来了。&lt;/p&gt;&#xA;&lt;p&gt;去自己网站上看一下，果然，连博客首页图片都加载不出来了，极大地影响了阅读体验呀。&lt;/p&gt;&#xA;&lt;p&gt;还好图片链接是可以访问的，这就意味着图片还在，还来得及做迁移和备份。&lt;/p&gt;&#xA;&lt;p&gt;回顾之前用了好多免(hao)费(yang)图(mao)床，从最早的 &lt;a href=&#34;https://www.qiniu.com/&#34;&gt;七牛&lt;/a&gt;，到 &lt;a href=&#34;https://cloudinary.com/&#34;&gt;Cloudinary&lt;/a&gt;，再到 微博图床。七牛由于是临时域名，没有及时备份图片，导致图都没了，而 &lt;a href=&#34;https://cloudinary.com/&#34;&gt;Cloudinary&lt;/a&gt; 和 微博图床 倒还是可以继续访问的。不过这种薅羊毛总不是个办法，万一服务商政策变了，又得再迁移图片了。&lt;/p&gt;&#xA;&lt;p&gt;果然，免费的才是最贵的。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

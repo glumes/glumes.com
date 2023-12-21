@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UE4 on 音视频开发进阶</title>
+    <link>https://glumes.com/tags/ue4/</link>
+    <description>Recent content in UE4 on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Dec 2022 22:24:27 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/tags/ue4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UE 4.27 添加自定义 ShadingModel</title>
+      <link>https://glumes.com/ue4.27-add-custom-shading-model/</link>
+      <pubDate>Tue, 27 Dec 2022 22:24:27 +0800</pubDate>
+      <guid>https://glumes.com/ue4.27-add-custom-shading-model/</guid>
+      <description>&lt;p&gt;基于 UE 4.27 的版本添加自定义的 ShadingModel ，大致分为两步：&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. 在 UE Editor 中添加自定义的 ShadingModel 入口。这样在创建材质时可以选择对应的 ShadingModel 。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;2. 在 Shader 中对自定义的 ShadingModel 做渲染上的处理。比如自定义的 BxDF 函数，以及对光照的特殊处理等。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>用 UE4 虚幻引擎做个捏脸小功能~~</title>
+      <link>https://glumes.com/ue4-controlrig-face-edit/</link>
+      <pubDate>Sat, 05 Nov 2022 14:56:53 +0800</pubDate>
+      <guid>https://glumes.com/ue4-controlrig-face-edit/</guid>
+      <description>&lt;p&gt;最近在学习 UE 相关的使用，正好看到一篇文章讲解用 Control Rig 实现简单捏脸功能，这种小而美的完整案例挺适合来练手的，涉及到了 UI、蓝图、动画、骨骼等方面，值得推荐一下。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UE4 材质练习 之 凹凸贴图偏移的使用</title>
+      <link>https://glumes.com/ue4-dump-offset/</link>
+      <pubDate>Mon, 12 Sep 2022 11:58:15 +0800</pubDate>
+      <guid>https://glumes.com/ue4-dump-offset/</guid>
+      <description>&lt;p&gt;UE 中提供了 &lt;code&gt;凹凸贴图偏移&lt;/code&gt; 的贴图来实现修改 UV 坐标达到提升表面细节，使材质产生深度错觉。凹凸贴图偏移是 UE4 中的术语，其实就对应于 LearnOpenGL 网站上的 &lt;code&gt;视差贴图&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UE4 材质练习系列基础</title>
+      <link>https://glumes.com/ue4-material-practice/</link>
+      <pubDate>Sat, 10 Sep 2022 17:08:48 +0800</pubDate>
+      <guid>https://glumes.com/ue4-material-practice/</guid>
+      <description>&lt;p&gt;学习 UE4 虚幻引擎的一些练习。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

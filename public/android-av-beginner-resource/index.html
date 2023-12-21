@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="推荐几个堪称教科书级别的 Android 音视频入门项目" />
+    <meta property="og:title" content="推荐几个堪称教科书级别的 Android 音视频入门项目" />
+    <meta property="twitter:title" content="推荐几个堪称教科书级别的 Android 音视频入门项目" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>推荐几个堪称教科书级别的 Android 音视频入门项目 | </title>
+
+    <link rel="canonical" href="https://glumes.com/android-av-beginner-resource/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>推荐几个堪称教科书级别的 Android 音视频入门项目</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                glumes
+                             
+                            on 
+                            Wednesday, May 6, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/Bb0fgFMgH5QOBqYhOj0uqA">https://mp.weixin.qq.com/s/Bb0fgFMgH5QOBqYhOj0uqA</a></p>
+</blockquote>
+<p>在 <strong><a href="https://mp.weixin.qq.com/s/HlbGGOyfixc8wgoDjTY0Qw">直播</a></strong> 中有提到几个不错的开源项目，这里再重点推荐一下：</p>
+<p>目前，市面上关于音视频学习的相关书籍并不多，而且即使看了书籍学了理论，最终还是要回归到代码上来。</p>
+<p>毕竟 IT 行业实践性要求高，强调动手能力，音视频这方面就更得多操作和探索了。</p>
+<p>推荐下面几个项目会各有侧重，分别涵盖了 Android 音视频录制 API 、OpenGL 渲染和综合运用的例子。</p>
+<ul>
+<li>GPUImage</li>
+</ul>
+<p>Github 地址：</p>
+<blockquote>
+<p><a href="https://github.com/cats-oss/android-gpuimage">https://github.com/cats-oss/android-gpuimage</a></p>
+</blockquote>
+<p>GPUImage 毫无疑问是音视频项目里面必读工程了，它的侧重点在于渲染方面。</p>
+<p>有些公司的招聘要求上可能都会写明熟悉GPUImage ，重要性可见一斑。</p>
+<p>通过阅读 GPUImage 的源码，能够让你掌握 OpenGL 的渲染以及渲染链的搭建，同时工程里面很多特效 Shader 代码，通过阅读和实践这些 Shader 代码，能够让你掌握初步的 Shader 编写能力。</p>
+<p>比如常见的滤镜效果，在 GPUImage 就有现成的代码例子，这一点在我的直播中也有讲到。有兴趣的可以翻阅视频，掌握常见滤镜效果的代码编写。</p>
+<p>如果需要 GPUImage 相关的源码分析文档，也可以参考我之前写过的一篇文章：</p>
+<p><a href="https://mp.weixin.qq.com/s/Xc0r6PsxrT-dJ_W4-K7V0Q">OpenGL 之 GPUImage 源码分析</a></p>
+<ul>
+<li>AudioVideoRecordingSample</li>
+</ul>
+<p>Github 地址</p>
+<blockquote>
+<p><a href="https://github.com/saki4510t/AudioVideoRecordingSample">https://github.com/saki4510t/AudioVideoRecordingSample</a></p>
+</blockquote>
+<p>此项目的侧重点在于 Android 音视频相关 API 的使用，尤其是在 录制和编码方面的。</p>
+<p>该项目运行后能够将 Camera 采集的视频和音频内容编码成一个 MP4 文件。</p>
+<p>这其中用到了 MediaCodec 做编码，用到了 MediaMuxer 将音频和视频混合。</p>
+<p>这样的一个完整示例对于掌握 Android 上音视频相关 API 帮忙非常大，因为它能够成功正确运行，而且可以通过去修改其源码来做自己的实验，验证自己对于 API 的理解和掌握。</p>
+<p>当你能够熟练掌握其内容，或者你就可以试着更进一步，尝试用 FFmpeg 做音视频的编码和混合，实现和 Android 音视频 API 一样的功能。</p>
+<ul>
+<li>Grafika</li>
+</ul>
+<p>Github 地址</p>
+<blockquote>
+<p><a href="https://github.com/google/grafika">https://github.com/google/grafika</a></p>
+</blockquote>
+<p>此项目是 Google 提供的一个非官方的项目，它的侧重点在于将 OpenGL 与 Android 音视频 API 综合运用。</p>
+<p>它包含了很多个完整小示例，比如如何使用 TextureView 显示 OpenGL 内容、使用三种方式进行 OpenGL 内容的录制、如何进行硬编码操作等。</p>
+<p>通过阅读这些例子，能够让你掌握更多的技巧，把前面学会的 OpenGL 和 Android 音视频 API 更灵活运用了，进一步加深理解。</p>
+<p>甚至有些例子都可以用到项目早期需求中去的，比如如何进行 EGL 的封装、渲染线程与主线程的分离。</p>
+<p>另外，以上三个例子都会包含 Camera 相关的操作，比如如何将 Camera 内容展示到 SurfaceView 、TextureView 上，如何进行 Camera 拍摄等。</p>
+<h2 id="最后">最后</h2>
+<p>之前这三个项目堪称教科学书级别的，不是没有理由的。至少我都源码阅读了两边以上。</p>
+<p>第一次阅读的时候会觉得 &quot; 嗯，明白怎么回事了 &ldquo;，等到项目实践了，需要自己从头搞一遍，这时再回头看，会有新的感悟 &ldquo;哦，原来要这样设计呀&rdquo; ，等到更熟练的时候，在来看，可能就会觉得 &ldquo;咦，这块能优化一波了&rdquo;。</p>
+<p>以上，希望对于想从事音视频开发的你，也能够看看上面几个项目源码，学习到更多技巧，共同进步。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/android-av-beginner-resource/">推荐几个堪称教科书级别的 Android 音视频入门项目</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/av-beginner-010/" data-toggle="tooltip" data-placement="top" title="【音视频连载-010】第二季 FFmpeg 日志打印">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/av-beginner-011/" data-toggle="tooltip" data-placement="top" title="【音视频连载-011】第二季 FFmpeg 一层一层获取文件信息">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/av-beginner-010/">【音视频连载-010】第二季 FFmpeg 日志打印</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-008/">【音视频连载-008】基础学习篇-SDL 播放 PCM 音频文件（下）</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-007/">【音视频连载-007】基础学习篇-SDL 播放 PCM 音频文件（上）</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-006/">【音视频连载-006】基础学习篇-SDL 播放 YUV 视频文件</a></li>
+    
+    <li><a href="https://glumes.com/av-beginner-005/">【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

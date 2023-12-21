@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="OpenGL 实践之贝塞尔曲线绘制" />
+    <meta property="og:title" content="OpenGL 实践之贝塞尔曲线绘制" />
+    <meta property="twitter:title" content="OpenGL 实践之贝塞尔曲线绘制" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>OpenGL 实践之贝塞尔曲线绘制 | </title>
+
+    <link rel="canonical" href="https://glumes.com/opengl-draw-bezier-line/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/oepngl" title="oepngl">
+                            oepngl
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/bezier" title="bezier">
+                            bezier
+                        </a>
+                        
+                    </div>
+                    <h1>OpenGL 实践之贝塞尔曲线绘制</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                glumes
+                             
+                            on 
+                            Tuesday, August 20, 2019
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/m7BMF1dSiJ5BeHTU1etDqw">https://mp.weixin.qq.com/s/m7BMF1dSiJ5BeHTU1etDqw</a></p>
+</blockquote>
+<p>说到贝塞尔曲线，大家肯定都不陌生，网上有很多关于介绍和理解贝塞尔曲线的优秀文章和动态图。</p>
+<p>以下两个是比较经典的动图了。</p>
+<p>二阶贝塞尔曲线：</p>
+<p>
+  <img src="https://yalantis.com/uploads/ckeditor/pictures/502/content_image04.gif" alt="">
+
+</p>
+<p>三阶贝塞尔曲线：</p>
+<p>
+  <img src="https://yalantis.com/uploads/ckeditor/pictures/503/content_image06.gif" alt="">
+
+</p>
+<hr>
+<p>由于在工作中经常要和贝塞尔曲线打交道，所以简单说一下自己的理解：</p>
+<p>现在假设我们要在坐标系中绘制一条直线，直线的方程很简单，就是 <code>y=x</code> ，很容易得到下图：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/20211128231610.png" alt="">
+
+</p>
+<p>现在我们限制一下 x 的取值范围为 <code>0~1</code> 的闭区间，那么可以得出 y 的取值范围也是 <code>0~1</code>。</p>
+<p>而在 <code>0~1</code> 的区间范围内，x 能取的数有多少个呢？答案当然是无数个了。</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/20211128231635.png" alt="">
+
+</p>
+<p>同理，y 的取值个数也是有无数个。每一个 x 都有唯一的 y 与之对应，一个 (x,y) 在坐标系上就是一个点。</p>
+<p>所以最终得到的 <code>0~1</code> 区间的线段，实际上是由无数的点组成的。</p>
+<p>那么这条线段有多长呢？长度是由 x 的取值范围来决定的，若 x 的取值为 <code>0~2</code>，那么线段就长了一倍。</p>
+<p>另外，如果 x 的取值范围不是无数个，而是以 0.05 的间距从 0 到 1 之间递增，那么得到的就是一串点了。</p>
+<blockquote>
+<p>由于 点 是一个理想状态下的描述，在数学上点是没有宽高、没有面积的。</p>
+<p>但是，如果你在草稿纸上绘制一个点，不管你用到是铅笔、毛笔、水笔还是画笔，一个点总是要占面积的。</p>
+<p>毛笔画一个点的面积可能需要铅笔画几十个点了。</p>
+</blockquote>
+<p>在实际生活中，如果要以 0.05 的间距在第一幅坐标系图中画出 x 在 <code>0~1</code> 区间的一串点，最终结果就和直接画一条线段没啥差别了。</p>
+<p>这就是现实和理想的差别了。理想一串点，现实一条线。</p>
+<hr>
+<p>我们把这个逻辑放到手机屏幕上。</p>
+<p>手机屏幕上的最小显示单位就是像素了，一个 1920 * 1080 的屏幕指的就是各方向上像素点的数量。</p>
+<p>假如绘制一条和屏幕一样宽的线段，一个点最小就算一个像素，最多也就 1080 个点了。</p>
+<p>点占的像素越多，那么实际绘制时需要的点的数量越少，这也算是潜在的优化项了。</p>
+<hr>
+<p>说完直线，再回到贝塞尔曲线上。</p>
+<p>曲线和直线都有一个共同点，它们都有各自特定的方程，只不过我们用的直线例子比较简单，既 <code>y = x</code> ，一眼看出计算结果。</p>
+<p>直线方程 y = x，在数学上可以这么描述：y 是关于 x 的函数，既 <code>y = F(x)</code> ，其中 x 的取值决定了该直线的长度。</p>
+<p>根据上面的理解，这个长度的直线实际又是由在 x 的取值范围内对应的无数个点组成的。</p>
+<p>反观贝塞尔曲线方程以及对应的图形如下：</p>
+<ul>
+<li>二阶贝塞尔曲线：</li>
+</ul>
+<p>
+  <img src="https://image.glumes.com/blog_image/20211128231733.png" alt="">
+
+
+
+  <img src="https://yalantis.com/uploads/ckeditor/pictures/1961/content_content_image00.png" alt="">
+
+</p>
+<p>其中，P0 和 P2 是起始点，P1 是控制点。</p>
+<ul>
+<li>三阶贝塞尔曲线</li>
+</ul>
+<p>
+  <img src="https://image.glumes.com/blog_image/20211128231752.png" alt="">
+
+
+
+  <img src="https://yalantis.com/uploads/ckeditor/pictures/1962/content_content_image09.png" alt="">
+
+</p>
+<p>其中，P0 和 P3 是起始点，P1 和 P2 是控制点。</p>
+<hr>
+<p>不难理解，假设我们要绘制一条曲线，肯定要有起始和结束点来指定曲线的范围曲线。</p>
+<p>而控制点就是指定该曲线的弧度，或者说指定该曲线的弯曲走向，不同的控制点得出的曲线绘制结果是不一样的。</p>
+<p>另外，可以观察到，无论是几阶贝塞尔曲线，都会有参数 t 以及 t 的取值范围限定。</p>
+<p>t 在 0~1 范围的闭区间内，那么 t 的取值个数实际上就有无数个了，这时的 t 就可以理解成上面介绍直线中讲到的 x 。</p>
+<p>这样一来，就可以把起始点、控制点当初固定参数，那么贝塞尔曲线计算公式就成了 B = F(t) ，B 是关于 t 的函数，而 t 的取值范围为 0~1 的闭区间。</p>
+<blockquote>
+<p>也就是说贝塞尔曲线，选定了起始点和控制点，照样可以看成是 t 在 0~1 闭区间内对应的无数个点所组成的。</p>
+</blockquote>
+<p>有了上面的阐述，在工(ban)程(zhuan)的角度上，就不难理解贝塞尔曲线到底怎么使用了。</p>
+<hr>
+<h2 id="android-绘制贝塞尔曲线">Android 绘制贝塞尔曲线</h2>
+<p>Android 自带贝塞尔曲线绘制 API ，通过 Path 类的 <code>quadTo</code> 和 <code>cubicTo</code> 方法就可以完成绘制。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>  <span style="color:#6272a4">// 构建 path 路径，也就是选取</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  path.<span style="color:#50fa7b">reset</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  path.<span style="color:#50fa7b">moveTo</span>(p0x, p0y);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>  <span style="color:#6272a4">// 绘制二阶贝塞尔曲线</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  path.<span style="color:#50fa7b">quadTo</span>(p1x, p1y, p2x, p2y);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  path.<span style="color:#50fa7b">moveTo</span>(p0x, p0y);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  path.<span style="color:#50fa7b">close</span>();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  <span style="color:#6272a4">// 最后的绘制操作</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  canvas.<span style="color:#50fa7b">drawPath</span>(path, paint);
+</span></span></code></pre></div><p>这里的绘制实际上就是把贝塞尔曲线计算的方程式交给了 Android 系统内部去完成了，参数传递上只传递了起始点和控制点。</p>
+<p>我们可以通过自己的代码来计算这个方程式从而对逻辑上获得更多控制权，也就是把曲线拆分成许多个点组成，如果点的尺寸比较大，甚至可以减少点的个数实现同样的效果，达到绘制优化的目的。</p>
+<h2 id="opengl-绘制">OpenGL 绘制</h2>
+<p>通过 OpenGL 可以实现我们上述的方案，把曲线拆分成多个点组成。这种方案要求我们在 CPU 上去计算贝塞尔曲线方程，根据 t 的每一个取值，计算出一个贝塞尔点，用 OpenGL 去绘制上这个点。</p>
+<p>这个点的绘制可以采用 OpenGL 中画三角形 <code>GL_TRIANGLES</code> 的形式去绘制，这样就可以给点带上纹理效果，不过这里面的坑略多，起始点和控制点都是运行时动态可变的实现难度会大于固定不变的。</p>
+<p>这里先介绍另一种方案，这种方案实现比较简单也能达到优化效果，我们可以把贝塞尔曲线的计算方程式交给 GPU， 在 OpenGL Shader 中去完成。</p>
+<p>这样一来，我们只要给定起始点和控制点，中间计算贝塞尔曲线去填补点的过程就交给 Shader 去完成了。</p>
+<p>另外，通过控制 t 的数量，我们可以控制贝塞尔点填补的疏密。</p>
+<p>t 越大，填补的点越多，超过一定阈值后，不会对绘制效果有提升，反而影响性能。</p>
+<p>t 越小，那么贝塞尔曲线就退化成一串点组成了。所以说 t 的取值范围也能对绘制起到优化作用。</p>
+<p>绘制效果如下图所示：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/3ogfg403e8.gif" alt="">
+
+</p>
+<p>以下就是实际的代码部分了，关于 OpenGL 的基础理论部分可以参考之前写过的文章和公众号，就不再阐述了。</p>
+<p>在 Shader 中定义一个函数，实现贝塞尔方程：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>vec2 <span style="color:#50fa7b">fun</span>(in vec2 p0, in vec2 p1, in vec2 p2, in vec2 p3, in <span style="color:#8be9fd">float</span> t){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#8be9fd">float</span> tt <span style="color:#ff79c6">=</span> (<span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">-</span> t) <span style="color:#ff79c6">*</span> (<span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">-</span>t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#ff79c6">return</span> tt <span style="color:#ff79c6">*</span> (<span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">-</span>t) <span style="color:#ff79c6">*</span>p0 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>            <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">3.0</span> <span style="color:#ff79c6">*</span> t <span style="color:#ff79c6">*</span> tt <span style="color:#ff79c6">*</span> p1 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>            <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">3.0</span> <span style="color:#ff79c6">*</span> t <span style="color:#ff79c6">*</span>t <span style="color:#ff79c6">*</span>(<span style="color:#bd93f9">1.0</span> <span style="color:#ff79c6">-</span>t) <span style="color:#ff79c6">*</span>p2 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>            <span style="color:#ff79c6">+</span> t <span style="color:#ff79c6">*</span>t <span style="color:#ff79c6">*</span>t <span style="color:#ff79c6">*</span>p3;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>}
+</span></span></code></pre></div><p>该方程可以利用 Shader 中自带的函数优化一波：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>vec2 <span style="color:#50fa7b">fun2</span>(in vec2 p0, in vec2 p1, in vec2 p2, in vec2 p3, in <span style="color:#8be9fd">float</span> t)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    vec2 q0 <span style="color:#ff79c6">=</span> mix(p0, p1, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    vec2 q1 <span style="color:#ff79c6">=</span> mix(p1, p2, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    vec2 q2 <span style="color:#ff79c6">=</span> mix(p2, p3, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    vec2 r0 <span style="color:#ff79c6">=</span> mix(q0, q1, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    vec2 r1 <span style="color:#ff79c6">=</span> mix(q1, q2, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    <span style="color:#ff79c6">return</span> mix(r0, r1, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>}
+</span></span></code></pre></div><p>接下来就是具体的顶点着色器 shader ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">// 对应 t 数据的传递
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>attribute <span style="color:#8be9fd">float</span> aData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4">// 对应起始点和结束点
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>uniform vec4 uStartEndData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">// 对应控制点
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>uniform vec4 uControlData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4">// mvp 矩阵
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>uniform mat4 u_MVPMatrix;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    vec4 pos;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    pos.w <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1.0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#6272a4">// 取出起始点、结束点、控制点
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4"></span>    vec2 p0 <span style="color:#ff79c6">=</span> uStartEndData.xy;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    vec2 p3 <span style="color:#ff79c6">=</span> uStartEndData.zw;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    vec2 p1 <span style="color:#ff79c6">=</span> uControlData.xy;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    vec2 p2 <span style="color:#ff79c6">=</span> uControlData.zw;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#6272a4">// 取出 t 的值
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">float</span> t <span style="color:#ff79c6">=</span> aData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#6272a4">// 计算贝塞尔点的函数调用
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#6272a4"></span>    vec2 point <span style="color:#ff79c6">=</span> fun2(p0, p1, p2, p3, t);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#6272a4">// 定义点的 x,y 坐标
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#6272a4"></span>    pos.xy <span style="color:#ff79c6">=</span> point;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    <span style="color:#6272a4">// 要绘制的位置
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#6272a4"></span>    gl_Position <span style="color:#ff79c6">=</span> u_MVPMatrix <span style="color:#ff79c6">*</span> pos;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    <span style="color:#6272a4">// 定义点的尺寸大小
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#6272a4"></span>    gl_PointSize <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20.0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>}
+</span></span></code></pre></div><p>代码中的 <code>uStartEndData</code> 对应起始点和结束点，<code>uControlData</code> 对应两个控制点。</p>
+<p>这两个变量的数据传递通过 <code>glUniform4f</code> 方法就好了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    mStartEndHandle <span style="color:#ff79c6">=</span> glGetUniformLocation(mProgram, <span style="color:#f1fa8c">&#34;uStartEndData&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    mControlHandle <span style="color:#ff79c6">=</span> glGetUniformLocation(mProgram, <span style="color:#f1fa8c">&#34;uControlData&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 传递数据，作为固定值
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    glUniform4f(mStartEndHandle,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>            mStartEndPoints[<span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            mStartEndPoints[<span style="color:#bd93f9">1</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>            mStartEndPoints[<span style="color:#bd93f9">2</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>            mStartEndPoints[<span style="color:#bd93f9">3</span>]);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    glUniform4f(mControlHandle,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            mControlPoints[<span style="color:#bd93f9">0</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            mControlPoints[<span style="color:#bd93f9">1</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>            mControlPoints[<span style="color:#bd93f9">2</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            mControlPoints[<span style="color:#bd93f9">3</span>]);  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>            
+</span></span></code></pre></div><p>另外重要的变量就是 <code>aData</code> 了，它对应的就是 t 在 0~1 闭区间的划分的数量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">float</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">genTData</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#8be9fd">float</span><span style="color:#ff79c6">[]</span> tData <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">float</span><span style="color:#ff79c6">[</span>Const.<span style="color:#50fa7b">NUM_POINTS</span><span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> tData.<span style="color:#50fa7b">length</span>; i <span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>            <span style="color:#8be9fd">float</span> t <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">float</span>) i <span style="color:#ff79c6">/</span> (<span style="color:#8be9fd">float</span>) tData.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>            tData<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> t;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>        <span style="color:#ff79c6">return</span> tData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    }
+</span></span></code></pre></div><p>以上函数就是把 t 在 0~1 闭区间分成 <code>Const.NUM_POINTS</code> 份，每一份的值都存在 tData 数组中，最后通过 <code>glVertexAttribPointer</code> 函数传递给 Shader 。</p>
+<p>最后实际绘制时，我们采用 <code>GL_POINTS</code> 的形式绘制就好了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>        GLES20.<span style="color:#50fa7b">glDrawArrays</span>(GLES20.<span style="color:#50fa7b">GL_POINTS</span>, 0, Const.<span style="color:#50fa7b">NUM_POINTS</span> );
+</span></span></code></pre></div><p>以上就是 OpenGL 绘制贝塞尔曲线的小实践。</p>
+<p>具体的代码部分可以参考我的项目：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/AndroidOpenGLTutorial">https://github.com/glumes/AndroidOpenGLTutorial</a></p>
+</blockquote>
+<p>在参考中，也有一个 OpenGL 绘制贝塞尔曲线的例子，不过他绘制的是贝塞尔曲线面，采用的是 <code>GL_TRIANGLES</code> 的形式，而且在 <code>tData</code> 数组的构造也有些不同，但是都大同小异了，看明白了本文的例子也不难理解参考的文章。</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://yalantis.com/blog/how-we-created-visualization-for-horizon-our-open-source-library-for-sound-visualization/">https://yalantis.com/blog/how-we-created-visualization-for-horizon-our-open-source-library-for-sound-visualization/</a></li>
+</ol>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/opengl-draw-bezier-line/">OpenGL 实践之贝塞尔曲线绘制</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/opengl/libjpeg-turbo-compile-and-practice/" data-toggle="tooltip" data-placement="top" title="图像库 libjpeg-turbo 编译与实践">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/opengl-transition/" data-toggle="tooltip" data-placement="top" title="OpenGL 实现视频编辑中的转场效果">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/opengl/libjpeg-turbo-compile-and-practice/">图像库 libjpeg-turbo 编译与实践</a></li>
+    
+    <li><a href="https://glumes.com/opengl/libpng-compile-and-practice/">图像库 libpng 编译与实践</a></li>
+    
+    <li><a href="https://glumes.com/google-jetpack-camerax/">Google Jetpack 新组件 CameraX 介绍与实践</a></li>
+    
+    <li><a href="https://glumes.com/rust-compile-so-library/">rust 开发编译 Android 动态库实践</a></li>
+    
+    <li><a href="https://glumes.com/opengl/load-texture-from-android-assets-by-ndk/">Android NDK 开发 —— 从 Assets 文件夹加载图片并上传纹理</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

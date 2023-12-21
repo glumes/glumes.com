@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EGL on 音视频开发进阶</title>
+    <link>https://glumes.com/tags/egl/</link>
+    <description>Recent content in EGL on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Sep 2018 21:26:55 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/tags/egl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenGL 之 EGL 使用实践</title>
+      <link>https://glumes.com/opengl-egl-usage/</link>
+      <pubDate>Sun, 02 Sep 2018 21:26:55 +0800</pubDate>
+      <guid>https://glumes.com/opengl-egl-usage/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;避免图片丢失，建议阅读微信原文：&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/AGMA4xvynzmdCNo-Caur-g&#34;&gt;https://mp.weixin.qq.com/s/AGMA4xvynzmdCNo-Caur-g&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;OpenGL 是跨平台的、专业的图形编程接口，而接口的实现是由厂商来完成的。&lt;/p&gt;&#xA;&lt;p&gt;而当我们使用这组接口完成绘制之后，要把结果显示在屏幕上，就要用到 &lt;code&gt;EGL&lt;/code&gt; 来完成这个转换工作。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

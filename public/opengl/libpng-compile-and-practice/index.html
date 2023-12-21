@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="图像库 libpng 编译与实践" />
+    <meta property="og:title" content="图像库 libpng 编译与实践" />
+    <meta property="twitter:title" content="图像库 libpng 编译与实践" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>图像库 libpng 编译与实践 | </title>
+
+    <link rel="canonical" href="https://glumes.com/opengl/libpng-compile-and-practice/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/libpng" title="libpng">
+                            libpng
+                        </a>
+                        
+                        <a class="tag" href="https://glumes.com/tags/image" title="image">
+                            image
+                        </a>
+                        
+                    </div>
+                    <h1>图像库 libpng 编译与实践</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Friday, July 12, 2019
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>在之前的文章中介绍了 <code>stb_image</code> 图像库，还顺带提到了 libpng 和 libjpeg ，这篇文章就是介绍如何在 Android 平台上用 CMake 编译 libpng 动态库以及 libpng 使用实践。</p>
+<p>【<a href="https://glumes.com/post/android/stb-image-introduce/">简单易用的图像解码库介绍 —— stb_image</a>】</p>
+<p><a href="https://glumes.com/post/android/stb-image-introduce/">https://glumes.com/post/android/stb-image-introduce/</a></p>
+<h2 id="libpng-介绍">libpng 介绍</h2>
+<p>libpng 的官方介绍网站如下：</p>
+<blockquote>
+<p><a href="http://www.libpng.org/pub/png/libpng.html">http://www.libpng.org/pub/png/libpng.html</a></p>
+</blockquote>
+<p>下载地址网站如下：</p>
+<blockquote>
+<p><a href="https://sourceforge.net/projects/libpng/files/">https://sourceforge.net/projects/libpng/files/</a></p>
+</blockquote>
+<p>博客中使用的版本是 1.6.37 ，也是目前最新的版本了。</p>
+<p>关于 libpng 的编译网上已经有不少博客教程了，但有的是基于 Linux，有的是基于 Android.mk 的，本文会介绍如何在 Android Studio 上通过 CMake 来编译 Android 的动态库。</p>
+<h2 id="cmake-编译-libpng-动态库">CMake 编译 libpng 动态库</h2>
+<h3 id="neon-相关编译">neon 相关编译</h3>
+<p>在 libpng 的源代码中，就提供了 CMakeLists.txt 文件用以说明如何编译，但是却不能直接用在 Android 平台上，不过可以借鉴其源码作为参考。</p>
+<p>由于 CMake 跨平台编译的特性，一般大型项目代码编译都会针对平台做适配，常见代码结构如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#8be9fd;font-style:italic">if</span> (<span style="color:#f1fa8c">CMAKE_SYSTEM_PROCESSOR</span> <span style="color:#f1fa8c">MATCHES</span> <span style="color:#f1fa8c">&#34;^arm&#34;</span> <span style="color:#f1fa8c">OR</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>            <span style="color:#f1fa8c">CMAKE_SYSTEM_PROCESSOR</span> <span style="color:#f1fa8c">MATCHES</span> <span style="color:#f1fa8c">&#34;^aarch64&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#8be9fd;font-style:italic">set</span>(<span style="color:#f1fa8c">libpng_arm_sources</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>                <span style="color:#f1fa8c">arm/arm_init.c</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>                <span style="color:#f1fa8c">arm/filter_neon.S</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>                <span style="color:#f1fa8c">arm/filter_neon_intrinsics.c</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                <span style="color:#f1fa8c">arm/palette_neon_intrinsics.c</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        // 定义宏
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#8be9fd;font-style:italic">add_definitions</span>(<span style="color:#f1fa8c">-DPNG_ARM_NEON_OPT=2</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#8be9fd;font-style:italic">endif</span> ()
+</span></span></code></pre></div><p>这段代码就是判断系统处理器平台，不同平台所需要编译的代码不一样。而 libpng 会有这样的适配，主要是因为它用到了 neon 相关优化，该优化主要是用在 <code>filter</code> 操作方面。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>// libpng 使用 neon 优化加速的方法
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>void
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#8be9fd;font-style:italic">png_read_filter_row_up_neon</span>(<span style="color:#f1fa8c">png_row_infop</span> <span style="color:#f1fa8c">row_info,</span> <span style="color:#f1fa8c">png_bytep</span> <span style="color:#f1fa8c">row,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>   <span style="color:#f1fa8c">png_const_bytep</span> <span style="color:#f1fa8c">prev_row</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>   png_bytep rp = row;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>   png_bytep rp_stop = row + row_info-&gt;rowbytes;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>   png_const_bytep pp = prev_row;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>   <span style="color:#8be9fd;font-style:italic">png_debug</span>(<span style="color:#f1fa8c">1,</span> <span style="color:#f1fa8c">&#34;in png_read_filter_row_up_neon&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>   <span style="color:#8be9fd;font-style:italic">for</span> (<span style="color:#f1fa8c">;</span> <span style="color:#f1fa8c">rp</span> <span style="color:#f1fa8c">&lt;</span> <span style="color:#f1fa8c">rp_stop;</span> <span style="color:#f1fa8c">rp</span> <span style="color:#f1fa8c">+=</span> <span style="color:#f1fa8c">16,</span> <span style="color:#f1fa8c">pp</span> <span style="color:#f1fa8c">+=</span> <span style="color:#f1fa8c">16</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>   {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>      uint8x16_t qrp, qpp;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>      qrp = <span style="color:#8be9fd;font-style:italic">vld1q_u8</span>(<span style="color:#f1fa8c">rp</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>      qpp = <span style="color:#8be9fd;font-style:italic">vld1q_u8</span>(<span style="color:#f1fa8c">pp</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>      qrp = <span style="color:#8be9fd;font-style:italic">vaddq_u8</span>(<span style="color:#f1fa8c">qrp,</span> <span style="color:#f1fa8c">qpp</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>      <span style="color:#8be9fd;font-style:italic">vst1q_u8</span>(<span style="color:#f1fa8c">rp,</span> <span style="color:#f1fa8c">qrp</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>   }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>}
+</span></span></code></pre></div><p>通过查看 libpng 源代码，要启用 neon 优化，还必须通过 add_definitions 方法定义 DPNG_ARM_NEON_OPT 宏的值为 2 ，否则在源码中会认为不需要使用 neon 。</p>
+<p>要使用 neon 编译，还需要指定编译器相关参数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#8be9fd;font-style:italic">set_property</span>(<span style="color:#f1fa8c">SOURCE</span> <span style="color:#ff79c6">${</span><span style="color:#8be9fd;font-style:italic">libpng_arm_sources</span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        <span style="color:#f1fa8c">APPEND_STRING</span> <span style="color:#f1fa8c">PROPERTY</span> <span style="color:#f1fa8c">COMPILE_FLAGS</span> <span style="color:#f1fa8c">&#34; -mfpu=neon&#34;</span>)
+</span></span></code></pre></div><p>不过看到网上一些 libpng 编译文章，基本没提到 neon 相关东西，估计这个优化加速功能用不上吧。</p>
+<p>但是，可以在我的 Demo 上看到如何启用 neon 去编译，以后也会写专门的文章来介绍 neon 的使用~~</p>
+<h3 id="zlip-库依赖">zlip 库依赖</h3>
+<p>libpng 动态库编译还依赖 zlip 库，要是在其他平台上需要单独下载这个库，但是 Android 上就不需要了，因为 Android 编译环境本身就提供了这个库，就像我们使用 log 库一样。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>// 指定要编译的 so 依赖哪些其他的 so , z 就是 zlib 库
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#8be9fd;font-style:italic">target_link_libraries</span>(<span style="color:#f1fa8c">png</span> <span style="color:#f1fa8c">z</span> <span style="color:#f1fa8c">log</span> )
+</span></span></code></pre></div><p>Android 编译环境中 <code>z</code> 就是 zlip 库了。</p>
+<h3 id="源码编译">源码编译</h3>
+<p>其他的就是源码编译了，主要是 add_library 方法的使用，要指定好需要编译的源文件。</p>
+<p>具体有哪些源文件需要添加到编译中，还是请参考如下链接，就不贴具体代码了，减少文章篇幅。</p>
+<p><a href="https://github.com/glumes/InstantGLSL/blob/master/instantglsl/src/main/cpp/libpng/CMakeLists.txt">https://github.com/glumes/InstantGLSL/blob/master/instantglsl/src/main/cpp/libpng/CMakeLists.txt</a></p>
+<p>完成上述三个过程后，就能够编译出 libpng 的动态库了，实际编译过程还是参考项目代码吧。</p>
+<h2 id="libpng-的使用实践">libpng 的使用实践</h2>
+<p>编译是小事，重点在使用~~~</p>
+<p>以解码 png 图片获取像素内容为例：</p>
+<h3 id="linpng-初始化">linpng 初始化</h3>
+<p>首先是初始化 libpng ，得到 <code>png_structp</code> 结构体。它可以说是代表了 libpng 上下文，在方法调用时都需要把它作为第一个参数传入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#6272a4">// 传 nullptr 的参数是用来自定义错误处理的，这里不需要
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    png_structp png <span style="color:#ff79c6">=</span> png_create_read_struct(PNG_LIBPNG_VER_STRING, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">nullptr</span>);
+</span></span></code></pre></div><p>由于是读取，方法名中带有 read ,如果是写入，那就是 png_create_write_struct 方法了。</p>
+<h3 id="设置错误返回点">设置错误返回点</h3>
+<p>由于在创建 png 变量时，用来自定义错误处理的参数都传了 nullptr，所以需要设置错误返回点，这样当 libpng 发生错误时，程序将回到这个调用点，这时候可以做一些清理工作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#ff79c6">if</span> (setjmp(png_jmpbuf(png))) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>        png_destroy_read_struct(<span style="color:#ff79c6">&amp;</span>png, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">nullptr</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>        fclose(fp);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    }
+</span></span></code></pre></div><h3 id="判断文件是否是-png-格式">判断文件是否是 png 格式</h3>
+<p>libpng 提供了 png_sig_cmp 方法来检查文件是否 png 格式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#ff79c6">#define PNG_BYTES_TO_CHECK 4
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6"></span>    <span style="color:#8be9fd">char</span> buf[PNG_BYTES_TO_CHECK];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 读取 buffer
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (fread(buf, <span style="color:#bd93f9">1</span>, PNG_BYTES_TO_CHECK, fp) <span style="color:#ff79c6">!=</span> PNG_BYTES_TO_CHECK) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#6272a4">// 判断
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>png_sig_cmp(<span style="color:#ff79c6">reinterpret_cast</span><span style="color:#ff79c6">&lt;</span>png_const_bytep<span style="color:#ff79c6">&gt;</span>(buf), <span style="color:#bd93f9">0</span>, PNG_BYTES_TO_CHECK)) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        <span style="color:#6272a4">// 返回值不等于 0 则是 png 文件格式
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    } 
+</span></span></code></pre></div><p>如果调用了该方法，需要通过 png_set_sig_bytes 方法告诉 libpng 该跳过相应的数据，否则会出现黑屏，或者通过 rewind 方法重置文件指针。</p>
+<h3 id="获取图像信息">获取图像信息</h3>
+<p>首先创建 png_infop 结构体来代表图像信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    png_infop infop <span style="color:#ff79c6">=</span> png_create_info_struct(png);
+</span></span></code></pre></div><p>然后是设置图像的数据源，前提是要得到文件路径：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#6272a4">// 根据文件路径打开文件
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    FILE <span style="color:#ff79c6">*</span>fp <span style="color:#ff79c6">=</span> fopen(mFileName.c_str(), <span style="color:#f1fa8c">&#34;rb&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// 设置图像数据源
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>    png_init_io(png, fp);
+</span></span></code></pre></div><p>接下来是读取信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    png_read_png(png, infop,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                 (PNG_TRANSFORM_STRIP_16 <span style="color:#ff79c6">|</span> PNG_TRANSFORM_PACKING <span style="color:#ff79c6">|</span> PNG_TRANSFORM_EXPAND),
+</span></span></code></pre></div><p>通过如下方法，能得到图像具体某方面信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    mWidth <span style="color:#ff79c6">=</span> png_get_image_width(png, info);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    mHeight <span style="color:#ff79c6">=</span> png_get_image_height(png, info);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    mColorType <span style="color:#ff79c6">=</span> png_get_color_type(png, info);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    mBitDepth <span style="color:#ff79c6">=</span> png_get_bit_depth(png, info);
+</span></span></code></pre></div><p>当然也可以通过 png_get_IHDR 方法去获得信息</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    png_get_IHDR(png, infop, <span style="color:#ff79c6">&amp;</span>mWidth, <span style="color:#ff79c6">&amp;</span>mHeight, <span style="color:#ff79c6">&amp;</span>mBitDepth, <span style="color:#ff79c6">&amp;</span>mColorType, <span style="color:#ff79c6">&amp;</span>mInterlaceType,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                 <span style="color:#ff79c6">&amp;</span>mCompressionType, <span style="color:#ff79c6">&amp;</span>mFilterType);
+</span></span></code></pre></div><h3 id="获取像素内容">获取像素内容</h3>
+<p>通过 png_get_rows 方法按行获取所有的数据，然后赋值到像素指针上去。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>	<span style="color:#6272a4">// 代表像素内容的指针
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>mPixelData;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 获取每行的字节数量
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">int</span> row_bytes <span style="color:#ff79c6">=</span> png_get_rowbytes(png, infop);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    mPixelData <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span>[row_bytes <span style="color:#ff79c6">*</span> mHeight];
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    png_bytepp rows <span style="color:#ff79c6">=</span> png_get_rows(png, infop);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#6272a4">// 逐行读取，并填充到像素指针上去
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> mHeight; <span style="color:#ff79c6">++</span>i) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        memcpy(mPixelData <span style="color:#ff79c6">+</span> (row_bytes <span style="color:#ff79c6">*</span> i), rows[i], row_bytes);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    }
+</span></span></code></pre></div><p>其实在前面的 png_read_png 方法中就已经得到了所有的像素内容，保存在 infop 变量的 row_pointers 中，具体的实现如下：</p>
+<p>通过 png_read_image 方式读取像素内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#6272a4">// row_pointers 当成了一维指针数组
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    png_bytep <span style="color:#ff79c6">*</span>row_pointers;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    row_pointers <span style="color:#ff79c6">=</span> (png_bytep <span style="color:#ff79c6">*</span>) malloc(<span style="color:#ff79c6">sizeof</span>(png_bytep) <span style="color:#ff79c6">*</span> mHeight);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> y <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; y <span style="color:#ff79c6">&lt;</span> mHeight; y<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        row_pointers[y] <span style="color:#ff79c6">=</span> (png_byte <span style="color:#ff79c6">*</span>) malloc(png_get_rowbytes(png, info));
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    png_read_image(png, row_pointers);
+</span></span></code></pre></div><p>最后，别忘了调用 png_read_end 方法结束读取。</p>
+<p>有了像素内容，就可以做一个常见的渲染操作了，将像素内容渲染绘制到纹理上。</p>
+<h3 id="保存图片">保存图片</h3>
+<p>最后介绍如何根据像素内容去保存图片，在 libpng 中也提供了相应的方法调用，流程就是如下方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    png <span style="color:#ff79c6">=</span> png_create_write_struct()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    infop <span style="color:#ff79c6">=</span> png_create_info_struct()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 关联数据源，png 和要写入的文件
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    png_init_io(png,fp)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#6272a4">// 设置 infop 相关参数，代表最好要生成的图片文件相关信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>    png_set_IHDR()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#6272a4">// 写入图片信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    png_write_info(png, infop);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#6272a4">// 写入图片像素内容
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    png_write_image(png, row_pointers);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#6272a4">// 结束写入
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4"></span>    png_write_end(png, <span style="color:#8be9fd;font-style:italic">NULL</span>);
+</span></span></code></pre></div><p>流程和读取像素内容恰好相反。</p>
+<p>其中 png 变量要通过 png_create_write_struct 创建。</p>
+<p>infop 变量还是 png_create_info_struct 方法创建。</p>
+<p>接下来就是设置图片信息，写入图片信息，写入像素内容，具体的代码实践可以参考我的代码示例。</p>
+<h2 id="参考">参考</h2>
+<p>最后，在 libpng 的源代码中，也提供了丰富的示例，一般这种开源库都会提供相应的 test 代码，通过 test 代码基本都能找到相应的函数调用。</p>
+<p>libpng 的官网示例地址如下：</p>
+<p><a href="http://www.libpng.org/pub/png/libpng-manual.txt">http://www.libpng.org/pub/png/libpng-manual.txt</a></p>
+<p>有疑问的话，基本都可以在这个上面找到答案。</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/opengl/libpng-compile-and-practice/">图像库 libpng 编译与实践</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/google-jetpack-camerax/" data-toggle="tooltip" data-placement="top" title="Google Jetpack 新组件 CameraX 介绍与实践">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/opengl/libjpeg-turbo-compile-and-practice/" data-toggle="tooltip" data-placement="top" title="图像库 libjpeg-turbo 编译与实践">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/google-jetpack-camerax/">Google Jetpack 新组件 CameraX 介绍与实践</a></li>
+    
+    <li><a href="https://glumes.com/rust-compile-so-library/">rust 开发编译 Android 动态库实践</a></li>
+    
+    <li><a href="https://glumes.com/opengl/load-texture-from-android-assets-by-ndk/">Android NDK 开发 —— 从 Assets 文件夹加载图片并上传纹理</a></li>
+    
+    <li><a href="https://glumes.com/stb-image-introduce/">简单易用的图像解码库介绍 —— stb_image</a></li>
+    
+    <li><a href="https://glumes.com/blog-image-migrate/">博客图床迁移记</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="Shader 优化 | OpenGL 绘制网格效果" />
+    <meta property="og:title" content="Shader 优化 | OpenGL 绘制网格效果" />
+    <meta property="twitter:title" content="Shader 优化 | OpenGL 绘制网格效果" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>Shader 优化 | OpenGL 绘制网格效果 | </title>
+
+    <link rel="canonical" href="https://glumes.com/opengl-draw-grid-optimize/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/opengl" title="OpenGL">
+                            OpenGL
+                        </a>
+                        
+                    </div>
+                    <h1>Shader 优化 | OpenGL 绘制网格效果</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Friday, May 22, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw">https://mp.weixin.qq.com/s/FmILdXuy3HMpv8H1Kz_fPw</a></p>
+</blockquote>
+<p>前几天发布了这样一篇文章：</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/6ZMP6Tc_MqggjAXS_GjV2Q">KodeLife | Shader 实时编辑预览的强大工具使用实践</a></p>
+</blockquote>
+<p>除了介绍 KodeLife 的使用之外，还附带了一个 Shader 绘制网格效果的代码。</p>
+<p>把这篇文章发到技术群里，随机就有大佬指出不足之处，提示说代码还可以进一步优化，并且提供了源码学习。</p>
+<blockquote>
+<p>可见加入一个高质量的技术群是多么重要，哪怕平时不说话，围观大佬们聊天都能学到很多。</p>
+</blockquote>
+<p>现在加入还来得及，尚有余位，详情点击如下链接：</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/M4IiA-dTg1R68TeFaFvNPg">移动端技术交流喊你入群啦~~~</a></p>
+</blockquote>
+<hr>
+<h2 id="shader-讲解">Shader 讲解</h2>
+<p>在我的 Shader 代码中是这样绘制网格的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    vec2 fragcoord <span style="color:#ff79c6">=</span> vec2(gl_FragCoord.xy <span style="color:#ff79c6">/</span> u_resolution);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    vec3 bgColor <span style="color:#ff79c6">=</span> vec3(<span style="color:#bd93f9">1.0</span>,<span style="color:#bd93f9">1.0</span>,<span style="color:#bd93f9">1.0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    vec3 pixelColor <span style="color:#ff79c6">=</span> bgColor;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    vec3 gridColor <span style="color:#ff79c6">=</span> vec3(<span style="color:#bd93f9">0.5</span>,<span style="color:#bd93f9">0.5</span>,<span style="color:#bd93f9">0.5</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">float</span> width <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">float</span> minWidth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.003</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">float</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0.0</span>; i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">1.0</span>; i<span style="color:#ff79c6">+=</span>width){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">if</span> (mod(fragcoord.x,width) <span style="color:#ff79c6">&lt;</span> minWidth <span style="color:#ff79c6">||</span> mod(fragcoord.y,width) <span style="color:#ff79c6">&lt;</span> minWidth){
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            pixelColor <span style="color:#ff79c6">=</span> gridColor;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    gl_FragColor <span style="color:#ff79c6">=</span> vec4(pixelColor,<span style="color:#bd93f9">1.0</span>);
+</span></span></code></pre></div><p>首先，讲解几个概念：</p>
+<p><code>gl_FragCoord</code> 代表当前像素相对于屏幕的坐标，屏幕左下角为原点。</p>
+<p><code>u_resolution</code> 是当前图像的分辨率。</p>
+<p>用 <code>gl_FragCoord</code> 除以 <code>u_resolution</code> 得到的结果 <code>fragcoord</code> 就是归一化的屏幕坐标。</p>
+<p>由于已经归一化了那么 <code>fragcoord</code> 的值就在 <code>[0,1]</code> 的闭区间内。</p>
+<p>同时用 <code>gridColor</code> 作为网格的颜色，<code>bgColor</code> 作为背景色，也是默认的颜色，<code>pixelColor</code> 作为最后输出的颜色。</p>
+<p>那么，代码的重点就在于 <code>for</code> 循环里面了。</p>
+<p>由于 <code>fragcoord</code> 归一化有了确定的值域范围，所以可以在 <code>for</code> 循环中将它十等分。</p>
+<p>另外，因为片段着色器每个像素都会执行一遍，每次 <code>fragcoord</code> 值都是变化的，但不管怎么变化，它的范围都会落在 <code>for</code> 循环的十等份里面。</p>
+<p>比如其中某一份的范围是 <code>[0.2,0.3)</code> 的左闭右开区间，当前像素就落在这个范围内。</p>
+<p>那么 <code>mod</code> 取模函数就会判断当前值距离左区间阈值是否在 <code>minWidth</code> 范围内，其中 <code>minWidth</code> 相当于是指定网格线的宽度。</p>
+<p>如果在范围内，那么显示的颜色就是网格色，否则就是默认的背景色。</p>
+<p>以上的讲解对于坐标的 <code>x</code> 和 <code>y</code> 值是一样的道理。原理通过判断该像素点的坐标是否位于临界范围内来选择性着色。</p>
+<p>显示这种绘制方式是有它的弊端，因为每一个像素执行片段着色器的时候，都要进行一次 <code>for</code> 循环判断它处于哪个区域内。</p>
+<p>这样就有了太多不必要的计算流程，尤其是 <code>for</code> 循环的每次遍历。</p>
+<hr>
+<p>接下来就是微信群中大佬给出的 Shader 代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>vec2 st <span style="color:#ff79c6">=</span> vec2(gl_FragCoord.xy <span style="color:#ff79c6">/</span> u_resolution);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>st.x <span style="color:#ff79c6">*=</span> u_resolution.x <span style="color:#ff79c6">/</span> u_resolution.y;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>vec3 color <span style="color:#ff79c6">=</span> vec3(<span style="color:#bd93f9">.0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>st <span style="color:#ff79c6">*=</span> <span style="color:#bd93f9">10.</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>vec2 i_st <span style="color:#ff79c6">=</span> floor(st);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>vec2 f_st <span style="color:#ff79c6">=</span> fract(st);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>color <span style="color:#ff79c6">+=</span> step(<span style="color:#bd93f9">.98</span>,f_st.x) <span style="color:#ff79c6">+</span> step(<span style="color:#bd93f9">.98</span>,f_st.y);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>gl_FragColor <span style="color:#ff79c6">=</span> vec4(color,<span style="color:#bd93f9">1.0</span>);
+</span></span></code></pre></div><p>可以一眼看出这里面没有 <code>for</code> 循环的操作了。</p>
+<p>还是先讲解几个级别操作：</p>
+<p><code>floor</code> 函数就是向下取整的操作</p>
+<p><code>fract</code> 函数是 <code>x - floor(x)</code> 的操作，也就是取小数部分的意思。</p>
+<p>通过对 <code>st</code> 进行 <code>floor</code> 和 <code>fract</code> 操作可以分出它的整数和小数部分。</p>
+<p><code>step</code> 函数类似于 <code>if</code> 判断，当第二个参数大于等于第一个参数，则返回 1 ，否则返回 0 。</p>
+<p>整个 Shader 代码第一行还是相同的，都是归一化操作。</p>
+<p>然后在第二行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>st.x <span style="color:#ff79c6">*=</span> u_resolution.x <span style="color:#ff79c6">/</span> u_resolution.y
+</span></span></code></pre></div><p>实际上是做了一个比例切换的操作。将 <code>st</code> 的 <code>x</code> ，<code>y</code> 值按照图像分辨率的宽高比做了调整，其中以 <code>y</code> 为基准 1 。</p>
+<p>这样一来，<code>st</code> 的 <code>y</code> 值还是在 <code>[0,1]</code> 范围内，而 <code>x</code> 值可能大于也可能小于这个范围了，这都取决于图像分辨率了。</p>
+<p>接下来将 <code>st</code> 乘了 10 ，这下 st 的值域范围就在 <code>[0,10]</code> 了 ，这样的操作是为了接下来的 <code>floor</code> 函数，因为它是取整，如果都在 <code>[0,1]</code> 范围内，取的整数永远都是 0 了。</p>
+<p>前面转换操作是为了接下来的重点函数 <code>step</code> 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>color <span style="color:#ff79c6">+=</span> step(<span style="color:#bd93f9">.98</span>,f_st.x) <span style="color:#ff79c6">+</span> step(<span style="color:#bd93f9">.98</span>,f_st.y);
+</span></span></code></pre></div><p>前面的 <code>floor</code> 其实也是将 <code>x</code> 和 <code>y</code> 轴做了等分，比如 <code>y</code> 的值域是 <code>[0,1]</code> ，乘以 10 之后，就是十等分，<code>x</code> 的值域如果是 <code>[0,1.7]</code> ，乘以 10 之后，就是十七等分。</p>
+<p>而 <code>fract</code> 操作的结果范围必然是 <code>[0,1)</code> 的左闭右开区间。</p>
+<p><code>step</code> 函数的意图就是如果该像素点的坐标接近于等分线，那么 color 的颜色值返回的就是 1 ，显示白色，否则返回 0 ，显示黑色。</p>
+<p>比如，st 的 <code>x</code> 值是 7.99 了，接近于 8 ，那么就要显示白色网格线了，对于 <code>y</code> 值同理。</p>
+<p>这样一来就可以对每个像素点进行判断，根据它的坐标决定要显示什么颜色。</p>
+<h2 id="总结对比">总结对比</h2>
+<p>在第二种绘制中，由于做了比例转换操作，所以绘制出来的网格大小都是一致的，且都是正方形。</p>
+<p>而第一种没有比例切换操作，当宽高不同的情况下，同样进行十等分的话，画出来的网格是个长方形了。</p>
+<p>但是，两种绘制的思路都是相同的，姑且称它为 <code>接近法</code> 吧，当绘制的像素接近等分线时，就显示不一样的颜色。</p>
+<p>于是，等分线的操作思路就各有不同了。前者是利用 <code>for</code> 循环来制造划分，后者则是利用当前像素的 <code>x</code>、<code>y</code> 值的特点来绘制的。</p>
+<p>当然更推崇后者的绘制方式了，也是学到了新技巧~~~</p>
+<p>能力不足，经验有限，文中有何不对的地方欢迎批评指正，也可以加我微信 ezglumes 交流~~</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/opengl-draw-grid-optimize/">Shader 优化 | OpenGL 绘制网格效果</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/opengl/shader-tool-kodelife-introduce/" data-toggle="tooltip" data-placement="top" title="KodeLife | Shader 实时编辑预览的强大工具使用实践">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/domain-name-register/" data-toggle="tooltip" data-placement="top" title="【喜大普奔】域名终于备案通过啦">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/opengl/shader-tool-kodelife-introduce/">KodeLife | Shader 实时编辑预览的强大工具使用实践</a></li>
+    
+    <li><a href="https://glumes.com/opengl-transition/">OpenGL 实现视频编辑中的转场效果</a></li>
+    
+    <li><a href="https://glumes.com/opengl-glsl-3-mark/">OpenGL ES 3.0 着色器语言 GLSL 学习 Mark </a></li>
+    
+    <li><a href="https://glumes.com/opengl-glsl-2-mark/">OpenGL ES 2.0 着色器语言 GLSL 学习 Mark </a></li>
+    
+    <li><a href="https://glumes.com/opengl-framebuffer-object-usage/">OpenGL 之 帧缓冲  使用实践</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

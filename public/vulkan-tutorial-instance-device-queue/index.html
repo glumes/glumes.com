@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue" />
+    <meta property="og:title" content="进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue" />
+    <meta property="twitter:title" content="进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue | </title>
+
+    <link rel="canonical" href="https://glumes.com/vulkan-tutorial-instance-device-queue/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/vulkan" title="Vulkan">
+                            Vulkan
+                        </a>
+                        
+                    </div>
+                    <h1>进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Monday, January 7, 2019
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>Vulkan 开发的系列文章：</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><a href="https://glumes.com/post/vulkan/vulkan-tutorial-concept/">进击的 Vulkan 移动开发（一）之今生前世</a></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><a href="https://glumes.com/post/vulkan/vulkan-tutorial-renderer/">进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解</a></li>
+</ol>
+</blockquote>
+<p>在 Vulkan 的系列文章中出现过如下的图片：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/vulkan-instance-device-queue.webp" alt="">
+
+</p>
+<p>这张图片很详细的概括了 Vulkan 中的重要组件以及它们的工作流程，接下来的文章中会针对每个组件进行学习讲解并配上相关的示例代码，首先是 Instance、Device 和 Queue 组件。</p>
+<h2 id="instance-组件">Instance 组件</h2>
+<p>在开始创建 Device 等组件之前，需要创建一个 <code>VkInstance</code> 对象。</p>
+<p>通过 <code>vkCreateInstance</code> 方法创建 <code>VKInstance</code> 对象，以下是函数原型，在 <code>&lt;vulkan.h&gt;</code> 头文件中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 声明的函数指针的形式
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">typedef</span> <span style="color:#50fa7b">VkResult</span> (VKAPI_PTR <span style="color:#ff79c6">*</span>PFN_vkCreateInstance)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>(<span style="color:#ff79c6">const</span> VkInstanceCreateInfo<span style="color:#ff79c6">*</span> pCreateInfo, <span style="color:#6272a4">// 提供创建的信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> VkAllocationCallbacks<span style="color:#ff79c6">*</span> pAllocator, <span style="color:#6272a4">// 创建时的回调函数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4"></span>VkInstance<span style="color:#ff79c6">*</span> pInstance);                <span style="color:#6272a4">// 创建的实例
+</span></span></span></code></pre></div><p>&lt;vulkan.h&gt; 的头文件把函数通过 <code>typedef</code> 关键字声明成了函数指针的形式，可能会有点难找。</p>
+<blockquote>
+<p>在 Vulkan 的 API 中有一些固定的 <strong>调用套路</strong> 。</p>
+<ol>
+<li>要创建某个对象，先提供一个包含创建信息的对象。</li>
+<li>创建时通过传递引用的方式来传参。</li>
+</ol>
+</blockquote>
+<p>接下来看看这个套路是如何应用在 <code>VKInstance</code> 对象上的。</p>
+<p>在 <code>vkCreateInstance</code> 函数中看到有个名为 <code>VkInstanceCreateInfo</code> 类型的参数，这就是包含了 <code>VKInstance</code> 要创建的信息。</p>
+<p>它的参数信息有点多：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">VkInstanceCreateInfo</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    VkStructureType             sType;  <span style="color:#6272a4">// 一般为方法对应的类型
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">void</span><span style="color:#ff79c6">*</span>                 pNext; <span style="color:#6272a4">// 一般为 null 就好了
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    VkInstanceCreateFlags       flags;  <span style="color:#6272a4">// 留着以后用的，设为 0 就好了
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> VkApplicationInfo<span style="color:#ff79c6">*</span>    pApplicationInfo; <span style="color:#6272a4">// 对应新的一个结构体 VkApplicationInfo
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">uint32_t</span>                    enabledLayerCount; <span style="color:#6272a4">// layer 和 extension 用于调试和拓展
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span> <span style="color:#ff79c6">const</span><span style="color:#ff79c6">*</span>          ppEnabledLayerNames;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#8be9fd">uint32_t</span>                    enabledExtensionCount;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span> <span style="color:#ff79c6">const</span><span style="color:#ff79c6">*</span>          ppEnabledExtensionNames;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>} VkInstanceCreateInfo;
+</span></span></code></pre></div><p>除了还需要创建一个 <code>VkApplicationInfo</code> 对象，还可以设置 <code>Layer</code> 和 <code>Extension</code> 。</p>
+<p>其中：<code>Layer</code> 是用来错误校验、调试输出的。为了提供性能，其中的方法之一就是减少驱动进行状态、错误校验，而 Vulkan 就把这一层单独抽出来了。</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/vulkan-layer.webp" alt="">
+
+</p>
+<p><code>Layer</code> 在整个架构中的位置如上图，Vulkan API 直接和驱动对话，而 <code>Layer</code> 处于应用和 Vulkan API 之间，供开发者进行调试。</p>
+<p>另外，<code>Extension</code> 就是 Vulkan 支持的拓展，最典型的就是 Vulkan 的跨平台渲染显示，就是通过拓展来完成的，比如在 Android、Windows 上使用 Vulkan 都需要使用不同的拓展才可以把内容显示到屏幕上。</p>
+<p>关于 <code>Layer</code> 和 <code>Extension</code> 后续再细说。</p>
+<p>接着回到 <code>VkApplicationInfo</code> 结构体，也是创建 Instance 的必要参数之一。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">VkApplicationInfo</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    VkStructureType    sType;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">void</span><span style="color:#ff79c6">*</span>        pNext;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>        pApplicationName;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#8be9fd">uint32_t</span>           applicationVersion;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>        pEngineName;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#8be9fd">uint32_t</span>           engineVersion;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    <span style="color:#8be9fd">uint32_t</span>           apiVersion;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>} VkApplicationInfo;
+</span></span></code></pre></div><p>它的参数释义就比较容易理解了，设置应用的名称、版本号等，有了它们就可以创建 <code>Instance</code> 对象了，代码可以参考 <a href="https://github.com/glumes/vulkan_tutorial/blob/master/instance_and_device/src/main/cpp/vulkan_tutorial_1.cpp">这里</a> 。</p>
+<p>具体的代码如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    VkApplicationInfo app_info <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    app_info.apiVersion <span style="color:#ff79c6">=</span> VK_API_VERSION_1_0;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    app_info.applicationVersion <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    app_info.engineVersion <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    app_info.pNext <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    app_info.sType <span style="color:#ff79c6">=</span> VK_STRUCTURE_TYPE_APPLICATION_INFO;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    app_info.pEngineName <span style="color:#ff79c6">=</span> APPLICATION_NAME;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    app_info.pApplicationName <span style="color:#ff79c6">=</span> APPLICATION_NAME;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    VkInstanceCreateInfo instance_info <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#6272a4">// type 就是结构体的类型
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4"></span>    instance_info.sType <span style="color:#ff79c6">=</span> VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    instance_info.pNext <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    instance_info.pApplicationInfo <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>app_info;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    instance_info.flags <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#6272a4">// Extension and Layer 暂时不用,可空
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#6272a4"></span>    instance_info.enabledExtensionCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    instance_info.ppEnabledExtensionNames <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    instance_info.ppEnabledLayerNames <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    instance_info.enabledLayerCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>    VkResult result <span style="color:#ff79c6">=</span> vkCreateInstance(<span style="color:#ff79c6">&amp;</span>instance_info, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">&amp;</span>instance);
+</span></span></code></pre></div><p>当每调用一个创建函数后，返回的类型都是 <code>VkResult</code> ，只要 VkResult 大于 0 ，那么执行就是成功的。</p>
+<p>另外还有个参数是 <code>VkAllocationCallbacks</code>，表示函数调用时的回调，需要传递一个函数指针，在后面的各种调用中都会看到它的身影，如果有用到可以传参，一般为 <code>nullptr</code> 就好了。</p>
+<p>关于每个结构体，它每个参数的具体释义，靠死记硬背是肯定不行的，参考 <code>vkspec.pdf</code> 书籍，里面有对每个参数、结构体的详细释义。</p>
+<h2 id="device-组件">Device 组件</h2>
+<p>有了 <code>Instance</code> 组件，就可以创建 <code>Device</code> 组件了，按照调用的套路，肯定还会有一个 <code>VkDeviceCreateInfo</code> 的结构体表示 <code>Device</code> 的创建信息。</p>
+<p>而 <code>Device</code> 具体指的是逻辑上的设备，可以说是对物理设备的一个逻辑上的封装，而物理设备就是 <code>VkPhysicalDevice</code> 对象。</p>
+<p>在某些情况下，可能会具有多个物理设备，如下图所示，因此要先枚举一下所有的物理设备：</p>
+<p>
+  <img src="https://image.glumes.com/blog_image/vulkan-device-image.webp" alt="">
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    LOGI(<span style="color:#f1fa8c">&#34;enumerate gpu device&#34;</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    <span style="color:#8be9fd">uint32_t</span> gpu_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// 第一次调用只为了获得个数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>    VkResult res <span style="color:#ff79c6">=</span> vkEnumeratePhysicalDevices(instance, <span style="color:#ff79c6">&amp;</span>gpu_size, <span style="color:#ff79c6">nullptr</span>);
+</span></span></code></pre></div><p>在 <code>vkEnumeratePhysicalDevices</code> 方法中，传入的第二个参数为 gpu 的个数，第三个参数为 null，这样的一次调用会返回 gpu 的个数到 <code>gpu_size</code> 变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    vector<span style="color:#ff79c6">&lt;</span>VkPhysicalDevice<span style="color:#ff79c6">&gt;</span> gpus;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    gpus.resize(gpu_size);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// vector.data() 方法转换成指针类型
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 第二次调用获得所有的数据
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4"></span>    res <span style="color:#ff79c6">=</span> vkEnumeratePhysicalDevices(instance, <span style="color:#ff79c6">&amp;</span>gpu_size, gpus.data());
+</span></span></code></pre></div><p>当再一次调用 <code>vkEnumeratePhysicalDevices</code> 函数时，第三个参数不为 null，而是相应的 <code>VkPhysicalDevice</code> 容器，那么 gpus 会填充 <code>gpu_size</code> 个的 <code>VkPhysicalDevice</code> 对象。</p>
+<p>这也算是 Vulkan API 调用的一个 <strong>固定套路</strong> 了，调用两次来获得数据，在后面的代码中也会经常看到这种方式。</p>
+<p>有了 <code>VkPhysicalDevice</code> 对象之后，可以查询 <code>VkPhysicalDevice</code> 上的一些属性，以下函数都可以查询相关信息：</p>
+<ul>
+<li>vkGetPhysicalDeviceQueueFamilyProperties</li>
+<li>vkGetPhysicalDeviceMemoryProperties</li>
+<li>vkGetPhysicalDeviceProperties</li>
+<li>vkGetPhysicalDeviceImageFormatProperties</li>
+<li>vkGetPhysicalDeviceFormatProperties</li>
+</ul>
+<p>在这里需要用到的属性是 <code>QueueFamilyProperties</code> ，获得该属性的方法调用方式和获得 <code>VkPhysicalDevice</code> 数据方式一样，也是一个两次调用。</p>
+<p>如果有设备有多个 GPU，那么这里取第一个来获取它的相关属性：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#6272a4">// 第一次调用，获得个数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">uint32_t</span> queue_family_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    vkGetPhysicalDeviceQueueFamilyProperties(gpus[<span style="color:#bd93f9">0</span>], <span style="color:#ff79c6">&amp;</span>queue_family_count, <span style="color:#ff79c6">nullptr</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    assert(queue_family_count <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#6272a4">// 第二次调用，获得实际数据
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>    vector<span style="color:#ff79c6">&lt;</span>VkQueueFamilyProperties<span style="color:#ff79c6">&gt;</span> queue_family_props;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    queue_family_props.resize(queue_family_count);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    vkGetPhysicalDeviceQueueFamilyProperties(gpus[<span style="color:#bd93f9">0</span>], <span style="color:#ff79c6">&amp;</span>queue_family_count, queue_family_props.data());
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    assert(queue_family_count <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span>);
+</span></span></code></pre></div><p><code>QueueFamilyProperties</code> 的结构体含义如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">VkQueueFamilyProperties</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    VkQueueFlags    queueFlags;      <span style="color:#6272a4">// 标识位：表示 Queue 的功能
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">uint32_t</span>        queueCount;         
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#8be9fd">uint32_t</span>        timestampValidBits;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    VkExtent3D      minImageTransferGranularity;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>} VkQueueFamilyProperties;
+</span></span></code></pre></div><p>其中：<code>queueFlags</code> 表示该 Queue 的能力，有的 Queue 是用来渲染图像的，这个和我们的使用最为密切，还有的 Queue 是用来计算的。</p>
+<p>具体的 Flag 标识如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">enum</span> <span style="color:#50fa7b">VkQueueFlagBits</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    VK_QUEUE_GRAPHICS_BIT <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x00000001</span>,         <span style="color:#6272a4">// 图像相关
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span>    VK_QUEUE_COMPUTE_BIT <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x00000002</span>,          <span style="color:#6272a4">// 计算相关
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>    VK_QUEUE_TRANSFER_BIT <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x00000004</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    VK_QUEUE_SPARSE_BINDING_BIT <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x00000008</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    VK_QUEUE_FLAG_BITS_MAX_ENUM <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x7FFFFFFF</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>} VkQueueFlagBits;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#ff79c6">typedef</span> VkFlags VkQueueFlags;
+</span></span></code></pre></div><p>一般来说，我们用的是 <code>queueFlags</code> 为 <code>VK_QUEUE_GRAPHICS_BIT</code> 标识位的 <code>Queue</code> 。</p>
+<p>那么 <code>Queue</code> 究竟是什么？</p>
+<p>物理设备可能会有多个 <code>Queue</code>，不同的 <code>Queue</code> 对应不同的特性。</p>
+<p>在文章最开始的图中可以看到，<code>Command-buffer</code> 是提交到了 <code>Queue</code> ，<code>Queue</code> 再提交给 <code>Device</code> 去执行。<code>Queue</code> 可以看成是应用程序和物理设备沟通的桥梁，我们在 <code>Queue</code> 上提交命令，然后再交由 GPU 去执行。</p>
+<p>回到本小节的内容，创建 Device 组件，它的函数指针形式如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 创建 Device 的函数指针
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">typedef</span> <span style="color:#50fa7b">VkResult</span> (VKAPI_PTR <span style="color:#ff79c6">*</span>PFN_vkCreateDevice)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>(VkPhysicalDevice physicalDevice,       <span style="color:#6272a4">// 物理设备
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> VkDeviceCreateInfo<span style="color:#ff79c6">*</span> pCreateInfo,  <span style="color:#6272a4">// 调用套路里面的 CreateInfo
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> VkAllocationCallbacks<span style="color:#ff79c6">*</span> pAllocator,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>VkDevice<span style="color:#ff79c6">*</span> pDevice);                   <span style="color:#6272a4">// 要创建的 Device 类
+</span></span></span></code></pre></div><p>创建一个 <code>Device</code> 对象，不仅需要指定具体的物理设备 <code>VkPhysicalDevice</code>，另外还需要该物理设备上的 <code>Queue</code> 相关信息。</p>
+<p>在 <code>VkDeviceCreateInfo</code> 结构体中需要一个参数是 <code>VkDeviceQueueCreateInfo</code> ，它的创建如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#6272a4">// 创建 Queue 所需的相关信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    VkDeviceQueueCreateInfo queue_info <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 找到属性为 VK_QUEUE_GRAPHICS_BIT 的索引
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">bool</span> found <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">false</span>; 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> queue_family_count; <span style="color:#ff79c6">++</span>i) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        <span style="color:#ff79c6">if</span> (queue_family_props[i].queueFlags <span style="color:#ff79c6">&amp;</span> VK_QUEUE_GRAPHICS_BIT) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>            queue_info.queueFamilyIndex <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>            found <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>            <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#8be9fd">float</span> queue_priorities[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> {<span style="color:#bd93f9">0.0</span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#6272a4">// 结构体的类型
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4"></span>    queue_info.sType <span style="color:#ff79c6">=</span> VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    queue_info.pNext <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    queue_info.queueCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#6272a4">// Queue 的优先级
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#6272a4"></span>    queue_info.pQueuePriorities <span style="color:#ff79c6">=</span> queue_priorities;
+</span></span></code></pre></div><p>接下来就可以完成 <code>Queue</code> 的创建：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>    <span style="color:#6272a4">// 创建 Device 所需的相关信息类
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#6272a4"></span>    VkDeviceCreateInfo device_info <span style="color:#ff79c6">=</span> {};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    device_info.sType <span style="color:#ff79c6">=</span> VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    device_info.pNext <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#6272a4">// Device 所需的 Queue 相关信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4"></span>    device_info.queueCreateInfoCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;   <span style="color:#6272a4">// Queue 个数
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#6272a4"></span>    device_info.pQueueCreateInfos <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>queue_info;    <span style="color:#6272a4">// Queue 相关信息
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// Layer 和 Extension 暂时为空，不影响运行，后续再补上
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#6272a4"></span>    device_info.enabledExtensionCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    device_info.ppEnabledExtensionNames <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">NULL</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    device_info.enabledLayerCount <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    device_info.ppEnabledLayerNames <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">NULL</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    device_info.pEnabledFeatures <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">NULL</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    res <span style="color:#ff79c6">=</span> vkCreateDevice(gpus[<span style="color:#bd93f9">0</span>], <span style="color:#ff79c6">&amp;</span>device_info, <span style="color:#ff79c6">nullptr</span>, <span style="color:#ff79c6">&amp;</span>device);
+</span></span></code></pre></div><h2 id="queue-组件">Queue 组件</h2>
+<p>完成了 <code>Device</code> 创建之后，<code>Queue</code> 的创建也简单多了，直接调用如下函数就好了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">typedef</span> <span style="color:#50fa7b">void</span> (VKAPI_PTR <span style="color:#ff79c6">*</span>PFN_vkGetDeviceQueue)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>(VkDevice device,   <span style="color:#6272a4">// 创建的 Device 对象
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd">uint32_t</span> queueFamilyIndex, <span style="color:#6272a4">// queueFlags 为 VK_QUEUE_GRAPHICS_BIT 的索引
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span><span style="color:#8be9fd">uint32_t</span> queueIndex,        
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>VkQueue<span style="color:#ff79c6">*</span> pQueue);       <span style="color:#6272a4">// 要创建的 Queue
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#6272a4">// 代码示例
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#6272a4"></span>vkGetDeviceQueue(info.device, info.graphics_queue_family_index, <span style="color:#bd93f9">0</span>, <span style="color:#ff79c6">&amp;</span>info.queue);
+</span></span></code></pre></div><h2 id="组件销毁">组件销毁</h2>
+<p>完成了 <code>Instance</code>、<code>Device</code>、<code>Queue</code> 组件的创建之后，还有一件要做的事情就是释放它们，销毁组件。</p>
+<p>按照先进后出的方式进行销毁，<code>Instance</code> 最先创建反而最后销毁，和 <code>Device</code> 相关联的 <code>Queue</code> 当 <code>Device</code> 销毁了，<code>Queue</code> 也随之销毁了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>    <span style="color:#6272a4">// 销毁 Device
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"></span>    vkDestroyDevice(info.device, <span style="color:#ff79c6">nullptr</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#6272a4">// 销毁 Instance
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4"></span>    vkDestroyInstance(info.instance, <span style="color:#ff79c6">nullptr</span>);
+</span></span></code></pre></div><h2 id="参考">参考</h2>
+<p>这里有一些不错的参考地址和书籍：</p>
+<ol>
+<li><a href="https://www.zhihu.com/people/snowfox-68/activities">https://www.zhihu.com/people/snowfox-68/activities</a></li>
+<li><a href="https://www.zhihu.com/people/chen-yong-59-86/posts">https://www.zhihu.com/people/chen-yong-59-86/posts</a></li>
+</ol>
+<p>也可以参考我的项目实践代码：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/vulkan_tutorial">https://github.com/glumes/vulkan_tutorial</a></p>
+</blockquote>
+<p>以上是个人的学习经验，仅供参考，有讲的不对之处，欢迎指出，也可以加我微信一起交流学习: <code>ezglumes</code> (备注博客).</p>
+<h2 id="总结">总结</h2>
+<p>敲一遍上述的代码，会发现 Vulkan 在 API 调用上还是有迹可循的，重点是要理解了每个参数的含义，多结合官方的文档来学习、实践、</p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/vulkan-tutorial-instance-device-queue/">进击的 Vulkan 移动开发之 Instance &amp; Device &amp; Queue</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/vulkan-tutorial-concept/" data-toggle="tooltip" data-placement="top" title="进击的 Vulkan 移动开发（一）之今生前世">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/vulkan-tutorial-command-buffer/" data-toggle="tooltip" data-placement="top" title="进击的 Vulkan 移动开发之 Command Buffer">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/vulkan-tutorial-concept/">进击的 Vulkan 移动开发（一）之今生前世</a></li>
+    
+    <li><a href="https://glumes.com/java-multithread-overview/">Java 显式锁 Lock 与条件队列</a></li>
+    
+    <li><a href="https://glumes.com/c-stl-container-overview/">C&#43;&#43; 标准容器库小结</a></li>
+    
+    <li><a href="https://glumes.com/mediacodec-encode-yuv-to-h264/">MediaCodec 硬编码之相机内容编码成 H264 文件</a></li>
+    
+    <li><a href="https://glumes.com/ffmpeg/understand-yuv-format/">一文读懂 YUV 的采样与格式</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

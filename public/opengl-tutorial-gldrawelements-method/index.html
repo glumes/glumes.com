@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="OpenGL 的 glDrawElements  绘制方法" />
+    <meta property="og:title" content="OpenGL 的 glDrawElements  绘制方法" />
+    <meta property="twitter:title" content="OpenGL 的 glDrawElements  绘制方法" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>OpenGL 的 glDrawElements  绘制方法 | </title>
+
+    <link rel="canonical" href="https://glumes.com/opengl-tutorial-gldrawelements-method/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/opengl" title="OpenGL">
+                            OpenGL
+                        </a>
+                        
+                    </div>
+                    <h1>OpenGL 的 glDrawElements  绘制方法</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Friday, May 25, 2018
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/WcWdYE5j8Ycw2dtJYS-Cxg">https://mp.weixin.qq.com/s/WcWdYE5j8Ycw2dtJYS-Cxg</a></p>
+</blockquote>
+<p>在之前的绘制中，我们都是通过 <code>glDrawArrays</code> 方法来实现的，它会按照我们传入的顶点顺序和指定的绘制方式进行绘制。</p>
+<p>回顾一下之前提到的绘制类型：</p>
+<table>
+<thead>
+<tr>
+<th>绘制类型</th>
+<th>绘制方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL_POINTS</td>
+<td>将传入的顶点坐标作为单独的点绘制</td>
+</tr>
+<tr>
+<td>GL_LINES</td>
+<td>将传入的坐标作为单独线条绘制，ABCDEFG六个顶点，绘制AB、CD、EF三条线</td>
+</tr>
+<tr>
+<td>GL_LINE_STRIP</td>
+<td>将传入的顶点作为折线绘制，ABCD四个顶点，绘制AB、BC、CD三条线</td>
+</tr>
+<tr>
+<td>GL_LINE_LOOP</td>
+<td>将传入的顶点作为闭合折线绘制，ABCD四个顶点，绘制AB、BC、CD、DA四条线。</td>
+</tr>
+<tr>
+<td>GL_TRIANGLES</td>
+<td>将传入的顶点作为单独的三角形绘制，ABCDEF绘制ABC,DEF两个三角形</td>
+</tr>
+<tr>
+<td>GL_TRIANGLE_STRIP</td>
+<td>将传入的顶点作为三角条带绘制，ABCDEF绘制ABC,BCD,CDE,DEF四个三角形</td>
+</tr>
+<tr>
+<td>GL_TRIANGLE_FAN</td>
+<td>将传入的顶点作为扇面绘制，ABCDEF绘制ABC、ACD、ADE、AEF四个三角形</td>
+</tr>
+</tbody>
+</table>
+<p>假设要绘制一个立方体，以 <code>GL_TRIANGLES</code> 的类型进行绘制，那么六个面，每个面由两个三角形组成，就得向渲染管线传入 36 个顶点，36 个顶点按照顺序进行绘制，而实际上，一个矩形也就才 8 个顶点而已。</p>
+<p>为了优化绘制的效率，减少数据的传递，于是就有了 <code>glDrawElements</code> 绘制方法。</p>
+<h2 id="gldrawelements-绘制方法">glDrawElements 绘制方法</h2>
+<p><code>glDrawElements</code> 方法还是需要传递顶点数据，但只需要传递物体实际上的顶点数据，也就是最少的，不重复的顶点数据。</p>
+<p>然后再向渲染管线传递要绘制的顶点数据的索引，根据索引从顶点数据中取出对应的顶点，然后再按照指定的方式进行绘制。</p>
+<p>如下图所示，图片截自《OpenGL ES 3.x 游戏开发上卷》：</p>
+<p>
+  <img src="https://image.glumes.com/images/2019/04/27/glDrawElements_single.png" alt="">
+
+</p>
+<p>由三个三角形组成的倒置的梯形，实际上只有五个顶点 $ {v0,v1,v2,v3,v4}$，因此也只传递了五个顶点，接下来就是确定这个五个顶点的索引顺序。</p>
+<p>索引顺序和我们要绘制的方式有很大的关系，不同绘制方式的索引顺序不同。</p>
+<p>采用 <code>GL_TRIANGLE_STRIP</code> 的类型绘制，那么索引顺序就是 ${0,1,2,3,4}$。</p>
+<p>具体方法调用情况代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>	<span style="color:#6272a4">// 函数原型</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">native</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">glDrawElements</span>(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#8be9fd">int</span> mode, <span style="color:#6272a4">// 绘制方式</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>        <span style="color:#8be9fd">int</span> count, <span style="color:#6272a4">// 绘制数量</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        <span style="color:#8be9fd">int</span> type, <span style="color:#6272a4">// 索引的数据类型</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        java.<span style="color:#50fa7b">nio</span>.<span style="color:#50fa7b">Buffer</span> indices <span style="color:#6272a4">// 索引缓冲</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    );
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>	<span style="color:#6272a4">// 定义顶点的索引数据</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> front <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>            <span style="color:#6272a4">// 前面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>            0, 1, 2, 3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    };
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#6272a4">// 索引数据传递到缓冲区</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> ByteBuffer frontBuffer <span style="color:#ff79c6">=</span> ByteBuffer.<span style="color:#50fa7b">allocateDirect</span>(indices.<span style="color:#50fa7b">length</span> <span style="color:#ff79c6">*</span>Constants.<span style="color:#50fa7b">BYTES_PRE_BYTE</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>									 .<span style="color:#50fa7b">put</span>(indices)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>	frontBuffer.<span style="color:#50fa7b">position</span>(0)								 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>	<span style="color:#6272a4">// glDrawElements 绘制</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>	GLES20.<span style="color:#50fa7b">glDrawElements</span>(GLES20.<span style="color:#50fa7b">GL_TRIANGLE_STRIP</span>,front.<span style="color:#50fa7b">size</span>,GLES20.<span style="color:#50fa7b">GL_UNSIGNED_BYTE</span>, frontBuffer)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>	<span style="color:#6272a4">// glDrawArrays 绘制</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>	<span style="color:#6272a4">// GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4)</span>
+</span></span></code></pre></div><p>在函数原型中定义了要传入的参数，根据要绘制的方法和索引缓冲区，找到对应的点进行绘制。</p>
+<p>对于绘制时有重复点，采用这种方式，就可以减少向渲染管线中传递重复的点了。</p>
+<p>而且，在定义一个顶点时，大都是 <code>float</code> 类型，它是四个字节，而对于绘制量比较小，顶点数量在 <code>byte</code> 所能表达整数范围内，可以采用 <code>byte</code> 类型定义索引顺序，它只占一个字节，减少了内存的使用。</p>
+<h2 id="gldrawelements-和-gldrawarrays-的对比">glDrawElements 和 glDrawArrays 的对比</h2>
+<p><code>glDrawElements</code> 方法的 <code>count</code> 的参数定义了要取多少个索引出来绘制，而且这个绘制是连续的，必须要把 <code>count</code> 数量的顶点绘制完。</p>
+<p>这里就有一个很有意思的地方了，有一些小游戏是这样的：要求一笔绘制完一个形状，而且不允许交叉。</p>
+<p>比如，要求一笔绕过立方体的六个面，而且不允许交叉，这就很难做到的了。</p>
+<p>而使用 <code>glDrawElements</code> 方法同样会这样，采用索引不能一次不交叉的把图形全部绘制完，得采取两次绘制。</p>
+<p>比如在实践绘制一个立方体时，采用了如下的方式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>	<span style="color:#6272a4">// 前面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> front <span style="color:#ff79c6">=</span> {0, 1, 2, 3};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#6272a4">// 后面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> back <span style="color:#ff79c6">=</span> { 4, 5, 6, 7};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>	<span style="color:#6272a4">// 上面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> top <span style="color:#ff79c6">=</span> {0, 1, 4, 5};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#6272a4">// 下面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> bottom <span style="color:#ff79c6">=</span> { 2, 3, 6, 7};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#6272a4">// 左面索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> left <span style="color:#ff79c6">=</span> {0, 4, 2, 6};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#6272a4">// 右侧索引</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> right <span style="color:#ff79c6">=</span> {1, 5, 3, 7};
+</span></span></code></pre></div><p>把立方体分解成了六个面的内容进行绘制，也就是采用了六个索引缓存。</p>
+<p>而对于使用 <code>glDrawArrays</code>的方式，可以一次性把所有顶点传到渲染管线，并且可以选择绘制的开始和结尾点，这样就只要一个缓冲区就好了，不过代码就是要多占用内存空间了。</p>
+<p>所以说，能用 glDrawElements 方式的还是要采用的。</p>
+<p>具体代码详情，可以参考我的 Github 项目：</p>
+<p><a href="https://github.com/glumes/AndroidOpenGLTutorial">https://github.com/glumes/AndroidOpenGLTutorial</a></p>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/opengl-tutorial-gldrawelements-method/">OpenGL 的 glDrawElements  绘制方法</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/opengl-tutorial-view-matrix/" data-toggle="tooltip" data-placement="top" title="OpenGL 学习系列---观察矩阵">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/kotlin-syntactic-sugar-usage-and-analysis/" data-toggle="tooltip" data-placement="top" title="Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语法糖使用和原理分析">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/opengl-tutorial-view-matrix/">OpenGL 学习系列---观察矩阵</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-texture/">OpenGL 学习系列---纹理</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-projection-matrix/">OpenGL 学习系列---投影矩阵</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-coordinate-system/">OpenGL 学习系列---坐标系统</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-draw-basic-shape/">OpenGL 学习系列---基本形状的绘制</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

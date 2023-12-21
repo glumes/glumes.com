@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="baidu-site-verification" content="pXq00Oz0yr" />
+
+    
+    <meta property="og:site_name" content="音视频开发进阶">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://glumes.com//img/home-bg.jpg">
+    <meta property="twitter:image" content="https://glumes.com//img/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="OpenGL 深度测试与精度值的那些事" />
+    <meta property="og:title" content="OpenGL 深度测试与精度值的那些事" />
+    <meta property="twitter:title" content="OpenGL 深度测试与精度值的那些事" />
+    
+
+    
+    <meta name="description" content="A simple and clean theme for Hugo">
+    <meta property="og:description" content="A simple and clean theme for Hugo" />
+    <meta property="twitter:description" content="A simple and clean theme for Hugo" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://glumes.com/img/favicon.ico">
+
+    <title>OpenGL 深度测试与精度值的那些事 | </title>
+
+    <link rel="canonical" href="https://glumes.com/opengl-depth-test/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://glumes.com/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://glumes.com/css/font-awesome.all.min.css">
+
+    <link rel="stylesheet" href="https://glumes.com/css/sidebar.css">
+
+    
+    
+
+    
+    <script src="https://glumes.com/js/jquery.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/hux-blog.min.js"></script>
+
+    
+    <script src="https://glumes.com/js/lazysizes.min.js"></script>
+
+    
+    
+
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9276c0ce2d3c49b591323abab4a32e1e";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRLK1SYTZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TRLK1SYTZ1');
+</script>
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4260372210024819"
+    crossorigin="anonymous"></script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://glumes.com/">音视频开发进阶</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://glumes.com/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://glumes.com/about//">about</a></li>
+                    
+                        <li><a href="https://glumes.com/archive//">archive</a></li>
+                    
+		            <li>
+                        <a href="https://glumes.com/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://glumes.com/tags/opengl" title="OpenGL">
+                            OpenGL
+                        </a>
+                        
+                    </div>
+                    <h1>OpenGL 深度测试与精度值的那些事</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    音视频开发进阶
+                             
+                            on 
+                            Friday, July 20, 2018
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <blockquote>
+<p>避免图片丢失，建议阅读微信原文：</p>
+<p><a href="https://mp.weixin.qq.com/s/PpLzxm7hPHDbaQLmAniCzQ">https://mp.weixin.qq.com/s/PpLzxm7hPHDbaQLmAniCzQ</a></p>
+</blockquote>
+<p>在 OpenGL 世界里，使用深度测试可以来防止被阻挡的面渲染到其他面的前面。</p>
+<p>直接看一个没有使用深度测试的绘制：</p>
+<p>
+  <img src="https://res.cloudinary.com/glumes-com/image/upload/v1532052034/code/undepth_test.gif" alt="未开启深度测试的情况">
+
+</p>
+<p>按照计划是绘制一个封闭的立方体，六个面都是有的，可从上面的效果来看并不是，立方体的有些面丢失了，只有后面的那个面，前面的面没了。</p>
+<p>这就是在没有开启深度测试的情况下，本来应该被遮挡的，绘制在后面的面却绘制到了其他面之上。</p>
+<p>要解决这种问题，就得使用深度测试了。</p>
+<p>值得一提的是：在没有开启深度测试的情况下，假设绘制了多个不同远近的物体，那么对于最后的景象来说，哪怕是距离最远的，只要它的最后绘制的，都会显示在景象的前面。</p>
+<p>当深度测试被启用时，OpenGL 会将一个片段的深度值与深度缓冲的内容进行对比。OpenGL 会执行一个深度测试，如果这个测试通过了的话，深度缓冲将会更新为新的深度值，如果深度测试失败了，该片段将会被丢弃。</p>
+<p>深度缓冲是在片段着色器运行之后，在屏幕空间中运行的。屏幕空间坐标与通过 OpenGL 的 glViewport 所定义的视口密切相关，并且可以通过 GLSL 的内建变量 <code>gl_FragCoord</code> 从片段着色器中直接访问。</p>
+<p><code>gl_FragCoord</code> 的 x 和 y 分量代表了片段的屏幕空间坐标（其（0，0）位于左下角）。<code>gl_FragCoord</code> 中也包含了一个 z 分量，它包含了片段真正的深度值。z 值就是需要与深度缓冲内容所对比的那个汁。</p>
+<p>深度缓冲默认是禁止的，通过如下代码开启它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>glEnable(GL_DEPTH_TEST);
+</span></span></code></pre></div><p>开启之后，如果一个片段通过了深度测试的话，OpenGL 就会在深度缓冲中存储该片段的 z 值；如果没有通过深度缓冲，则丢弃该片段。</p>
+<p>如果开启了深度缓冲，就应该在每个渲染迭代之前，也就是 onDrawFrame 方法中清除深度缓冲，否则就仍在使用上一次渲染迭代时写入的深度值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 清除深度缓冲</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>glClear(GL_COLOR_BUFFER_BIT <span style="color:#ff79c6">|</span> GL_DEPTH_BUFFER_BIT);
+</span></span></code></pre></div><p>如果在某些情况下，需要对所有的片段执行深度测试并丢弃某些片段，但是又不希望深度缓冲被更新，这时就需要使用一个<code>只读深度缓冲</code>。</p>
+<p>OpenGL 运行我们禁用深度缓冲的写入，只需要设置它的深度掩码为 <code>GL_FALSE</code> 即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">// 设置只读的深度缓冲</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>glDepthMask(GL_FALSE);
+</span></span></code></pre></div><h2 id="深度测试函数">深度测试函数</h2>
+<p>OpenGL 允许修改深度测试中使用的比较运算符，允许我们控制 OpenGL 什么时候该通过或丢弃一个片段，什么时候更新深度缓冲。</p>
+<p>调用 <code>glDepthFunc</code> 函数设置比较运算符。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>glDepthFunc(GL_LESS);
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL_ALWAYS</td>
+<td>永远通过深度测试</td>
+</tr>
+<tr>
+<td>GL_NEVER</td>
+<td>永远不通过深度测试</td>
+</tr>
+<tr>
+<td>GL_LESS</td>
+<td>在片段深度值小于缓冲的深度值时通过测试</td>
+</tr>
+<tr>
+<td>GL_EQUAL</td>
+<td>在片段深度值等于缓冲区的深度值时通过测试</td>
+</tr>
+<tr>
+<td>GL_LEQUAL</td>
+<td>在片段深度值小于等于缓冲区的深度值时通过测试</td>
+</tr>
+<tr>
+<td>GL_GREATER</td>
+<td>在片段深度值大于缓冲区的深度值时通过测试</td>
+</tr>
+<tr>
+<td>GL_NOTEQUAL</td>
+<td>在片段深度值不等于缓冲区的深度值时通过测试</td>
+</tr>
+<tr>
+<td>GL_GEQUAL</td>
+<td>在片段深度值大于等于缓冲区的深度值时通过测试</td>
+</tr>
+</tbody>
+</table>
+<p>默认情况下使用的是 <code>GL_LESS</code>，它将丢弃深度值大于当前深度缓冲值的所有片段。</p>
+<p>对于如下代码的组合：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>glEnable(GL_DEPTH_TEST);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>glDepthFunc(GL_ALWAYS);
+</span></span></code></pre></div><p>其效果等效于没有开启深度测试。</p>
+<p>但我们开启深度测试之后，就可以得到正常的立方体绘制了。</p>
+<p>
+  <img src="https://res.cloudinary.com/glumes-com/image/upload/v1526832824/code/rotate_camera_with_cube.gif" alt="">
+
+</p>
+<h2 id="深度值精度">深度值精度</h2>
+<p>上面提到的作为比较的深度缓冲，它是位于 0.0 ~ 1.0 之间的深度值，它会与要绘制的物体的 z 值进行比较。</p>
+<p>要绘制物体的 z 值就是在运用透视投影或者正交投影视时，介于近平面和远平面之间的任何值。</p>
+<p>要把这个 z 值转换为 OpenGL 中的深度值，也就是介于 0.0 和 1.0 之间的值。</p>
+<p>有公式如下：</p>
+<p>$$\begin{equation} F_{depth} = \frac{z - near}{far - near} \end{equation}$$</p>
+<p>对于这种转换，可以看到，当物体非常接近近平面时，深度值会接近 0.0，当物体非常接近远平面时，深度值会接近 1.0 ，这种转换是一种线性的深度缓冲转换。</p>
+<p>
+  <img src="https://image.glumes.com/images/2019/04/27/depth_linear_graph.png" alt="">
+
+</p>
+<p>而在实践中，几乎不可能是这样的线性转换。</p>
+<p>因为当 z 值很小的时候，非常接近近平面，此时我们的观察也会更加精细，而对于较远的物体，接近远平面了，对于它的观察也会比较粗略。</p>
+<p>这就和人眼一样，近处的物体当然看得很清了，如果看不清，走近一点就好了，而对于很远的物体，走远了和走近了看得的结果差别不大。</p>
+<p>所以在实际将 z 值转换为深度缓冲值，用到的是非线性的转换方程。</p>
+<p>$$\begin{equation} F_{depth} = \frac{1/z - 1/near}{1/far - 1/near} \end{equation}$$</p>
+<p>它的效果如下：</p>
+<p>
+  <img src="https://image.glumes.com/images/2019/04/27/depth_non_linear_graph.png" alt="">
+
+</p>
+<p>可以看到在 z 值位于 1.0 和 2.0 之间时，对应的深度值为 0.0 到 0.5 的区间，这就占据了深度值区间范围的 50 %。而 2.0 之后的范围也才占据了 50 %。</p>
+<p>这就给了近处的物体一个很大的深度精度。</p>
+<p>对于深度值的区间 0.0 到 1.0 ，其实这个区间的前半部分还是和近平面非常近的，不要以为深度值 0.5 就是位于近平面和远平面之间了，其实还非常接近近平面呢。</p>
+<p>关于深度测试，就先说到这了，如果有绘制带有深度层次的内容，可别忘了开启深度测试哦。</p>
+<p>关于具体的代码实现，可以参考我的 Github 项目：</p>
+<blockquote>
+<p><a href="https://github.com/glumes/AndroidOpenGLTutorial">https://github.com/glumes/AndroidOpenGLTutorial</a></p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://learnopengl-cn.github.io/04%20Advanced%20OpenGL/01%20Depth%20testing/">https://learnopengl-cn.github.io/04%20Advanced%20OpenGL/01%20Depth%20testing/</a></li>
+</ol>
+
+                <p>
+                原创文章，转载请注明来源: &nbsp;&nbsp; <a href="https://glumes.com/opengl-depth-test/">OpenGL 深度测试与精度值的那些事</a>
+                </p>
+
+                
+
+
+           
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://glumes.com/opengl-tutorial-face-culling-usage/" data-toggle="tooltip" data-placement="top" title="OpenGL 优化项之面剔除和注意点">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="https://glumes.com/opengl-tutorial-ambient-light/" data-toggle="tooltip" data-placement="top" title="《OpenGL ES 3.x 游戏开发》光照系列之环境光">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+                    
+                    
+
+<p>相关文章</p>
+<ul style="margin-bottom: 25px;">
+    
+    <li><a href="https://glumes.com/opengl-tutorial-face-culling-usage/">OpenGL 优化项之面剔除和注意点</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-vertex-array-object-usage/">《OpenGL ES 3.x 游戏开发》 顶点数组对象 VAO 的使用</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-vertex-buffer-object-usage/">《OpenGL ES 3.x 游戏开发》顶点缓冲区 VBO 的使用</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-color-blend/">《OpenGL ES 3.x 游戏开发》之颜色混合和使用</a></li>
+    
+    <li><a href="https://glumes.com/opengl-tutorial-alpha-test/">《OpenGL ES 3.x 游戏开发》之利用 Alpha 透明度进行测试</a></li>
+    
+</ul>
+
+
+
+
+                    
+
+                
+                
+                <p>留言</p>
+<script src="https://utteranc.es/client.js"
+repo=glumes/glumes.com
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+             <p class="credits copyright text-muted">
+                
+      
+                &nbsp;&bull;&nbsp;
+                2023
+      
+                
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/">音视频开发进阶</a>
+                  &nbsp;&bull;&nbsp;
+                  <a href="https://glumes.com/sitemap.xml">网站地图</a>
+                
+                   &nbsp;&bull;&nbsp;
+                            <a href="http://beian.miit.gov.cn">粤ICP备20067247号</a>
+              </p>
+              
+              <p class="text-center">
+                <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+                <img style="height:20px;width:auto;"; src="https://glumes.com/img/upyun_logo.png">
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

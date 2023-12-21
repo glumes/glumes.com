@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>播放器实践 on 音视频开发进阶</title>
+    <link>https://glumes.com/tags/%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9E%E8%B7%B5/</link>
+    <description>Recent content in 播放器实践 on 音视频开发进阶</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Jun 2022 13:02:00 +0800</lastBuildDate>
+    <atom:link href="https://glumes.com/tags/%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9E%E8%B7%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>007 | 播放器系列专栏-解析 MP4 文件读取信息</title>
+      <link>https://glumes.com/007-parse-mp4-info/</link>
+      <pubDate>Sat, 18 Jun 2022 13:02:00 +0800</pubDate>
+      <guid>https://glumes.com/007-parse-mp4-info/</guid>
+      <description>&lt;p&gt;在之前文章中已经介绍过了 MP4 标准的来源以及它的格式定义，基本上就是由一个个 Box 组成的，大致的结构如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1&lt;/span&gt;&lt;span&gt;ftyp&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2&lt;/span&gt;&lt;span&gt;moov&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3&lt;/span&gt;&lt;span&gt;    mvhd&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4&lt;/span&gt;&lt;span&gt;    trak&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5&lt;/span&gt;&lt;span&gt;        tkhd&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6&lt;/span&gt;&lt;span&gt;        mdia&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7&lt;/span&gt;&lt;span&gt;    trak&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8&lt;/span&gt;&lt;span&gt;        tkhd&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9&lt;/span&gt;&lt;span&gt;        mdia&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10&lt;/span&gt;&lt;span&gt;mdat&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下来我们就要去手动解析 MP4 文件，&lt;strong&gt;注意这可不是用 FFmpeg 来解封装&lt;/strong&gt;，而是从 MP4 文件中一个一个字节读取信息并解析它的含义获得想要的内容。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息</title>
+      <link>https://glumes.com/mac-mp4-info/</link>
+      <pubDate>Thu, 05 May 2022 21:39:07 +0800</pubDate>
+      <guid>https://glumes.com/mac-mp4-info/</guid>
+      <description>&lt;p&gt;之前介绍了在 Windows 上查看 MP4 格式信息，使用的是 &lt;strong&gt;Mp4 Explorer&lt;/strong&gt; 软件，具体使用如下：&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://glumes.com/post/ffmpeg/windows-mp4-info/&#34;&gt;005 | 播放器系列专栏-在 Windows 上查看 MP4 格式&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;现在该介绍一下 MAC 上用的软件了，它就是 MediaInfo 软件，官网地址如下：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>005 | 播放器系列专栏-在 Windows 上查看 MP4 格式信息</title>
+      <link>https://glumes.com/windows-mp4-info/</link>
+      <pubDate>Sat, 16 Apr 2022 18:29:38 +0800</pubDate>
+      <guid>https://glumes.com/windows-mp4-info/</guid>
+      <description>&lt;p&gt;在之前的文章中我们已经认识了 MP4 视频，知道了它是音频和视频的容器，并且由一系列 Box 组成。&lt;/p&gt;&#xA;&lt;p&gt;在前文的附件中，我们也给出了对应的资料，包括 MP4 格式的官方定义以及各种 Box 类型的描述。&lt;/p&gt;&#xA;&lt;p&gt;但是纸上得来终觉浅，绝知此事要躬行，光是理论上知道了还不行，需要亲自实践加深印象。&lt;/p&gt;&#xA;&lt;p&gt;这次会在 Windows 平台上用工具解析查看 MP4 格式信息，推荐的工具就是 &lt;strong&gt;Mp4 Explorer&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>004 | 播放器系列专栏-认识MP4视频（下）</title>
+      <link>https://glumes.com/what-is-mp4-2/</link>
+      <pubDate>Sun, 10 Apr 2022 22:10:24 +0800</pubDate>
+      <guid>https://glumes.com/what-is-mp4-2/</guid>
+      <description>&lt;p&gt;在前文介绍了 MP4 标准的缘来，现在要详细了解一下它的格式。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>003 | 播放器系列专栏-认识MP4视频（上）</title>
+      <link>https://glumes.com/what-is-mp4-1/</link>
+      <pubDate>Sun, 10 Apr 2022 22:09:22 +0800</pubDate>
+      <guid>https://glumes.com/what-is-mp4-1/</guid>
+      <description>&lt;p&gt;在开始播放器实践之前，我们要先知道播放的内容是什么：认识一下 MP4 视频。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>002 | 播放器系列专栏-FFmpeg依赖库的配置</title>
+      <link>https://glumes.com/planet-player-project-configure-ffmpeg/</link>
+      <pubDate>Fri, 18 Mar 2022 21:10:54 +0800</pubDate>
+      <guid>https://glumes.com/planet-player-project-configure-ffmpeg/</guid>
+      <description>&lt;p&gt;上回书说道：&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzA4MjU1MDk3Ng==&amp;amp;mid=2451531599&amp;amp;idx=1&amp;amp;sn=708c717b2a74d6be5a54c150abbac4ea&amp;amp;scene=21#wechat_redirect&#34;&gt;星球专享 | 关于播放器的一次项目实践&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;目前已经完成了项目的创建，是怎样一个项目呢？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>001 | 播放器系列专栏-关于播放器项目的一个小实践</title>
+      <link>https://glumes.com/planet-player-project/</link>
+      <pubDate>Fri, 18 Mar 2022 21:07:14 +0800</pubDate>
+      <guid>https://glumes.com/planet-player-project/</guid>
+      <description>&lt;p&gt;众所周知，前段时间开通了知识星球，旨在为音视频的开发和学习提供更专业的问答氛围。&lt;/p&gt;&#xA;&lt;p&gt;同时也考虑在星球内出一些干货教程，回馈大家的信任，一番思索之后，决定在星球内出一个&lt;strong&gt;播放器的项目实践&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;h2 id=&#34;为什么会选择做播放器呢&#34;&gt;为什么会选择做播放器呢？&lt;/h2&gt;</description>
+    </item>
+  </channel>
+</rss>
