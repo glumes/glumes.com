@@ -1,0 +1,177 @@
+{
+  "main": {
+    "id": "9f2ca3e5e3642721",
+    "type": "split",
+    "children": [
+      {
+        "id": "6333b77ddc771440",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5148dcb1fb3dd2d4",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c3543880dbca92a2",
+    "type": "split",
+    "children": [
+      {
+        "id": "0610ad1db2c5e514",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e9ad61cc399dba1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7705fcdc74a15ec6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2b09ca347a50121e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "d0a0e9f0e97de6f7",
+    "type": "split",
+    "children": [
+      {
+        "id": "2cfb0413a379ec0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "973bf8f077562865",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "dabd1029bf653e42",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5c64a85c7ae4111b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "f3713a2701ec8ee3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "5148dcb1fb3dd2d4",
+  "lastOpenFiles": [
+    "content/post/streammedia",
+    "content/post/time5.md",
+    "content/post/testtime4.md",
+    "content/post/testtime3.md",
+    "content/post/test.md",
+    "content/post/testtime1.md",
+    "content/post/testdate.md",
+    "content/post/testtime.md",
+    "模板.md",
+    "content/post/liutest2.md",
+    "content/post/ffmpeg/流媒体测试.md",
+    "content/post/ffmpeg/快速抽取缩略图.md",
+    "content/post/sdf.md",
+    "archetypes/default.md",
+    "_Templates",
+    "obs_scripts/NewBlog.js.md",
+    "obs_scripts/NewBlog.js",
+    "obs_scripts/未命名 1.md",
+    "obs_scripts",
+    "content/post/vulkan/进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解.md",
+    "content/post/vulkan/进击的 Vulkan 移动开发之 SwapChain.md",
+    "content/post/vulkan/进击的 Vulkan 移动开发之 Instance & Device & Queue.md",
+    "content/post/vulkan/进击的 Vulkan 移动开发之 Command Buffer.md",
+    "content/post/vulkan/进击的 Vulkan 移动开发（一）之今生前世.md",
+    "content/post/vulkan/干货收藏 || Vulkan Game Engine 视频教程.md",
+    "content/post/webrtc/WebRTC & Android 开发学习环境搭建.md",
+    "流媒体开发学习001.md",
+    "未命名.canvas",
+    "content/post/未命名.md",
+    "config.toml.bak",
+    "config.toml",
+    "content/post/code/未命名.md",
+    "config33.toml33"
+  ]
+}

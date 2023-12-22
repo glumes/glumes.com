@@ -2,12 +2,11 @@
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
 slug: "url"
-author: "ezglumes"
+author: "星陨"
 subtitle: ""
 tags: []
 categories: ["android"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
@@ -15,11 +14,4 @@ image: ""
 
 <!--more-->
 
-
-
-{{< gallery>}}
-
-	{{< figure src="" >}}
-
-{{< /gallery >}}
 
