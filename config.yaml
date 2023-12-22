@@ -1,14 +1,63 @@
----
-baseurl: "/"
-DefaultContentLanguage: "zh-cn"
+baseURL: https://glumes.com/
+title: 音视频开发进阶
+languageCode: en-us
+theme: hugo-theme-cleanwhite
+canonifyURLs: true
+# copyright: "this is right"
+paginate: 10
+defaultContentLanguage: en
 hasCJKLanguage: true
-languageCode: "zh-cn"
-title: "星陨的博客"
-theme: "theme_back"
-author: "glumes"
-metaDataFormat: "yaml"
-algolia:
-  index: "glumes-blog"
-  key: "0607d0b1f4a48bf1713cee593e2a70eb"
-  appID: "HQ5VE9C15Y"
----
+enableInlineShortcodes: true
+enableEmoji: true
+permalinks:
+  post: /:slug/
+params:
+  author: "glumes"
+  description: A simple and clean theme for Hugo
+  keywords: blog,developer,personal
+  img_home: img/home-bg.jpg
+  img_404: img/404-bg.jpg
+  header_image: img/home-bg.jpg
+  about_me: true
+  sidebar_avatar: image/avatar.jpeg
+  sidebar_about_description: >-
+    你好，我是星陨，多媒体开发工程师，目前就职于抖音，从事音视频 SDK 开发工作。分享 Android
+    应用开发、图形图像渲染、音视频等相关内容，与你一同技术成长进阶~~~
+
+    技术交流、经验探讨、行业分享 欢迎加我微信 ezglumes ，拉你入技术交流群！
+  omit_categories: true
+  reward: false
+  sidebar:
+    enable: true
+    gravatarEmail: ""
+    avatar: img/home-bg.jpg
+    bio: a personal website
+  utteranc:
+    enable: true
+    repo: glumes/glumes.com
+    issue-term: pathname
+    theme: github-light
+  addtional_menus:
+    - title: about
+      href: /about/
+    - title: archive
+      href: /archive/
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+markup:
+  highlight:
+    noClasses: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    lineNumbersInTable: false
+    style: dracula
+  goldmark:
+    renderer:
+      unsafe: true
+      useFaviconGenerator: true
+      custom_js: []
+      custom_css:
+        - css/sidebar.css
