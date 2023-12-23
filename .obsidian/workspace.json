@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6333b77ddc771440",
+        "id": "b0ce1741d2272037",
         "type": "tabs",
         "children": [
           {
-            "id": "5148dcb1fb3dd2d4",
+            "id": "0783fdb7382d61da",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "5148dcb1fb3dd2d4",
+  "active": "0783fdb7382d61da",
   "lastOpenFiles": [
+    "themes/hugo-theme-cleanwhite/static/css/fonts/fontawesome-webfont.svg",
     "content/post/streammedia/流媒体开发-001-推流环境搭建.md",
     "config22.tomlbak",
     "content/post/streammedia",
@@ -181,7 +182,6 @@
     "content/post/未命名.md",
     "config.toml.bak",
     "config.toml",
-    "content/post/code/未命名.md",
     "config33.toml33"
   ]
 }
