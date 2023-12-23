@@ -1596,7 +1596,8 @@ h1 {
 
 .h2,
 h2 {
-    font-size: 30px
+    font-size: 30px;
+    color: red
 }
 
 .h3,
