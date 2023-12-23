@@ -11,7 +11,7 @@
   
   .tags-cloud a {
     padding: 5px 10px;
-    background: #2a55f4;
+    background: #bfbfbf;
     margin-bottom: 20px;
     color: #fff;
     font-size: 12px;
@@ -32,7 +32,7 @@
     margin-bottom: 10px;
   }
   .sidebar-block ol li a {
-    color: #444;
+    color: #040404;
     font-size: 15px;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
