@@ -53,15 +53,16 @@
 
     <link rel="canonical" href="{{ .RelPermalink }}">
 
-    {{ if .Site.Params.disqus_proxy }}
+    <!-- 没使用 disqus 评论系统 -->
+    <!-- {{ if .Site.Params.disqus_proxy }}
     <link rel="stylesheet" href="{{ "css/iDisqus.min.css" | relURL }}"/>
-    {{ end }}
+    {{ end }} -->
     
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "css/bootstrap.min.css" | relURL }}">
 
     <!-- Clean White theme CSS -->
-    <link rel="stylesheet" href="{{ "css/hugo-theme-cleanwhite.min.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/hugo-theme-cleanwhite.css" | relURL }}">
 
     <!-- zangshang CSS -->
     <link rel="stylesheet" href="{{ "css/zanshang.css" | relURL }}">
