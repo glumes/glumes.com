@@ -148,6 +148,7 @@
   },
   "active": "8e9ad61cc399dba1",
   "lastOpenFiles": [
+    "themes/hugo-theme-cleanwhite/static/css/sidebar.css.bak",
     "themes/hugo-theme-cleanwhite/layouts/_default/archive/graphics-renderer.html",
     "content/archive/graphics-renderer.md",
     "content/archive/learning-insights.md",
@@ -184,7 +185,6 @@
     "content/post/vulkan/进击的 Vulkan 移动开发之 Instance & Device & Queue.md",
     "content/post/vulkan/进击的 Vulkan 移动开发之 Command Buffer.md",
     "content/post/vulkan/进击的 Vulkan 移动开发（一）之今生前世.md",
-    "未命名.canvas",
-    "config.toml.bak"
+    "未命名.canvas"
   ]
 }
