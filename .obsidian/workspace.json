@@ -148,6 +148,7 @@
   },
   "active": "8e9ad61cc399dba1",
   "lastOpenFiles": [
+    "themes/hugo-theme-cleanwhite/static/css/sidebar.css",
     "themes/hugo-theme-cleanwhite/static/css/sidebar.css.bak",
     "themes/hugo-theme-cleanwhite/layouts/_default/archive/graphics-renderer.html",
     "content/archive/graphics-renderer.md",
@@ -179,7 +180,6 @@
     "obs_scripts/NewBlog.js.md",
     "obs_scripts/NewBlog.js",
     "obs_scripts/未命名 1.md",
-    "obs_scripts",
     "content/post/vulkan/进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解.md",
     "content/post/vulkan/进击的 Vulkan 移动开发之 SwapChain.md",
     "content/post/vulkan/进击的 Vulkan 移动开发之 Instance & Device & Queue.md",
