@@ -70,7 +70,7 @@
     }
 }
 .sidebar-container{
-    color:#bfbfbf;
+    color:#404040;
     font-size:15px
 }
 .sidebar-container h5{
@@ -82,7 +82,7 @@
     text-decoration:none
 }
 .sidebar-container a{
-    color:#bfbfbf!important
+    color:#404040!important
 }
 .sidebar-container a:hover,.sidebar-container a:active{
     color:#0085a1!important
