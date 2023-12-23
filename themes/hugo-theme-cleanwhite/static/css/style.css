@@ -135,12 +135,14 @@ h2 {
   font-size: 2.25em;
   /* 36px / 16px */
   line-height: 1.34;
+  color: red;
 }
 
 h3 {
   font-size: 1.625em;
   /* 26px / 16px */
   line-height: 1.85;
+  color: red;
 }
 
 h4 {
