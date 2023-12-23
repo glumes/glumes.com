@@ -1,0 +1,64 @@
+
+{{ define "main" }}
+{{ $pages := (where (where .Site.Pages "Type" "post") "IsPage" true) }}
+
+<div data-pagefind-ignore="all" class="container">
+    <div class="row">
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
+
+        <h2>软件开发</h2>
+            <div class="archive-list">
+               
+                <h3> Android 开发 </h3>
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.android }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+
+
+
+                <h3> iOS 开发 </h3>
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.ios }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <h3> 编程语言 </h3>
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.code }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+       	</div>
+        {{ partial "sidebar.html" . }}
+	</div>
+</div>
+
+
+<hr />
+{{ end }}
+

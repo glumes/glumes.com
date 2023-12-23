@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: archive/ffmpeg
+layout: archive/learning-insights
 ---

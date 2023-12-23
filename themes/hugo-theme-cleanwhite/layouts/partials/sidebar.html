@@ -20,13 +20,13 @@ sidebar-container">
 
     <div class="sidebar-block">
       <h4 class="sidebar-title">分类目录</h4>
-      <ol class="list-unstyled">
+      <ol class="list-unstyled about-text">
 
 
       {{ range .Site.Data.beautifulhugo.category.category_list }}
 
 
-      <li><a href="{{ .url }}">{{ .title }}</a></li>
+      <li class="about-text"><a href="{{ .url }}">{{ .title }}</a></li>
       {{ end }}
 
       </ol>

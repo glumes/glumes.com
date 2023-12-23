@@ -148,6 +148,14 @@
   },
   "active": "8e9ad61cc399dba1",
   "lastOpenFiles": [
+    "themes/hugo-theme-cleanwhite/layouts/_default/archive/graphics-renderer.html",
+    "content/archive/graphics-renderer.md",
+    "content/archive/learning-insights.md",
+    "themes/hugo-theme-cleanwhite/layouts/_default/archive/learning-insights.html",
+    "themes/hugo-theme-cleanwhite/layouts/_default/archive/media-development.html",
+    "content/archive/media-development.md",
+    "content/archive/software-development.md",
+    "themes/hugo-theme-cleanwhite/layouts/_default/archive/software-development.html",
     "content/post/flutter",
     "themes/hugo-theme-cleanwhite/static/css/fonts/fontawesome-webfont.svg",
     "content/post/streammedia/流媒体开发-001-推流环境搭建.md",
@@ -176,13 +184,7 @@
     "content/post/vulkan/进击的 Vulkan 移动开发之 Instance & Device & Queue.md",
     "content/post/vulkan/进击的 Vulkan 移动开发之 Command Buffer.md",
     "content/post/vulkan/进击的 Vulkan 移动开发（一）之今生前世.md",
-    "content/post/vulkan/干货收藏 || Vulkan Game Engine 视频教程.md",
-    "content/post/webrtc/WebRTC & Android 开发学习环境搭建.md",
-    "流媒体开发学习001.md",
     "未命名.canvas",
-    "content/post/未命名.md",
-    "config.toml.bak",
-    "config.toml",
-    "config33.toml33"
+    "config.toml.bak"
   ]
 }

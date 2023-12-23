@@ -5,5 +5,5 @@ comments: true
 postmeta: false
 seealso: false
 noplanet: true
-layout: archive/android
+layout: archive/software-development
 ---

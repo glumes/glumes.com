@@ -13,10 +13,13 @@
             col-xs-12
             post-container
         ">
+
+        <h2>学习感悟</h2>
+        
             <div class="archive-list">
                
                 <ul>
-                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.ffmpeg }}
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.life }}
                     <li>
                         <span>{{ .Date.Format "2006-01-02"}}</span> — 
                         <a href="{{ .RelPermalink }}">
@@ -35,4 +38,5 @@
 
 <hr />
 {{ end }}
+
 

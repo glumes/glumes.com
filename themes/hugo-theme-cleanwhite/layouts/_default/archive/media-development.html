@@ -13,10 +13,26 @@
             col-xs-12
             post-container
         ">
+
+        <h2>音视频开发</h2>
+
             <div class="archive-list">
                
+                <h3> FFmpeg 开发 </h3>
                 <ul>
-                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.life }}
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.ffmpeg }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <h3> WebRTC 开发 </h3>
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.webrtc }}
                     <li>
                         <span>{{ .Date.Format "2006-01-02"}}</span> — 
                         <a href="{{ .RelPermalink }}">
@@ -35,5 +51,4 @@
 
 <hr />
 {{ end }}
-
 

@@ -391,11 +391,12 @@ footer .theme-by {
     height: auto;
 }
 .about-text {
-    color: #777;
+    color: #404040;
     font-weight: 400;
     font-size: 14px;
     line-height: 27px;
 }
+
 .rounded-circle {
     border-radius: 50%!important;
 }
@@ -454,6 +455,7 @@ footer .theme-by {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid#eee;
+    color: #404040;
 }
 
 .tags-cloud a {

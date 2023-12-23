@@ -1,0 +1,72 @@
+
+
+
+
+
+{{ define "main" }}
+{{ $pages := (where (where .Site.Pages "Type" "post") "IsPage" true) }}
+
+<div data-pagefind-ignore="all" class="container">
+    <div class="row">
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
+
+        <h2>图形渲染</h2>
+
+            <div class="archive-list">
+               
+                <h3>OpenGL 开发</h3>
+
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.opengl }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <h3>Vulkan 开发</h3>
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.vulkan }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <h3>游戏引擎</h3>
+                
+                <ul>
+                    {{ range $key, $taxonomy := .Site.Taxonomies.categories.engine }}
+                    <li>
+                        <span>{{ .Date.Format "2006-01-02"}}</span> — 
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+       	</div>
+        {{ partial "sidebar.html" . }}
+	</div>
+</div>
+
+
+<hr />
+{{ end }}
+
+
+
+
