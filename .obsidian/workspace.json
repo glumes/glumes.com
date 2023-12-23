@@ -146,8 +146,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "0783fdb7382d61da",
+  "active": "8e9ad61cc399dba1",
   "lastOpenFiles": [
+    "content/post/flutter",
     "themes/hugo-theme-cleanwhite/static/css/fonts/fontawesome-webfont.svg",
     "content/post/streammedia/流媒体开发-001-推流环境搭建.md",
     "config22.tomlbak",
