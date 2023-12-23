@@ -1,3 +1,31 @@
+.sidebar-about {
+    text-align: center!important;
+    padding: 1.5rem!important;
+    margin-bottom: 1rem!important;
+    border-radius: .25rem!important;
+    background-color: #f8f9fa!important;
+}
+.about-img {
+    margin: 20px;
+}
+.about-img img {
+    width: 66px;
+    height: auto;
+}
+.about-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    color: #404040;
+}
+.rounded-circle {
+    border-radius: 50%!important;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
   .sidebar-wrap {
     padding-bottom: 1rem!important;
     padding-top: 1rem!important;
@@ -107,6 +135,7 @@
     padding-left:0;
     margin-right:-15px
 }
+
 body{
     font-family:-apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
     line-height:1.7;
