@@ -41,9 +41,9 @@ params:
     issue-term: pathname
     theme: github-light
   addtional_menus:
-    - title: about
+    - title: 关于
       href: /about/
-    - title: archive
+    - title: 归档
       href: /archive/
 taxonomies:
   category: categories
