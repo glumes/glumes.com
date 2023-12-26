@@ -21,3 +21,5 @@ author: 星陨
 https://codelabs.developers.google.com/codelabs/flutter-ffigen?hl=zh-cn#0
 
 https://blog.csdn.net/eieihihi/article/details/119117277
+
+https://code.pieces.app/blog/ffi-programming-using-ffigen-dart-218
