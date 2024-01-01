@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/life/2024年的目标制定.md",
+                "file": "content/post/life/2024年的目标制定和 TodoList.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/life/2024年的目标制定.md",
+                "file": "content/post/life/2024年的目标制定和 TodoList.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/life/2024年的目标制定.md",
+                "file": "content/post/life/2024年的目标制定和 TodoList.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/life/2024年的目标制定.md"
+                "file": "content/post/life/2024年的目标制定和 TodoList.md"
               }
             }
           }
@@ -149,7 +149,7 @@
   "active": "0783fdb7382d61da",
   "lastOpenFiles": [
     "content/post/life/2019 年终总结与回顾.md",
-    "content/post/life/2024年的目标制定.md",
+    "content/post/life/2024年的目标制定和 TodoList.md",
     "content/post/life/博客图床迁移记.md",
     "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
     "content/post/flutter/Flutter 调用 WebP 第三方库.md",
