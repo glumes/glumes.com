@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "a14bf23e455abfd3",
+        "id": "b0ce1741d2272037",
         "type": "tabs",
         "children": [
           {
-            "id": "db33b17bc67118e0",
+            "id": "0783fdb7382d61da",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
+                "file": "content/post/life/2024年的目标制定.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
+                "file": "content/post/life/2024年的目标制定.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
+                "file": "content/post/life/2024年的目标制定.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/flutter/Flutter 使用 FFI 访问第三方库.md"
+                "file": "content/post/life/2024年的目标制定.md"
               }
             }
           }
@@ -146,14 +146,12 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8e9ad61cc399dba1",
+  "active": "0783fdb7382d61da",
   "lastOpenFiles": [
+    "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
+    "content/post/life/2024年的目标制定.md",
     "content/post/flutter/Flutter 调用 WebP 第三方库.md",
     "content/post/streammedia/流媒体开发-001-推流环境搭建.md",
-    "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
-    "content/post/flutter",
-    "模板.md",
-    "resources/_gen/images/photo-of-woman-sitting-on-rock-3326363.jpg",
     "public/webfonts/fa-solid-900.woff2",
     "public/webfonts/fa-brands-400.woff2",
     "public/webfonts/fa-brands-400.woff",
@@ -163,6 +161,7 @@
     "public/js/mindmap.min.js",
     "public/js/mindmap.js",
     "public/js/load-photoswipe.js",
+    "public/js/lazysizes.min.js",
     "public/img/wexin-logo.png",
     "public/img/wechat.png",
     "public/img/wechat-btn.png",
@@ -172,6 +171,7 @@
     "public/img/wechat-100.png",
     "public/img/wechat-10.png",
     "public/img/wechat-1.png",
+    "public/img/vulkan-vs-opengl.webp",
     "content/archive/graphics-renderer.md",
     "content/archive/learning-insights.md",
     "content/archive/media-development.md",
@@ -183,6 +183,7 @@
     "content/post/testtime1.md",
     "content/post/testdate.md",
     "content/post/testtime.md",
+    "模板.md",
     "content/post/liutest2.md",
     "content/post/ffmpeg/流媒体测试.md",
     "content/post/ffmpeg/快速抽取缩略图.md",
