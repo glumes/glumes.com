@@ -148,8 +148,10 @@
   },
   "active": "0783fdb7382d61da",
   "lastOpenFiles": [
-    "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
+    "content/post/life/2019 年终总结与回顾.md",
     "content/post/life/2024年的目标制定.md",
+    "content/post/life/博客图床迁移记.md",
+    "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
     "content/post/flutter/Flutter 调用 WebP 第三方库.md",
     "content/post/streammedia/流媒体开发-001-推流环境搭建.md",
     "public/webfonts/fa-solid-900.woff2",
@@ -192,8 +194,6 @@
     "obs_scripts/NewBlog.js.md",
     "obs_scripts/未命名 1.md",
     "content/post/vulkan/进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解.md",
-    "content/post/vulkan/进击的 Vulkan 移动开发之 SwapChain.md",
-    "content/post/vulkan/进击的 Vulkan 移动开发之 Instance & Device & Queue.md",
     "未命名.canvas"
   ]
 }
