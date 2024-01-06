@@ -102,6 +102,11 @@ $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 生成 Demo 工程：
 
 
+```sh
+gn gen out/ios_64 --args='target_os="ios" target_cpu="arm64"' --ide=xcode
+```
+
+
 ## 参考
 1. https://juejin.cn/post/7028417096526594061
 2. https://blog.csdn.net/uianster/article/details/121595205
