@@ -59,8 +59,8 @@ https://chromium.googlesource.com/external/webrtc/+/refs/heads/master/docs/relea
 fetch --nohooks webrtc_ios
 ```
 
-指定分支，用目前最新的 M114 版本
-```
+指定分支，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` 。
+```sh
 
 ```
 
