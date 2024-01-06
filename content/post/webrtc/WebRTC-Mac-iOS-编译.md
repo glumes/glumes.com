@@ -129,6 +129,7 @@ gn gen out/mac_64 --args='target_os="mac" target_cpu="arm64"'
 2. https://blog.csdn.net/uianster/article/details/121595205
 3. http://www.enkichen.com/2017/05/12/webrtc-ios-build/
 4. https://cloud.tencent.com/developer/article/1608871
+5. https://segmentfault.com/a/1190000041179228
 
 
 
