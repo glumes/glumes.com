@@ -120,7 +120,7 @@ gn gen out/mac_64 --args='target_os="mac" target_cpu="arm64"'
 ```
 如果提示 is only available on macOS 10.14 or newer ，在 src/build/config/mac/mac_sdk.gni 文件中修改版本，[参考这里](https://www.cnblogs.com/milliele/p/11019300.html)
 
-
+如果提示 is deprecated: first deprecated in macOS 10.14 [-Werror,-Wdeprecated-declarations] ，改成 -Wno-deprecated-declarations 。
 
 
 
