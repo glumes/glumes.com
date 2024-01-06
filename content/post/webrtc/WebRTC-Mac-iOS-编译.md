@@ -94,8 +94,12 @@ $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 
 使用源码中自带的编译脚本进行编译，在 `src/tools_webrtc/ios` 目录下的 `build_ios_libs.sh` 脚本，该脚本实际调用的是 `build_ios_libs.py` 。
 ```sh
-python3 tools_webrtc/ios/build_ios_libs.py 
+./build_ios_libs.sh
 ```
+
+运行结束后，在 `out_ios_libs` 目录下有对应的 `WebRTC.xcframework` 文件夹生成。
+
+生成 Demo 工程：
 
 
 ## 参考
