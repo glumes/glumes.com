@@ -65,8 +65,18 @@ git checkout -b m114 branch-heads/5735
 gclient sync
 ```
 
+## Demo 编译：
+
+使用源码中自带的编译脚本进行编译：
+```sh
+python tools_webrtc/ios/build_ios_libs.py  --output-dir  out/ios  --arch arm64  --extra-gn-args rtc_include_tests=false rtc_build_tools=false rtc_build_examples=false
+
+```
 
 
+## 参考
+1. https://juejin.cn/post/7028417096526594061
+2. https://blog.csdn.net/uianster/article/details/121595205
 
 
 
