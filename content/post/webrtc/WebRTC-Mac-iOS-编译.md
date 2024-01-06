@@ -79,29 +79,19 @@ gclient sync
 设置要编译的平台到环境变量中去：
 ```sh
 # 32位真机
-
 $ export GYP_DEFINES="OS=ios target_arch=arm"
-
 # 64位真机
-
 $ export GYP_DEFINES="OS=ios target_arch=arm64"
-
 # 32位模拟器
-
 $ export GYP_DEFINES="OS=ios target_arch=ia32"
-
 # 64位模拟器
-
 $ export GYP_DEFINES="OS=ios target_arch=x64"
-
 # OSX
-
 $ export GYP_DEFINES="OS=mac target_arch=x64"
-
 # 配置输出路径
-
 $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 ```
+
 使用源码中自带的编译脚本进行编译：
 ```sh
 python tools_webrtc/ios/build_ios_libs.py  --output-dir  out/ios  --arch arm64  --extra-gn-args rtc_include_tests=false rtc_build_tools=false rtc_build_examples=false
