@@ -114,7 +114,11 @@ ERROR at //build/config/ios/ios_sdk.gni:138:33: Script returned non-zero exit co
     ios_code_signing_identity = exec_script("find_signing_identity.py",
 ```
 
+编译 Mac Demo：
+```
 gn gen out/mac_64 --args='target_os="mac" target_cpu="arm64"'
+```
+如果提示 is only available on macOS 10.14 or newer ，在
 
 ## 参考
 1. https://juejin.cn/post/7028417096526594061
