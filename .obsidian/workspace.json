@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c81a930e5d84ed8c",
+        "id": "1b2539d890212484",
         "type": "tabs",
         "children": [
           {
-            "id": "af7831786ff449b6",
+            "id": "16e7100079500e86",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -129,7 +129,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -145,11 +146,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "af7831786ff449b6",
+  "active": "16e7100079500e86",
   "lastOpenFiles": [
+    "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
     "content/post/webrtc/WebRTC 系列1--创建相机预览.md",
     "content/post/webrtc/WebRTC & Android 开发学习环境搭建.md",
-    "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
     "content/post/life/2024年的目标制定和 TodoList.md",
     "content/post/life/2019 年终总结与回顾.md",
     "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
