@@ -92,10 +92,9 @@ $ export GYP_DEFINES="OS=mac target_arch=x64"
 $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 ```
 
-使用源码中自带的编译脚本进行编译，在 `src/`
+使用源码中自带的编译脚本进行编译，在 `src/tools_webrtc/ios` 目录下的 `build_ios_libs.sh` 脚本，该脚本实际调用的是 `build_ios_libs.py` 。
 ```sh
-python tools_webrtc/ios/build_ios_libs.py  --output-dir  out/ios  --arch arm64  --extra-gn-args rtc_include_tests=false rtc_build_tools=false rtc_build_examples=false
-
+python3 tools_webrtc/ios/build_ios_libs.py 
 ```
 
 
