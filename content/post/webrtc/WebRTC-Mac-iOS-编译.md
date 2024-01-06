@@ -102,7 +102,7 @@ $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 运行结束后，在 `out_ios_libs` 目录下有对应的 `WebRTC.xcframework` 文件夹生成。
 
 ### 编译 Demo 工程：
-编译 Demo 工程使用 ninja 进行编译，需要有证书才行，否则光是执行如下命令，会报错的。
+Demo 工程 AppRTCMobile 使用 ninja 进行编译，需要有证书才行，否则光执行如下命令，会报错的。
 ```sh
 gn gen out/ios_64 --args='target_os="ios" target_cpu="arm64"' --ide=xcode
 ```
@@ -113,6 +113,7 @@ gn gen out/ios_64 --args='target_os="ios" target_cpu="arm64"' --ide=xcode
 ERROR at //build/config/ios/ios_sdk.gni:138:33: Script returned non-zero exit code.
     ios_code_signing_identity = exec_script("find_signing_identity.py",
 ```
+
 
 
 ## 参考
