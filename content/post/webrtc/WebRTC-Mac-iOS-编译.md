@@ -118,7 +118,9 @@ ERROR at //build/config/ios/ios_sdk.gni:138:33: Script returned non-zero exit co
 ```
 gn gen out/mac_64 --args='target_os="mac" target_cpu="arm64"'
 ```
-如果提示 is only available on macOS 10.14 or newer ，在 src/build/config/mac/mac_sdk.gni 文件中修改版本。
+如果提示 is only available on macOS 10.14 or newer ，在 src/build/config/mac/mac_sdk.gni 文件中修改版本，[参考这里](https://www.cnblogs.com/milliele/p/11019300.html)
+
+
 
 
 
