@@ -76,7 +76,7 @@ gclient sync
 ```
 ## Demo 编译：
 
-设置要编译的平台到环境变量中去：
+设置要编译的平台到环境变量中去，没有这一步也可以。
 ```sh
 # 32位真机
 $ export GYP_DEFINES="OS=ios target_arch=arm"
