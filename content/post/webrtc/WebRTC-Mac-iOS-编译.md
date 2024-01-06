@@ -54,14 +54,15 @@ WebRTC  的版本迭代在这里找：
 https://chromium.googlesource.com/external/webrtc/+/refs/heads/master/docs/release-notes.md
 
 拉取源码：
-
 ```sh
 fetch --nohooks webrtc_ios
+gclient sync
 ```
 
 指定分支，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` 。
 ```sh
-
+git checkout -b m114 branch-heads/5735
+gclient sync
 ```
 
 
