@@ -59,7 +59,7 @@ fetch --nohooks webrtc_ios
 gclient sync
 ```
 
-指定分支的同步方式，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` ，commit id 是  `729f79c176c8b4c3a8c1b60f39df5fb43323b27b` 。
+使用指定分支的同步方式，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` ，commit id 是  `729f79c176c8b4c3a8c1b60f39df5fb43323b27b` 。
 ```sh
 fetch --nohooks webrtc_ios
 gclient sync
@@ -86,6 +86,7 @@ python tools_webrtc/ios/build_ios_libs.py  --output-dir  out/ios  --arch arm64  
 ## 参考
 1. https://juejin.cn/post/7028417096526594061
 2. https://blog.csdn.net/uianster/article/details/121595205
+3. http://www.enkichen.com/2017/05/12/webrtc-ios-build/
 
 
 
