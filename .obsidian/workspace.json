@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "dfa0fc134554f256",
+        "id": "c81a930e5d84ed8c",
         "type": "tabs",
         "children": [
           {
-            "id": "d4485244db4dc985",
+            "id": "af7831786ff449b6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "content/post/ios/iOS 音视频开发的一些基础准备工作.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,8 +138,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d4485244db4dc985",
+  "active": "8e9ad61cc399dba1",
   "lastOpenFiles": [
+    "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
     "content/post/ios/在 Swift 中去调用C++代码.md",
     "content/post/life/2024年的目标制定和 TodoList.md",
     "content/post/life/2019 年终总结与回顾.md",
@@ -193,7 +186,6 @@
     "content/post/sdf.md",
     "archetypes/default.md",
     "obs_scripts/NewBlog.js.md",
-    "obs_scripts/未命名 1.md",
     "未命名.canvas"
   ]
 }
