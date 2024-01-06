@@ -36,7 +36,7 @@ $ echo $PATH
 
 源码下载和编译：
 ```sh
-$ git clone git://github.com/martine/ninja.git
+$ git clone https://github.com/ninja-build/ninja.git
 
 $ cd ninja/
 
