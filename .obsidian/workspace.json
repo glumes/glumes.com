@@ -11,8 +11,12 @@
             "id": "af7831786ff449b6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "content/post/webrtc/WebRTC-Mac-iOS-编译.md"
+              }
             }
           }
         ]
@@ -138,12 +146,15 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8e9ad61cc399dba1",
+  "active": "af7831786ff449b6",
   "lastOpenFiles": [
-    "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
-    "content/post/ios/在 Swift 中去调用C++代码.md",
+    "content/post/webrtc/WebRTC 系列1--创建相机预览.md",
+    "content/post/webrtc/WebRTC & Android 开发学习环境搭建.md",
+    "content/post/webrtc/WebRTC-Mac-iOS-编译.md",
     "content/post/life/2024年的目标制定和 TodoList.md",
     "content/post/life/2019 年终总结与回顾.md",
+    "content/post/ios/iOS 音视频开发的一些基础准备工作.md",
+    "content/post/ios/在 Swift 中去调用C++代码.md",
     "content/post/life/博客图床迁移记.md",
     "content/post/flutter/Flutter 使用 FFI 访问第三方库.md",
     "content/post/flutter/Flutter 调用 WebP 第三方库.md",
@@ -183,9 +194,6 @@
     "content/post/liutest2.md",
     "content/post/ffmpeg/流媒体测试.md",
     "content/post/ffmpeg/快速抽取缩略图.md",
-    "content/post/sdf.md",
-    "archetypes/default.md",
-    "obs_scripts/NewBlog.js.md",
     "未命名.canvas"
   ]
 }
