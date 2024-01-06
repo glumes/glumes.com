@@ -106,6 +106,7 @@ $ export GYP_GENERATOR_FLAGS="output_dir=out_xxx"
 1. https://juejin.cn/post/7028417096526594061
 2. https://blog.csdn.net/uianster/article/details/121595205
 3. http://www.enkichen.com/2017/05/12/webrtc-ios-build/
+4. https://cloud.tencent.com/developer/article/1608871
 
 
 
