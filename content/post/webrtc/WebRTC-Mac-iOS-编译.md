@@ -59,12 +59,21 @@ fetch --nohooks webrtc_ios
 gclient sync
 ```
 
-指定分支，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` 。
+指定分支的同步方式，用目前最新的 [M114 版本](https://webrtc.googlesource.com/src.git/+log/refs/branch-heads/5735)，对应的分支名是 `branch-heads/5735` ，commit id 是  `729f79c176c8b4c3a8c1b60f39df5fb43323b27b` 。
 ```sh
+fetch --nohooks webrtc_ios
+gclient sync
+
 git checkout -b m114 branch-heads/5735
 gclient sync
 ```
 
+使用 commit id  的同步方式：
+```sh
+fetch --nohooks webrtc_ios
+gclient sync -r 729f79c176c8b4c3a8c1b60f39df5fb43323b27b --force
+gclient sync
+```
 ## Demo 编译：
 
 使用源码中自带的编译脚本进行编译：
