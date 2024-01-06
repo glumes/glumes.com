@@ -29,6 +29,7 @@ $ source $HOME/.bash_profile
 ```
 
 检测配置是否成功
+
 ```sh
 $ echo $PATH
 ```
@@ -37,11 +38,15 @@ $ echo $PATH
 源码下载和编译：
 ```sh
 $ git clone https://github.com/ninja-build/ninja.git
-
-$ cd ninja/
-
-$ ./bootstrap.py
 ```
+
+在 ninja 的主页上查看编译方式：
+
+```
+./configure.py --bootstrap
+```
+
+然后也把 ninja 配置到系统环境变量中。
 
 ## 源码下载
 
