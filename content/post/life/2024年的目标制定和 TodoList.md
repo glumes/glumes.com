@@ -32,6 +32,7 @@ author: 星陨
 		3. 免费版限制每次的转换次数，付费版按照包月和包年和终身购买两种方式。
 		4. png 的图片压缩框架：
 			1. https://pngquant.org/lib/
+			2. https://sdn.0voice.com/?id=2414
 		5. 
 	2. 
 
