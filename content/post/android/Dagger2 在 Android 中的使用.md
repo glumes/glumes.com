@@ -1,7 +1,7 @@
 ---
 title: "Dagger2 在 Android 中的使用"
 date: 2017-12-22T10:47:52+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Dagger2"]
 comments: true
 original: true

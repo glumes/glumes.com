@@ -4,7 +4,7 @@ date: 2022-06-18T13:08:36+08:00
 slug: "opengl-share-context"
 subtitle: ""
 tags: ["OpenGL"]
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

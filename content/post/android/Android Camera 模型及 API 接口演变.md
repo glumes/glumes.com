@@ -3,7 +3,7 @@ title: "Android Camera 模型及 API 接口演变"
 date: 2018-04-12T13:13:57+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Camera","Android"]
 slug: "android-camrea-api-evolution"
 comments: true

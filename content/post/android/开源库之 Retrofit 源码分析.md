@@ -3,7 +3,7 @@ title: "开源库之 Retrofit 源码分析"
 date: 2018-09-09T14:54:57+08:00
 subtitle: ""
 tags: ["Retrofit"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

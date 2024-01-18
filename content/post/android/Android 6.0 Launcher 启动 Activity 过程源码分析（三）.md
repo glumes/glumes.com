@@ -1,7 +1,7 @@
 ---
 title: "Android 6.0 Launcher 启动 Activity 过程源码分析（三）"
 date: 2017-12-22T10:40:45+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Framework"]
 comments: true
 original: true
@@ -11,7 +11,7 @@ slug: "android-start-activity-from-launcher-3"
 ---
 
 
-在 [ Android 6.0 Launcher 启动 Activity 过程源码分析（二）](http://www.glumes.com/start-activity-from-launcher-in-android-2/) 分析完了对待启动 Activity 组件的验证过程，获得组件信息，以及 ActivityRecord 添加至栈顶，将其他 Activity 进入中止状态，最后将待启动的 Activity 组件进入 `Resumed`状态，然而，由于待启动的 Activity 组件的应用程序进程尚未启动，最后执行 `startSpecificActivityLocked`方法创建进程。
+在 [ Android 6.0 Launcher 启动 Activity 过程源码分析（二）](https://glumes.com/android-start-activity-from-launcher-2) 分析完了对待启动 Activity 组件的验证过程，获得组件信息，以及 ActivityRecord 添加至栈顶，将其他 Activity 进入中止状态，最后将待启动的 Activity 组件进入 `Resumed`状态，然而，由于待启动的 Activity 组件的应用程序进程尚未启动，最后执行 `startSpecificActivityLocked`方法创建进程。
 
 
 <!--more-->

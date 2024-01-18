@@ -4,7 +4,7 @@ date: 2018-01-31T15:26:16+08:00
 subtitle: ""
 tags: ["Android","RxJava"]
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 original: true
 addwechat: true

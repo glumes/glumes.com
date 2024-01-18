@@ -3,7 +3,7 @@ title: "OpenGL ES 3.0 着色器语言 GLSL 学习 Mark "
 date: 2018-09-09T15:20:42+08:00
 subtitle: ""
 tags: ["OpenGL","GLSL"]
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

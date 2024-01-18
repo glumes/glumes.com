@@ -3,7 +3,7 @@ title: "rust 开发编译 Android 动态库实践"
 date: 2019-05-19T23:25:31+08:00
 subtitle: ""
 tags: ["rust","so"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

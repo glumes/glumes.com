@@ -1,7 +1,7 @@
 ---
 title: "Android Binder 小结"
 date: 2017-12-22T10:50:43+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android"]
 slug: "android-binder-summary"
 comments: true

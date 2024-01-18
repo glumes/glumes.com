@@ -1,7 +1,7 @@
 ---
 title: "Android 插件换肤原理及源码分析"
 date: 2017-12-22T15:51:44+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android"]
 comments: true
 original: true

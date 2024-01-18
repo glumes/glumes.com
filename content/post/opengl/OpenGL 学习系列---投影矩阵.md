@@ -4,7 +4,7 @@ date: 2018-01-24T18:17:58+08:00
 subtitle: ""
 tags: ["OpenGL"]
 draft: false
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 comments: true
 original: true

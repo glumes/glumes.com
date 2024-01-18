@@ -3,7 +3,7 @@ title: "【音视频连载-004】基础学习篇-SDL 加载图片并显示"
 date: 2020-03-08T21:44:09+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

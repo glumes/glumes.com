@@ -4,7 +4,7 @@ date: {{ .Date }}
 slug: "url"
 subtitle: ""
 tags: []
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: true
 original: true

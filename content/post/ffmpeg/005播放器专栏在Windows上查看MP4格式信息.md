@@ -4,7 +4,7 @@ date: 2022-04-16T18:29:38+08:00
 slug: "windows-mp4-info"
 subtitle: ""
 tags: ["播放器实践"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

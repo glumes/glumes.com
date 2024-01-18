@@ -4,7 +4,7 @@ date: 2022-11-05T14:56:53+08:00
 slug: "UE4-ControlRig-Face-Edit"
 subtitle: ""
 tags: ["UE4"]
-categories: ["engine"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

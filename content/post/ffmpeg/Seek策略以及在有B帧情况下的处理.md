@@ -3,7 +3,7 @@ title: "Seek策略以及在有B帧情况下的处理"
 date: 2022-03-18T21:04:39+08:00
 slug: "video-seek-with-b-frame"
 subtitle: ""
-categories: ["ffmpeg"]
+categories: ["media-development"]
 tags: ["FFmpeg"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

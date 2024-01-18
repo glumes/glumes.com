@@ -3,7 +3,7 @@ title: "Java 中的静态代理和动态代理"
 date: 2018-08-28T22:55:49+08:00
 subtitle: ""
 tags: ["Java"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

@@ -3,7 +3,7 @@ title: "进击的 Vulkan 移动开发之 SwapChain"
 date: 2019-04-07T15:39:14+08:00
 subtitle: ""
 tags: ["Vulkan"]
-categories: ["Vulkan"]
+categories: ["graphics-renderer"]
 slug: "vulkan-tutorial-swap-chain"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

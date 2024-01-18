@@ -1,7 +1,7 @@
 ---
 title: "Android 布局加载之 LayoutInflater"
 date: 2017-12-22T15:55:08+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Inflater"]
 comments: true
 original: true

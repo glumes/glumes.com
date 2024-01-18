@@ -1,7 +1,7 @@
 ---
 title: " Android 6.0 Launcher 启动 Activity 过程分析小结（四）"
 date: 2017-12-22T10:40:49+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Framework"]
 comments: true
 original: true
@@ -13,9 +13,9 @@ slug: "android-start-activity-from-launcher-4"
 
 在如下三篇文章中过了一遍 Launcher 启动 Activity 的代码流程。
 
-*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（一）](start-activity-from-launcher-in-android-1)
-*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（二）](start-activity-from-launcher-in-android-2)
-*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（三）](start-activity-from-launcher-in-android-3)
+*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（一）](https://glumes.com/android-start-activity-from-launcher-1)
+*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（二）](https://glumes.com/android-start-activity-from-launcher-2)
+*	[ Android 6.0 Launcher 启动 Activity 过程源码分析（三）](https://glumes.com/android-start-activity-from-launcher-3)
 
 然而， 即使看过了多遍代码流程依旧有点云里雾里的感觉。不从整体上来把握，光抓住细节代码会始终不得要领。
 

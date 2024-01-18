@@ -3,7 +3,7 @@ title: "Windows 下 FFmpeg 和 LibX264 的编译和配置"
 date: 2021-12-19T17:37:37+08:00
 slug: "windows-compile-ffmpeg-with-libx264"
 subtitle: ""
-categories: ["ffmpeg"]
+categories: ["media-development"]
 tags: ["FFmpeg"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

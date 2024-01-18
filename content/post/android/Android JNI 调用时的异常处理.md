@@ -3,7 +3,7 @@ title: "Android JNI 调用时的异常处理"
 date: 2018-05-16T17:55:52+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

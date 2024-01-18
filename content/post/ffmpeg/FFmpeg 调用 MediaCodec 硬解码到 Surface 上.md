@@ -3,7 +3,7 @@ title: "FFmpeg 调用 MediaCodec 硬解码到 Surface 上"
 date: 2021-11-14T22:38:39+08:00
 subtitle: ""
 tags: ["FFmpeg"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

@@ -3,7 +3,7 @@ title: "Android  JNI 调用时缓存字段和方法 ID"
 date: 2018-05-07T10:39:50+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

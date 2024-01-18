@@ -3,7 +3,7 @@ title: "MediaCodec 硬编码之相机内容编码成 H264 文件"
 date: 2018-09-19T23:39:28+08:00
 subtitle: ""
 tags: ["MediaCodec","YUV","H264","Camera"]
-categories: ["Android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

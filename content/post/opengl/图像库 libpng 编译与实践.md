@@ -4,7 +4,7 @@ date: 2019-07-12T23:26:58+08:00
 subtitle: ""
 slug: "opengl/libpng-compile-and-practice"
 tags: ["libpng","image"]
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 comments: true
 draft: false

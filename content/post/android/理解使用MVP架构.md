@@ -4,7 +4,7 @@ date: 2018-01-31T15:42:28+08:00
 subtitle: ""
 tags: ["android","architecture"]
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 original: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
@@ -26,12 +26,6 @@ MVP 分别代表了：M（Model）、V（View）、P（Presenter）的缩写，�
 
 
 
-{{< gallery>}}
-
-	{{< figure src="http://7xqe3m.com1.z0.glb.clouddn.com/blog-mvp-and-mvc.png" >}}
-
-{{< /gallery >}}
-
 
 
 如果所示，MVP 与 MVC 的不同之处在于，MVP 中的 View 层和 Model 层之间不进行交互，是通过中间的 Presenter 中来进行交互的。这样的好处就是能够解耦，降低 View 层和 Model 层之间的耦合度。
@@ -43,11 +37,6 @@ MVP 分别代表了：M（Model）、V（View）、P（Presenter）的缩写，�
 用 MVP 模式简单实现了一个登陆功能，项目的包结构如下，根据模块层次来分层的。
 
 
-{{< gallery>}}
-
-	{{< figure src="http://7xqe3m.com1.z0.glb.clouddn.com/blog-mvp-project-dir.png" >}}
-
-{{< /gallery >}}
 
 
 

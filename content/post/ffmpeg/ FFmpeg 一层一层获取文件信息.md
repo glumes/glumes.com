@@ -3,7 +3,7 @@ title: "【音视频连载-011】第二季 FFmpeg 一层一层获取文件信息
 date: 2020-05-18T11:37:09+08:00
 subtitle: ""
 tags: ["FFmpeg"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

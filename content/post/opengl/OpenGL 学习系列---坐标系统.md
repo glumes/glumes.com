@@ -2,7 +2,7 @@
 title: "OpenGL 学习系列---坐标系统"
 date: 2018-01-23T17:44:53+08:00
 subtitle: "一个点的坐标转换的心路历程"
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

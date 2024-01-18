@@ -3,7 +3,7 @@ title: "iOS开发 - 在 Swift 中去调用 C/C++ 代码"
 date: 2021-01-11T09:54:15+08:00
 subtitle: ""
 tags: ["iOS"]
-categories: ["ios"]
+categories: ["software-development"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

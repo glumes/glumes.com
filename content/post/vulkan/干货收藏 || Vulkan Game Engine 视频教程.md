@@ -4,7 +4,7 @@ date: 2022-02-13T21:06:11+08:00
 slug: "vulkan-game-engine-video"
 subtitle: ""
 tags: ["Vulkan"]
-categories: ["Vulkan"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

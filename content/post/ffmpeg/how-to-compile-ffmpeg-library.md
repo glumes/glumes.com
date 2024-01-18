@@ -2,7 +2,7 @@
 title: "老生常谈-FFmpeg 的编译问题轻松搞定"
 date: 2021-10-29T22:16:39+08:00
 subtitle: ""
-categories: ["ffmpeg"]
+categories: ["media-development"]
 tags: ["FFmpeg"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

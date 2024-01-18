@@ -3,7 +3,7 @@ title: "Android JNI 中的引用管理"
 date: 2018-05-16T17:50:06+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

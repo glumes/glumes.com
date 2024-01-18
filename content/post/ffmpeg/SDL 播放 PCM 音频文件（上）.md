@@ -3,7 +3,7 @@ title: "【音视频连载-007】基础学习篇-SDL 播放 PCM 音频文件（�
 date: 2020-03-16T09:47:30+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

@@ -4,7 +4,7 @@ date: 2022-12-27T22:24:27+08:00
 slug: "ue4.27-add-custom-shading-model"
 subtitle: ""
 tags: ["UE4"]
-categories: ["engine"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

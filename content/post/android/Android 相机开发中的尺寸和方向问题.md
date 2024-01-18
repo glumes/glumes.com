@@ -3,7 +3,7 @@ title: "Android 相机开发中的尺寸和方向问题"
 date: 2018-04-10T16:09:32+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Camera"]
 slug: "android-camera-aspect-ratio--and-orientation"
 comments: true

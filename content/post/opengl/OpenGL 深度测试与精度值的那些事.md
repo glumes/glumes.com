@@ -3,7 +3,7 @@ title: "OpenGL 深度测试与精度值的那些事"
 date: 2018-07-20T14:50:22+08:00
 subtitle: ""
 draft: false
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

@@ -4,7 +4,7 @@ date: 2019-01-09T09:50:20+08:00
 subtitle: ""
 slug: "vulkan-tutorial-command-buffer"
 tags: ["Vulkan"]
-categories: ["Vulkan"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

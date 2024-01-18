@@ -3,7 +3,7 @@ title: "【音视频连载-005】基础学习篇-SDL 加载 YUV 文件并显示"
 date: 2020-03-10T00:05:03+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 comments: true
 draft: false

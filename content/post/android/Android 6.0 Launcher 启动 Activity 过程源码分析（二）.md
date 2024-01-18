@@ -1,7 +1,7 @@
 ---
 title: "Android 6.0 Launcher 启动 Activity 过程源码分析（二）"
 date: 2017-12-22T10:40:42+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Framework"]
 comments: true
 original: true
@@ -11,7 +11,7 @@ slug: "android-start-activity-from-launcher-2"
 ---
 
 
-在 [Android 6.0 Launcher 启动 Activity 过程源码分析（一）](http://www.glumes.com/start-activity-from-launcher-in-android-1/) 分析完了 Launcher 组件中启动的步骤，接下来的环节是该 ActivityManagerService 出场了。
+在 [Android 6.0 Launcher 启动 Activity 过程源码分析（一）](https://glumes.com/android-start-activity-from-launcher-1) 分析完了 Launcher 组件中启动的步骤，接下来的环节是该 ActivityManagerService 出场了。
 
 通过 ActivityManagerNative.getDefault() 方法得到 ActivityManagerService 的代理对象后执行的 startActivity 方法，最终会发起进程间通信请求，通过 Binder 驱动，再调用 ActivityManagerService 中对应的方法。
 

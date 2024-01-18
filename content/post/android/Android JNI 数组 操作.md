@@ -3,7 +3,7 @@ title: "Android JNI 数组 操作"
 date: 2018-05-07T10:21:22+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

@@ -3,7 +3,7 @@ title: "Android JNI 中的线程操作"
 date: 2018-07-15T14:12:25+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

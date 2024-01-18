@@ -4,7 +4,7 @@ date: 2022-05-05T21:39:07+08:00
 slug: "mac-mp4-info"
 subtitle: ""
 tags: ["播放器实践"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

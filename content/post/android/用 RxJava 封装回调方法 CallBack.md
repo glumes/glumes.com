@@ -1,7 +1,7 @@
 ---
 title: "用 RxJava 封装回调方法 CallBack"
 date: 2017-12-22T10:38:34+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","RxJava"]
 comments: true
 original: true

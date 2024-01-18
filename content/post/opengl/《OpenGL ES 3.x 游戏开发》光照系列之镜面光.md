@@ -3,7 +3,7 @@ title: "《OpenGL ES 3.x 游戏开发》光照系列之镜面光"
 date: 2018-07-23T23:11:20+08:00
 subtitle: "学习笔记内容摘录"
 draft: false
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

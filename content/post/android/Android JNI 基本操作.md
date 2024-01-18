@@ -3,7 +3,7 @@ title: "Android JNI 基本操作 "
 date: 2018-05-07T09:44:57+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true
@@ -17,8 +17,6 @@ bigimg: [{src: "/img/banner.jpg", desc: ""}]
 <!--more-->
 
 ## JNI 和 NDK 的区别
----
-
 
 NDK 开发难免会搞不清 JNI 和 NDK 的区别。
 
@@ -30,7 +28,7 @@ JNI 全称是 Java Native Interface，即 Java 本地接口。它是用来使得
 
 
 ## 简单实例
----
+
 
 在 AS 新建工程时若选择了 Include C++ Support，就会自带配置好的 C++ 开发环境。
 
@@ -289,10 +287,8 @@ JNI 提供了函数来获得字符串指定范围的内容，这里的字符串�
 对于 JNI String 操作，要选择合适的函数，上表可以作为参考。
 
 
-
-
 ## 参考
----
+
 
 1. 《The Java Native Interface》
 2. https://github.com/glumes/AndroidDevWithCpp

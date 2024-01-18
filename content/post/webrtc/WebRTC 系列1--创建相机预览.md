@@ -3,7 +3,7 @@ title: "WebRTC 系列1--创建相机预览"
 date: 2021-09-02T10:49:02+08:00
 subtitle: ""
 tags: ["webrtc"]
-categories: ["webrtc"]
+categories: ["media-development"]
 slug: "webrtc-setup-camera-preview"
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

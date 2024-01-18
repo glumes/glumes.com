@@ -4,7 +4,7 @@ date: 2022-09-12T11:58:15+08:00
 slug: "ue4-dump-offset"
 subtitle: ""
 tags: ["UE4"]
-categories: ["engine"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

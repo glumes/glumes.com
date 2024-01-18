@@ -3,7 +3,7 @@ title: "Android 通过 JNI 访问 Java 字段和方法调用"
 date: 2018-05-07T10:27:08+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

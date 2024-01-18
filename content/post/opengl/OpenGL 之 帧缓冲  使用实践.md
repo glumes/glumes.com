@@ -3,7 +3,7 @@ title: "OpenGL 之 帧缓冲  使用实践"
 date: 2018-09-04T22:28:11+08:00
 subtitle: ""
 tags: ["OpenGL","FBO"]
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false

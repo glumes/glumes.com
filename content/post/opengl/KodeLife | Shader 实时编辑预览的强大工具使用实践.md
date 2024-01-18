@@ -3,7 +3,7 @@ title: "KodeLife | Shader 实时编辑预览的强大工具使用实践"
 date: 2020-05-18T11:39:56+08:00
 subtitle: ""
 slug: "opengl/shader-tool-kodelife-introduce"
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 comments: true
 bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]

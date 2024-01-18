@@ -4,7 +4,7 @@ date: 2022-09-10T17:08:48+08:00
 slug: "UE4-material-practice"
 subtitle: ""
 tags: ["UE4"]
-categories: ["engine"]
+categories: ["graphics-renderer"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false

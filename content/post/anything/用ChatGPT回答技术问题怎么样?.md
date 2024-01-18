@@ -5,7 +5,7 @@ author: "星陨"
 slug: "chatgpt-for-tech-q&a"
 subtitle: ""
 tags: ["知识星球"]
-categories: ["anything"]
+categories: ["learning-insights"]
 comments: true
 draft: false
 original: true

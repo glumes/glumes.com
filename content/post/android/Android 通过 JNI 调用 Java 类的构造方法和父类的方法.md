@@ -3,7 +3,7 @@ title: "Android 通过 JNI 调用 Java 类的构造方法和父类的方法"
 date: 2018-05-07T10:32:01+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true

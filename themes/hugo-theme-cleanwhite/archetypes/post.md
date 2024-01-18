@@ -5,7 +5,7 @@ slug: "url"
 author: "星陨"
 subtitle: ""
 tags: []
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

@@ -3,7 +3,7 @@ title: "开源库之 OkHttp 源码分析"
 date: 2018-09-11T22:13:45+08:00
 subtitle: ""
 tags: ["OkHttp"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true

@@ -3,7 +3,7 @@ title: "【音视频连载-001】基础学习篇- SDL 介绍以及工程配置"
 date: 2020-02-26T23:33:35+08:00
 subtitle: ""
 tags: ["SDL"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 slug: "av-beginner-001"
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

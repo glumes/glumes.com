@@ -3,7 +3,7 @@ title: "Android JNI 之 Bitmap 操作"
 date: 2018-07-25T13:36:50+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","JNI"]
 comments: true
 original: true
