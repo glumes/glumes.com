@@ -10,11 +10,6 @@ addwechat: true
 slug: "opengl-tutorial-draw-basic-shape"
 ---
 
-> 避免图片丢失，建议阅读微信原文：
-> 
-> https://mp.weixin.qq.com/s/XLbFvngRHqVoKbC22BJHGQ
-
-
 在之前的一篇博客中，讲述了 OpenGL 绘制一个点的流程及相关的代码，其中关于 OpenGL 程序编译部分都是可以在其他项目中接着复用的，接下来会讲到如何去绘制其他的基本图元。
 
 <!--more-->
@@ -89,7 +84,7 @@ glDrawArrays(GL_LINES, 0, 2);
 
 绘制三角形结果如图：
 
-![](https://image.glumes.com/images/2019/05/12/opengl_11.png)
+![](640.png)
 
 
 ## 绘制矩形
@@ -98,7 +93,7 @@ glDrawArrays(GL_LINES, 0, 2);
 
 OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_triangle_fan.png](https://image.glumes.com/images/2019/05/12/opengl_12.png)
+![](640-1.png)
 
 在上图中，矩形的每一条边上的顶点都被两个三角形使用了，而且中心的顶点被所有四个三角形使用了。
 
@@ -149,7 +144,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 有了上面`三角形扇绘`制矩形的例子，我们按照同样的思想，把一个圆形分成多个三角形组成，如下图所示：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_circle_fan.jpeg](https://image.glumes.com/images/2019/05/12/opengl_13.png)
+![](640-3.jpeg)
 
 
 我们分的三角形越多，三角形个数趋向于无限大的时候，整个图案也就越趋向于圆。
@@ -193,7 +188,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 当然，在绘制圆形时，我们也可以不单独定义原点和闭合点，直接使用圆形的 360 个顶点来绘制，最终的结果依旧会是一个圆形。
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_circle_small.png](https://image.glumes.com/images/2019/05/12/opengl_14.png)
+![](640-4.png)
 
 当然，我们也可以使用其他的绘制类型，比如直线，来绘制一个空心的圆形。
 
@@ -203,7 +198,7 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
         glDrawArrays(GL_LINE_LOOP, 1, VERTEX_DATA_NUM );
 ```
 
-![hhttp://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_circle_empty_yellow.png](https://image.glumes.com/images/2019/05/12/opengl_15.png)
+![](640-5.png)
 
 
 这样就完成一个圆形的绘制。
@@ -224,15 +219,15 @@ OpenGL 中提供了一个绘制类型叫做`三角形扇`，如下图所示：
 
 正五边形：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_five.png](https://image.glumes.com/images/2019/05/12/opengl_16.png)
+![](640-6.png)
 
 正六边形：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_six.png](https://image.glumes.com/images/2019/05/12/opengl_17.png)
+![](640-7.png)
 
 正七边形：
 
-![http://7xqe3m.com1.z0.glb.clouddn.com/blog_opengl_result_seven.png](https://image.glumes.com/images/2019/05/12/opengl_18.png)
+![](640-8.png)
 
 
 

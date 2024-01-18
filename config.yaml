@@ -3,7 +3,7 @@ languageCode: zh-cn
 title: 音视频开发进阶
 theme: hugo-theme-stacked
 # canonifyURLs: true
-copyright: "asdfkljaslkdfjalsdjflk ajds"
+copyright: ""
 paginate: 10
 DefaultContentLanguage: zh-cn
 
@@ -75,7 +75,7 @@ params:
         avatar:
             enabled: true
             local: true
-            src: img/logo.jpg
+            src: img/avatar.png
 
     article:
         math: false

@@ -4,6 +4,6 @@ description: "记录工作和生活中的那些事"
 slug: "learning-insights"
 image: "software-dev.jpeg"
 style:
-    background: "#2a9d8f"
+    background: "#E71D36"
     color: "#fff"
 ---

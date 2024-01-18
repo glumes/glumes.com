@@ -6,13 +6,14 @@ subtitle:
 tags:
   - life
 categories:
-  - life
+  - todo-list
 comments: true
 draft: true
 original: true
 image: ""
 author: 星陨
 ---
+
 2024 年的一些目标：
 
 技术上：

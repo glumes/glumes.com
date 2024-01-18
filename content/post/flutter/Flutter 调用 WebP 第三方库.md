@@ -6,7 +6,7 @@ subtitle: ""
 tags:
   - Flutter
 categories:
-  - android
+  - todo-list
 comments: true
 draft: true
 original: true

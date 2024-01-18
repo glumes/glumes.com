@@ -4,6 +4,6 @@ description: "记录图形渲染的一些心得"
 slug: "graphics-renderer"
 image: "software-dev.jpeg"
 style:
-    background: "#2a9d8f"
+    background: "#30A9DE"
     color: "#fff"
 ---
