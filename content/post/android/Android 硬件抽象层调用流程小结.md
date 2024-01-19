@@ -7,7 +7,7 @@ comments: true
 original: true
 addwechat: true
 slug: "android-hal-summary"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 

@@ -7,7 +7,7 @@ comments: true
 original: true
 addwechat: true
 slug: "android-change-skin-by-plugin"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 

@@ -5,7 +5,7 @@ categories: ["software-development"]
 tags: ["Android"]
 comments: true
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 slug: "android-material-design-summary-2"
 ---

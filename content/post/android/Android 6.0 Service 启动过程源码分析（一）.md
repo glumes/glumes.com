@@ -7,7 +7,7 @@ comments: true
 original: true
 addwechat: true
 slug: "android-start-service"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 

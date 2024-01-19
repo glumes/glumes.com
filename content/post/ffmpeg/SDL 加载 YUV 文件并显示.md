@@ -4,7 +4,7 @@ date: 2020-03-10T00:05:03+08:00
 subtitle: ""
 tags: ["SDL"]
 categories: ["media-development"]
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 comments: true
 draft: false
 original: true

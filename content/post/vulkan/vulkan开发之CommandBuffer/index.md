@@ -6,25 +6,25 @@ slug: "vulkan-tutorial-command-buffer"
 tags: ["Vulkan"]
 categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
 addwechat: true
 ---
 
-> Vulkan 开发的系列文章：
+* Vulkan 开发的系列文章：
 
-> 1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/post/vulkan/vulkan-tutorial-concept/)
+1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/vulkan-tutorial-concept)
 
-> 2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/post/vulkan/vulkan-tutorial-renderer/)
+2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/vulkan-tutorial-renderer/)
 
-> 3. [进击的 Vulkan 移动开发之 Instance & Device & Queue](https://glumes.com/post/vulkan/vulkan-tutorial-instance-device-queue/)
+3. [进击的 Vulkan 移动开发之 Instance & Device & Queue](https://glumes.com/vulkan-tutorial-instance-device-queue/)
 
 
 此篇文章继续学习 Vulkan 中的组件：Command-Buffer 。
 
 
-![](https://image.glumes.com/blog_image/vulkan-command-buffer.webp)
+![](vulkan-command-buffer.webp)
 
 <!--more-->
 
@@ -127,7 +127,7 @@ typedef enum VkCommandBufferLevel {
 
 
 
-![](https://image.glumes.com/blog_image/vulkan-command-buffer-lifecycle.webp)
+![](vulkan-command-buffer-lifecycle.webp)
 
 *   Initial 状态
 
@@ -156,7 +156,7 @@ typedef enum VkCommandBufferLevel {
 
 
 
-![](https://image.glumes.com/blog_image/vulkan-command-buffer-queue.webp)
+![](vulkan-command-buffer-queue.webp)
 
 在 `vkBeginCommandBuffer` 和 `vkEndCommandBuffer` 方法之间可以记录和渲染相关的命令，这里先不考虑中间的过程，直接创建提交。
 
@@ -220,7 +220,7 @@ typedef struct VkSubmitInfo {
 如下图，Vulkan 中有 `Semaphore`、`Fences`、`Event`、`Barrier` 四种机制来保证同步。
 
 
-![](https://image.glumes.com/blog_image/vulkan-command-buffer-sync.webp)
+![](vulkan-command-buffer-sync.webp)
 
 简单说一下 `Semaphore` 和 `Fence` 。
 

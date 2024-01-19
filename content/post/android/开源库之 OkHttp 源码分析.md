@@ -9,7 +9,7 @@ draft: false
 original: true
 addwechat: true
 notoc: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "okhttp-analysis"
 author: "glumes"
 ---

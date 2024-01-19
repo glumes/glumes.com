@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["iOS"]
 categories: ["software-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: "/img/banner.jpg"

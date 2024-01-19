@@ -9,7 +9,7 @@ comments: true
 original: true
 addwechat: true
 slug: "android-jni-array-operation"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 

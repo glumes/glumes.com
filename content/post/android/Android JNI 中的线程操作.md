@@ -8,7 +8,7 @@ tags: ["NDK"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "android-jni-thread-operation"
 ---
 

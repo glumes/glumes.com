@@ -6,28 +6,27 @@ tags: ["Vulkan"]
 categories: ["graphics-renderer"]
 slug: "vulkan-tutorial-swap-chain"
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
 addwechat: true
 ---
 
-> Vulkan 开发的系列文章：
+* Vulkan 开发的系列文章：
 
-> 1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/post/vulkan/vulkan-tutorial-concept/)
+1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/vulkan-tutorial-concept/)
 
-> 2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/post/vulkan/vulkan-tutorial-renderer/)
+2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/vulkan-tutorial-renderer/)
 
-> 3. [进击的 Vulkan 移动开发之 Instance & Device & Queue](https://glumes.com/post/vulkan/vulkan-tutorial-instance-device-queue/)
+3. [进击的 Vulkan 移动开发之 Instance & Device & Queue](https://glumes.com/vulkan-tutorial-instance-device-queue/)
 
-> 4. [进击的 Vulkan 移动开发之 Command-Buffer](https://glumes.com/post/vulkan/vulkan-tutorial-command-buffer/)
+4. [进击的 Vulkan 移动开发之 Command-Buffer](https://glumes.com/vulkan-tutorial-command-buffer/)
 
 
 在之前的文章中，讲到了 `Command-Buffer` 提交给 `Queue` 去执行，也提到了 Vulkan 实现跨平台机制，是有一些拓展的，这里就讲讲 Vulkan 窗口系统的拓展（Vulkan Window System Integration WSI），如下图所示：
 
 
-
-![](https://image.glumes.com/blog_image/vulkan-swap-chain.jpg)
+![](vulkan-swap-chain.webp)
 
 <!--more-->
 

@@ -6,7 +6,6 @@ slug: "vulkan-tutorial-concept"
 tags: ["Vulkan"]
 categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
 addwechat: true
@@ -44,7 +43,7 @@ addwechat: true
 
 视频截图一张，作为示例：
 
-![](https://image.glumes.com/blog_image/vulkan-vs-opengl.webp)
+![](vulkan-vs-opengl.webp)
 
 
 在 ARM 平台上作为对比，可以看到，渲染同样的场景，OpenGL ES 的 CPU 使用率达到了 50%，并且是单核在高速运行，类似于一核有难，三核围观；反观 Vulkan 版本的绘制，CPU 的使用率目测不到 20%，而且是四核都参与了运算，这样一来，Vulkan 当然更加省电、功耗低了。
@@ -93,7 +92,7 @@ OpenGL 主要是由 `Khronos Group （科纳斯组织）`在进行维护。它�
 还有，在 Youtube 上有一些关于 Vulkan 的系列视频，推荐这个[系列视频](https://www.youtube.com/user/Nigo40/videos)。
 
 
-![](https://image.glumes.com/blog_image/vulkan-online-course.webp)
+![](vulkan-online-course.webp)
 
 对照着中文字幕，多看几遍还是能够理解的。
 

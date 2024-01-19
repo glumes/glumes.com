@@ -6,7 +6,7 @@ categories: ["graphics-renderer"]
 slug: "opengl/opengl-cat-renderer"
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
 ---

@@ -7,7 +7,7 @@ categories: ["software-development"]
 comments: true
 draft: false
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 slug: "mediacodec-encode-yuv-to-h264"
 ---

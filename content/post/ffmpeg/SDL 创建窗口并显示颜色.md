@@ -6,7 +6,7 @@ tags: ["SDL"]
 slug: "av-beginner-002"
 categories: ["media-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 ---

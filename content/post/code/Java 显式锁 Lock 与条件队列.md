@@ -5,7 +5,7 @@ subtitle: ""
 tags: ["Java"]
 categories: ["code-basic"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: false
 addwechat: false

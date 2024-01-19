@@ -4,7 +4,7 @@ subtitle: "MPEG封装格式到PCM数据格式"
 date: 2017-12-22T16:05:30+08:00
 categories: ["media-development"]
 tags: ["FFmpeg"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 comments: true
 original: true
 addwechat: true

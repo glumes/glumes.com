@@ -6,7 +6,7 @@ subtitle: ""
 tags: ["UE4"]
 categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: ""

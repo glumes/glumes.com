@@ -7,7 +7,7 @@ categories: ["software-development"]
 tags: ["Camera"]
 slug: "android-camera-aspect-ratio--and-orientation"
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 --- 
 
 > *本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布

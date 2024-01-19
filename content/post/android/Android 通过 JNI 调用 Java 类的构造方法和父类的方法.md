@@ -9,7 +9,7 @@ comments: true
 original: true
 addwechat: true
 slug: "android-jni-invoke-constructor-method-and-super-method"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 Android 还可以通过 JNI 来调用 Java 一个类的构造方法，从而创建一个 Java 类。

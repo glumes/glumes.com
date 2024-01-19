@@ -8,7 +8,7 @@ comments: true
 draft: false
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "java-proxy-design-pattern"
 ---
 

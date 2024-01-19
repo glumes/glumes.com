@@ -8,7 +8,7 @@ categories: ["software-development"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "setup-android-crack-environment"
 author: "glumes"
 ---

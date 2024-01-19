@@ -3,7 +3,7 @@ title: "Python 函数式编程"
 date: 2017-12-22T16:10:57+08:00
 categories: ["code-basic"]
 tags: ["Python"]
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 comments: true
 original: true
 addwechat: true

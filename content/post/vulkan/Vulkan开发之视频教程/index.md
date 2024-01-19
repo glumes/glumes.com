@@ -6,7 +6,6 @@ subtitle: ""
 tags: ["Vulkan"]
 categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
 draft: false
 original: true
 image: ""
@@ -23,7 +22,7 @@ image: ""
 
 **Vulkan Game Engine 视频合集：**
 
-![](https://image.glumes.com/blog_image20220326202708.png)
+![](blog_image20220326202708.webp)
 
 链接地址如下：
 
@@ -33,7 +32,7 @@ https://www.youtube.com/c/BrendanGalea/playlists
 
 不仅能学到 Vulkan 的知识还能实践到游戏引擎的开发中，目前这个系列还在连载中：
 
-![](https://image.glumes.com/blog_image20220326202726.png)
+![](blog_image20220326202726.webp)
 
 作者更新速度可能慢一点，但内容质量还是相当高的。
 

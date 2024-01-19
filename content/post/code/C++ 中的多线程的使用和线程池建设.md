@@ -6,7 +6,7 @@ tags: ["C++","多线程"]
 categories: ["code-basic"]
 slug: "c++-multi-thread"
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 ---

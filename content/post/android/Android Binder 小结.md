@@ -7,7 +7,7 @@ slug: "android-binder-summary"
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 type: posts
 ---
 

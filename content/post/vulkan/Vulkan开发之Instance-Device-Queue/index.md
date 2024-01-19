@@ -6,23 +6,23 @@ tags: ["Vulkan"]
 slug: "vulkan-tutorial-instance-device-queue"
 categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
 addwechat: true
 ---
 
-> Vulkan 开发的系列文章：
+* Vulkan 开发的系列文章：
 
-> 1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/post/vulkan/vulkan-tutorial-concept/)
+1. [进击的 Vulkan 移动开发（一）之今生前世](https://glumes.com/vulkan-tutorial-concept/)
 
-> 2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/post/vulkan/vulkan-tutorial-renderer/)
+2. [进击的 Vulkan 移动开发（二）之谈谈对渲染流程的理解](https://glumes.com/vulkan-tutorial-renderer/)
 
 
 在 Vulkan 的系列文章中出现过如下的图片：
 
 
-![](https://image.glumes.com/blog_image/vulkan-instance-device-queue.webp)
+![](vulkan-instance-device-queue.webp)
 
 这张图片很详细的概括了 Vulkan 中的重要组件以及它们的工作流程，接下来的文章中会针对每个组件进行学习讲解并配上相关的示例代码，首先是 Instance、Device 和 Queue 组件。
 
@@ -77,7 +77,7 @@ typedef struct VkInstanceCreateInfo {
 
 
 
-![](https://image.glumes.com/blog_image/vulkan-layer.webp)
+![](vulkan-layer.webp)
 
 `Layer` 在整个架构中的位置如上图，Vulkan API 直接和驱动对话，而 `Layer` 处于应用和 Vulkan API 之间，供开发者进行调试。
 
@@ -147,7 +147,7 @@ typedef struct VkApplicationInfo {
 
 
 
-![](https://image.glumes.com/blog_image/vulkan-device-image.webp)
+![](vulkan-device-image.webp)
 
 ```cpp
     LOGI("enumerate gpu device");

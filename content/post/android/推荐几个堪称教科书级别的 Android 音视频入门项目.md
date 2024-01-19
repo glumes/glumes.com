@@ -6,7 +6,7 @@ tags: []
 slug: "android-av-beginner-resource"
 categories: ["software-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 author: "glumes"

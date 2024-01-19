@@ -7,7 +7,7 @@ categories: ["software-development"]
 tags: ["NDK"]
 comments: true
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 slug: "android-jni-reference-manage-rules"
 ---

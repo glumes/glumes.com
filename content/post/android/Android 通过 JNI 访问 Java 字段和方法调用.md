@@ -8,7 +8,7 @@ tags: ["NDK"]
 comments: true
 original: true
 slug: "android-jni-access-field-and-method"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 ---
 

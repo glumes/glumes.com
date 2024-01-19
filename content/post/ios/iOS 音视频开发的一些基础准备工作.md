@@ -6,7 +6,7 @@ tags: ["iOS"]
 categories: ["software-development"]
 comments: true
 draft: false
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 original: true
 slug: "ios-av-developer-prepare"
 ---
