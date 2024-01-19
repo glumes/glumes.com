@@ -1,7 +1,7 @@
 ---
 title: "SDL"
 description: 
-image: "software-dev.jpeg"
+image: "SDL_Logo.png"
 style:
     background: "#3ac569"
     color: "#fff"

@@ -1,7 +1,7 @@
 ---
 title: "播放器"
 description: 
-image: "software-dev.jpeg"
+image: "videoplayer.jpeg"
 style:
     background: "#f17f42"
     color: "#fff"

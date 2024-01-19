@@ -1,7 +1,7 @@
 ---
 title: "FFmpeg"
 description: 
-image: "software-dev.jpeg"
+image: "ffmpeg.jpeg"
 style:
     background: "#3ac569"
     color: "#fff"

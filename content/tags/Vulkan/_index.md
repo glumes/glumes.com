@@ -1,7 +1,7 @@
 ---
 title: "Vulkan"
 description: 
-image: "software-dev.jpeg"
+image: "vulkan.png"
 style:
     background: "#30A9DE"
     color: "#fff"

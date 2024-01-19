@@ -1,7 +1,7 @@
 ---
 title: "Unity"
 description: 
-image: "software-dev.jpeg"
+image: "unity-logo.png"
 style:
     background: "#30A9DE"
     color: "#fff"

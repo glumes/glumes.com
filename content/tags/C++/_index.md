@@ -1,7 +1,7 @@
 ---
 title: "C++"
 description: 
-image: "software-dev.jpeg"
+image: "c++.png"
 style:
     background: "#f349eb"
     color: "#fff"
