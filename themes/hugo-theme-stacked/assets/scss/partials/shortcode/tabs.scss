@@ -1,0 +1,255 @@
+/*
+ * This implementation of chrome-like tabs is based on https://github.com/adamschwartz/chrome-tabs
+ */ 
+
+.article-content .tab-panel {
+    margin-left: calc((var(--card-padding)) * -0.5);
+    margin-right: calc((var(--card-padding)) * -0.5);
+
+    /// Styles of tabview body
+    .tab-content {
+        display: block;
+        clear: both;
+        box-shadow: var(--shadow-l1);
+        background-color: var(--panel-background-color);
+        border-radius: 0 0 var(--panel-border-radius) var(--panel-border-radius);
+
+        .tab-item {
+            display: none; // only show active tab
+            &.is-active {
+                display: block;
+            }
+
+            padding: var(--panel-border-radius) var(--card-padding);
+
+            *:first-child {
+                margin-top: 0;
+            }
+            *:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .tab-item.code-item {
+            padding: calc(var(--card-padding)/2);
+            background-color: var(--pre-background-color);
+            border-radius: 0 0 var(--panel-border-radius) var(--panel-border-radius);
+        }
+
+        /// Adjust elements with negative margins
+        .tab-item:not(.code-item) {
+            blockquote,
+            figure,
+            .highlight,
+            .gallery,
+            .video-wrapper,
+            .table-wrapper,
+            .s_video_simple {
+                margin-left: calc((var(--card-padding)) * -1);
+                margin-right: calc((var(--card-padding)) * -1);
+                width: calc(100% + var(--card-padding) * 2);
+            }
+
+            pre {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+        }
+    }
+    
+    .tab-title {
+        display: flex;
+        background: var(--panel-titlebar-color);
+        border-radius: var(--panel-border-radius) var(--panel-border-radius) 0 0;
+
+        /// Style of tool buttons
+        .panel-button {
+            display: none;
+            margin: 15px 8px 5px 0;
+            height: 24px;
+            flex: 0;
+            cursor: pointer;
+            
+            svg {
+                width: 24px;
+                height: 24px;
+                stroke-width: 2;
+            }
+
+            &:hover {
+                color: var(--accent-color);
+            }
+            
+            .copy-success {
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+    
+            &.is-active .copy-success {
+                opacity: 1;
+            }
+            
+            &[data-action=number] {
+                color: var(--accent-color-darker);
+    
+                &:hover {
+                    color: var(--accent-color);
+                }
+            }
+        }
+    }
+
+    /// Style of tabview header
+    .tab-title .tab-nav-wrapper {
+        box-sizing: border-box;
+        position: relative;
+        height: 44px;
+        overflow: hidden;
+        flex: 1;
+
+        .tab-nav {
+            width: 100%;
+            margin: 0;
+            padding: 8px 10px;
+            display: flex;
+            overflow-x: auto;
+
+            .tab-nav-item {
+                position: relative;
+                padding: 0 16px;
+                float: left;
+                display: block;
+                height: 36px;
+                margin: 0 -10px; // make tabs overlapping
+                z-index: 1;
+                pointer-events: none;
+
+                // disable selection
+                & , * {
+                    user-select: none;
+                    cursor: pointer;
+                }
+
+                .tab-nav-divider {
+                    position: absolute;
+                    top: 7px;
+                    bottom: 7px;
+                    left: 10px;
+                    right: 9px;
+
+                    // Define the line of dividers
+                    &::before, &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+
+                        width: 1px;
+                        background: var(--panel-background-color);
+                        opacity: 1;
+                        transition: opacity 0.2s ease;
+                    }
+
+                    &, &::before, &::after {
+                        pointer-events: none;
+                    }
+                    &::before {
+                        left: 0;
+                    }
+                    &::after {
+                        right: 0;
+                    }
+                }
+
+                // remove divider for the first and last tab
+                &:first-child .tab-nav-divider::before,
+                &:last-child .tab-nav-divider::after {
+                    opacity: 0;
+                }
+
+                .tab-nav-background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    pointer-events: none;
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                        .chrome-tab-geometry {
+                            fill: var(--panel-hover-color);
+                        }
+                    }
+                }
+
+                .tab-nav-content {
+                    position: relative;
+
+                    display: flex;
+                    padding: 4px 8px;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                    pointer-events: all;
+
+                    .tab-nav-title {
+                        flex: 1;
+                        font-family: var(--base-font-family);
+                        font-size: 16px;
+                        vertical-align: top;
+                        white-space: nowrap;
+                        color: var(--card-text-color-main);
+                    }
+                }
+
+                &.is-active {
+                    z-index: 5;
+                }
+
+                &.is-active:not(.code-item) .tab-nav-background > svg .chrome-tab-geometry {
+                    fill: var(--panel-background-color);
+                }
+                &.is-active.code-item .tab-nav-background > svg .chrome-tab-geometry {
+                    fill: var(--pre-background-color);
+                }
+                &:not(.is-active) .tab-nav-background {
+                    transition: opacity 0.2s ease;
+                    opacity: 0;
+                }
+            }
+
+            .tab-nav-item:not(.is-active):hover {
+                z-index: 2;
+
+                .tab-nav-background {
+                    opacity: 1;
+                }
+            }
+
+            .tab-nav-item.is-active .tab-nav-title {
+                color: var(--accent-color);
+            }
+        }
+    }
+    
+    // show tool buttons when on code tab
+    &.code-tab-active {
+        .tab-title .panel-button {
+            display: block;
+        }
+    }
+
+    // when hide line number
+    &.code-hide-lineno {
+        .tab-title div.panel-button[data-action=number] {
+            color: var(--body-text-color);
+        }
+
+        .lnt {
+            display: none;
+        }
+    }
+}

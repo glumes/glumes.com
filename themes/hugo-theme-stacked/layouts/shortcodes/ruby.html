@@ -1,0 +1,5 @@
+{{- $content := delimit .Params " " -}}
+{{- $content = replace $content "(" "<rt>" -}}
+{{- $content = replace $content ")" "</rt>" -}}
+{{- $content = replace $content " " "&nbsp;" -}}
+<ruby>{{- $content | safeHTML -}}</ruby>

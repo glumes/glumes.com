@@ -1,0 +1,166 @@
+.article-notice {
+    margin: var(--card-padding) calc((var(--card-padding)) * -0.5);
+    display: flex;
+    flex-direction: column;
+
+    .article-notice-title, .article-notice-title-only {
+        color: var(--body-text-color);
+        margin: 0;
+        background: var(--panel-titlebar-color);
+        transition: border-radius 0.3s ease;
+        font-family: var(--base-font-family);
+
+        display: flex;
+        align-items: center;
+
+        span {
+            user-select: none;
+            width: 100%;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        & > svg:first-child {
+            margin-right: 4px;
+            margin-left: -1px;
+        }
+        & > svg:last-child {
+            margin-right: -4px;
+            transform: rotate(-90deg);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .article-notice-title {
+        padding: 4px calc((var(--card-padding)) * 0.5);
+        border-radius: var(--panel-border-radius) var(--panel-border-radius) 0 0;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--panel-hover-color);
+        }
+    }
+
+    .article-notice-title-only {
+        border-radius: var(--panel-border-radius);
+        padding: calc((var(--card-padding)) * 0.5);
+    }
+
+    &:not([open]) {
+        .article-notice-title {
+            border-radius: var(--panel-border-radius);
+        }
+        .article-notice-title > svg:last-child {
+            transform: rotate(90deg);
+        }
+    }
+
+    .article-notice-body {
+        box-shadow: var(--shadow-l1);
+        background-color: var(--panel-background-color);
+
+        height: auto;
+        overflow: hidden;
+        border-bottom-left-radius: var(--panel-border-radius);
+        border-bottom-right-radius: var(--panel-border-radius);
+
+        section {
+            display: block;
+            padding: calc((var(--card-padding)) * 0.5) var(--card-padding);
+        }
+    }
+
+    &[open] .article-notice-body {
+        animation: panel-open .4s;
+        section {
+            animation: panel-text-open .4s;
+        }
+    }
+    &.closing .article-notice-body {
+        animation: panel-close .4s;
+        section {
+            animation: panel-text-close .4s;
+        }
+    }
+    
+    @each $type, $color, $background-color in $notice-color-map {
+        &.#{$type} {
+            .article-notice-title, .article-notice-title-only {
+                background-color: opacify($background-color, 0.3);
+
+                &:hover {
+                    background-color: opacify($background-color, 0.15);
+                }
+            }
+            .article-notice-body {
+                background-color: opacify($background-color, 0.01);
+            }
+        }
+    }
+}
+
+// for code panels
+.article-notice.code-notice {
+    .article-notice-title div {
+        margin-right: 8px;
+
+        &.code-lang {
+            font-weight: bolder;
+            font-style: italic;
+            font-family: var(--sys-font-family);
+            user-select: none;
+        }
+
+        // buttons
+        &.panel-button {
+            height: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            
+            &:hover {
+                color: var(--accent-color);
+            }
+            
+            .copy-success {
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+    
+            &.is-active .copy-success {
+                opacity: 1;
+            }
+            
+            &[data-action=number] {
+                color: var(--accent-color-darker);
+    
+                &:hover {
+                    color: var(--accent-color);
+                }
+            }
+        }
+    }
+
+    // show tool buttons only when open
+    &[open] div.panel-button {
+        opacity: 1;
+    }
+
+    .article-notice-body {
+        padding: calc(var(--card-padding)/2);
+        background-color: var(--pre-background-color);
+    }
+    
+    // when hide line number
+    &.code-hide-lineno {
+        .article-notice-title div.panel-button[data-action=number] {
+            color: var(--body-text-color);
+        }
+
+        .lnt {
+            display: none;
+        }
+    }
+}

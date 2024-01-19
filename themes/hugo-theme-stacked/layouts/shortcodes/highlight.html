@@ -1,0 +1,18 @@
+{{- $type := default "text" (.Get "type") }}
+{{- $options := default "" (.Get "option") }}
+{{- $title := default "Code" (.Get "title") -}}
+{{- $fold := default false (.Get "fold") -}}
+
+<details class="article-notice code-notice" {{ if not $fold }}open{{ end }}>
+    <summary class="article-notice-title">
+        {{ partial "helper/icon" "notice/code" }}
+        <span>{{ $title }}</span>
+        <div class="panel-button" data-action="copy">{{ partial "helper/icon" "copy" }}</div>
+        <div class="panel-button" data-action="number">{{ partial "helper/icon" "list-number" }}</div>
+        <div class="code-lang">{{ upper $type }}</div>
+        {{ partial "helper/icon" "chevron-right" }}
+    </summary>
+    <div class="article-notice-body">
+        {{ highlight (trim .Inner "\r\n") $type $options }}
+    </div>
+</details>

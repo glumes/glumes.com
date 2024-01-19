@@ -1,0 +1,58 @@
+{{ define "body-class" }}
+    article-page
+    {{/* 
+        Enable the right sidebar if either
+            - TOC is enabled and not empty
+            - Navbar has buttons other than 'back to top'
+            - Widget different from 'toc' and 'navbar' is enabled
+    */}}
+
+    {{- $hasTOC := ge (len .TableOfContents) 100 -}}
+    {{- $hasComments := and .Site.Params.comments.enabled (ne .Params.comments false) }}
+
+    {{- $hasOtherWidgets := false -}}
+    {{- $TOCWidgetEnabled := false -}}
+    {{- $navbarWidgetEnabled := false -}}
+
+    {{- range .Site.Params.widgets.page -}}
+        {{- if eq .type "toc" -}}
+            {{ $TOCWidgetEnabled = true -}}
+        {{- else if eq .type "navbar" -}}
+            {{ $navbarWidgetEnabled = true -}}
+        {{- else -}}
+            {{ $hasOtherWidgets = true -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $showTOC := and (and $TOCWidgetEnabled $hasTOC) (ne .Params.toc false) -}}
+    {{- $showNavbar := and $navbarWidgetEnabled (or $showTOC $hasComments) }}
+
+    {{- .Scratch.Set "showTOC" $showTOC -}}
+    {{- .Scratch.Set "showNavbar" $showNavbar -}}
+    {{- .Scratch.Set "compactNavbar" (and (not $hasOtherWidgets) (not $showTOC)) -}}
+    {{- .Scratch.Set "hasWidget" (or $hasOtherWidgets (or $showNavbar $showTOC)) -}}
+    {{- .Scratch.Set "hasComments" $hasComments -}}
+{{ end }}
+
+{{ define "main" }}
+    {{ partial "article/article.html" . }}
+
+    {{ if .Params.links }}
+        {{ partial "article/components/links" . }}
+    {{ end }}
+
+    {{ partial "article/components/related-content" . }}
+     
+    {{ if not (eq .Params.comments false) }}
+        {{ partial "comments/include" . }}
+    {{ end }}
+
+    {{ partial "footer/navbar" . }}
+    {{ partialCached "footer/footer" . }}
+
+    {{ partialCached "article/components/photoswipe" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ if .Scratch.Get "hasWidget" }}{{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}{{ end }}
+{{ end }}

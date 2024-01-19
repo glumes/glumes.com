@@ -1,0 +1,29 @@
+{{- $query := first 1 (where (where .Context.Site.Pages "Kind" "taxonomy") "Type" "tags") -}}
+{{- $context := .Context -}}
+{{- $limit := default 10 .Params.limit -}}
+{{- $tagLimit := default 5 .Site.Params.tagLimitCount -}}
+
+{{- if $query -}}
+    {{- $tagsPage := index $query 0 -}}
+    <section class="widget tagCloud">
+        <a class="widget-link" href="{{ $tagsPage.RelPermalink }}">
+            <div class="widget-icon">
+                {{ partial "helper/icon" "tag" }}
+            </div>
+            <h2 class="widget-title section-title">{{ default "Tags" $tagsPage.Title }}</h2>
+        </a>
+
+        <div class="tagCloud-tags">
+            {{ range first $limit $context.Site.Taxonomies.tags.ByCount }}
+            <!-- 过滤 tag 对应的文章数量大于 5 的 -->
+                {{ if gt .Count $tagLimit }}
+                    <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}" {{ with .Page.Params.style }}style="background-color: {{ .background }}; color: {{ .color }};"{{ end }}>
+                        {{ .Page.Title }}
+                    </a>
+                {{ end }}
+            {{ end }}
+        </div>
+    </section>
+{{- else -}}
+    {{- warnf "Categories page not found. Please enable the categories taxonomy." -}}
+{{- end -}}

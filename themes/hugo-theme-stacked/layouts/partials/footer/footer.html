@@ -1,0 +1,29 @@
+{{- $ThemeVersion := "3.16.0" -}}
+<footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
+            {{ .Site.Params.footer.since }} - 
+        {{ end }}
+        {{ now.Format "2006" }} {{ .Site.Title }}
+    </section>
+    
+    <section class="powerby">
+        {{ with .Site.Params.footer.customText }}
+            {{ . | safeHTML }} <br/>
+        {{ end }}
+
+        {{- $Generator := `<a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>` -}}
+        {{- $Theme := printf `<b><a href="https://github.com/cmpute/hugo-theme-stacked" target="_blank" rel="noopener" data-version="%s">Stacked</a></b>` $ThemeVersion -}}
+        {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
+        {{- $ModifiedBy := `Jacob` -}}
+
+        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} &nbsp;&nbsp;
+        {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy "ModifiedBy" $ModifiedBy) | safeHTML }}
+    </section>
+
+    <p class="text-center">
+        <a target="_blank"; href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral";>
+        <img style="height:15px;width:auto;"; src="/img/upyun_logo.png">
+        </a>
+</footer>

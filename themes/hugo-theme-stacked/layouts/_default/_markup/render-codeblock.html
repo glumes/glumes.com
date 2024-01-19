@@ -1,0 +1,6 @@
+<div class="codeblock">
+    {{ highlight .Inner .Type .Options }}
+    {{ with .Type }}
+    <div class="code-lang">{{ upper . }}</div>
+    {{ end }}
+</div>

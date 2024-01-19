@@ -1,0 +1,33 @@
+<section class="widget navbar">
+    {{ if .Context.Scratch.Get "hasComments" }}
+    <a class="widget-link" href="#comments-container">
+        <div class="widget-icon" title="{{ T `article.comments` }}">
+            {{ partial "helper/icon" "messages" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "article.comments" }}</h2>
+    </a>
+    {{ end }}
+
+    <div class="widget-link" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <div class="widget-icon" title="{{ T `article.backToTop` }}">
+            {{ partial "helper/icon" "arrows-up" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "article.backToTop" }}</h2>
+    </div>
+
+    {{ if .Context.Scratch.Get "showTOC" }}
+    <div class="widget-link" id="toggle-sidebar-close">
+        <div class="widget-icon" title="{{ T `article.sidebarClose` }}">
+            {{ partial "helper/icon" "arrow-bar-right" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "article.sidebarClose" }}</h2>
+    </div>
+
+    <div class="widget-link" id="toggle-sidebar-open">
+        <div class="widget-icon" title="{{ T `article.sidebarOpen` }}">
+            {{ partial "helper/icon" "arrow-bar-left" }}
+        </div>
+        <h2 class="widget-title section-title">{{ T "article.sidebarOpen" }}</h2>
+    </div>
+    {{ end }}
+</section>

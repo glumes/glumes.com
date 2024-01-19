@@ -1,0 +1,25 @@
+{{- $scope := default "homepage" .Scope -}}
+{{- $context := .Context -}}
+{{- $compact := .Context.Scratch.Get "compactNavbar" -}}
+
+{{- $isCategoriesPage := and (eq $context.Kind "taxonomy") (eq $context.Type "categories") }}
+{{- $isTagsPage := and (eq $context.Kind "taxonomy") (eq $context.Type "tags") }}
+
+{{- with (index .Context.Site.Params.widgets $scope) -}}
+    <aside class="sidebar sticky {{ if $compact }}right-sidebar--compact{{ else }}right-sidebar{{ end }}">
+        {{ range $widget := . }}
+            {{ if and $isCategoriesPage (eq .type "categories") }}
+                {{ continue }}
+            {{ end }}
+            {{ if and $isTagsPage (eq .type "tag-cloud") }}
+                {{ continue }}
+            {{ end }}
+
+            {{ if templates.Exists (printf "partials/widget/%s.html" .type) }}
+                {{ partial (printf "widget/%s" .type) (dict "Context" $context "Params" .params) }}
+            {{ else }}
+                {{ warnf "Widget %s not found" .type }}
+            {{ end }}
+        {{ end }}
+    </aside>
+{{ end }}

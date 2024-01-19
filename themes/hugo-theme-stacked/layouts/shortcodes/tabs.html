@@ -1,0 +1,59 @@
+{{ with .Inner }}{{/* don't do anything, just call it */}}{{ end }}
+{{ $groupId := default "_default" (.Get "groupId") }}
+{{ $tabs := .Scratch.Get "tabs" }}
+
+{{ $code_active := "" }}
+{{ with index (index $tabs 0) "type" }}
+    {{ $code_active = " code-tab-active" }}
+{{ end }}
+<div class="tab-panel{{ $code_active }}">
+    <div class="tab-title">
+        <div class="tab-nav-wrapper">
+            <ul class="tab-nav">
+            {{ range $idx, $tab := $tabs }}
+                {{ $class := slice "tab-nav-item" }}
+                {{ if .type }}
+                    {{ $class = $class | append "code-item" }}
+                {{ end }}
+                {{ if (eq $idx 0)}}
+                    {{ $class = $class | append "is-active" }}
+                {{ end }}
+
+                <li data-tab-item="{{ .name }}" data-tab-group="{{ $groupId }}"
+                    class="{{ delimit $class ` ` }}">
+                    <div class="tab-nav-divider"></div>
+                    <div class="tab-nav-background">
+                        {{ readFile "/assets/img/tab-border.svg" | safeHTML }}
+                    </div>
+                    <div class="tab-nav-content">
+                        <div class="tab-nav-title">{{ .name }}</div>
+                    </div>
+                </li>
+            {{ end }}
+            </ul>
+        </div>
+        {{ if .Scratch.Get "has_code" }}
+        <div class="panel-button" data-action="copy">{{ partial "helper/icon" "copy" }}</div>
+        <div class="panel-button" data-action="number">{{ partial "helper/icon" "list-number" }}</div>
+        {{ end }}
+    </div>
+    <div class="tab-content">
+        {{ range $idx, $tab := $tabs }}
+            {{ $class := slice "tab-item" }}
+            {{ if .type }}
+                {{ $class = $class | append "code-item" }}
+            {{ end }}
+            {{ if (eq $idx 0)}}
+                {{ $class = $class | append "is-active" }}
+            {{ end }}
+            <div data-tab-item="{{ .name }}" data-tab-group="{{ $groupId }}"
+                class="{{ delimit $class ` ` }}">
+                {{ if .type }}
+                    {{ highlight (trim .content "\r\n") .type }}
+                {{ else }}
+                    {{ .content }}
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+</div>
