@@ -4,7 +4,7 @@ date: 2018-05-07T09:44:57+08:00
 subtitle: ""
 draft: false
 categories: ["software-development"]
-tags: ["Android","JNI"]
+tags: ["NDK"]
 comments: true
 original: true
 addwechat: true

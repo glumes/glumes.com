@@ -3,7 +3,7 @@ title: "005 | 播放器系列专栏-在 Windows 上查看 MP4 格式信息"
 date: 2022-04-16T18:29:38+08:00
 slug: "windows-mp4-info"
 subtitle: ""
-tags: ["播放器实践"]
+tags: ["Player"]
 categories: ["media-development"]
 comments: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

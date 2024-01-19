@@ -2,7 +2,7 @@
 title: "Android NDK 开发的免费技术视频来啦~~"
 date: 2019-12-27T10:58:55+08:00
 subtitle: ""
-tags: ["视频课程","Life"]
+tags: ["NDK"]
 categories: ["learning-insights"]
 comments: true
 slug: "imooc-course-online"

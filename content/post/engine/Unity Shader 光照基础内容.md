@@ -2,7 +2,7 @@
 title: "Unity Shader 光照基础内容"
 date: 2021-09-02T10:44:03+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 slug: "unity-basic-lighting"
 categories: ["graphics-renderer"]
 comments: true

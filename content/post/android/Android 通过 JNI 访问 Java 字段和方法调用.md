@@ -4,7 +4,7 @@ date: 2018-05-07T10:27:08+08:00
 subtitle: ""
 draft: false
 categories: ["software-development"]
-tags: ["Android","JNI"]
+tags: ["NDK"]
 comments: true
 original: true
 slug: "android-jni-access-field-and-method"

@@ -2,7 +2,7 @@
 title: "Unity Shader 光照基础之Lambert光照模型"
 date: 2021-09-02T10:45:46+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 categories: ["graphics-renderer"]
 comments: true
 slug: "unity-lambert-lighting-model"

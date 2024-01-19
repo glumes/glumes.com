@@ -2,7 +2,7 @@
 title: "Unity Shader 光照基础之 Half Lambert 光照模型"
 date: 2021-09-02T10:45:56+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 categories: ["graphics-renderer"]
 slug: "unity-halflambert-lighting-model"
 comments: true

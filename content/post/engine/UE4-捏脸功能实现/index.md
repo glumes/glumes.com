@@ -1,7 +1,7 @@
 ---
 title: "用 UE4 虚幻引擎做个捏脸小功能~~"
 date: 2022-11-05T14:56:53+08:00
-slug: "UE4-ControlRig-Face-Edit"
+slug: "UE4-ControlRig-Face-Edit22"
 subtitle: ""
 tags: ["UE4"]
 categories: ["graphics-renderer"]
@@ -29,7 +29,7 @@ author: "星陨"
 
 UE 在导入人物模型时会带有一个骨架，如下图所示。人物的行动就是由一根根骨骼的变化来实现的，而面部的捏脸调节也是基于这一点。通过改变脸部相关骨骼的位置从而实现面部的变形，间接达到一个类似捏脸的效果。
 
-![](/image/engine/ControlRig-Face.jpeg)
+![](ControlRig-Face.jpeg)
 
 由于不会 3D 建模，使用了 UE 提供的免费模型。图上这个就是 "虚幻争霸：心菲" 模型了。
 
@@ -39,7 +39,7 @@ UE 在导入人物模型时会带有一个骨架，如下图所示。人物的�
 
 如下图所示，针对眉毛、眼睛、鼻子、脸颊、嘴唇这五个部位建立了相应的控制点。
 
-![](/image/engine/ue4-control-rig-point.jpeg)
+![](ue4-control-rig-point.jpeg)
 
 控制点的性质、颜色以及位置都是可以调节的，建立的时候要选择好相应的骨骼位置。这个地方其实挺考验审美的，因为我只是写个小功能，就没有用到很复杂的骨骼，但是很逼真的调节效果就需要反复打磨骨骼模型以及控制点了。
 

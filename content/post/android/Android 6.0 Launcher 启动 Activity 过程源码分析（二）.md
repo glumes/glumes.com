@@ -2,7 +2,7 @@
 title: "Android 6.0 Launcher 启动 Activity 过程源码分析（二）"
 date: 2017-12-22T10:40:42+08:00
 categories: ["software-development"]
-tags: ["Android","Framework"]
+tags: ["Android"]
 comments: true
 original: true
 addwechat: true

@@ -132,6 +132,8 @@ params:
             local: false
             src:
 
+    tagLimitCount: 10
+
     colorScheme:
         # Display toggle
         toggle: true

@@ -2,7 +2,7 @@
 title: "Unity Shader 显示一张图片纹理"
 date: 2021-08-23T13:04:19+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 categories: ["graphics-renderer"]
 slug: "unity-basic-texture"
 comments: true

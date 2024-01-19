@@ -2,7 +2,7 @@
 title: "Unity 物体的基本操作"
 date: 2021-08-14T21:53:16+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 categories: ["graphics-renderer"]
 slug: "unity-basic-object-operation"
 comments: true

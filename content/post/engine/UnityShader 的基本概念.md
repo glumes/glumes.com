@@ -2,7 +2,7 @@
 title: "UnityShader 的基本概念"
 date: 2021-08-15T15:18:06+08:00
 subtitle: ""
-tags: ["unity"]
+tags: ["Unity"]
 categories: ["graphics-renderer"]
 comments: true
 slug: "unity-shader-basic-content"

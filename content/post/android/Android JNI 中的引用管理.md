@@ -4,7 +4,7 @@ date: 2018-05-16T17:50:06+08:00
 subtitle: ""
 draft: false
 categories: ["software-development"]
-tags: ["Android","JNI"]
+tags: ["NDK"]
 comments: true
 original: true
 bigimg: [{src: "/img/banner.jpg", desc: ""}]

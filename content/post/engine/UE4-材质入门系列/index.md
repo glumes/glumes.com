@@ -1,7 +1,7 @@
 ---
 title: "UE4 材质练习系列基础"
 date: 2022-09-10T17:08:48+08:00
-slug: "UE4-material-practice"
+slug: "UE4-material-practice222"
 subtitle: ""
 tags: ["UE4"]
 categories: ["graphics-renderer"]
@@ -20,7 +20,7 @@ image: ""
 
 使用 UE 创建材质后，默认状态如下图所示，这里面有很多参数设置来决定材质的类型和用途。
 
-![创建材质默认状态](/image/engine/create_default_material.png)
+![创建材质默认状态](create_default_material.png)
 
 右侧是材质连接节点，左侧是材质的相关属性，选择不同的材质着色模型，右侧的连接节点会随之发生变化。
 
@@ -40,7 +40,7 @@ https://docs.unrealengine.com/4.26/zh-CN/RenderingAndGraphics/Materials/HowTo/Ma
 
 UE 中提供了多种着色模型，除了默认光照之外，还有如下：
 
-![着色模型](/image/engine/ue_shadingmodel.png)
+![着色模型](ue_shadingmodel.png)
 
 关于着色模型更多内容参考这里：
 
@@ -61,19 +61,19 @@ https://docs.unrealengine.com/4.27/zh-CN/RenderingAndGraphics/Materials/Material
 
 数字键 1、2、3、4 分别对应 1、2、3、4 维的常量，如下图所示：
 
-![](/image/engine/ue-create-vector.png)
+![](ue-create-vector.png)
 
 运算操作：
 
 快捷键 A、M、D 分别对应于加法、乘法、除法，如下图所示：
 
-![](/image/engine/ue-add-mul-divide-operation.png)
+![](ue-add-mul-divide-operation.png)
 
 纹理操作：
 
 快捷键 T、U 分别对应于贴图节点、UV 坐标节点，如下图所示：
 
-![](/image/engine/ue-tex-operation.png)
+![](ue-tex-operation.png)
 
 
 除此之外，还有其他不少快捷键，就不一一列举了。
@@ -82,7 +82,7 @@ https://docs.unrealengine.com/4.27/zh-CN/RenderingAndGraphics/Materials/Material
 
 如下所示，创建了一个简单的红砖材质，贴上了颜色、高光、粗糙度、法线、AO 等贴图。
 
-![](/image/engine/brick_material.png)
+![](brick_material.png)
 
 并且把用到的纹理贴图都参数化了，同时增加了一个对 UV 的调整，可以改变 UV 采样的范围。
 
@@ -94,11 +94,11 @@ https://docs.unrealengine.com/4.27/zh-CN/RenderingAndGraphics/Materials/Material
 
 比如上图示例中将 UV 坐标乘以常数的操作就可以放到材质函数中去，如下图所示：
 
-![](/image/engine/change-uv-function.png)
+![](change-uv-function.png)
 
 不是所有类型的参数都可以作为材质函数的输入，仅有如下的几种类型：
 
-![](/image/engine/mat-function-input-type.png)
+![](mat-function-input-type.png)
 
 点击鼠标右键然后搜索 `FunctionInput` 和 `FunctionOutput` 可以添加输入和输出节点，添加输入节点后去修改输入的类型就可以接收不同参数了，而输出节点没有修改参数类型的地方，由最终计算得到具体类型。
 
@@ -116,11 +116,11 @@ https://docs.unrealengine.com/4.26/zh-CN/RenderingAndGraphics/Materials/Function
 
 创建材质参数集合如下所示：
 
-![](/image/engine/create-material-parameter-collection.png)
+![](create-material-parameter-collection.png)
 
 创建了多个参数，但是在使用时一次只能使用一个，因为只有一个输出节点：
 
-![](/image/engine/mat-parameter-usage.png)
+![](mat-parameter-usage.png)
 
 在材质参数集合的细节面板中要选择当前用到的参数具体是哪个，否则是识别不到参数的。
 
@@ -132,15 +132,15 @@ https://docs.unrealengine.com/4.26/zh-CN/RenderingAndGraphics/Materials/Function
 
 通过 MakeMaterialAttributes 节点创建一个材质属性列表，这列表里面包括了颜色、高光、粗糙度等各种属性，基本上和主材质节点中的属性一样了，如下所示：
 
-![](/image/engine/make_material_attribute.png)
+![](make_material_attribute.png)
 
 可以直接把创建的材质中的节点全部复制过来，让这个材质函数自身闭环作为一个材质层，然后通过 BreakMaterialAttributes 节点再把这些属性拆分，一个一个的赋值给主材质节点。
 
-![](/image/engine/break_material_attribute.png)
+![](break_material_attribute.png)
 
 这里只用到了一层材质，如果有多个材质函数构造的材质层，每层都有相同的属性，这时候就需要对这些属性进行混合操作，在 UE 中提供了很多 MatLayerBlend_xxxx 类似的函数进行各种混合操作。
 
-![](/image/engine/MatLayerBlendFunctions.webp)
+![](MatLayerBlendFunctions.webp)
 
 除了混合之外，还可以对材质层做选择操作，在一定条件下选择相应的材质层。
 
@@ -151,7 +151,7 @@ https://docs.unrealengine.com/4.26/zh-CN/RenderingAndGraphics/Materials/Function
 最后，完成材质创建并且赋给了对应的模型后，可以通过 `profilegpu` 命令查看当前的渲染管线。
 
 
-![](/image/engine/profile_gpu.png)
+![](profile_gpu.png)
 
 关于渲染管线的更多内容，后续再慢慢学习 UE 的源码了！！！
 

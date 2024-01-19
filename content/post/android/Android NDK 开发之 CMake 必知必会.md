@@ -2,7 +2,7 @@
 title: "Android NDK 开发之 CMake 必知必会"
 date: 2018-09-12T09:19:09+08:00
 subtitle: ""
-tags: ["CMake","NDK"]
+tags: ["NDK"]
 categories: ["software-development"]
 comments: true
 draft: false
