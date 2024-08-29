@@ -3,13 +3,13 @@ title: "Android Camera 模型及 API 接口演变"
 date: 2018-04-12T13:13:57+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Camera","Android"]
 slug: "android-camrea-api-evolution"
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 要了解 Android Camear 相机模型的演变，首先还是得了解硬件抽象层 HAL 相关的知识内容。

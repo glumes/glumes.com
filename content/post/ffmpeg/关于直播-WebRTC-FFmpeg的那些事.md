@@ -3,10 +3,10 @@ title: "关于直播、WebRTC、FFmpeg 的那些事"
 date: 2022-04-17T22:06:45+08:00
 slug: "webrtc-and-ffmepg"
 subtitle: ""
-categories: ["ffmpeg"]
+categories: ["media-development"]
 tags: ["FFmpeg"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: ""

@@ -1,12 +1,12 @@
 ---
 title: "Android StateMachine 状态机分析"
 date: 2017-12-22T15:37:04+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "android-statemachine"
 ---
 

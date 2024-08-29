@@ -3,13 +3,14 @@ title: "开源库之 Retrofit 源码分析"
 date: 2018-09-09T14:54:57+08:00
 subtitle: ""
 tags: ["Retrofit"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "retrofit-analysis"
+author: "glumes"
 ---
 
 分析一波 Retrofit 的源码实现。

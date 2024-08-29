@@ -3,12 +3,11 @@ title: "FFmpeg 调用 Android MediaCodec 进行硬解码（附源码）"
 date: 2021-10-19T10:18:38+08:00
 subtitle: ""
 tags: ["FFmpeg"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
-image: https://image.glumes.com/blog_image20211019101917.png
 slug: "ffmpeg-call-android-mediacodec"
 ---
 

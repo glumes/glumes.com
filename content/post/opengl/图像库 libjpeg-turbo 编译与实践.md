@@ -4,11 +4,12 @@ date: 2019-07-13T00:08:18+08:00
 subtitle: ""
 slug: "opengl/libjpeg-turbo-compile-and-practice"
 tags: ["libjpeg-turbo","image"]
-categories: ["opengl"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+categories: ["graphics-renderer"]
+ 
 comments: true
 draft: false
 original: true
+author: "glumes"
 ---
 
 <!--more-->

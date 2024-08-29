@@ -3,10 +3,10 @@ title: "006 | 播放器系列专栏-在 Mac 上查看 MP4 格式信息"
 date: 2022-05-05T21:39:07+08:00
 slug: "mac-mp4-info"
 subtitle: ""
-tags: ["播放器实践"]
-categories: ["ffmpeg"]
+tags: ["Player"]
+categories: ["media-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: ""
@@ -30,7 +30,6 @@ https://mediaarea.net/MediaInfo
 
 现在 MediaInfo 也要收费使用了，而且还不能显示 Box 信息，其内容和 FFmpeg 命令显示差不多的，所以在 Mac 上还是建议直接用 FFmpeg 好。
 
----
 
 ## Bento4 介绍
 

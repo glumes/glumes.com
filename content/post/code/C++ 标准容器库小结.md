@@ -3,13 +3,14 @@ title: "C++ 标准容器库小结"
 date: 2018-11-19T10:23:00+08:00
 subtitle: ""
 tags: ["C++","STL"]
-categories: ["code"]
+categories: ["code-basic"]
 comments: true
 draft: false
 slug: "c++-stl-container-overview"
 original: false
 addwechat: false
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
+author: "星陨"
 ---
 
 

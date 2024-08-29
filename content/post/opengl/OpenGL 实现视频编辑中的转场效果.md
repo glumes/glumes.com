@@ -3,8 +3,8 @@ title: "OpenGL 实现视频编辑中的转场效果"
 date: 2019-10-20T22:49:00+08:00
 subtitle: ""
 tags: ["OpenGL"]
-categories: ["opengl"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+categories: ["graphics-renderer"]
+ 
 comments: true
 draft: false
 original: true

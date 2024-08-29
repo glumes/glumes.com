@@ -1,16 +1,18 @@
 ---
-title: "WebRTC & Android 开发学习环境搭建~"
+title: 【WebRTC 专栏】WebRTC & Android 开发学习环境搭建~
 date: 2020-08-10T21:01:28+08:00
 subtitle: ""
-slug: "webrtc-android-setup"
-tags: ["webrtc"]
-categories: ["webrtc"]
+slug: webrtc-android-setup
+tags:
+  - webrtc
+categories:
+  - media-development
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
 draft: false
 original: true
-
+image: "/banner/rainbow-149485.svg"
 ---
+
 最近开始折腾 WebRTC 了。
 
 先介绍一下 WebRTC 源码编译以及 Android 开发环境的搭建。

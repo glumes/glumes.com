@@ -3,13 +3,14 @@ title: "002 | 播放器系列专栏-FFmpeg依赖库的配置"
 date: 2022-03-18T21:10:54+08:00
 slug: "planet-player-project-configure-ffmpeg"
 subtitle: ""
-tags: ["播放器实践"]
-categories: ["ffmpeg"]
+tags: ["Player"]
+categories: ["media-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: ""
+author: "glumes"
 ---
 
 

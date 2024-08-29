@@ -3,10 +3,10 @@ title: " 《OpenGL ES 3.x 游戏开发》 光照系列之散射光"
 date: 2018-07-22T23:27:04+08:00
 subtitle: "学习笔记内容摘录"
 draft: false
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 slug: "opengl-tutorial-diffuse-light"
 ---
 

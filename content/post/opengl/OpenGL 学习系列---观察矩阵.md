@@ -3,9 +3,9 @@ title: "OpenGL 学习系列---观察矩阵"
 date: 2018-05-22T12:04:10+08:00
 subtitle: ""
 draft: false
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL","Camera"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 comments: true
 original: true
 addwechat: true

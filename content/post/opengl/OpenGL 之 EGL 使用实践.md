@@ -3,9 +3,9 @@ title: "OpenGL 之 EGL 使用实践"
 date: 2018-09-02T21:26:55+08:00
 subtitle: ""
 tags: ["OpenGL","EGL"]
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 draft: false
 original: true
 addwechat: true

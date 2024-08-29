@@ -3,10 +3,10 @@ title: "Vulkan 在 FFmpeg 中的支持"
 date: 2022-01-18T00:16:16+08:00
 slug: "ffmpeg-vulkan-support"
 subtitle: ""
-categories: ["ffmpeg"]
+categories: ["media-development"]
 tags: ["FFmpeg"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 image: ""

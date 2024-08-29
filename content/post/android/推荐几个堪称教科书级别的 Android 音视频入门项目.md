@@ -4,11 +4,12 @@ date: 2020-05-06T23:10:48+08:00
 subtitle: ""
 tags: []
 slug: "android-av-beginner-resource"
-categories: ["android"]
+categories: ["software-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

@@ -3,9 +3,9 @@ title: "OpenGL 学习系列---纹理"
 date: 2018-03-21T23:08:02+08:00
 subtitle: ""
 draft: false
-categories: ["OpenGL"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 comments: true
 original: true
 addwechat: true
@@ -25,29 +25,13 @@ slug: "opengl-tutorial-texture"
 
 比如有如下图形和三角形，想要把图形中的一部分映射到三角形上。
 
-{{< gallery>}}
 
-	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17371719.jpg" >}}
-
-{{< /gallery >}}
-
-
-{{< gallery>}}
-
-	{{< figure src="https://image.glumes.com/images/2019/04/27/2044035O6-2.jpg" >}}
-
-{{< /gallery >}}
 
 
 
 结果就是这样的：
 
 
-{{< gallery>}}
-
-	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17321771.jpg" >}}
-
-{{< /gallery >}}
 
 
 
@@ -242,11 +226,6 @@ void main(){
 
 当绑定并设置好片段着色器中的值之后，接下来的流程就和绘制基本图形一样了。
 
-{{< gallery>}}
-
-	{{< figure src="https://image.glumes.com/images/2019/04/27/S80201-17321771.jpg" >}}
-
-{{< /gallery >}}
 
 
 

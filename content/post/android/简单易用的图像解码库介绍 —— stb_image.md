@@ -3,12 +3,13 @@ title: "简单易用的图像解码库介绍 —— stb_image"
 date: 2019-05-12T21:57:07+08:00
 subtitle: ""
 tags: ["stb_image"]
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 draft: false
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "stb-image-introduce"
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

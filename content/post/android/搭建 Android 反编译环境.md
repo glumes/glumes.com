@@ -4,12 +4,13 @@ date: 2018-01-31T15:47:59+08:00
 subtitle: ""
 tags: ["android","crack"]
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "setup-android-crack-environment"
+author: "glumes"
 ---
 
 在 MAC 上搭建 Android 反编译环境主要就是三个东西：```apktool``` 、```dex2jar``` 、```jd-gui``` 。

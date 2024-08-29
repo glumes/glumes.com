@@ -3,12 +3,13 @@ title: "OpenGL 实践之贝塞尔曲线绘制"
 date: 2019-08-20T23:51:59+08:00
 subtitle: ""
 tags: ["oepngl","bezier"]
-categories: ["opengl"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+categories: ["graphics-renderer"]
+ 
 comments: true
 draft: false
 original: true
 slug: "opengl-draw-bezier-line"
+author: "glumes"
 ---
 
 > 避免图片丢失，建议阅读微信原文：

@@ -3,9 +3,9 @@ title: "OpenGL 的 glDrawElements  绘制方法"
 date: 2018-05-25T19:47:29+08:00
 subtitle: ""
 draft: false
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 comments: true
 original: true
 addwechat: true

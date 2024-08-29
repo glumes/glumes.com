@@ -3,9 +3,9 @@ title: "【音视频连载-010】第二季 FFmpeg 日志打印"
 date: 2020-04-27T23:37:03+08:00
 subtitle: ""
 tags: ["FFmpeg"]
-categories: ["ffmpeg"]
+categories: ["media-development"]
 comments: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 draft: false
 original: true
 slug: "av-beginner-010"

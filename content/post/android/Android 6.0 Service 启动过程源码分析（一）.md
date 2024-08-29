@@ -1,13 +1,13 @@
 ---
 title: "Android 6.0 Service 启动过程源码分析（一）"
 date: 2017-12-22T15:40:19+08:00
-categories: ["android"]
-tags: ["Android","Framework"]
+categories: ["software-development"]
+tags: ["Android"]
 comments: true
 original: true
 addwechat: true
 slug: "android-start-service"
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 ---
 
 

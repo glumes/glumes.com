@@ -3,13 +3,14 @@ title: "OpenGL ES 学习资源分享"
 date: 2018-07-11T14:25:52+08:00
 subtitle: ""
 draft: false
-categories: ["opengl"]
+categories: ["graphics-renderer"]
 tags: ["OpenGL"]
 comments: true
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 original: true
 addwechat: true
 slug: "opengl-tutorial-share"
+author: "glumes"
 ---
 
 学习了一段时间的 OpenGL ES，并在公司的项目中得到了运用，也算是有了一些积累，现在分享一些当初学习的资源，大家一起来学习，共同交流进步。

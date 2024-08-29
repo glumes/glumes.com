@@ -1,11 +1,11 @@
 ---
 title: "Android Material Desing 控件小结-2"
 date: 2017-12-22T15:22:15+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android"]
 comments: true
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 slug: "android-material-design-summary-2"
 ---

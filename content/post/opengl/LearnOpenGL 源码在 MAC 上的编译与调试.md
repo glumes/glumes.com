@@ -4,8 +4,8 @@ date: 2020-01-04T22:53:52+08:00
 subtitle: ""
 slug: "opengl/run-learnopengl-code-on-xcode"
 tags: ["opengl"]
-categories: ["opengl"]
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+categories: ["graphics-renderer"]
+ 
 comments: true
 draft: false
 original: true

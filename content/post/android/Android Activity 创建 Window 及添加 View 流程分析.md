@@ -1,11 +1,11 @@
 ---
 title: "Android Activity 创建 Window 及添加 View 流程分析"
 date: 2017-12-22T15:33:22+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android"]
 comments: true
 original: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 addwechat: true
 slug: "android-window-and-view"
 ---

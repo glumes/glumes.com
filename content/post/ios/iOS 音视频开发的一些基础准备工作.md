@@ -3,10 +3,10 @@ title: "iOS 音视频开发的一些基础准备工作"
 date: 2020-11-17T00:22:12+08:00
 subtitle: ""
 tags: ["iOS"]
-categories: ["ios"]
+categories: ["software-development"]
 comments: true
 draft: false
-bigimg: [{src: "https://image.glumes.com/blog_image/610391b1gy1gmhbipn8w5j208x0sgtk7.jpg", desc: ""}]
+ 
 original: true
 slug: "ios-av-developer-prepare"
 ---

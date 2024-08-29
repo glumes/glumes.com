@@ -1,12 +1,12 @@
 ---
 title: "Kotlin 使用 Anko 布局那些事"
 date: 2017-12-22T10:21:26+08:00
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Kotlin"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "kotlin-with-anko"
 ---
 

@@ -3,12 +3,12 @@ title: "Kotlin 中的 run、let、with、apply、also、takeIf、takeUnless 语�
 date: 2018-06-29T20:31:53+08:00
 subtitle: ""
 draft: false
-categories: ["android"]
+categories: ["software-development"]
 tags: ["Android","Kotlin"]
 comments: true
 original: true
 addwechat: true
-bigimg: [{src: "/img/banner.jpg", desc: ""}]
+ 
 slug: "kotlin-syntactic-sugar-usage-and-analysis"
 ---
 
