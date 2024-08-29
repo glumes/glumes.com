@@ -18,6 +18,7 @@ author: 星陨
 
 初识 Flutter 的 Demo 是一个点击按键然后数字增加的小应用，这小应用就涉及到了 Flutter 中的状态管理，核心就是 `setState` 方法。
 
+<!--more-->
 
 `setState` 方法用于通知 Flutter 更新 Widget 的状态，比如重建当前 Widget 及其子树，它是从上到下进行通知的，但作用域仅停留在当前的 `StatefulWidget` 范围内。
 

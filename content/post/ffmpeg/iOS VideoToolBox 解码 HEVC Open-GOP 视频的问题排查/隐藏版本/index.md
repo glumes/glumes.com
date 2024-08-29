@@ -18,6 +18,8 @@ author: 星陨
 
 该视频在 iOS 平台上用 AssetReader 进行解码，频繁 Seek 的场景下会出现卡死。
 
+<!--more-->
+
 用 VideoToolBox 解码也会有异常，具体表现在 iOS 16 的系统上出现花屏，iOS 17 的系统上解码失败，错误码是 kVTVideoDecoderBadDataErr (-12909)。
 
 通过调研分析，AssetReader 解码对于开发者来说相当于是个黑盒，Play 和 Seek 行为都是通过指定 API 来完成的，可操作的空间比较小，并且官方论坛上也有反馈卡死的行为，因此暂时不处理这个，重点放在 VideoToolBox 上，毕竟竞品也是用 VideoToolBox 解码的，而且还一切正常。

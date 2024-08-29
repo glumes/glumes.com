@@ -17,6 +17,8 @@ image: https://image.glumes.com/image/banner-small.webp
 
 **2. 在 Shader 中对自定义的 ShadingModel 做渲染上的处理。比如自定义的 BxDF 函数，以及对光照的特殊处理等。**
 
+<!--more-->
+
 ## Editor 中添加 ShadingModel 入口
 
 ### 定义 ShadingModel 宏
